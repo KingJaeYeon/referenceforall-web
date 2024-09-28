@@ -2,8 +2,8 @@
 
 import { useTheme } from "next-themes";
 import { Toaster as Sonner } from "sonner";
-import IconConfirm from "@/assets/svg/IconConfirm";
-import IconError from "@/assets/svg/IconError";
+import { IconConfirm } from "@/assets/svg";
+import { IconError } from "@/assets/svg";
 import React from "react";
 
 type ToasterProps = React.ComponentProps<typeof Sonner>;
@@ -29,5 +29,6 @@ const Toaster = ({ ...props }: ToasterProps) => {
     />
   );
 };
+Toaster.displayName = "Toaster";
 
 export { Toaster };

@@ -1,6 +1,6 @@
 import React from "react";
 import Row from "@/components/Layout/Row";
-import IconClose from "@/assets/svg/IconClose";
+import { IconClose } from "@/assets/svg";
 
 type Props = {
   className?: string;

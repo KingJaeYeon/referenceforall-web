@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useDebouncedEffect } from "@/hook/useDebouncedEffect";
+import useDebouncedEffect from "@/hook/useDebouncedEffect";
 
 export default function useWindowSize() {
   const [windowSize, setWindowSize] = useState({

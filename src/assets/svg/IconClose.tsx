@@ -1,17 +1,17 @@
-import React from "react";
+import { cn } from "@/lib/utils";
 
-function IconClose({ className }: { className?: string }) {
+export function IconClose({ className }: { className?: string }) {
   return (
     <svg
-      className={className}
-      width="14"
-      height="14"
-      viewBox="0 0 14 14"
-      fill="none"
+      className={cn(className, "text-icon")}
       xmlns="http://www.w3.org/2000/svg"
+      width="18"
+      height="18"
+      viewBox="0 0 18 18"
+      fill="none"
     >
       <path
-        d="M11.6668 2.33325L2.3335 11.6666M2.3335 2.33325L11.6668 11.6666"
+        d="M15 3L3 15M3 3L15 15"
         stroke="currentColor"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -19,5 +19,3 @@ function IconClose({ className }: { className?: string }) {
     </svg>
   );
 }
-
-export default IconClose;

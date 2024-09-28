@@ -1,12 +1,11 @@
-import { useTheme } from "next-themes";
 import React from "react";
+import { useTheme } from "next-themes";
 
-export default function IconConfirm({ className }: { className?: string }) {
+export function IconConfirm() {
   const { theme } = useTheme();
 
   return (
     <svg
-      className={className}
       xmlns="http://www.w3.org/2000/svg"
       width="20"
       height="20"

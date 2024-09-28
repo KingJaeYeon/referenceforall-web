@@ -1,78 +1,314 @@
+@import "./font.css";
+
 @tailwind base;
-@tailwind components;
 @tailwind utilities;
+@tailwind components;
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
+@layer base {
+    :root {
+        /*공통*/
+        --white: 0 0% 100%;
+        --black: 0 0% 0%;
+        --red: 349 64% 58%;
+        --primary: 112 76% 53%;
+        --transparent: var(--black) / 0;
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+        --button-primary-background: var(--primary);
+        --button-primary-foreground: 228 5% 20%;
+        --button-primary-hover: var(--primary) / 0.8;
+    }
+
+    .light {
+        --gray-pale: 0 0% 95%;
+        --gray-weak: 0 0% 92%;
+        --gray-light: 0 0% 85%;
+        --gray-normal: 0 0% 61%;
+        --gray-neutral: 0 0% 49%;
+        --gray-deep: 0 0% 36%;
+        --gray-drak: 228 5% 20%;
+
+        --background: var(--gray-pale);
+        --foreground: var(--gray-drak);
+        --description: var(--gray-neutral);
+        --border: var(--white) / 0.15;
+        --icon: var(--gray-deep);
+
+        --button-secondary-background: var(--gray-light);
+        --button-secondary-foreground: var(--gray-drak);
+        --button-secondary-hover-background: var(--gray-weak);
+        --button-secondary-hover-foreground: var(--gray-drak);
+        --button-outline-border: var(--black) / 0.15;
+        --button-outline-foreground: var(--gray-drak);
+        --button-outline-hover-foreground: var(--gray-drak);
+
+        --accent: var(--gray-weak);
+        --accent-foreground: 222.2 47.4% 11.2%;
+
+        --switch-theme-thumb: 228 3% 34%;
+        --switch-theme: 180 1% 86%;
+        --switch-off: var(--gray-weak);
+        --switch-thumb-off: var(--gray-neutral);
+        --switch-on: var(--gray-drak);
+        --switch-thumb-on: var(--white);
+
+        --popover-background: var(--white);
+        --popover-overlay: var(--gray-pale) / 0.7;
+        --popover-foreground: 222.2 84% 4.9%;
+
+        --place-holder: var(--gray-deep);
+        --place-holder-02: var(--gray-neutral);
+
+        --input-border: var(--black) / 0.3;
+        --input-disabled-border: var(--black) / 0.1;
+        --input-disabled-foreground: var(--gray-drak) / 0.2;
+        --input-background: var(--transparent);
+        --input-placeholder: var(--gray-drak) / 0.5;
+        --input-foreground: var(--gray-drak);
+        --input-focus-border: var(--gray-drak);
+        --input-scroll-bar: 0 0% 0%;
+
+        --check-background: var(--gray-pale);
+        --check-border: var(--gray-normal);
+        --check-icon: var(--gray-normal);
+        --check-active-background: var(--primary);
+        --check-active-border: var(--primary);
+        --check-active-icon: var(--white);
+
+        --radio-border: var(--gray-normal);
+        --radio-icon: var(--gray-light);
+        --radio-background: var(--gray-pale);
+        --radio-active-border: var(--primary);
+        --radio-active-icon: var(--white);
+        --radio-active-background: var(--primary);
+
+        --tip-box-shadow: 0px 7px 10px 0px var(--black) / 0.15;
+        --tip-forground: var(--gray-deep);
+        --tip-background: var(--white);
+        --tip-border: var(--black) / 0.15;
+
+        --card: 0 0% 100%;
+        --card-foreground: 222.2 84% 4.9%;
+        --muted: 210 40% 96.1%;
+        --muted-foreground: 215.4 16.3% 46.9%;
+        --destructive: 0 84.2% 60.2%;
+        --destructive-foreground: 210 40% 98%;
+        --input: 214.3 31.8% 91.4%;
+        --ring: 222.2 84% 4.9%;
+        --radius: 0.5rem;
+        --chart-1: 12 76% 61%;
+        --chart-2: 173 58% 39%;
+        --chart-3: 197 37% 24%;
+        --chart-4: 43 74% 66%;
+        --chart-5: 27 87% 67%;
+    }
+
+    .dark {
+        --gray-pale: 180 1% 86%;
+        --gray-light: 210 1% 69%;
+        --gray-neutral: 208 8% 56%;
+        --gray-deep: 228 3% 34%;
+        --gray-drak: 228 5% 20%;
+        --gray-drakest: 230 10% 11%;
+
+        --background: var(--gray-drakest);
+        --foreground: var(--white);
+        --description: var(--gray-neutral);
+        --border: var(--white) / 0.15;
+        --icon: var(--white);
+
+        --button-secondary-background: var(--gray-drak);
+        --button-secondary-foreground: var(--gray-light);
+        --button-secondary-hover-background: var(--gray-deep);
+        --button-secondary-hover-foreground: var(--white);
+        --button-outline-border: var(--white) / 0.15;
+        --button-outline-foreground: var(--gray-light);
+        --button-outline-hover-foreground: var(--white);
+
+        --accent: var(--gray-deep);
+        --accent-foreground: 210 40% 98%;
+
+        --switch-theme-thumb: var(--gray-pale);
+        --switch-theme: var(--gray-deep);
+        --switch-off: var(--gray-deep);
+        --switch-thumb-off: var(--gray-pale);
+        --switch-on: var(--white);
+        --switch-thumb-on: var(--gray-deep);
+
+        --popover-background: var(--black);
+        --popover-overlay: var(--black) / 0.3;
+        --popover-foreground: 210 40% 98%;
+
+        --place-holder: 0, 0%, 100%, 0.4;
+        --place-holder-02: var(--gray-light);
+
+        --input-border: var(--white) / 0.3;
+        --input-disabled-border: var(--white) / 0.1;
+        --input-disabled-foreground: var(--white) / 0.2;
+        --input-background: var(--transparent);
+        --input-placeholder: var(--white) / 0.5;
+        --input-foreground: var(--white);
+        --input-focus-border: var(--white);
+        --input-scroll-bar: 0 0% 100%;
+
+
+        --check-background: var(--gray-drakest);
+        --check-border: var(--gray-neutral);
+        --check-icon: var(--gray-neutral);
+        --check-active-background: var(--primary);
+        --check-active-border: var(--primary);
+        --check-active-icon: var(--gray-drakest);
+
+        --radio-border: var(--gray-neutral);
+        --radio-icon: var(--gray-deep);
+        --radio-background: var(--gray-drakest);
+        --radio-active-border: var(--primary);
+        --radio-active-icon: var(--gray-drakest);
+        --radio-active-background: var(--primary);
+
+        --tip-box-shadow: 0px 7px 10px 0px var(--black) / 0.7;
+        --tip-forground: var(--gray-pale);
+        --tip-background: var(--black);
+        --tip-border: var(--white) / 0.25;
+
+        --card: 222.2 84% 4.9%;
+        --card-foreground: 210 40% 98%;
+        --muted: 217.2 32.6% 17.5%;
+        --muted-foreground: 215 20.2% 65.1%;
+        --destructive: 0 62.8% 30.6%;
+        --destructive-foreground: 210 40% 98%;
+        --input: 217.2 32.6% 17.5%;
+        --ring: 212.7 26.8% 83.9%;
+        --chart-1: 220 70% 50%;
+        --chart-2: 160 60% 45%;
+        --chart-3: 30 80% 55%;
+        --chart-4: 280 65% 60%;
+        --chart-5: 340 75% 55%;
+    }
 }
 
 @layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 240 5.9% 10%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 240 10% 3.9%;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
-    --radius: 0.5rem;
-  }
-  .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 240 5.9% 10%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
-  }
+    * {
+        @apply box-border border-border;
+    }
+
+    body {
+        @apply bg-background text-foreground;
+    }
 }
 
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
+input::-webkit-inner-spin-button {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+}
+
+@keyframes dropdownIn {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes dropdownOut {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+}
+
+.dropdown-in {
+    animation: dropdownIn 0.5s forwards;
+}
+
+.dropdown-out {
+    animation: dropdownOut 0.5s forwards;
+}
+
+.scrollWidth3 {
+    scrollbar-width: thin;
+    scrollbar-color: hsla(var(--input-scroll-bar) / 20%) hsla(var(--input-scroll-bar) / 0%);
+}
+
+textarea::-webkit-scrollbar {
+    width: 3px;
+    height: auto;
+    /*margin-right: 10px;*/
+    /*transform: translateX(-10px);*/
+}
+
+textarea::-webkit-scrollbar-thumb {
+    background: hsla(var(--input-scroll-bar) / 20%);
+    border-radius: 100px;
+}
+
+textarea::-webkit-scrollbar-track {
+    background: transparent;
+    margin: 8px 0;
+}
+
+.scrollNone {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.ellipsisLine1 {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    word-break: break-word;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.ellipsisLine2 {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    word-break: break-word;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.ellipsisLine4 {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    word-break: break-word;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+}
+
+.absolute-important {
+    position: absolute !important;
+}
+
+.lightSideBarBorder {
+    border-image-source: linear-gradient(
+            180deg,
+            #ffffff 0%,
+            #e0e0e7 50%,
+            #ffffff 100%
+    );
+    border-image-slice: 1; /* 필요에 따라 설정 */
+}
+
+.darkSideBarBorder {
+    border-image-source: linear-gradient(
+            180deg,
+            #000000 0%,
+            #707076 50%,
+            #000000 100%
+    );
+    border-image-slice: 1; /* 필요에 따라 설정 */
 }

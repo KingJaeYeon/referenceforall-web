@@ -1,7 +1,7 @@
 import React from "react";
 import Row from "@/components/Layout/Row";
 import { toast } from "sonner";
-import IconDeleteLight from "@/assets/svg/IconDeleteLight";
+import { IconDelete } from "@/assets/svg";
 
 type Props = {
   className?: string;
@@ -27,7 +27,7 @@ function ActionToast({ msg, onClick, t }: Props) {
           toast.dismiss(t);
         }}
       >
-        <IconDeleteLight />
+        <IconDelete />
       </div>
     </Row>
   );

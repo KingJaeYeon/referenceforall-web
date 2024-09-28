@@ -1,7 +1,7 @@
 import React from "react";
 import { useTheme } from "next-themes";
 
-export default function IconError({ className }: { className?: string }) {
+export function IconError({ className }: { className?: string }) {
   const { theme } = useTheme();
 
   return (

@@ -1,6 +1,6 @@
 import React from "react";
 import Row from "@/components/Layout/Row";
-import IconConfirm from "@/assets/svg/IconConfirm";
+import { IconConfirm } from "@/assets/svg";
 
 type Props = {
   className?: string;

@@ -1,6 +1,6 @@
 import React from "react";
 import Row from "@/components/Layout/Row";
-import IconError from "@/assets/svg/IconError";
+import { IconError } from "@/assets/svg";
 
 type Props = {
   className?: string;
