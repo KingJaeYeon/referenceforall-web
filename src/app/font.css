@@ -1,0 +1,86 @@
+@tailwind components;
+
+@layer components {
+  .notoSans18H {
+    @apply font-notoSansKr text-18 font-bold leading-[21.6px] tracking-[1.8px];
+  }
+  .notoSans15D {
+    @apply font-notoSansKr text-15 font-normal leading-[22.5px] tracking-[-0.45px];
+  }
+
+  .heading1 {
+    @apply font-pretendard text-24 font-bold leading-[120%] tracking-[0];
+  }
+
+  .heading2 {
+    @apply font-pretendard text-20 font-bold leading-[120%] tracking-[0];
+  }
+
+  .heading3 {
+    @apply font-pretendard text-18 font-bold leading-[120%] tracking-[0];
+  }
+
+  .heading4 {
+    @apply font-pretendard text-16 font-bold leading-[120%] tracking-[0];
+  }
+
+  .heading5 {
+    @apply font-pretendard text-15 font-bold leading-6 tracking-[0];
+  }
+
+  .heading6 {
+    @apply font-pretendard text-14 font-bold leading-6 tracking-[0];
+  }
+
+  .heading7 {
+    @apply font-pretendard text-13 font-bold leading-6 tracking-[0];
+  }
+
+  .heading8 {
+    @apply font-pretendard text-12 font-bold leading-6 tracking-[0];
+  }
+
+  .heading9 {
+    @apply font-pretendard text-11 font-bold leading-6 tracking-[0];
+  }
+
+  .heading10 {
+    @apply font-pretendard text-9 font-bold leading-6 tracking-[0];
+  }
+
+  .body1 {
+    @apply font-pretendard text-20 font-normal leading-6 tracking-[0];
+  }
+
+  .body2 {
+    @apply font-pretendard text-18 font-normal leading-[120%] tracking-[0];
+  }
+
+  .body3 {
+    @apply font-pretendard text-16 font-normal leading-[120%] tracking-[0];
+  }
+
+  .body4 {
+    @apply font-pretendard text-15 font-normal leading-[120%] tracking-[0];
+  }
+
+  .body5 {
+    @apply font-pretendard text-14 font-normal leading-[120%] tracking-[0];
+  }
+
+  .body6 {
+    @apply font-pretendard text-13 font-normal leading-[120%] tracking-[0];
+  }
+
+  .body7 {
+    @apply font-pretendard text-12 font-normal leading-[120%] tracking-[0];
+  }
+
+  .body8 {
+    @apply font-pretendard text-11 font-normal leading-[120%] tracking-[0];
+  }
+
+  .body9 {
+    @apply font-pretendard text-9 font-normal leading-[120%] tracking-[0];
+  }
+}

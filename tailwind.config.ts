@@ -12,6 +12,10 @@ const config: Config = {
       tb: "1024px",
       dt: "1350px",
     },
+    fontFamily: {
+      pretendard: ["var(--font-pretendard)", "sans-serif"],
+      notoSansKr: ["var(--font-noto-sans-kr)", "sans-serif"],
+    },
     extend: {
       colors: {
         background: "hsl(var(--background))",

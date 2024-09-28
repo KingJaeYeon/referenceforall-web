@@ -4,6 +4,7 @@ import { Toaster } from "@/components/ui/sonner";
 import React from "react";
 import { notoSansKR, pretendard } from "@/app/fonts";
 import Header from "@/components/Header";
+import SystemProvider from "@/provider/SystemProvider";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -20,9 +21,11 @@ export default function RootLayout({
       <body
         className={`${pretendard.variable} ${notoSansKR.className} bg-background text-foreground`}
       >
-        <Toaster />
-        <Header />
-        {children}
+        <SystemProvider>
+          <Toaster />
+          <Header />
+          {children}
+        </SystemProvider>
       </body>
     </html>
   );
