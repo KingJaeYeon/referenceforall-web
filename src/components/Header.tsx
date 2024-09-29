@@ -78,17 +78,21 @@ function DesktopMenu() {
           관심목록
         </Link>
         <SelectLangModal>
-          <Row className={"w-fit cursor-pointer gap-1"}>
-            <Row className={"items-center gap-[3px]"}>
-              <Image
-                // src={getImage(i18n?.language)}
-                src={"/images/KR.svg"}
-                alt={"i18n.language"}
-                width={24}
-                height={24}
-              />
-              <Text className={"body4 text-foreground"}>{"한국어"}</Text>
-            </Row>
+          <Row
+            className={buttonVariants({
+              variant: "ghost",
+              rounded: "full",
+              className: "w-fit cursor-pointer items-center gap-1 px-3 py-2",
+            })}
+          >
+            <Image
+              // src={getImage(i18n?.language)}
+              src={"/images/KR.svg"}
+              alt={"i18n.language"}
+              width={24}
+              height={24}
+            />
+            <Text className={"text-foreground"}>{"한국어"}</Text>
           </Row>
         </SelectLangModal>
         <Button variant={"default"} font={"heading6"}>

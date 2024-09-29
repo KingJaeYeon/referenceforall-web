@@ -54,7 +54,7 @@ export default function SelectLangModal({
       }}
     >
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="tb:h-auto tb:max-w-[660px] tb:rounded-[10px] flex h-full w-[100%] max-w-full flex-col gap-[20px] rounded-[0px] px-0 py-5">
+      <DialogContent className="flex h-full w-[100%] max-w-full flex-col gap-[20px] rounded-[0px] px-0 py-5 tb:h-auto tb:max-w-[660px] tb:rounded-[10px]">
         <DialogHeader className={"gap-[20px] px-5"}>
           <DialogTitle>{t("country")}</DialogTitle>
           <Input
@@ -94,7 +94,7 @@ function CurrencyCard({
   ];
 
   return (
-    <Col className={"tb:max-w-[620px] w-full gap-[10px]"}>
+    <Col className={"w-full gap-[10px] tb:max-w-[620px]"}>
       <Row className={"flex-wrap gap-[10px]"}>
         {dropDownList
           .filter((item) => item.name.toLowerCase().includes(search))
@@ -120,7 +120,7 @@ function CurrencyItem({
   onChangeCurrency: any;
 }) {
   const { theme } = useTheme();
-  const { t, i18n } = {
+  const { i18n } = {
     t: (key: string) => key,
     i18n: {
       language: "ko",
@@ -137,7 +137,7 @@ function CurrencyItem({
   return (
     <Label
       className={cn(
-        "tb:max-w-[300px] flex w-full cursor-pointer items-center gap-[10px] rounded-[5px] px-[10px] py-[8px]",
+        "flex w-full cursor-pointer items-center gap-[10px] rounded-[5px] px-[10px] py-[8px] tb:max-w-[300px]",
         theme === "light"
           ? "hover:bg-popover-border bg-[#00000005]"
           : "bg-[#FFFFFF10] hover:bg-[#FFFFFF20]",
