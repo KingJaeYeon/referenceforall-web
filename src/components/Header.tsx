@@ -38,7 +38,7 @@ function DesktopMenu() {
         <Text>리스트</Text>
         <Text>공유하기</Text>
         <Text>관심목록</Text>
-        <Button variant={"ghost"} className={"heading1"}>
+        <Button variant={"ghost"} font={"heading6"}>
           로그인
         </Button>
       </Row>

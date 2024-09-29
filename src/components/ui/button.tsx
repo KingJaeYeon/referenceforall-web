@@ -2,7 +2,7 @@ import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 
-import { cn } from "@/lib/utils";
+import { cn, FontType, utilFont } from "@/lib/utils";
 import { Loading2 } from "@/assets/svg";
 
 const buttonVariants = cva(
@@ -24,9 +24,9 @@ const buttonVariants = cva(
       },
       size: {
         default: "",
-        sm: "h-[29px] rounded-[6px] px-[8px] heading8",
-        md: "h-[32px] rounded-[6px] px-[12px] heading7",
-        lg: "h-[42px] rounded-[10px] px-[20px] heading5",
+        sm: "h-[29px] rounded-[6px] px-[8px]",
+        md: "h-[32px] rounded-[6px] px-[12px]",
+        lg: "h-[42px] rounded-[10px] px-[20px]",
         icon: "h-10 w-10",
       },
       rounded: {
@@ -50,6 +50,7 @@ export interface ButtonProps
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
   variant?: "primary" | "secondary" | "outline" | "ghost" | "default";
+  font?: FontType;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
@@ -64,14 +65,21 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       leftIcon,
       size = "md",
       asChild = false,
+      font,
       ...props
     },
     ref,
   ) => {
     const Comp = asChild ? Slot : "button";
+    const customFont = utilFont(font, () => {
+      if (size === "sm") return "heading8";
+      if (size === "md") return "heading7";
+      if (size === "lg") return "heading5";
+      return "heading7";
+    });
     return (
       <Comp
-        className={cn(buttonVariants({ variant, size }), className)}
+        className={cn(buttonVariants({ variant, size }), customFont, className)}
         ref={ref}
         disabled={disabled || loading}
         {...props}
