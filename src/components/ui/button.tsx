@@ -73,7 +73,6 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const Comp = asChild ? Slot : "button";
     const customFont = utilFont(font, () => {
       if (size === "sm") return "heading8";
-      if (size === "md") return "heading7";
       if (size === "lg") return "heading5";
       return "heading7";
     });

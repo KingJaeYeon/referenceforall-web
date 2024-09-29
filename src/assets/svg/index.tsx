@@ -6,7 +6,7 @@
 //   IconLinearPieChart,
 //   IconSolidPieChart,
 // } from "@/assets/svg/IconChart";
-// import { IconCheck } from "@/assets/svg/IconCheck";
+import { IconCheck } from "@/assets/svg/IconCheck";
 // import { IconChevronLeft, IconChevronRight } from "@/assets/svg/IconChevron";
 import { IconClose } from "@/assets/svg/IconClose";
 import { IconConfirm } from "@/assets/svg/IconConfirm";
@@ -17,7 +17,7 @@ import { IconDelete } from "@/assets/svg/IconDelete";
 //   IconDropDownUp,
 // } from "@/assets/svg/IconDropDownUpDown";
 import { IconError } from "@/assets/svg/IconError";
-// import { IconSearch } from "@/assets/svg/IconSearch";
+import { IconSearch } from "@/assets/svg/IconSearch";
 // import { IconMoon, IconSun } from "@/assets/svg/IconTheme";
 //
 // import {
@@ -124,12 +124,12 @@ export {
   //   IconHome,
   //   IconExchange,
   //   IconEllipsis,
-  //   IconSearch,
+  IconSearch,
   IconError,
   IconDelete,
   IconConfirm,
   IconClose,
-  //   IconCheck,
+  IconCheck,
   //   IconCategory,
 };
 // export {

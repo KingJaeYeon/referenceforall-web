@@ -9,16 +9,15 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    screens: {
-      tb: "1024px",
-      dt: "1350px",
-    },
-    fontFamily: {
-      pretendard: ["var(--font-pretendard)", "sans-serif"],
-      notoSansKr: ["var(--font-noto-sans-kr)", "sans-serif"],
-    },
-
     extend: {
+      screens: {
+        tb: "1024px",
+        dt: "1350px",
+      },
+      fontFamily: {
+        pretendard: ["var(--font-pretendard)", "sans-serif"],
+        notoSansKr: ["var(--font-noto-sans-kr)", "sans-serif"],
+      },
       colors: {
         white: "hsl(var(--white))",
         black: "hsl(var(--black))",
@@ -138,19 +137,19 @@ const config: Config = {
         sm: "calc(var(--radius) - 4px)",
         full: "9999px",
       },
-    },
-    fontSize: {
-      "24": "1.5rem",
-      "22": "1.375rem",
-      "20": "1.25rem",
-      "18": "1.125rem",
-      "16": "1rem",
-      "15": "0.938rem",
-      "14": "0.875rem",
-      "13": "0.813rem",
-      "12": "0.75rem",
-      "11": "0.688rem",
-      "9": "0.563rem",
+      fontSize: {
+        "24": "1.5rem",
+        "22": "1.375rem",
+        "20": "1.25rem",
+        "18": "1.125rem",
+        "16": "1rem",
+        "15": "0.938rem",
+        "14": "0.875rem",
+        "13": "0.813rem",
+        "12": "0.75rem",
+        "11": "0.688rem",
+        "9": "0.563rem",
+      },
     },
   },
   plugins: [tailwindcssAnimate],
