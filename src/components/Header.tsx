@@ -7,6 +7,7 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import SelectLangModal from "@/components/SelectLangModal";
 import Image from "next/image";
+import { Globe } from "lucide-react";
 
 export default function Header() {
   return (
@@ -24,7 +25,7 @@ export default function Header() {
 function MobileMenu() {
   return (
     <header
-      className={"flex h-[60px] items-center justify-between bg-red-50 px-4"}
+      className={"bg-red-50 flex h-[60px] items-center justify-between px-4"}
     >
       <Logo />
       <h1>MobileMenu</h1>
@@ -36,7 +37,7 @@ function DesktopMenu() {
   return (
     <header
       className={
-        "sticky left-0 top-0 z-[100] flex h-[60px] w-full items-center justify-between bg-opacity-95 px-8 backdrop-blur"
+        "sticky left-0 top-0 z-[50] flex h-[60px] w-full items-center justify-between bg-opacity-95 px-8 backdrop-blur"
       }
     >
       <Logo />
@@ -82,17 +83,12 @@ function DesktopMenu() {
             className={buttonVariants({
               variant: "ghost",
               rounded: "full",
-              className: "w-fit cursor-pointer items-center gap-1 px-3 py-2",
+              className: "w-fit cursor-pointer items-center gap-2 px-3 py-2",
             })}
           >
-            <Image
-              // src={getImage(i18n?.language)}
-              src={"/images/KR.svg"}
-              alt={"i18n.language"}
-              width={24}
-              height={24}
-            />
-            <Text className={"text-foreground"}>{"한국어"}</Text>
+            <Globe className="h-4 w-4" />
+            {/*{languages.find(lang => lang.code === selectedLanguage)?.name}*/}
+            <Text>한국어</Text>
           </Row>
         </SelectLangModal>
         <Button variant={"default"} font={"heading6"}>

@@ -12,7 +12,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
 import { DialogBody } from "next/dist/client/components/react-dev-overlay/internal/components/Dialog";
 import Text from "@/components/Layout/Text";
 import { useTheme } from "next-themes";
@@ -54,15 +53,9 @@ export default function SelectLangModal({
       }}
     >
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="flex h-full w-[100%] max-w-full flex-col gap-[20px] rounded-[0px] px-0 py-5 tb:h-auto tb:max-w-[660px] tb:rounded-[10px]">
+      <DialogContent className="flex h-full w-[100%] max-w-full flex-col gap-[20px] rounded-[0px] px-0 py-5 tb:h-auto tb:max-w-[425px] tb:rounded-[10px]">
         <DialogHeader className={"gap-[20px] px-5"}>
-          <DialogTitle>{t("country")}</DialogTitle>
-          <Input
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            icon={"search"}
-            placeholder={t("search_country_placeholder")}
-          />
+          <DialogTitle>언어 선택</DialogTitle>
         </DialogHeader>
         <DialogBody
           className={"scrollWidth3 flex flex-col gap-[25px] overflow-auto px-5"}
@@ -94,7 +87,7 @@ function CurrencyCard({
   ];
 
   return (
-    <Col className={"w-full gap-[10px] tb:max-w-[620px]"}>
+    <Col className={"w-full max-w-full gap-[10px]"}>
       <Row className={"flex-wrap gap-[10px]"}>
         {dropDownList
           .filter((item) => item.name.toLowerCase().includes(search))
@@ -137,7 +130,7 @@ function CurrencyItem({
   return (
     <Label
       className={cn(
-        "flex w-full cursor-pointer items-center gap-[10px] rounded-[5px] px-[10px] py-[8px] tb:max-w-[300px]",
+        "flex w-full max-w-full cursor-pointer items-center gap-[10px] rounded-[5px] px-[10px] py-[8px]",
         theme === "light"
           ? "hover:bg-popover-border bg-[#00000005]"
           : "bg-[#FFFFFF10] hover:bg-[#FFFFFF20]",
