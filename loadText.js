@@ -1,43 +1,46 @@
 import fs from "fs";
 import path from "path";
-import { GoogleSpreadsheet } from "google-spreadsheet";
-import { JWT } from "google-auth-library";
-
-const googleAuthSheet = require("./pickle-sheet-178c06c0add5.json"); // 인증 정보 변경 필요
+import axios from "axios";
 
 async function TextSheet() {
-  const url = "";
+  const API_KEY = "AIzaSyDwAsEeHiISLQF-UGcabPHeuHx5LKtwtd0";
+  const spreadSheetId = "19wXvxzqKMJgHZYhRAl86wFeEn9ZGhIdJnwSHJ9QhADQ";
+  const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadSheetId}/values/MAIN?key=${API_KEY}`;
+  try {
+    const doc = await axios.get(url);
+    const koSheet = {};
+    const enSheet = {};
+    // 1. 언어 추출
+    const language = doc.data.values[0].slice(1);
 
-  const googleAuth = new JWT({
-    email: googleAuthSheet.client_email,
-    key: googleAuthSheet.private_key,
-    scopes: ["https://www.googleapis.com/auth/spreadsheets"],
-  });
-
-  const doc = new GoogleSpreadsheet(url, googleAuth);
-
-  await doc.loadInfo();
-
-  const sheetData = doc.sheetsByTitle["sheet"];
-
-  const koSheet = {};
-  const enSheet = {};
-
-  const rows = await sheetData.getRows();
-
-  for (let j = 0; j < rows.length; j++) {
-    const row = rows[j];
-
-    const key = row._rawData[0];
-    koSheet[key] = row._rawData[1] ?? "";
-    enSheet[key] = row._rawData[2] ?? "";
+    // 2. 값 추출
+    for (let j = 0; j < doc.data.values.length; j++) {
+      const row = doc.data.values[j];
+      const key = row[0];
+      koSheet[key] = row[1] ?? "";
+      enSheet[key] = row[2] ?? "";
+    }
+    console.log(koSheet);
+    console.log(enSheet);
+  } catch (e) {
+    console.log(e);
   }
 
-  const outputPathKo = path.join(__dirname, "public/lang", "ko.json");
-  fs.writeFileSync(outputPathKo, JSON.stringify(koSheet, null, 2), "utf-8");
+  // const rows = await sheetData.getRows();
 
-  const outputPathEn = path.join(__dirname, "public/lang", "en.json");
-  fs.writeFileSync(outputPathEn, JSON.stringify(enSheet, null, 2), "utf-8");
+  // for (let j = 0; j < rows.length; j++) {
+  //   const row = rows[j];
+  //
+  //   const key = row._rawData[0];
+  //   koSheet[key] = row._rawData[1] ?? "";
+  //   enSheet[key] = row._rawData[2] ?? "";
+  // }
+  //
+  // const outputPathKo = path.join(__dirname, "public/lang", "ko.json");
+  // fs.writeFileSync(outputPathKo, JSON.stringify(koSheet, null, 2), "utf-8");
+  //
+  // const outputPathEn = path.join(__dirname, "public/lang", "en.json");
+  // fs.writeFileSync(outputPathEn, JSON.stringify(enSheet, null, 2), "utf-8");
 }
 
 TextSheet();
