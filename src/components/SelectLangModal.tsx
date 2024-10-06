@@ -113,7 +113,7 @@ function CurrencyItem({
   onChangeCurrency: any;
 }) {
   const { theme } = useTheme();
-  const { i18n } = {
+  const { i18n, t } = {
     t: (key: string) => key,
     i18n: {
       language: "ko",

@@ -2,7 +2,7 @@ import localFont from "next/font/local";
 import { Noto_Sans_KR } from "next/font/google";
 
 export const pretendard = localFont({
-  src: "./fonts/PretendardVariable.woff2",
+  src: "./PretendardVariable.woff2",
   display: "swap",
   variable: "--font-pretendard", // css 변수로 등록하기 위함
 });

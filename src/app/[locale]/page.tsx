@@ -1,13 +1,16 @@
 import Main from "@/components/Layout/Main";
 import Contents from "@/components/Layout/Contents";
+import { useTranslations } from "next-intl";
 
 export default function Home() {
+  const t = useTranslations();
   return (
     <Main>
       <Contents>
         <section className="bg-gray-50 pt-12 sm:pt-16">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-2xl text-center">
+              {t("title")}
               <h1 className="font-inter px-6 text-lg text-gray-600">
                 Smart email campaign builder, made for Developers
               </h1>

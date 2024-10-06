@@ -6,7 +6,6 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import SelectLangModal from "@/components/SelectLangModal";
-import Image from "next/image";
 import { Globe } from "lucide-react";
 
 export default function Header() {
