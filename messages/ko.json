@@ -1,5 +1,10 @@
 {
   "title": "헬로우 월드!",
   "about": "소개 페이지로 이동",
-  "test": "테스트1"
+  "test": "테스트1",
+  "en": "EN",
+  "ko": "KO",
+  "jp": "JP",
+  "cn": "CN",
+  "language": "Language"
 }

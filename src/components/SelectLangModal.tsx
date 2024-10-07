@@ -2,7 +2,6 @@
 
 import React from "react";
 import Col from "@/components/Layout/Col";
-// import { useTranslation } from "react-i18next";
 import Row from "@/components/Layout/Row";
 import Image from "next/image";
 import {
@@ -18,28 +17,21 @@ import { useTheme } from "next-themes";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
 import { Checkbox } from "@/components/ui/checkbox";
+import { useTranslations } from "next-intl";
+import { useLocale } from "use-intl";
 
 export default function SelectLangModal({
   children,
 }: {
   children: React.ReactNode[] | React.ReactNode;
 }) {
-  // const { t, i18n } = useTranslation();
-  const { t, i18n } = {
-    t: (key: string) => key,
-    i18n: {
-      language: "ko",
-      changeLanguage: (str: string) => (i18n.language = str),
-    },
-  };
+  const t = useTranslations();
 
   const [open, setOpen] = React.useState(false);
   const [search, setSearch] = React.useState("");
 
   async function onChangeLang(lang: string) {
-    localStorage.setItem("lang", lang);
-    await i18n.changeLanguage(lang);
-    setOpen(false);
+    window.location.href = `/${lang}`;
   }
 
   return (
@@ -55,7 +47,7 @@ export default function SelectLangModal({
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className="flex h-full w-[100%] max-w-full flex-col gap-[20px] rounded-[0px] px-0 py-5 tb:h-auto tb:max-w-[425px] tb:rounded-[10px]">
         <DialogHeader className={"gap-[20px] px-5"}>
-          <DialogTitle>언어 선택</DialogTitle>
+          <DialogTitle>{t("language")}</DialogTitle>
         </DialogHeader>
         <DialogBody
           className={"scrollWidth3 flex flex-col gap-[25px] overflow-auto px-5"}
@@ -74,13 +66,7 @@ function CurrencyCard({
   search: string;
   onChangeCurrency: any;
 }) {
-  const { t, i18n } = {
-    t: (key: string) => key,
-    i18n: {
-      language: "ko",
-      changeLanguage: (str: string) => (i18n.language = str),
-    },
-  };
+  const t = useTranslations();
   const dropDownList = [
     { symbol: "ko", name: t("ko") },
     { symbol: "en", name: t("en") },
@@ -113,14 +99,8 @@ function CurrencyItem({
   onChangeCurrency: any;
 }) {
   const { theme } = useTheme();
-  const { i18n, t } = {
-    t: (key: string) => key,
-    i18n: {
-      language: "ko",
-      changeLanguage: (str: string) => (i18n.language = str),
-    },
-  };
-
+  const t = useTranslations();
+  const locale = useLocale();
   function getImage(lang: string) {
     if (lang === "ko") return "/images/KR.svg";
     if (lang === "en") return "/images/US.svg";
@@ -139,7 +119,7 @@ function CurrencyItem({
     >
       <Image src={getImage(item.symbol)} alt={item} width={26} height={26} />
       <Text className={"heading9 flex-1 text-foreground"}>{item.name}</Text>
-      <Checkbox checked={i18n?.language === item.symbol} />
+      <Checkbox checked={locale === item.symbol} />
     </Label>
   );
 }

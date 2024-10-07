@@ -1,5 +1,10 @@
 {
-  "title": "Hello world!123",
+  "title": "Hello world!",
   "about": "Go to the about page",
-  "test": "test1"
+  "test": "test1",
+  "en": "EN",
+  "ko": "KO",
+  "jp": "JP",
+  "cn": "CN",
+  "language": "Language"
 }
