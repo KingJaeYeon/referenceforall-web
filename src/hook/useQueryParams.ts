@@ -20,7 +20,7 @@ export default function useQueryParams({ options }: QueryParamsProps) {
     let defaultArray: Option[] = [
       { key: "page", value: 1 },
       { key: "sort", value: "createdAt_desc" },
-      { key: "list_num", value: 20 },
+      { key: "listNum", value: 20 },
     ];
 
     // 2. "options"이 있을 경우 추가
