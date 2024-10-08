@@ -11,6 +11,7 @@ export interface QueryParamsProps {
   options?: Option[];
 }
 
+// 현재 "defaultArray"안에 "key"값이 "searchParams"에 없으면 "newQuery"에 추가하지 않음
 export default function useQueryParams({ options }: QueryParamsProps) {
   const searchParams = useSearchParams();
   const [query, setQuery] = useState<DateRange>({});
@@ -21,6 +22,8 @@ export default function useQueryParams({ options }: QueryParamsProps) {
       { key: "page", value: 1 },
       { key: "sort", value: "createdAt_desc" },
       { key: "listNum", value: 20 },
+      { key: "startDate", value: "" },
+      { key: "endDate", value: "" },
     ];
 
     // 2. "options"이 있을 경우 추가
@@ -39,30 +42,36 @@ export default function useQueryParams({ options }: QueryParamsProps) {
     }, {});
 
     // 4. date가 있는 경우 00:00:00 ~ 23:59:59로 변경
-    if (!!newQuery["start_date"]) {
-      newQuery["start_date"] = new Date(newQuery["start_date"]).setHours(
+    if (!!newQuery["startDate"]) {
+      newQuery["startDate"] = new Date(newQuery["startDate"]).setHours(
         0,
         0,
         0,
         0,
       );
     }
-    if (!!newQuery["end_date"]) {
-      newQuery["end_date"] = new Date(newQuery["end_date"]).setHours(
+    if (!!newQuery["endDate"]) {
+      newQuery["endDate"] = new Date(newQuery["endDate"]).setHours(
         23,
         59,
         59,
         999,
       );
     }
+
+    // 5. "newQuery"안에 객체의 "value"가 없으면 삭제
+    Object.keys(newQuery).forEach(
+      (key) => !newQuery[key] && delete newQuery[key],
+    );
+
     return newQuery;
   };
 
   useEffect(() => {
     const newQuery = generateQuery();
 
-    // 5. query 변경 시에만 setQuery
-    // 5-1. "JSON.stringify"로 비교해서 변경안되었으면 "prev"를 반환해서 상태를 변경하지 않음
+    // 6. query 변경 시에만 setQuery
+    // 6-1. "JSON.stringify"로 비교해서 변경안되었으면 "prev"를 반환해서 상태를 변경하지 않음
     setQuery((prevQuery) => {
       const isEqual = JSON.stringify(prevQuery) === JSON.stringify(newQuery);
       return isEqual ? prevQuery : newQuery;
