@@ -2,9 +2,9 @@ import MediaWrapper from "@/components/MediaWrapper";
 import Row from "@/components/Layout/Row";
 import Logo from "@/components/Logo";
 import { Button, buttonVariants } from "@/components/ui/button";
-import Link from "next/link";
 import { cn } from "@/lib/utils";
 import SelectLangModal from "@/components/SelectLangModal";
+import { Link } from "@/i18n/routing";
 
 export default function Header() {
   return (
