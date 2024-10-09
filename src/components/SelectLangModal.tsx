@@ -19,32 +19,45 @@ import { cn } from "@/lib/utils";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useTranslations } from "next-intl";
 import { useLocale } from "use-intl";
+import { buttonVariants } from "@/components/ui/button";
+import { Globe } from "lucide-react";
+import { getLanguageImg } from "@/util/image";
 
-export default function SelectLangModal({
-  children,
-}: {
-  children: React.ReactNode[] | React.ReactNode;
-}) {
+export default function SelectLangModal() {
   const t = useTranslations();
+  const locale = useLocale();
 
   const [open, setOpen] = React.useState(false);
   const [search, setSearch] = React.useState("");
 
-  async function onChangeLang(lang: string) {
+  const onChangeLang = async (lang: string) => {
     window.location.href = `/${lang}`;
-  }
+  };
+
+  const openHandler = (open: boolean) => {
+    if (open) setSearch("");
+    setOpen(open);
+  };
 
   return (
-    <Dialog
-      open={open}
-      onOpenChange={(boolean) => {
-        if (boolean) {
-          setSearch("");
-        }
-        setOpen(boolean);
-      }}
-    >
-      <DialogTrigger asChild>{children}</DialogTrigger>
+    <Dialog open={open} onOpenChange={openHandler}>
+      <DialogTrigger asChild>
+        <Row
+          className={buttonVariants({
+            variant: "ghost",
+            rounded: "full",
+            className: "w-fit cursor-pointer items-center gap-2 px-3 py-2",
+          })}
+        >
+          <Image
+            src={getLanguageImg(locale)}
+            alt={locale}
+            width={20}
+            height={20}
+          />
+          <Text className={"body4"}>{t(locale)}</Text>
+        </Row>
+      </DialogTrigger>
       <DialogContent className="flex h-full w-[100%] max-w-full flex-col gap-[20px] rounded-[0px] px-0 py-5 tb:h-auto tb:max-w-[425px] tb:rounded-[10px]">
         <DialogHeader className={"gap-[20px] px-5"}>
           <DialogTitle>{t("language")}</DialogTitle>
@@ -70,6 +83,8 @@ function CurrencyCard({
   const dropDownList = [
     { symbol: "ko", name: t("ko") },
     { symbol: "en", name: t("en") },
+    { symbol: "jp", name: t("jp") },
+    { symbol: "cn", name: t("cn") },
   ];
 
   return (
@@ -99,13 +114,7 @@ function CurrencyItem({
   onChangeCurrency: any;
 }) {
   const { theme } = useTheme();
-  const t = useTranslations();
   const locale = useLocale();
-  function getImage(lang: string) {
-    if (lang === "ko") return "/images/KR.svg";
-    if (lang === "en") return "/images/US.svg";
-    return "KR";
-  }
 
   return (
     <Label
@@ -117,7 +126,12 @@ function CurrencyItem({
       )}
       onClick={() => onChangeCurrency(item.symbol)}
     >
-      <Image src={getImage(item.symbol)} alt={item} width={26} height={26} />
+      <Image
+        src={getLanguageImg(item.symbol)}
+        alt={item}
+        width={26}
+        height={26}
+      />
       <Text className={"heading9 flex-1 text-foreground"}>{item.name}</Text>
       <Checkbox checked={locale === item.symbol} />
     </Label>

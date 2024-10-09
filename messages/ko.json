@@ -2,9 +2,10 @@
   "title": "헬로우 월드!",
   "about": "소개 페이지로 이동",
   "test": "테스트1",
-  "en": "EN",
-  "ko": "KO",
-  "jp": "JP",
-  "cn": "CN",
-  "language": "Language"
+  "en": "English",
+  "ko": "한국어",
+  "jp": "日本語",
+  "cn": "中国人",
+  "language": "Language",
+  "logo": "모두의레퍼런스"
 }

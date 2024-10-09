@@ -4,7 +4,8 @@ import * as React from "react";
 import * as LabelPrimitive from "@radix-ui/react-label";
 import { cva, type VariantProps } from "class-variance-authority";
 
-import { cn, FontType, utilFont } from "@/lib/utils";
+import { cn } from "@/lib/utils";
+import { FontType, utilFont } from "@/util/fontType";
 
 interface LabelProps
   extends React.ComponentProps<typeof LabelPrimitive.Root>,

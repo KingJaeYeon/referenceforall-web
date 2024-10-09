@@ -26,6 +26,12 @@ async function TextSheet() {
 
     const outputPathEn = path.join(__dirname, "messages", "en.json");
     fs.writeFileSync(outputPathEn, JSON.stringify(enSheet, null, 2), "utf-8");
+
+    const outputPathJp = path.join(__dirname, "messages", "jp.json");
+    fs.writeFileSync(outputPathJp, JSON.stringify(jpSheet, null, 2), "utf-8");
+
+    const outputPathCn = path.join(__dirname, "messages", "cn.json");
+    fs.writeFileSync(outputPathCn, JSON.stringify(cnSheet, null, 2), "utf-8");
   } catch (e) {
     console.log(e);
   }

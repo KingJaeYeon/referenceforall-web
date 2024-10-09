@@ -1,12 +1,10 @@
 import MediaWrapper from "@/components/MediaWrapper";
 import Row from "@/components/Layout/Row";
 import Logo from "@/components/Logo";
-import Text from "@/components/Layout/Text";
 import { Button, buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import SelectLangModal from "@/components/SelectLangModal";
-import { Globe } from "lucide-react";
 
 export default function Header() {
   return (
@@ -77,19 +75,8 @@ function DesktopMenu() {
         >
           관심목록
         </Link>
-        <SelectLangModal>
-          <Row
-            className={buttonVariants({
-              variant: "ghost",
-              rounded: "full",
-              className: "w-fit cursor-pointer items-center gap-2 px-3 py-2",
-            })}
-          >
-            <Globe className="h-4 w-4" />
-            {/*{languages.find(lang => lang.code === selectedLanguage)?.name}*/}
-            <Text>한국어</Text>
-          </Row>
-        </SelectLangModal>
+        <SelectLangModal />
+
         <Button variant={"default"} font={"heading6"}>
           로그인
         </Button>
