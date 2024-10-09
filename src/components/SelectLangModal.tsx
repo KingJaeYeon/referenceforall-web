@@ -20,7 +20,6 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { useTranslations } from "next-intl";
 import { useLocale } from "use-intl";
 import { buttonVariants } from "@/components/ui/button";
-import { Globe } from "lucide-react";
 import { getLanguageImg } from "@/util/image";
 
 export default function SelectLangModal() {
@@ -28,19 +27,13 @@ export default function SelectLangModal() {
   const locale = useLocale();
 
   const [open, setOpen] = React.useState(false);
-  const [search, setSearch] = React.useState("");
 
   const onChangeLang = async (lang: string) => {
     window.location.href = `/${lang}`;
   };
 
-  const openHandler = (open: boolean) => {
-    if (open) setSearch("");
-    setOpen(open);
-  };
-
   return (
-    <Dialog open={open} onOpenChange={openHandler}>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Row
           className={buttonVariants({
@@ -65,7 +58,7 @@ export default function SelectLangModal() {
         <DialogBody
           className={"scrollWidth3 flex flex-col gap-[25px] overflow-auto px-5"}
         >
-          <CurrencyCard onChangeCurrency={onChangeLang} search={search} />
+          <CurrencyCard onChangeLang={onChangeLang} />
         </DialogBody>
       </DialogContent>
     </Dialog>
@@ -73,11 +66,9 @@ export default function SelectLangModal() {
 }
 
 function CurrencyCard({
-  search,
-  onChangeCurrency,
+  onChangeLang,
 }: {
-  search: string;
-  onChangeCurrency: any;
+  onChangeLang: (lang: string) => Promise<void>;
 }) {
   const t = useTranslations();
   const dropDownList = [
@@ -90,17 +81,13 @@ function CurrencyCard({
   return (
     <Col className={"w-full max-w-full gap-[10px]"}>
       <Row className={"flex-wrap gap-[10px]"}>
-        {dropDownList
-          .filter((item) => item.name.toLowerCase().includes(search))
-          .map((item) => {
-            return (
-              <CurrencyItem
-                key={item.symbol}
-                item={item}
-                onChangeCurrency={onChangeCurrency}
-              />
-            );
-          })}
+        {dropDownList.map((item) => (
+          <CurrencyItem
+            key={item.symbol}
+            item={item}
+            onChangeLang={onChangeLang}
+          />
+        ))}
       </Row>
     </Col>
   );
@@ -108,10 +95,10 @@ function CurrencyCard({
 
 function CurrencyItem({
   item,
-  onChangeCurrency,
+  onChangeLang,
 }: {
   item: any;
-  onChangeCurrency: any;
+  onChangeLang: (lang: string) => Promise<void>;
 }) {
   const { theme } = useTheme();
   const locale = useLocale();
@@ -124,7 +111,7 @@ function CurrencyItem({
           ? "hover:bg-popover-border bg-[#00000005]"
           : "bg-[#FFFFFF10] hover:bg-[#FFFFFF20]",
       )}
-      onClick={() => onChangeCurrency(item.symbol)}
+      onClick={() => onChangeLang(item.symbol)}
     >
       <Image
         src={getLanguageImg(item.symbol)}
