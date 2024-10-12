@@ -13,6 +13,7 @@ const config: Config = {
       screens: {
         tb: "1024px",
         dt: "1350px",
+        mb: "640px",
       },
       fontFamily: {
         pretendard: ["var(--font-pretendard)", "sans-serif"],
