@@ -34,7 +34,7 @@ function DesktopMenu() {
   return (
     <header
       className={
-        "sticky left-0 top-0 z-[50] flex h-[60px] w-full items-center justify-between bg-opacity-95 px-8 backdrop-blur"
+        "sticky left-0 top-0 z-[50] flex h-[60px] w-full items-center justify-between border-b border-gray-300 bg-opacity-95 px-8 backdrop-blur"
       }
     >
       <Logo />
