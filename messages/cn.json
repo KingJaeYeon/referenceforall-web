@@ -7,5 +7,10 @@
   "jp": "日本語",
   "cn": "中国人",
   "language": "Language",
-  "logo": "ReferenceForAll"
+  "logo": "ReferenceForAll",
+  "main_theme": "Gather all your websites in one place",
+  "main_title": "",
+  "main_desc": "You can upload your own sites and view sites uploaded by others!",
+  "find_site": "Find Sites",
+  "share_site": "Share Sites"
 }
