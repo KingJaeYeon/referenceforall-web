@@ -9,6 +9,7 @@ export interface InputProps
   icon?: "none" | "search" | "delete" | "length";
   iconOnClick?: () => void;
   errorMessage?: string;
+  rounded?: "default" | "full";
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
@@ -16,6 +17,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     {
       className, //
       type,
+      rounded = "default",
       icon = "none",
       iconOnClick,
       maxLength = 30,
@@ -37,9 +39,10 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         <input
           type={type}
           className={cn(
-            "body4 placeholder:body4 border-input-border placeholder:text-input-placeholder hover:border-input-focus-border focus:border-input-focus-border disabled:border-input-disabled-border disabled:text-input-disabled-foreground flex h-[42px] w-full rounded-full border bg-input px-[20px] py-2 focus-visible:outline-none disabled:pointer-events-none disabled:placeholder:opacity-20",
+            "body4 placeholder:body4 rounded-[6px] flex h-[42px] w-full border border-input-border bg-input px-[20px] py-2 placeholder:text-input-placeholder hover:border-input-focus-border focus:border-input-focus-border focus-visible:outline-none disabled:pointer-events-none disabled:border-input-disabled-border disabled:text-input-disabled-foreground disabled:placeholder:opacity-20",
             icon !== "none" ? "pr-[40px]" : "",
             errorMessage && "border-red hover:border-red focus:border-red",
+            rounded === "full" && "rounded-full",
           )}
           ref={ref}
           maxLength={maxLength}
@@ -55,7 +58,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           value={value}
         />
         {errorMessage && (
-          <Text className={"body7 text-red pl-[20px] pt-[5px]"}>
+          <Text className={"body7 pl-[20px] pt-[5px] text-red"}>
             {errorMessage}
           </Text>
         )}

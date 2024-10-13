@@ -7,7 +7,7 @@
 //   IconSolidPieChart,
 // } from "@/assets/svg/IconChart";
 import { IconCheck } from "@/assets/svg/IconCheck";
-// import { IconChevronLeft, IconChevronRight } from "@/assets/svg/IconChevron";
+import { IconChevronLeft, IconChevronRight } from "@/assets/svg/IconChevron";
 import { IconClose } from "@/assets/svg/IconClose";
 import { IconConfirm } from "@/assets/svg/IconConfirm";
 import { IconDelete } from "@/assets/svg/IconDelete";
@@ -18,7 +18,7 @@ import { IconDelete } from "@/assets/svg/IconDelete";
 // } from "@/assets/svg/IconDropDownUpDown";
 import { IconError } from "@/assets/svg/IconError";
 import { IconSearch } from "@/assets/svg/IconSearch";
-// import { IconMoon, IconSun } from "@/assets/svg/IconTheme";
+import { IconMoon, IconSun } from "@/assets/svg/IconTheme";
 //
 // import {
 //   IconDown,
@@ -49,14 +49,14 @@ import { IconSearch } from "@/assets/svg/IconSearch";
 // import { IconLinearNews, IconSolidNews } from "@/assets/svg/IconNews";
 //
 // import { IconLinearNotice, IconSolidNotice } from "@/assets/svg/IconNotice";
-// import {
-//   IconLinearPlayer,
-//   IconPlayerExpand,
-//   IconPlayerForward,
-//   IconPlayerPause,
-//   IconPlayerRewind,
-//   IconSolidPlayer,
-// } from "@/assets/svg/IconPlayer";
+import {
+  IconLinearPlayer,
+  IconPlayerExpand,
+  IconPlayerForward,
+  IconPlayerPause,
+  IconPlayerRewind,
+  IconSolidPlayer,
+} from "@/assets/svg/IconPlayer";
 // import { IconLinearReply, IconSolidReply } from "@/assets/svg/IconReply";
 // import {
 //   IconLinearReport,
@@ -78,7 +78,7 @@ import { IconSearch } from "@/assets/svg/IconSearch";
 // import { IconLoad } from "@/assets/svg/IconLoad";
 // import { IconMaximize } from "@/assets/svg/IconMaximize";
 // import IconMenu from "@/assets/svg/IconMenu";
-// import { IconMinus, IconPlus } from "@/assets/svg/IconPlusMinus";
+import { IconMinus, IconPlus } from "@/assets/svg/IconPlusMinus";
 // import IconMore from "@/assets/svg/IconMore";
 // import { IconMove, IconMoving } from "@/assets/svg/IconMove";
 // import IconNew from "@/assets/svg/IconNew";
@@ -152,25 +152,25 @@ export {
 // export { IconLinearCopy, IconSolidCopy };
 // export { IconLinearCommunity, IconSolidCommunity };
 // export { IconInfo, IconMoreInfo };
-//
-// export {
-//   IconLinearPlayer,
-//   IconPlayerExpand,
-//   IconPlayerForward,
-//   IconPlayerPause,
-//   IconPlayerRewind,
-//   IconSolidPlayer,
-// };
-//
+
+export {
+  IconLinearPlayer,
+  IconPlayerExpand,
+  IconPlayerForward,
+  IconPlayerPause,
+  IconPlayerRewind,
+  IconSolidPlayer,
+};
+
 // export { IconLinearReport, IconReport, IconSolidReport };
 // export { IconArrowDown, IconArrowUp, IconNext, IconOutLink, IconPrev };
 // export { IconThumbDown, IconThumbUp };
-// export { IconMinus, IconPlus };
+export { IconMinus, IconPlus };
 // export { IconEyeOff, IconEyeOn };
 // export { IconDown, IconLeft, IconRight, IconUp };
-// export { IconMoon, IconSun };
+export { IconMoon, IconSun };
 // export { IconDropDownDown, IconDropDownUp };
-// export { IconChevronLeft, IconChevronRight };
+export { IconChevronLeft, IconChevronRight };
 // export {
 //   IconCandleChart,
 //   IconChart,

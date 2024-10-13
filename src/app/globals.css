@@ -19,8 +19,8 @@
     }
 
     .light {
-        --gray-pale: 0 0% 98%;
-        --gray-weak: 0 0% 92%;
+        --gray-pale: 0 0% 99%;
+        --gray-weak: 0 0% 94%;
         --gray-light: 0 0% 85%;
         --gray-normal: 0 0% 61%;
         --gray-neutral: 0 0% 49%;
@@ -33,9 +33,9 @@
         --border: var(--white) / 0.15;
         --icon: var(--gray-deep);
 
-        --button-secondary-background: var(--gray-light);
+        --button-secondary-background: var(--gray-weak);
         --button-secondary-foreground: var(--gray-drak);
-        --button-secondary-hover-background: var(--gray-weak);
+        --button-secondary-hover-background: var(--gray-weak) / 0.6;
         --button-secondary-hover-foreground: var(--gray-drak);
         --button-outline-border: var(--black) / 0.15;
         --button-outline-foreground: var(--gray-drak);
@@ -86,6 +86,7 @@
         --tip-background: var(--white);
         --tip-border: var(--black) / 0.15;
 
+
         --card: 0 0% 100%;
         --card-foreground: 222.2 84% 4.9%;
         --muted: 210 40% 96.1%;
@@ -100,6 +101,26 @@
         --chart-3: 197 37% 24%;
         --chart-4: 43 74% 66%;
         --chart-5: 27 87% 67%;
+
+        .scroller-x-right {
+            background: linear-gradient(
+                    90deg,
+                    rgba(252, 252, 252, 0) 0%,
+                    rgba(252, 252, 252, 0.75) 25%,
+                    rgba(252, 252, 252, 0.9) 50%,
+                    rgba(252, 252, 252, 1) 75%
+            );
+        }
+
+        .scroller-x-left {
+            background: linear-gradient(
+                    270deg,
+                    rgba(252, 252, 252, 0) 0%,
+                    rgba(252, 252, 252, 0.75) 25%,
+                    rgba(252, 252, 252, 0.9) 50%,
+                    rgba(252, 252, 252, 1) 75%
+            );
+        }
     }
 
     .dark {
@@ -184,6 +205,7 @@
         --chart-4: 280 65% 60%;
         --chart-5: 340 75% 55%;
     }
+
 }
 
 @layer base {
@@ -223,6 +245,7 @@ input::-webkit-inner-spin-button {
         opacity: 0;
     }
 }
+
 
 .dropdown-in {
     animation: dropdownIn 0.5s forwards;

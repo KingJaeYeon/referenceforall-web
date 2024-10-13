@@ -106,10 +106,7 @@ function CurrencyItem({
   return (
     <Label
       className={cn(
-        "flex w-full max-w-full cursor-pointer items-center gap-[10px] rounded-[5px] px-[10px] py-[8px]",
-        theme === "light"
-          ? "hover:bg-popover-border bg-[#00000005]"
-          : "bg-[#FFFFFF10] hover:bg-[#FFFFFF20]",
+        "flex w-full max-w-full cursor-pointer items-center gap-[10px] rounded-[5px] bg-button-secondary-hover px-[10px] py-[8px]",
       )}
       onClick={() => onChangeLang(item.symbol)}
     >

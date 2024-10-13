@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <Main>
       <Contents>
-        <section className="bg-gray-50 pt-12 sm:pt-16">
+        <section className="pt-12 sm:pt-16">
           <Col className="items-center text-center">
             <h1 className="body1 px-6 text-gray-600">{t("main_theme")}</h1>
             <Text className="heading1 mb:text-[48px] mt-5 text-[36px] text-gray-900 dt:w-[700px] dt:text-[60px]">
@@ -57,9 +57,9 @@ export default function Home() {
             </p>
           </Col>
 
-          <div className="bg-white pb-12">
+          <div className="pb-12">
             <div className="relative">
-              <div className="absolute inset-0 h-2/3 bg-gray-50"></div>
+              <div className="absolute inset-0 h-2/3"></div>
               <div className="relative mx-auto">
                 <div className="dt:mx-auto dt:max-w-6xl">
                   <img

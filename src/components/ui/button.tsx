@@ -26,13 +26,13 @@ const buttonVariants = cva(
       size: {
         default: "",
         sm: "h-[29px] rounded-[6px] px-[8px]",
-        md: "h-[32px] rounded-[6px] px-[12px]",
+        md: "h-[38px] rounded-[8px] px-[12px]",
         lg: "h-[42px] rounded-[10px] px-[20px]",
         icon: "h-10 w-10",
       },
       rounded: {
         default: "",
-        full: "rounded-full",
+        full: "rounded-[999px]",
       },
     },
     defaultVariants: {
@@ -60,6 +60,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       className,
       loading = false,
       disabled = false,
+      rounded,
       children,
       variant = "secondary",
       rightIcon,
@@ -79,7 +80,11 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     });
     return (
       <Comp
-        className={cn(buttonVariants({ variant, size }), customFont, className)}
+        className={cn(
+          buttonVariants({ variant, size, rounded }),
+          customFont,
+          className,
+        )}
         ref={ref}
         disabled={disabled || loading}
         {...props}
