@@ -3,7 +3,7 @@ import Text from "@/components/Layout/Text";
 import Row from "@/components/Layout/Row";
 import { Button } from "@/components/ui/button";
 import { IconPlus } from "@/assets/svg";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import React from "react";
 import {
   Dialog,
@@ -22,6 +22,7 @@ import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Badge } from "@/components/ui/badge";
 import { X } from "lucide-react";
+import Col from "@/components/Layout/Col";
 
 export function ContentHeader() {
   const [topic, setTopic] = useState<{ index: number; tag: string }[]>([]);
@@ -68,6 +69,7 @@ const searchTopics = async (query: string): Promise<string[]> => {
     .filter((topic) => topic.toLowerCase().includes(query.toLowerCase()))
     .slice(0, 15);
 };
+
 function AddTopicPopup({
   children,
   topic,
@@ -116,7 +118,7 @@ function AddTopicPopup({
         <DialogHeader>
           <DialogTitle>Topic 추가 선택</DialogTitle>
         </DialogHeader>
-        <div className="grid gap-4 py-4">
+        <Col className={"gap-3"}>
           <div className="flex items-center justify-between">
             <Label htmlFor="search-mode" className="text-right">
               검색 모드: {searchMode}
@@ -129,47 +131,17 @@ function AddTopicPopup({
               }
             />
           </div>
-          <div>
-            <Label htmlFor="topic-search" className="text-right">
-              토픽 검색
-            </Label>
+          <Col className={"gap-2"}>
+            <Text>추가 검색할 주제를 입력해주세요.(최대 4개)</Text>
             <Input
               id="topic-search"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="토픽을 검색하세요..."
             />
-          </div>
-          <ScrollArea className="h-[200px] w-full rounded-md border border-input-border p-4">
-            {searchResults.map((topic) => (
-              <div key={topic} className="mb-2 flex items-center space-x-2">
-                <input
-                  type="checkbox"
-                  id={topic}
-                  checked={selectedTopics.includes(topic)}
-                  onChange={() => handleTopicToggle(topic)}
-                />
-                <label htmlFor={topic}>{topic}</label>
-              </div>
-            ))}
-          </ScrollArea>
-          <div>
-            <Label className="mb-2 text-right">선택된 토픽:</Label>
-            <div className="flex flex-wrap gap-2">
-              {selectedTopics.map((topic) => (
-                <Badge key={topic} variant="secondary" className="text-sm">
-                  {topic}
-                  <button
-                    onClick={() => handleTopicToggle(topic)}
-                    className="ml-1 text-xs"
-                  >
-                    <X size={12} />
-                  </button>
-                </Badge>
-              ))}
-            </div>
-          </div>
-        </div>
+            <EditableDiv />
+          </Col>
+        </Col>
         <DialogFooter>
           <Button type="submit">저장</Button>
         </DialogFooter>
@@ -177,3 +149,73 @@ function AddTopicPopup({
     </Dialog>
   );
 }
+
+const EditableDiv = () => {
+  const [buttons, setButtons] = useState([]);
+  const [spaceCount, setSpaceCount] = useState(0);
+  const divRef = useRef(null);
+  const [currentText, setCurrentText] = useState("");
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === " ") {
+        if (currentText !== "") {
+          setSpaceCount((prev) => prev + 1);
+        }
+      } else {
+        setSpaceCount(0); // 스페이스가 아닌 키를 누르면 카운트 초기화
+      }
+    };
+
+    const handleInput = () => {
+      // 현재 입력된 텍스트를 저장
+      setCurrentText(divRef.current.textContent.trim());
+    };
+
+    if (divRef.current) {
+      divRef.current.addEventListener("keydown", handleKeyDown);
+      divRef.current.addEventListener("input", handleInput);
+    }
+
+    return () => {
+      if (divRef.current) {
+        divRef.current.removeEventListener("keydown", handleKeyDown);
+        divRef.current.removeEventListener("input", handleInput);
+      }
+    };
+  }, [currentText]);
+
+  useEffect(() => {
+    if (spaceCount >= 2 && currentText) {
+      // 버튼을 추가하고 스페이스 카운트 및 텍스트 초기화
+      setButtons((prevButtons) => [
+        ...prevButtons,
+        <button key={prevButtons.length}>{currentText}</button>,
+      ]);
+      setSpaceCount(0);
+      setCurrentText(""); // 텍스트 초기화
+      divRef.current.textContent = ""; // 입력 필드 비우기
+    }
+  }, [spaceCount, currentText]);
+
+  return (
+    <div>
+      <div
+        contentEditable={true}
+        ref={divRef}
+        style={{
+          border: "1px solid black",
+          minHeight: "100px",
+          padding: "10px",
+        }}
+      ></div>
+      <div>
+        {buttons.map((button, index) => (
+          <span key={index} style={{ marginRight: "5px" }}>
+            {button}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+};
