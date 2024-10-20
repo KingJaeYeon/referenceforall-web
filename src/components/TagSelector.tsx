@@ -68,7 +68,7 @@ export default function TagSelector({
         message: t("tag_maxLength"),
       };
     }
-    const isAlreadyExist = tags.includes(input);
+    const isAlreadyExist = tags.find((tag) => tag.toUpperCase() === input.toUpperCase());
     if (isAlreadyExist) {
       return {
         isValid: false,
