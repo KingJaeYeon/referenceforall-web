@@ -18,20 +18,22 @@ import Col from "@/components/Layout/Col";
 import TagSelector from "@/components/TagSelector";
 import { useSearchParams } from "next/navigation";
 import useUrlParams from "@/hook/useUrlParams";
+import { useTranslations } from "next-intl";
 
 export function ContentHeader() {
+  const t = useTranslations();
   return (
     <>
       <Text className={"heading1 h-[52px] text-[42px] font-medium"}>
         Productivity
       </Text>
       <Text className={"body3 mb-6 mt-4 h-[24px]"}>
-        10개의 사이트가 검색되었습니다.
+        {t("result_sites_cnt", { count: 10 })}
       </Text>
       <Row className={"justify-center"}>
         <AddTopicPopup>
           <Button className={"w-fit font-medium"} rounded={"full"}>
-            <IconPlus className={"h-4 w-4"} /> Topic 추가
+            <IconPlus className={"h-4 w-4"} /> {t("add_topic")}
           </Button>
         </AddTopicPopup>
       </Row>
@@ -66,6 +68,7 @@ const searchTopics = async (query: string): Promise<string[]> => {
 function AddTopicPopup({ children }: { children: React.ReactNode }) {
   const searchParams = useSearchParams();
   const { updateUrlParam } = useUrlParams();
+  const t = useTranslations();
   const [searchMode, setSearchMode] = useState<string>("and");
   const [tags, setTags] = useState<string[]>([]);
   const [open, setOpen] = useState(false);
@@ -105,18 +108,18 @@ function AddTopicPopup({ children }: { children: React.ReactNode }) {
       </DialogTrigger>
       <DialogContent className="tb:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Topic 추가 선택</DialogTitle>
+          <DialogTitle>{t("title_addTopic")}</DialogTitle>
         </DialogHeader>
         <Col className={"gap-3"}>
           <Col className={"gap-2"}>
             <Text className={"body5"}>
-              추가 검색할 주제를 입력해주세요.(최대 4개)
+              {t("desc_addSubject", { count: 4 })}
             </Text>
             <TagSelector tags={tags} setTags={setTags} />
           </Col>
           <div className="flex items-center justify-between">
             <Label htmlFor="search-mode" className="text-right">
-              검색 모드: {searchMode.toUpperCase()}
+              {t("searchMode")}: {searchMode.toUpperCase()}
             </Label>
             <Switch
               id="search-mode"
@@ -129,8 +132,8 @@ function AddTopicPopup({ children }: { children: React.ReactNode }) {
           </div>
         </Col>
         <DialogFooter>
-          <Button type="submit" onClick={submitHandler}>
-            저장
+          <Button type="submit" onClick={submitHandler} className={"px-[18px]"}>
+            {t("save")}
           </Button>
         </DialogFooter>
       </DialogContent>

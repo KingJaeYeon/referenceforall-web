@@ -15,5 +15,11 @@
   "share_site": "Share Sites",
   "tag_validInput": "Tags only support letters, numbers, spaces, and dashes",
   "tag_maxLength": "A tag name must be ≤ 25 characters.",
-  "tag_alreadyExist": "You have already added this tag."
+  "tag_alreadyExist": "You have already added this tag.",
+  "save": "Save",
+  "title_addTopic": "Add More Topics",
+  "desc_addSubject": "Please enter additional topics to search (up to {count}).",
+  "searchMode": "Search Mode",
+  "add_topic": "Add Topic",
+  "result_sites_cnt": "{count} sites have been found."
 }
