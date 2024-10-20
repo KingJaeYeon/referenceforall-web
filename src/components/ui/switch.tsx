@@ -28,12 +28,13 @@ interface SwitchProps
   extends React.ComponentPropsWithoutRef<typeof SwitchPrimitives.Root>,
     VariantProps<typeof switchVariants> {
   hasLabel?: boolean;
+  custonLable?: { on?: any; off?: any };
 }
 
 const Switch = React.forwardRef<
   React.ElementRef<typeof SwitchPrimitives.Root>,
   SwitchProps
->(({ className, hasLabel = true, variant, ...props }, ref) => {
+>(({ className, custonLable, hasLabel = true, variant, ...props }, ref) => {
   const isChecked = props.checked;
 
   return (
@@ -47,7 +48,9 @@ const Switch = React.forwardRef<
       ) : (
         <>
           <SwitchThumb />
-          {hasLabel && <SwitchLabel isChecked={!!isChecked} />}
+          {hasLabel && (
+            <SwitchLabel isChecked={!!isChecked} label={custonLable} />
+          )}
         </>
       )}
     </SwitchPrimitives.Root>
@@ -93,7 +96,13 @@ const SwitchThemeThumb = React.forwardRef<
   );
 });
 
-const SwitchLabel = ({ isChecked }: { isChecked: boolean }) => (
+const SwitchLabel = ({
+  isChecked,
+  label,
+}: {
+  isChecked: boolean;
+  label?: { on?: any; off?: any };
+}) => (
   <div
     className={cn(
       "body8 absolute",
@@ -102,7 +111,7 @@ const SwitchLabel = ({ isChecked }: { isChecked: boolean }) => (
         : "left-1.5 text-switch-off-thumb",
     )}
   >
-    {isChecked ? "ON" : "OFF"}
+    {isChecked ? (!!label ? label.on : "ON") : !!label ? label.off : "OFF"}
   </div>
 );
 

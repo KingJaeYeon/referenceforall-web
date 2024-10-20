@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { ThemeProvider } from "@/provider/ThemeProvider";
-// import { TooltipProvider } from "@/components/ui/tooltip";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 export default function SystemProvider({
   children,
@@ -16,9 +16,7 @@ export default function SystemProvider({
       enableSystem
       disableTransitionOnChange
     >
-      {/*<TooltipProvider delayDuration={0}>*/}
-      {children}
-      {/*</TooltipProvider>*/}
+      <TooltipProvider delayDuration={0}>{children}</TooltipProvider>
     </ThemeProvider>
     // </LocaleProvider>
   );

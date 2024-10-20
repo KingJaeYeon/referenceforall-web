@@ -3,6 +3,7 @@ import Text from "@/components/Layout/Text";
 import { cn } from "@/lib/utils";
 import { IconSearch } from "@/assets/svg/IconSearch";
 import { IconDelete } from "@/assets/svg/IconDelete";
+import { FontType, utilFont } from "@/util/fontType";
 
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -10,6 +11,7 @@ export interface InputProps
   iconOnClick?: () => void;
   errorMessage?: string;
   rounded?: "default" | "full";
+  font?: FontType;
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
@@ -24,14 +26,16 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       disabled = false,
       value,
       errorMessage,
+      font,
       ...props
     },
     ref,
   ) => {
+    const customFont = utilFont(font, () => "body6");
     return (
       <div
         className={cn(
-          "relative w-full",
+          "relative h-[42px] w-full",
           className,
           disabled && "cursor-not-allowed",
         )}
@@ -39,10 +43,11 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         <input
           type={type}
           className={cn(
-            "body4 placeholder:body4 rounded-[6px] flex h-[42px] w-full border border-input-border bg-input px-[20px] py-2 placeholder:text-input-placeholder hover:border-input-focus-border focus:border-input-focus-border focus-visible:outline-none disabled:pointer-events-none disabled:border-input-disabled-border disabled:text-input-disabled-foreground disabled:placeholder:opacity-20",
+            "placeholder:body4 flex h-full w-full rounded-[6px] border border-input-border bg-input px-[20px] py-2 placeholder:text-input-placeholder hover:border-input-focus-border focus:border-input-focus-border focus-visible:outline-none disabled:pointer-events-none disabled:border-input-disabled-border disabled:text-input-disabled-foreground disabled:placeholder:opacity-20",
             icon !== "none" ? "pr-[40px]" : "",
             errorMessage && "border-red hover:border-red focus:border-red",
             rounded === "full" && "rounded-full",
+            customFont,
           )}
           ref={ref}
           maxLength={maxLength}

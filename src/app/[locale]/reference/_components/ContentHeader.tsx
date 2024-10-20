@@ -3,30 +3,23 @@ import Text from "@/components/Layout/Text";
 import Row from "@/components/Layout/Row";
 import { Button } from "@/components/ui/button";
 import { IconPlus } from "@/assets/svg";
-import { useEffect, useRef, useState } from "react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Dialog,
-  DialogClose,
   DialogContent,
-  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Switch } from "@/components/ui/switch";
-import ButtonSwitcher from "@/components/ButtonSwitcher";
 import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Badge } from "@/components/ui/badge";
-import { X } from "lucide-react";
 import Col from "@/components/Layout/Col";
+import TagSelector from "@/components/TagSelector";
+import { useSearchParams } from "next/navigation";
+import useUrlParams from "@/hook/useUrlParams";
 
 export function ContentHeader() {
-  const [topic, setTopic] = useState<{ index: number; tag: string }[]>([]);
-
   return (
     <>
       <Text className={"heading1 h-[52px] text-[42px] font-medium"}>
@@ -36,7 +29,7 @@ export function ContentHeader() {
         10개의 사이트가 검색되었습니다.
       </Text>
       <Row className={"justify-center"}>
-        <AddTopicPopup topic={topic} setTopic={setTopic}>
+        <AddTopicPopup>
           <Button className={"w-fit font-medium"} rounded={"full"}>
             <IconPlus className={"h-4 w-4"} /> Topic 추가
           </Button>
@@ -70,19 +63,12 @@ const searchTopics = async (query: string): Promise<string[]> => {
     .slice(0, 15);
 };
 
-function AddTopicPopup({
-  children,
-  topic,
-  setTopic,
-}: {
-  children: React.ReactNode;
-  topic: any;
-  setTopic: any;
-}) {
-  const [searchMode, setSearchMode] = useState<string>("AND");
-  const [search, setSearch] = useState<string>("");
+function AddTopicPopup({ children }: { children: React.ReactNode }) {
+  const searchParams = useSearchParams();
+  const { updateUrlParam } = useUrlParams();
+  const [searchMode, setSearchMode] = useState<string>("and");
+  const [tags, setTags] = useState<string[]>([]);
   const [open, setOpen] = useState(false);
-  const [selectedTopics, setSelectedTopics] = useState<string[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState<string[]>([]);
 
@@ -98,19 +84,22 @@ function AddTopicPopup({
     return () => clearTimeout(delayDebounceFn);
   }, [searchQuery]);
 
-  const handleTopicToggle = (topic: string) => {
-    setSelectedTopics((prev) =>
-      prev.includes(topic) ? prev.filter((t) => t !== topic) : [...prev, topic],
-    );
+  const openHandler = (open: boolean) => {
+    if (open) {
+      setTags(searchParams.get("tags")?.split(",") || []);
+      setSearchMode(searchParams.get("searchMode") || "and");
+    }
+    setOpen(open);
   };
 
-  // const handleSave = () => {
-  //   onSave({ topics: selectedTopics, mode: searchMode });
-  //   onClose();
-  // };
+  const submitHandler = () => {
+    updateUrlParam("searchMode", searchMode.toLowerCase());
+    updateUrlParam("tags", tags.join(","));
+    setOpen(false);
+  };
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog open={open} onOpenChange={openHandler}>
       <DialogTrigger asChild className={"w-[80px]"}>
         {children}
       </DialogTrigger>
@@ -119,103 +108,32 @@ function AddTopicPopup({
           <DialogTitle>Topic 추가 선택</DialogTitle>
         </DialogHeader>
         <Col className={"gap-3"}>
+          <Col className={"gap-2"}>
+            <Text className={"body5"}>
+              추가 검색할 주제를 입력해주세요.(최대 4개)
+            </Text>
+            <TagSelector tags={tags} setTags={setTags} />
+          </Col>
           <div className="flex items-center justify-between">
             <Label htmlFor="search-mode" className="text-right">
-              검색 모드: {searchMode}
+              검색 모드: {searchMode.toUpperCase()}
             </Label>
             <Switch
               id="search-mode"
-              checked={searchMode === "OR"}
+              checked={searchMode === "or"}
               onCheckedChange={(checked) =>
-                setSearchMode(checked ? "OR" : "AND")
+                setSearchMode(checked ? "or" : "and")
               }
+              custonLable={{ on: "OR", off: "AND" }}
             />
           </div>
-          <Col className={"gap-2"}>
-            <Text>추가 검색할 주제를 입력해주세요.(최대 4개)</Text>
-            <Input
-              id="topic-search"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              placeholder="토픽을 검색하세요..."
-            />
-            <EditableDiv />
-          </Col>
         </Col>
         <DialogFooter>
-          <Button type="submit">저장</Button>
+          <Button type="submit" onClick={submitHandler}>
+            저장
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
   );
 }
-
-const EditableDiv = () => {
-  const [buttons, setButtons] = useState([]);
-  const [spaceCount, setSpaceCount] = useState(0);
-  const divRef = useRef(null);
-  const [currentText, setCurrentText] = useState("");
-
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === " ") {
-        if (currentText !== "") {
-          setSpaceCount((prev) => prev + 1);
-        }
-      } else {
-        setSpaceCount(0); // 스페이스가 아닌 키를 누르면 카운트 초기화
-      }
-    };
-
-    const handleInput = () => {
-      // 현재 입력된 텍스트를 저장
-      setCurrentText(divRef.current.textContent.trim());
-    };
-
-    if (divRef.current) {
-      divRef.current.addEventListener("keydown", handleKeyDown);
-      divRef.current.addEventListener("input", handleInput);
-    }
-
-    return () => {
-      if (divRef.current) {
-        divRef.current.removeEventListener("keydown", handleKeyDown);
-        divRef.current.removeEventListener("input", handleInput);
-      }
-    };
-  }, [currentText]);
-
-  useEffect(() => {
-    if (spaceCount >= 2 && currentText) {
-      // 버튼을 추가하고 스페이스 카운트 및 텍스트 초기화
-      setButtons((prevButtons) => [
-        ...prevButtons,
-        <button key={prevButtons.length}>{currentText}</button>,
-      ]);
-      setSpaceCount(0);
-      setCurrentText(""); // 텍스트 초기화
-      divRef.current.textContent = ""; // 입력 필드 비우기
-    }
-  }, [spaceCount, currentText]);
-
-  return (
-    <div>
-      <div
-        contentEditable={true}
-        ref={divRef}
-        style={{
-          border: "1px solid black",
-          minHeight: "100px",
-          padding: "10px",
-        }}
-      ></div>
-      <div>
-        {buttons.map((button, index) => (
-          <span key={index} style={{ marginRight: "5px" }}>
-            {button}
-          </span>
-        ))}
-      </div>
-    </div>
-  );
-};

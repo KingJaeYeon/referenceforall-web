@@ -12,5 +12,8 @@
   "main_title": "",
   "main_desc": "You can upload your own sites and view sites uploaded by others!",
   "find_site": "Find Sites",
-  "share_site": "Share Sites"
+  "share_site": "Share Sites",
+  "tag_validInput": "Tags only support letters, numbers, spaces, and dashes",
+  "tag_maxLength": "A tag name must be ≤ 25 characters.",
+  "tag_alreadyExist": "You have already added this tag."
 }
