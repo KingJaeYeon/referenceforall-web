@@ -3,10 +3,11 @@ import Text from "@/components/Layout/Text";
 import Row from "@/components/Layout/Row";
 import { Button } from "@/components/ui/button";
 import { IconPlus } from "@/assets/svg";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
@@ -41,30 +42,6 @@ export function ContentHeader() {
   );
 }
 
-const searchTopics = async (query: string): Promise<string[]> => {
-  // 실제 구현에서는 이 부분을 백엔드 API 호출로 대체해야 합니다.
-  const allTopics = [
-    "React",
-    "JavaScript",
-    "TypeScript",
-    "Node.js",
-    "Python",
-    "Machine Learning",
-    "Data Science",
-    "Artificial Intelligence",
-    "Web Development",
-    "Mobile Development",
-    "Cloud Computing",
-    "DevOps",
-    "Blockchain",
-    "Cybersecurity",
-    "UX/UI Design",
-  ];
-  return allTopics
-    .filter((topic) => topic.toLowerCase().includes(query.toLowerCase()))
-    .slice(0, 15);
-};
-
 function AddTopicPopup({ children }: { children: React.ReactNode }) {
   const searchParams = useSearchParams();
   const { updateUrlParam } = useUrlParams();
@@ -72,20 +49,6 @@ function AddTopicPopup({ children }: { children: React.ReactNode }) {
   const [searchMode, setSearchMode] = useState<string>("and");
   const [tags, setTags] = useState<string[]>([]);
   const [open, setOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [searchResults, setSearchResults] = useState<string[]>([]);
-
-  useEffect(() => {
-    const delayDebounceFn = setTimeout(() => {
-      if (searchQuery) {
-        searchTopics(searchQuery).then(setSearchResults);
-      } else {
-        setSearchResults([]);
-      }
-    }, 300);
-
-    return () => clearTimeout(delayDebounceFn);
-  }, [searchQuery]);
 
   const openHandler = (open: boolean) => {
     if (open) {
@@ -110,27 +73,29 @@ function AddTopicPopup({ children }: { children: React.ReactNode }) {
         <DialogHeader>
           <DialogTitle>{t("title_addTopic")}</DialogTitle>
         </DialogHeader>
-        <Col className={"gap-3"}>
-          <Col className={"gap-2"}>
-            <Text className={"body5"}>
-              {t("desc_addSubject", { count: 4 })}
-            </Text>
-            <TagSelector tags={tags} setTags={setTags} />
+        <DialogDescription asChild>
+          <Col className={"gap-3"}>
+            <Col className={"gap-2"}>
+              <Text className={"body5"}>
+                {t("desc_addSubject", { count: 4 })}
+              </Text>
+              <TagSelector tags={tags} setTags={setTags} />
+            </Col>
+            <div className="flex items-center justify-between">
+              <Label htmlFor="search-mode" className="text-right">
+                {t("searchMode")}: {searchMode.toUpperCase()}
+              </Label>
+              <Switch
+                id="search-mode"
+                checked={searchMode === "or"}
+                onCheckedChange={(checked) =>
+                  setSearchMode(checked ? "or" : "and")
+                }
+                custonLable={{ on: "OR", off: "AND" }}
+              />
+            </div>
           </Col>
-          <div className="flex items-center justify-between">
-            <Label htmlFor="search-mode" className="text-right">
-              {t("searchMode")}: {searchMode.toUpperCase()}
-            </Label>
-            <Switch
-              id="search-mode"
-              checked={searchMode === "or"}
-              onCheckedChange={(checked) =>
-                setSearchMode(checked ? "or" : "and")
-              }
-              custonLable={{ on: "OR", off: "AND" }}
-            />
-          </div>
-        </Col>
+        </DialogDescription>
         <DialogFooter>
           <Button type="submit" onClick={submitHandler} className={"px-[18px]"}>
             {t("save")}

@@ -19,9 +19,9 @@ export default function RecommendTopicList() {
     "Defi",
     "Tech",
     "Crypto",
-    "Business",
-    "Business",
-    "Business",
+    "Business2",
+    "Business1",
+    "Business3",
   ];
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
@@ -32,7 +32,6 @@ export default function RecommendTopicList() {
     if (container) {
       const { scrollLeft, scrollWidth, clientWidth } = container;
       setCanScrollLeft(scrollLeft > 0);
-      console.log(scrollLeft, clientWidth, scrollWidth);
       setCanScrollRight(scrollLeft + clientWidth <= scrollWidth - 10);
     }
   };

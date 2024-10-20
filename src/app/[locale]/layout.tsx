@@ -7,6 +7,7 @@ import Header from "@/components/Header";
 import SystemProvider from "@/provider/SystemProvider";
 import { getMessages } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
+import QueryProvider from "@/provider/QueryProvider";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -28,9 +29,11 @@ export default async function RootLayout({
       >
         <NextIntlClientProvider messages={messages}>
           <SystemProvider>
-            <Toaster />
-            <Header />
-            {children}
+            <QueryProvider>
+              <Toaster />
+              <Header />
+              {children}
+            </QueryProvider>
           </SystemProvider>
         </NextIntlClientProvider>
       </body>
