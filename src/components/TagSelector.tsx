@@ -4,7 +4,12 @@ import { useTranslations } from "next-intl";
 import useDebounce from "@/hook/useDebounce";
 import { useQuery } from "@tanstack/react-query";
 import Row from "@/components/Layout/Row";
-import { Command, CommandItem, CommandList } from "@/components/ui/command";
+import {
+  Command,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "@/components/ui/command";
 
 const searchTopics = async (
   query: string,
@@ -14,7 +19,7 @@ const searchTopics = async (
     { value: "React", count: 100 },
     { value: "JavaScript", count: 100 },
     { value: "TypeScript", count: 100 },
-    { value: "Node.js", count: 100 },
+    { value: "Nodejs", count: 100 },
     { value: "Python", count: 100 },
     { value: "Machine Learning", count: 100 },
     { value: "Data Science", count: 100 },
@@ -25,7 +30,7 @@ const searchTopics = async (
     { value: "DevOps", count: 100 },
     { value: "Blockchain", count: 100 },
     { value: "Cybersecurity", count: 100 },
-    { value: "UX/UI Design", count: 100 },
+    { value: "UX UI Design", count: 100 },
   ];
   const res = allTopics
     .filter((topic) => topic.value.toLowerCase().includes(query.toLowerCase()))
@@ -76,6 +81,7 @@ export default function TagSelector({
       addTopic(value.trim());
     } else {
       setInputValue(value);
+      setCommandValue(value);
     }
   };
 
@@ -84,6 +90,7 @@ export default function TagSelector({
     const isBackspace = e.key === "Backspace";
 
     if (isEnter) {
+      console.log("commandValue", commandValue, inputValue);
       if (inputValue.trim() === "") return;
       if (commandValue) return addTopic(commandValue);
       e.preventDefault();
@@ -128,10 +135,12 @@ export default function TagSelector({
   };
 
   const addTopic = (value: string) => {
+    console.log("addTopic", value);
     const { isValid, message } = isValidInput(value);
     if (isValid) {
       setTags([...tags, value.trim()]);
       setInputValue("");
+      setCommandValue("");
       setIsPlaceholderVisible(true);
     } else {
       toast.error(message);
