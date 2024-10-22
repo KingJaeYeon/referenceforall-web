@@ -8,7 +8,7 @@ import { useTranslations } from "next-intl";
 import { AddTopicPopup } from "@/app/[locale]/reference/_component/AddTopicPopup";
 import { useSearchParams } from "next/navigation";
 
-export function ContentHeader() {
+export function Header() {
   const t = useTranslations();
   const [tags, setTags] = useState<string[]>([]);
   const [searchMode, setSearchMode] = useState<string>("and");
@@ -19,6 +19,7 @@ export function ContentHeader() {
     setSearchMode(searchParams.get("searchMode") || "and");
   }, [searchParams]);
 
+  const hasTags = tags.length > 0;
   return (
     <>
       <Text className={"heading1 h-[52px] text-[42px] font-medium"}>
@@ -28,7 +29,7 @@ export function ContentHeader() {
         {t("result_sites_cnt", { count: 10 })}
       </Text>
       <Row className={"justify-center gap-[6px]"}>
-        {tags.length > 0 &&
+        {hasTags &&
           tags.map((tag) => (
             <Button
               key={tag}
@@ -38,7 +39,7 @@ export function ContentHeader() {
               {tag}
             </Button>
           ))}
-        {tags.length > 0 && (
+        {hasTags && (
           <Button className={"w-fit pt-[1px] font-medium"} rounded={"full"}>
             {t("searchMode")}: {searchMode.toUpperCase()}
           </Button>
