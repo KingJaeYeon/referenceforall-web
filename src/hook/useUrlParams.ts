@@ -7,22 +7,8 @@ export default function useUrlParams() {
   const pathname = usePathname();
 
   const createQueryString = useCallback(
-    (name: string, value: string) => {
-      const params = new URLSearchParams(searchParams.toString());
-      if (value === "") {
-        params.delete(name);
-      } else {
-        params.set(name, value);
-      }
-      return params.toString();
-    },
-    [searchParams],
-  );
-
-  const updateUrlParams = useCallback(
     (paramsToUpdate: Record<string, string>) => {
       const params = new URLSearchParams(searchParams.toString());
-
       Object.entries(paramsToUpdate).forEach(([name, value]) => {
         if (value === "") {
           params.delete(name);
@@ -30,10 +16,17 @@ export default function useUrlParams() {
           params.set(name, value);
         }
       });
-
-      router.push(pathname + "?" + params.toString());
+      return params.toString();
     },
-    [searchParams, router, pathname],
+    [searchParams],
+  );
+
+  const updateUrlParams = useCallback(
+    (paramsToUpdate: Record<string, string>) => {
+      const queryString = createQueryString(paramsToUpdate);
+      router.push(pathname + "?" + queryString);
+    },
+    [createQueryString, router, pathname],
   );
 
   return { updateUrlParams };

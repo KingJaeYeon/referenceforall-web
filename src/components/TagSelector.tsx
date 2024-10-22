@@ -135,7 +135,6 @@ export default function TagSelector({
   };
 
   const addTopic = (value: string) => {
-    console.log("addTopic", value);
     const { isValid, message } = isValidInput(value);
     if (isValid) {
       setTags([...tags, value.trim()]);
