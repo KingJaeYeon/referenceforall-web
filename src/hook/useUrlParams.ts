@@ -19,13 +19,22 @@ export default function useUrlParams() {
     [searchParams],
   );
 
-  const updateUrlParam = useCallback(
-    (name: string, value: string) => {
-      const queryString = createQueryString(name, value);
-      router.push(pathname + "?" + queryString);
+  const updateUrlParams = useCallback(
+    (paramsToUpdate: Record<string, string>) => {
+      const params = new URLSearchParams(searchParams.toString());
+
+      Object.entries(paramsToUpdate).forEach(([name, value]) => {
+        if (value === "") {
+          params.delete(name);
+        } else {
+          params.set(name, value);
+        }
+      });
+
+      router.push(pathname + "?" + params.toString());
     },
-    [createQueryString, router, pathname],
+    [searchParams, router, pathname],
   );
 
-  return { updateUrlParam };
+  return { updateUrlParams };
 }

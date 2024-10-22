@@ -44,7 +44,7 @@ export function ContentHeader() {
 
 function AddTopicPopup({ children }: { children: React.ReactNode }) {
   const searchParams = useSearchParams();
-  const { updateUrlParam } = useUrlParams();
+  const { updateUrlParams } = useUrlParams();
   const t = useTranslations();
   const [searchMode, setSearchMode] = useState<string>("and");
   const [tags, setTags] = useState<string[]>([]);
@@ -59,8 +59,10 @@ function AddTopicPopup({ children }: { children: React.ReactNode }) {
   };
 
   const submitHandler = () => {
-    updateUrlParam("searchMode", searchMode.toLowerCase());
-    updateUrlParam("tags", tags.join(","));
+    updateUrlParams({
+      searchMode: tags.length > 0 ? searchMode.toLowerCase() : "",
+      tags: tags.join(","),
+    });
     setOpen(false);
   };
 
