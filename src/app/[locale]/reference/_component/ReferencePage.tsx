@@ -20,12 +20,9 @@ function Body() {
   return (
     <Row className={"mt-[40px] text-center"}>
       <Row className={"w-full flex-wrap"}>
-        <div
-          className="grid w-full gap-8 md:grid-cols-2 lg:grid-cols-3"
-          style={{ gridTemplateColumns: "repeat(auto-fit, minmax(30%, 1fr))" }}
-        >
+        <div className="grid w-full gap-8 md:grid-cols-2 lg:grid-cols-3">
           {Array.from({ length: 3 }).map((_, index) => (
-            <Row className={"relative h-auto border border-red"} key={index}>
+            <Row className={"relative h-auto"} key={index}>
               <MediumStyleCard />
             </Row>
           ))}
@@ -50,19 +47,17 @@ const MediumStyleCard = ({}: any) => {
 
   return (
     <div
-      className={"relative grid h-full w-full gap-[24px] text-left"}
+      className={"relative grid h-full w-full gap-4 text-left"}
       style={{
         gridTemplateRows: "auto 1fr",
-        gridTemplateColumns: "repeat(12, 1fr)",
+        gridTemplateColumns: "repeat(1, 1fr)",
       }}
     >
-      {/*<div className="relative h-full overflow-hidden">*/}
       <img
         src={site.imageUrl}
         alt={site.name}
         className="aspect-video w-full object-cover transition-transform duration-300 group-hover:scale-105"
       />
-      {/*</div>*/}
       <div>
         <div className="flex flex-wrap gap-1.5 py-1">
           {site.tags.map((tag, index) => (
@@ -83,28 +78,28 @@ const MediumStyleCard = ({}: any) => {
             {site.description}
           </p>
         </div>
-        <div className="mt-auto flex items-center justify-between pt-4 text-sm text-gray-500">
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-1">
+        <Row className="mt-auto items-center justify-between pt-4 text-sm text-gray-500">
+          <Row className="items-center gap-4">
+            <Row className="items-center gap-1">
               <Star className="h-4 w-4 text-yellow-400" />
               <span>{site.rating}</span>
-            </div>
-            <div className="flex items-center gap-1">
+            </Row>
+            <Row className="items-center gap-1">
               <Users className="h-4 w-4" />
               <span>{site.visitors}</span>
-            </div>
-            <div className="flex items-center gap-1">
+            </Row>
+            <Row className="items-center gap-1">
               <Calendar className="h-4 w-4" />
               <span>{site.lastUpdate}</span>
-            </div>
-          </div>
+            </Row>
+          </Row>
           <button
             className="flex items-center gap-1 text-gray-500 transition-colors hover:text-gray-700"
             onClick={(e) => e.stopPropagation()}
           >
             <Bookmark className="h-4 w-4" />
           </button>
-        </div>
+        </Row>
       </div>
     </div>
   );
