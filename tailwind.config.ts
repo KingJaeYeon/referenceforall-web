@@ -12,7 +12,7 @@ const config: Config = {
     extend: {
       screens: {
         tb: "1024px",
-        dt: "1350px",
+        dt: "1200px",
         mb: "640px",
       },
       fontFamily: {

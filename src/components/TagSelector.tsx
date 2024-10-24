@@ -4,12 +4,7 @@ import { useTranslations } from "next-intl";
 import useDebounce from "@/hook/useDebounce";
 import { useQuery } from "@tanstack/react-query";
 import Row from "@/components/Layout/Row";
-import {
-  Command,
-  CommandInput,
-  CommandItem,
-  CommandList,
-} from "@/components/ui/command";
+import { Command, CommandItem, CommandList } from "@/components/ui/command";
 
 const searchTopics = async (
   query: string,
@@ -90,7 +85,6 @@ export default function TagSelector({
     const isBackspace = e.key === "Backspace";
 
     if (isEnter) {
-      console.log("commandValue", commandValue, inputValue);
       if (inputValue.trim() === "") return;
       if (commandValue) return addTopic(commandValue);
       e.preventDefault();

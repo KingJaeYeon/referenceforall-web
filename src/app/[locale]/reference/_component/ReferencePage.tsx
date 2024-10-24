@@ -19,25 +19,23 @@ export default function ReferencePage() {
 function Body() {
   return (
     <Row className={"mt-[40px] text-center"}>
-      <Row className={"w-full flex-wrap justify-between gap-[40px]"}>
-        <Row className={"relative w-[30%] pt-[30.25%]"}>
-          <MediumStyleCard />
-        </Row>
-        <Row className={"relative w-[30%] pt-[30.25%]"}>
-          <MediumStyleCard />
-        </Row>
-        <Row className={"relative w-[30%] pt-[30.25%]"}>
-          <MediumStyleCard />
-        </Row>
-        <Row className={"relative w-[30%] pt-[30.25%]"}>
-          <MediumStyleCard />
-        </Row>
+      <Row className={"w-full flex-wrap"}>
+        <div
+          className="grid w-full gap-8 md:grid-cols-2 lg:grid-cols-3"
+          style={{ gridTemplateColumns: "repeat(auto-fit, minmax(30%, 1fr))" }}
+        >
+          {Array.from({ length: 3 }).map((_, index) => (
+            <Row className={"relative h-auto border border-red"} key={index}>
+              <MediumStyleCard />
+            </Row>
+          ))}
+        </div>
       </Row>
     </Row>
   );
 }
 
-const MediumStyleCard = ({ onClick, isLarge = false }: any) => {
+const MediumStyleCard = ({}: any) => {
   const site = {
     name: "사이트 이름",
     description:
@@ -51,57 +49,63 @@ const MediumStyleCard = ({ onClick, isLarge = false }: any) => {
   };
 
   return (
-    <Col
-      className={
-        "absolute left-0 top-0 h-full w-full gap-2 border border-red p-4 text-left"
-      }
+    <div
+      className={"relative grid h-full w-full gap-[24px] text-left"}
+      style={{
+        gridTemplateRows: "auto 1fr",
+        gridTemplateColumns: "repeat(12, 1fr)",
+      }}
     >
-      <div className="relative -mx-4 -mt-4 overflow-hidden">
-        <img
-          src={site.imageUrl}
-          alt={site.name}
-          className="aspect-video w-full object-cover transition-transform duration-300 group-hover:scale-105"
-        />
-      </div>
-      <div className="flex flex-wrap gap-1.5 py-1">
-        {site.tags.map((tag, index) => (
-          <span
-            key={index}
-            className="rounded-full bg-gray-100 px-2.5 py-1 text-xs text-gray-600 transition-colors hover:bg-gray-200"
+      {/*<div className="relative h-full overflow-hidden">*/}
+      <img
+        src={site.imageUrl}
+        alt={site.name}
+        className="aspect-video w-full object-cover transition-transform duration-300 group-hover:scale-105"
+      />
+      {/*</div>*/}
+      <div>
+        <div className="flex flex-wrap gap-1.5 py-1">
+          {site.tags.map((tag, index) => (
+            <span
+              key={index}
+              className="rounded-full bg-gray-100 px-2.5 py-1 text-xs text-gray-600 transition-colors hover:bg-gray-200"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+        <div className="space-y-2">
+          <h3 className="line-clamp-1 text-lg font-semibold text-gray-900">
+            {site.name}
+          </h3>
+          <p className="line-clamp-2 text-sm text-gray-500">
+            {site.description}
+          </p>
+        </div>
+        <div className="mt-auto flex items-center justify-between pt-4 text-sm text-gray-500">
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-1">
+              <Star className="h-4 w-4 text-yellow-400" />
+              <span>{site.rating}</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <Users className="h-4 w-4" />
+              <span>{site.visitors}</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <Calendar className="h-4 w-4" />
+              <span>{site.lastUpdate}</span>
+            </div>
+          </div>
+          <button
+            className="flex items-center gap-1 text-gray-500 transition-colors hover:text-gray-700"
             onClick={(e) => e.stopPropagation()}
           >
-            {tag}
-          </span>
-        ))}
-      </div>
-      <div className="space-y-2">
-        <h3 className="line-clamp-1 text-lg font-semibold text-gray-900">
-          {site.name}
-        </h3>
-        <p className="line-clamp-2 text-sm text-gray-500">{site.description}</p>
-      </div>
-      <div className="mt-auto flex items-center justify-between pt-4 text-sm text-gray-500">
-        <div className="flex items-center gap-4">
-          <div className="flex items-center gap-1">
-            <Star className="h-4 w-4 text-yellow-400" />
-            <span>{site.rating}</span>
-          </div>
-          <div className="flex items-center gap-1">
-            <Users className="h-4 w-4" />
-            <span>{site.visitors}</span>
-          </div>
-          <div className="flex items-center gap-1">
-            <Calendar className="h-4 w-4" />
-            <span>{site.lastUpdate}</span>
-          </div>
+            <Bookmark className="h-4 w-4" />
+          </button>
         </div>
-        <button
-          className="flex items-center gap-1 text-gray-500 transition-colors hover:text-gray-700"
-          onClick={(e) => e.stopPropagation()}
-        >
-          <Bookmark className="h-4 w-4" />
-        </button>
       </div>
-    </Col>
+    </div>
   );
 };
