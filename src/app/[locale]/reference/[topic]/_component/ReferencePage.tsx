@@ -1,29 +1,17 @@
 "use client";
 
-import Col from "@/components/Layout/Col";
-import RecommendTopicList from "@/app/[locale]/reference/_component/RecommendTopicList";
-import { Header } from "@/app/[locale]/reference/_component/Header";
 import Row from "@/components/Layout/Row";
-import { Star, Bookmark, Users, Calendar } from "lucide-react";
+import { Bookmark, Calendar, Star, Users } from "lucide-react";
+import React from "react";
 
-export default function ReferencePage() {
-  return (
-    <Col className={"text-center"}>
-      <RecommendTopicList />
-      <Header />
-      <Body />
-    </Col>
-  );
-}
-
-function Body() {
+export default function ReferencePage({ sites }: { sites: any[] }) {
   return (
     <Row className={"mt-[40px] text-center"}>
       <Row className={"w-full flex-wrap"}>
         <div className="grid w-full gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {Array.from({ length: 3 }).map((_, index) => (
+          {sites.map((site, index) => (
             <Row className={"relative h-auto"} key={index}>
-              <MediumStyleCard />
+              <MediumStyleCard site={site} />
             </Row>
           ))}
         </div>
@@ -32,19 +20,7 @@ function Body() {
   );
 }
 
-const MediumStyleCard = ({}: any) => {
-  const site = {
-    name: "사이트 이름",
-    description:
-      "이 사이트는 멋진 서비스를 제공하는 웹사이트입니다. 다양한 기능을 체험해보세요.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1719937051157-d3d81cc28e86?q=80&w=2672&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    tags: ["태그1", "태그2", "태그3"],
-    rating: 4.5,
-    visitors: "1.2K",
-    lastUpdate: "2024-03-15",
-  };
-
+const MediumStyleCard = ({ site }: { site: any }) => {
   return (
     <div
       className={"relative grid h-full w-full gap-4 text-left"}
@@ -60,7 +36,7 @@ const MediumStyleCard = ({}: any) => {
       />
       <div>
         <div className="flex flex-wrap gap-1.5 py-1">
-          {site.tags.map((tag, index) => (
+          {site.tags.map((tag: string, index: number) => (
             <span
               key={index}
               className="rounded-full bg-gray-100 px-2.5 py-1 text-xs text-gray-600 transition-colors hover:bg-gray-200"

@@ -5,10 +5,10 @@ import { Button } from "@/components/ui/button";
 import { IconPlus } from "@/assets/svg";
 import React, { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
-import { AddTopicPopup } from "@/app/[locale]/reference/_component/AddTopicPopup";
+import { AddTopicPopup } from "@/app/[locale]/reference/[topic]/_component/AddTopicPopup";
 import { useSearchParams } from "next/navigation";
 
-export function Header() {
+export function Header({ topic }: { topic: string }) {
   const t = useTranslations();
   const [tags, setTags] = useState<string[]>([]);
   const [searchMode, setSearchMode] = useState<string>("and");
@@ -23,7 +23,7 @@ export function Header() {
   return (
     <>
       <Text className={"heading1 h-[52px] text-[42px] font-medium"}>
-        Productivity
+        {topic}
       </Text>
       <Text className={"body3 mb-6 mt-4 h-[24px]"}>
         {t("result_sites_cnt", { count: 10 })}

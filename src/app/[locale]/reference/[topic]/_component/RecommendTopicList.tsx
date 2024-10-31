@@ -7,25 +7,19 @@ import {
   IconPlayerExpand,
 } from "@/assets/svg";
 import React, { useEffect, useRef, useState } from "react";
+import { usePathname, useRouter } from "@/i18n/routing";
+import { cn } from "@/lib/utils";
 
-export default function RecommendTopicList() {
-  const popularTopic = [
-    "Technology",
-    "Blockchain",
-    "Artificial Intelligence",
-    "Programming",
-    "Machine Learning",
-    "Data Science",
-    "Defi",
-    "Tech",
-    "Crypto",
-    "Business2",
-    "Business1",
-    "Business3",
-  ];
+export default function RecommendTopicList({
+  recommendTopics,
+}: {
+  recommendTopics: string[];
+}) {
+  const pathname = usePathname();
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
+  const { push } = useRouter();
 
   const checkForScrollPosition = () => {
     const container = scrollContainerRef.current;
@@ -66,6 +60,8 @@ export default function RecommendTopicList() {
   const handleScrollRight = () => {
     scrollByAmount(100);
   };
+
+  const lastURL = decodeURI(pathname.split("/").pop() ?? "");
   return (
     <Row className={"relative mb-[50px] mt-[42px]"}>
       <Row
@@ -75,15 +71,27 @@ export default function RecommendTopicList() {
         }
         style={{ scrollBehavior: "smooth" }}
       >
-        <Button font={"body4"} className={"mr-6 w-fit px-4"} rounded={"full"}>
+        <Button
+          font={"body4"}
+          className={cn(
+            "mr-6 w-fit px-4",
+            lastURL === "reference" && "border border-gray-900",
+          )}
+          rounded={"full"}
+          onClick={() => push("/reference")}
+        >
           <IconPlayerExpand /> Explore topics
         </Button>
-        {popularTopic.map((topic) => (
+        {recommendTopics.map((topic) => (
           <Button
             font={"body4"}
-            className={"mr-2 w-fit px-4"}
+            className={cn(
+              "mr-2 w-fit px-4",
+              lastURL === topic && "border border-gray-900",
+            )}
             rounded={"full"}
             key={topic}
+            onClick={() => push(`/reference/${topic}`)}
           >
             {topic}
           </Button>

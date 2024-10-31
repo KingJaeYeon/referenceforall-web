@@ -1,13 +1,5 @@
-import Main from "@/components/Layout/Main";
-import Contents from "@/components/Layout/Contents";
-import ReferencePage from "@/app/[locale]/reference/_component/ReferencePage";
+import React from "react";
 
-export default function Page() {
-  return (
-    <Main>
-      <Contents>
-        <ReferencePage />
-      </Contents>
-    </Main>
-  );
+export default async function Page() {
+  return <div>dddd</div>;
 }
