@@ -194,11 +194,12 @@ export default function TagSelector({
                   "absolute top-[38px] border border-gray-200 bg-white"
                 }
               >
-                {data.map((item, index) => (
+                {data.map((item) => (
                   <CommandItem
                     key={item.value}
                     className={"pr-[20px]"}
                     value={item.value}
+                    onSelect={(currentValue) => addTopic(currentValue)}
                   >
                     {item.value} ({item.count})
                   </CommandItem>
