@@ -21,15 +21,20 @@ import { useTranslations } from "next-intl";
 import { useLocale } from "use-intl";
 import { buttonVariants } from "@/components/ui/button";
 import { getLanguageImg } from "@/util/image";
+import { usePathname } from "@/i18n/routing";
+import { useRouter } from "next/navigation";
 
 export default function SelectLangModal() {
   const t = useTranslations();
   const locale = useLocale();
+  const { replace } = useRouter();
+  const pathname = usePathname();
 
   const [open, setOpen] = React.useState(false);
 
   const onChangeLang = async (lang: string) => {
-    window.location.href = `/${lang}`;
+    const url = "/" + lang + pathname;
+    replace(url);
   };
 
   return (
