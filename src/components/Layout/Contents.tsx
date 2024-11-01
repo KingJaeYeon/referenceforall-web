@@ -12,7 +12,7 @@ const Contents = forwardRef<HTMLDivElement, Props>(
     return (
       <Col
         ref={ref}
-        className={cn(`w-full max-w-[1200px] px-4 sm:px-4`, className)}
+        className={cn(`w-full max-w-[1240px] px-4 dt:px-0`, className)}
       >
         {children}
       </Col>

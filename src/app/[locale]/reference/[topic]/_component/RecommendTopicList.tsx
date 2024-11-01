@@ -70,7 +70,9 @@ export default function RecommendTopicList() {
   ];
 
   return (
-    <Row className={"relative mb-[50px] mt-[42px]"}>
+    <Row
+      className={"relative mb-[30px] mb:mb-[50px] mb:mt-[12px] tb:mt-[42px]"}
+    >
       <Row
         ref={scrollContainerRef}
         className={
@@ -91,14 +93,14 @@ export default function RecommendTopicList() {
         {canScrollLeft && (
           <Row
             className={
-              "scroller-x-left absolute pr-[30px] duration-100 sm:pr-[42px]"
+              "scroller-x-left absolute pr-[30px] duration-100 mb:pr-[42px]"
             }
           >
             <Button
               variant={"default"}
               onClick={handleScrollLeft}
               aria-label="Scroll Left"
-              className={"px-0 sm:px-3"}
+              className={"px-0 mb:px-3"}
             >
               <IconChevronLeft />
             </Button>
@@ -107,14 +109,14 @@ export default function RecommendTopicList() {
         {canScrollRight && (
           <Row
             className={
-              "scroller-x-right absolute right-0 pl-[30px] duration-100 sm:pl-[42px]"
+              "scroller-x-right absolute right-0 pl-[30px] duration-100 mb:pl-[42px]"
             }
           >
             <Button
               variant={"default"}
               onClick={handleScrollRight}
               aria-label="Scroll Right"
-              className={"px-0 sm:px-3"}
+              className={"px-0 mb:px-3"}
             >
               <IconChevronRight />
             </Button>
@@ -141,7 +143,7 @@ function LinkButton({
     <Button
       font={"body4"}
       className={cn(
-        "mr-6 w-fit px-4",
+        "mr-3 w-fit px-4 tb:mr-6",
         lastURL === lastPath && "border border-gray-900",
       )}
       rounded={"full"}

@@ -18,15 +18,13 @@ export default function MediaWrapper({
 
   const shouldRender = (() => {
     if (isReverse) {
-      if (width >= 1200 && type !== "dt") return true;
-      if (width <= 1200 && width > 1023 && type !== "tb") return true;
-      if (width <= 1023 && type !== "mb") return true;
-      return false;
+      if (width >= 1280 && type !== "dt") return true;
+      if (width <= 1280 && width > 769 && type !== "tb") return true;
+      return width <= 769 && type !== "mb";
     } else {
-      if (width >= 1200 && type === "dt") return true;
-      if (width <= 1200 && width > 1023 && type === "tb") return true;
-      if (width <= 1023 && type === "mb") return true;
-      return false;
+      if (width >= 1280 && type === "dt") return true;
+      if (width <= 1280 && width > 769 && type === "tb") return true;
+      return width <= 769 && type === "mb";
     }
   })();
 
