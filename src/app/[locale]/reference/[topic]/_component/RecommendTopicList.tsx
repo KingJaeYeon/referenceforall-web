@@ -10,16 +10,10 @@ import React, { useEffect, useRef, useState } from "react";
 import { usePathname, useRouter } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
 
-export default function RecommendTopicList({
-  recommendTopics,
-}: {
-  recommendTopics: string[];
-}) {
-  const pathname = usePathname();
+export default function RecommendTopicList() {
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
-  const { push } = useRouter();
 
   const checkForScrollPosition = () => {
     const container = scrollContainerRef.current;
@@ -60,8 +54,21 @@ export default function RecommendTopicList({
   const handleScrollRight = () => {
     scrollByAmount(100);
   };
+  const recommendTopics = [
+    "Technology",
+    "Blockchain",
+    "Artificial Intelligence",
+    "Programming",
+    "Machine Learning",
+    "Data Science",
+    "Defi",
+    "Tech",
+    "Crypto",
+    "Business2",
+    "Business1",
+    "Business3",
+  ];
 
-  const lastURL = decodeURI(pathname.split("/").pop() ?? "");
   return (
     <Row className={"relative mb-[50px] mt-[42px]"}>
       <Row
@@ -71,31 +78,16 @@ export default function RecommendTopicList({
         }
         style={{ scrollBehavior: "smooth" }}
       >
-        <Button
-          font={"body4"}
-          className={cn(
-            "mr-6 w-fit px-4",
-            lastURL === "reference" && "border border-gray-900",
-          )}
-          rounded={"full"}
-          onClick={() => push("/reference")}
-        >
+        <LinkButton href={"/reference"} lastPath={"reference"}>
           <IconPlayerExpand /> Explore topics
-        </Button>
+        </LinkButton>
+
         {recommendTopics.map((topic) => (
-          <Button
-            font={"body4"}
-            className={cn(
-              "mr-2 w-fit px-4",
-              lastURL === topic && "border border-gray-900",
-            )}
-            rounded={"full"}
-            key={topic}
-            onClick={() => push(`/reference/${topic}`)}
-          >
+          <LinkButton href={`/reference/${topic}`} lastPath={topic} key={topic}>
             {topic}
-          </Button>
+          </LinkButton>
         ))}
+
         {canScrollLeft && (
           <Row
             className={
@@ -130,5 +122,32 @@ export default function RecommendTopicList({
         )}
       </Row>
     </Row>
+  );
+}
+
+function LinkButton({
+  children,
+  href,
+  lastPath,
+}: {
+  children: React.ReactNode;
+  href: string;
+  lastPath: string;
+}) {
+  const pathname = usePathname();
+  const { push } = useRouter();
+  const lastURL = decodeURI(pathname.split("/").pop() ?? "");
+  return (
+    <Button
+      font={"body4"}
+      className={cn(
+        "mr-6 w-fit px-4",
+        lastURL === lastPath && "border border-gray-900",
+      )}
+      rounded={"full"}
+      onClick={() => push(href)}
+    >
+      {children}
+    </Button>
   );
 }

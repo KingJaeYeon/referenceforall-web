@@ -9,25 +9,11 @@ export default async function Layout({
 }: {
   children: React.ReactNode;
 }) {
-  const recommendTopics = [
-    "Technology",
-    "Blockchain",
-    "Artificial Intelligence",
-    "Programming",
-    "Machine Learning",
-    "Data Science",
-    "Defi",
-    "Tech",
-    "Crypto",
-    "Business2",
-    "Business1",
-    "Business3",
-  ];
   return (
     <Main>
       <Contents>
         <Col className={"text-center"}>
-          <RecommendTopicList recommendTopics={recommendTopics} />
+          <RecommendTopicList />
           {children}
         </Col>
       </Contents>
