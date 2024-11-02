@@ -17,7 +17,7 @@ import { IconDelete } from "@/assets/svg/IconDelete";
 //   IconDropDownUp,
 // } from "@/assets/svg/IconDropDownUpDown";
 import { IconError } from "@/assets/svg/IconError";
-import { IconSearch } from "@/assets/svg/IconSearch";
+import { IconSearch, IconSearch2 } from "@/assets/svg/IconSearch";
 import { IconMoon, IconSun } from "@/assets/svg/IconTheme";
 //
 // import {
