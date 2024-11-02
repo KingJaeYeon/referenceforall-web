@@ -64,7 +64,7 @@ export default function SearchInput() {
         const arr = [commandValue, ...parseRecentSearch].slice(0, 10);
         const json = JSON.stringify(arr);
         localStorage.setItem("recent_searches", json);
-        return push("/reference/" + commandValue);
+        return push("/search/tag?p=" + commandValue);
       }
     }
   };
