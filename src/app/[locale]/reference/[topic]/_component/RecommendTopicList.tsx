@@ -56,23 +56,23 @@ export default function RecommendTopicList() {
     scrollByAmount(100);
   };
   const recommendTopics = [
-    "Technology",
-    "Blockchain",
-    "Artificial Intelligence",
-    "Programming",
-    "Machine Learning",
-    "Data Science",
-    "Defi",
-    "Tech",
-    "Crypto",
-    "Business2",
-    "Business1",
-    "Business3",
+    "technology",
+    "blockchain",
+    "artificial-intelligence",
+    "programming",
+    "machine-learning",
+    "data-science",
+    "defi",
+    "tech",
+    "crypto",
+    "business2",
+    "business1",
+    "business3",
   ];
 
   return (
     <Row
-      className={"relative mb-[30px] mb:mb-[50px] mb:mt-[12px] tb:mt-[22px]"}
+      className={"relative mb-[38px] mb:mt-[12px] tb:mb-[46px] tb:mt-[22px]"}
     >
       <Row
         ref={scrollContainerRef}
@@ -88,7 +88,7 @@ export default function RecommendTopicList() {
 
         {recommendTopics.map((topic) => (
           <LinkButton href={`/reference/${topic}`} lastPath={topic} key={topic}>
-            {topic}
+            {topic.split("-").join(" ")}
           </LinkButton>
         ))}
 
@@ -145,7 +145,7 @@ function LinkButton({
     <Button
       font={"body4"}
       className={cn(
-        "mr-3 w-fit px-4 tb:mr-6",
+        "mr-3 w-fit px-4 capitalize tb:mr-6",
         lastURL === lastPath && "border border-gray-900",
       )}
       rounded={"full"}

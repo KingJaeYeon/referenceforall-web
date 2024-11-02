@@ -24,10 +24,10 @@ export function Header({ topic }: { topic: string }) {
     <>
       <Text
         className={
-          "heading1 min-h-[30px] font-medium tb:min-h-[52px] tb:text-[42px]"
+          "heading1 min-h-[30px] font-medium capitalize tb:min-h-[52px] tb:text-[42px]"
         }
       >
-        {topic}
+        {topic.split("-").join(" ")}
       </Text>
       <Text className={"body4 tb:body3 mb-[24px] mt-[12px] tb:mt-[16px]"}>
         {t("result_sites_cnt", { count: 10 })}
@@ -41,10 +41,10 @@ export function Header({ topic }: { topic: string }) {
           tags.map((tag) => (
             <Button
               key={tag}
-              className={"w-fit pt-[1px] font-medium"}
+              className={"w-fit pt-[1px] font-medium capitalize"}
               rounded={"full"}
             >
-              {tag}
+              {tag.split("-").join(" ")}
             </Button>
           ))}
         {hasTags && (

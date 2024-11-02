@@ -11,21 +11,21 @@ const searchTopics = async (
 ): Promise<{ value: string; count: number }[]> => {
   // 실제 구현에서는 이 부분을 백엔드 API 호출로 대체해야 합니다.
   const allTopics = [
-    { value: "React", count: 100 },
-    { value: "JavaScript", count: 100 },
-    { value: "TypeScript", count: 100 },
-    { value: "Nodejs", count: 100 },
-    { value: "Python", count: 100 },
-    { value: "Machine Learning", count: 100 },
-    { value: "Data Science", count: 100 },
-    { value: "Artificial Intelligence", count: 100 },
-    { value: "Web Development", count: 100 },
-    { value: "Mobile Development", count: 100 },
-    { value: "Cloud Computing", count: 100 },
-    { value: "DevOps", count: 100 },
-    { value: "Blockchain", count: 100 },
-    { value: "Cybersecurity", count: 100 },
-    { value: "UX UI Design", count: 100 },
+    { value: "react", count: 100 },
+    { value: "javascript", count: 100 },
+    { value: "typescript", count: 100 },
+    { value: "nodejs", count: 100 },
+    { value: "python", count: 100 },
+    { value: "machine-learning", count: 100 },
+    { value: "data-science", count: 100 },
+    { value: "artificial-intelligence", count: 100 },
+    { value: "web-development", count: 100 },
+    { value: "mobile-development", count: 100 },
+    { value: "cloud-computing", count: 100 },
+    { value: "devOps", count: 100 },
+    { value: "blockchain", count: 100 },
+    { value: "cybersecurity", count: 100 },
+    { value: "ux-ui-design", count: 100 },
   ];
   const res = allTopics
     .filter((topic) => topic.value.toLowerCase().includes(query.toLowerCase()))
@@ -197,11 +197,11 @@ export default function TagSelector({
                 {data.map((item) => (
                   <CommandItem
                     key={item.value}
-                    className={"pr-[20px]"}
+                    className={"pr-[20px] capitalize"}
                     value={item.value}
                     onSelect={(currentValue) => addTopic(currentValue)}
                   >
-                    {item.value} ({item.count})
+                    {item.value.split("-").join(" ")} ({item.count})
                   </CommandItem>
                 ))}
               </CommandList>
@@ -231,9 +231,9 @@ const TopicButton = ({
     <button
       onClick={onRemove}
       onKeyDown={onKeyDown}
-      className="body4 relative m-1 rounded-[3px] border border-gray-200 bg-white py-[5px] pl-[10px] pr-[24px] text-gray-800 focus:outline-none focus:ring-1 focus:ring-blue-300"
+      className="body4 relative m-1 rounded-[3px] border border-gray-200 bg-white py-[5px] pl-[10px] pr-[24px] capitalize text-gray-800 focus:outline-none focus:ring-1 focus:ring-blue-300"
     >
-      {label} <span className={"absolute right-2"}>×</span>
+      {label.split("-").join(" ")} <span className={"absolute right-2"}>×</span>
     </button>
   );
 };
