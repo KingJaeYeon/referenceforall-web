@@ -9,6 +9,7 @@ import {
 import React, { useEffect, useRef, useState } from "react";
 import { usePathname, useRouter } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
+import Text from "@/components/Layout/Text";
 
 export default function RecommendTopicList() {
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
@@ -71,7 +72,7 @@ export default function RecommendTopicList() {
 
   return (
     <Row
-      className={"relative mb-[30px] mb:mb-[50px] mb:mt-[12px] tb:mt-[42px]"}
+      className={"relative mb-[30px] mb:mb-[50px] mb:mt-[12px] tb:mt-[22px]"}
     >
       <Row
         ref={scrollContainerRef}
@@ -81,7 +82,8 @@ export default function RecommendTopicList() {
         style={{ scrollBehavior: "smooth" }}
       >
         <LinkButton href={"/reference"} lastPath={"reference"}>
-          <IconPlayerExpand /> Explore topics
+          <IconPlayerExpand />
+          <Text className={"hidden tb:inline"}>Explore topics</Text>
         </LinkButton>
 
         {recommendTopics.map((topic) => (
