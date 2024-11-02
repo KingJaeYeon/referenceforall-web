@@ -1,5 +1,7 @@
 import ReferencePage from "@/app/[locale]/reference/[topic]/_component/ReferencePage";
 
+export const revalidate = false;
+
 export default async function Page({
   params: _params,
   searchParams: _searchParams,

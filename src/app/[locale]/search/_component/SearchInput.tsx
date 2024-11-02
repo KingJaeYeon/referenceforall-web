@@ -1,25 +1,35 @@
 "use client";
 import Row from "@/components/Layout/Row";
 import { IconSearch2 } from "@/assets/svg/IconSearch";
-import React from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "@/i18n/routing";
+import { useSearchParams } from "next/navigation";
 
-export function SearchInput({ search }: { search?: string }) {
+export function SearchInput() {
   const { push } = useRouter();
+  const searchParams = useSearchParams();
   const recentSearches = localStorage.getItem("recent_searches");
-  const [inputValue, setInputValue] = React.useState(search);
+  const [value, setValue] = React.useState("");
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!value || !value.trim()) return;
     const parseRecentSearch = JSON.parse(recentSearches ?? "[]");
-    const arr = Array.from(new Set([inputValue, ...parseRecentSearch])).slice(
+    const arr = Array.from(new Set([value.trim(), ...parseRecentSearch])).slice(
       0,
       10,
     );
     const json = JSON.stringify(arr);
     localStorage.setItem("recent_searches", json);
-    push("/search/tag?q=" + inputValue);
+    push("/search/tag?q=" + value);
   };
+
+  useEffect(() => {
+    const query = searchParams.get("q");
+    if (query) {
+      setValue(query);
+    }
+  }, [searchParams]);
 
   return (
     <form onSubmit={onSubmit}>
@@ -28,8 +38,8 @@ export function SearchInput({ search }: { search?: string }) {
         <input
           type="search"
           placeholder="Search..."
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
           className="body5 flex-1 bg-transparent py-[10px] pr-[20px] focus:outline-none"
         />
       </Row>

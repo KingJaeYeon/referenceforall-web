@@ -39,8 +39,8 @@ export default function SearchInput() {
   const { push } = useRouter();
   const recentSearches = localStorage.getItem("recent_searches");
   const [commandValue, setCommandValue] = useState("");
-  const [inputValue, setInputValue] = useState("");
-  const debounce = useDebounce(inputValue);
+  const [value, setValue] = useState("");
+  const debounce = useDebounce(value);
 
   const { data, isLoading } = useQuery({
     queryFn: () => searchTopics(debounce),
@@ -49,7 +49,7 @@ export default function SearchInput() {
   });
 
   const handleInputChange = (e: any) => {
-    setInputValue(e.target.value);
+    setValue(e.target.value);
     setCommandValue(e.target.value);
   };
 
@@ -58,13 +58,16 @@ export default function SearchInput() {
 
     if (isEnter) {
       e.preventDefault();
-      if (inputValue.trim() === "") return;
+      if (value.trim() === "") return;
       if (commandValue) {
+        if (!value || !value.trim()) return;
         const parseRecentSearch = JSON.parse(recentSearches ?? "[]");
-        const arr = [commandValue, ...parseRecentSearch].slice(0, 10);
+        const arr = Array.from(
+          new Set([value.trim(), ...parseRecentSearch]),
+        ).slice(0, 10);
         const json = JSON.stringify(arr);
         localStorage.setItem("recent_searches", json);
-        return push("/search/tag?p=" + commandValue);
+        return push("/search/tag?q=" + commandValue);
       }
     }
   };
@@ -85,7 +88,7 @@ export default function SearchInput() {
             <input
               type="text"
               placeholder={"Search topics"}
-              value={inputValue}
+              value={value}
               onChange={handleInputChange}
               onKeyDown={handleInputKeyDown}
               className="body5 flex-1 bg-transparent py-[10px] pr-[20px] focus:outline-none"
