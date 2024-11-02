@@ -4,15 +4,18 @@ import { IconSearch2 } from "@/assets/svg/IconSearch";
 import React from "react";
 import { useRouter } from "@/i18n/routing";
 
-export function SearchInput() {
+export function SearchInput({ search }: { search?: string }) {
   const { push } = useRouter();
   const recentSearches = localStorage.getItem("recent_searches");
-  const [inputValue, setInputValue] = React.useState("");
+  const [inputValue, setInputValue] = React.useState(search);
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const parseRecentSearch = JSON.parse(recentSearches ?? "[]");
-    const arr = [inputValue, ...parseRecentSearch].slice(0, 10);
+    const arr = Array.from(new Set([inputValue, ...parseRecentSearch])).slice(
+      0,
+      10,
+    );
     const json = JSON.stringify(arr);
     localStorage.setItem("recent_searches", json);
     push("/search/tag?q=" + inputValue);
