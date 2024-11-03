@@ -31,7 +31,7 @@ export default function RecentSearchList() {
             <Row className="h-[29px] items-center">
               <Link
                 className={"body3 ellipsisLine1"}
-                href={`/search/tag?q=${search}`}
+                href={`/search/tags?q=${search}`}
               >
                 {search}
               </Link>

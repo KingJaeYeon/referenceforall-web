@@ -7,7 +7,15 @@ import { usePathname } from "@/components/navigation";
 export default function Template({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
 
-  const path = pathname.includes("/reference") ? "reference" : pathname;
+  let path = pathname;
+
+  if (pathname.includes("/reference")) {
+    path = "reference";
+  }
+
+  if (pathname.includes("/search")) {
+    path = "search";
+  }
 
   return (
     <motion.div
