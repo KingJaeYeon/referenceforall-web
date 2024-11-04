@@ -7,9 +7,8 @@ import {
   IconPlayerExpand,
 } from "@/assets/svg";
 import React, { useEffect, useRef, useState } from "react";
-import { usePathname, useRouter } from "@/i18n/routing";
-import { cn } from "@/lib/utils";
 import Text from "@/components/Layout/Text";
+import TopicButton from "@/components/TopicButton";
 
 export default function RecommendTopicList() {
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
@@ -81,15 +80,19 @@ export default function RecommendTopicList() {
         }
         style={{ scrollBehavior: "smooth" }}
       >
-        <LinkButton href={"/reference"} lastPath={"reference"}>
+        <TopicButton href={"/reference"} lastPath={"reference"}>
           <IconPlayerExpand />
           <Text className={"hidden tb:inline"}>Explore topics</Text>
-        </LinkButton>
+        </TopicButton>
 
         {recommendTopics.map((topic) => (
-          <LinkButton href={`/reference/${topic}`} lastPath={topic} key={topic}>
+          <TopicButton
+            href={`/reference/${topic}`}
+            lastPath={topic}
+            key={topic}
+          >
             {topic.split("-").join(" ")}
-          </LinkButton>
+          </TopicButton>
         ))}
 
         {canScrollLeft && (
@@ -126,32 +129,5 @@ export default function RecommendTopicList() {
         )}
       </Row>
     </Row>
-  );
-}
-
-function LinkButton({
-  children,
-  href,
-  lastPath,
-}: {
-  children: React.ReactNode;
-  href: string;
-  lastPath: string;
-}) {
-  const pathname = usePathname();
-  const { push } = useRouter();
-  const lastURL = decodeURI(pathname.split("/").pop() ?? "");
-  return (
-    <Button
-      font={"body4"}
-      className={cn(
-        "mr-3 w-fit px-4 capitalize tb:mr-6",
-        lastURL === lastPath && "border border-gray-900",
-      )}
-      rounded={"full"}
-      onClick={() => push(href)}
-    >
-      {children}
-    </Button>
   );
 }

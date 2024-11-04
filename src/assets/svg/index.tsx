@@ -11,11 +11,10 @@ import { IconChevronLeft, IconChevronRight } from "@/assets/svg/IconChevron";
 import { IconClose } from "@/assets/svg/IconClose";
 import { IconConfirm } from "@/assets/svg/IconConfirm";
 import { IconDelete } from "@/assets/svg/IconDelete";
-//
-// import {
-//   IconDropDownDown,
-//   IconDropDownUp,
-// } from "@/assets/svg/IconDropDownUpDown";
+import {
+  IconDropDownDown,
+  IconDropDownUp,
+} from "@/assets/svg/IconDropDownUpDown";
 import { IconError } from "@/assets/svg/IconError";
 import { IconSearch, IconSearch2 } from "@/assets/svg/IconSearch";
 import { IconMoon, IconSun } from "@/assets/svg/IconTheme";
@@ -125,6 +124,7 @@ export {
   //   IconExchange,
   //   IconEllipsis,
   IconSearch,
+  IconSearch2,
   IconError,
   IconDelete,
   IconConfirm,
@@ -169,7 +169,7 @@ export { IconMinus, IconPlus };
 // export { IconEyeOff, IconEyeOn };
 // export { IconDown, IconLeft, IconRight, IconUp };
 export { IconMoon, IconSun };
-// export { IconDropDownDown, IconDropDownUp };
+export { IconDropDownDown, IconDropDownUp };
 export { IconChevronLeft, IconChevronRight };
 // export {
 //   IconCandleChart,

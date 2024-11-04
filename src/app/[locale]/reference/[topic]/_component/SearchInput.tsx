@@ -12,21 +12,21 @@ const searchTopics = async (
 ): Promise<{ value: string; count: number }[]> => {
   // 실제 구현에서는 이 부분을 백엔드 API 호출로 대체해야 합니다.
   const allTopics = [
-    { value: "react", count: 100 },
-    { value: "javascript", count: 100 },
-    { value: "typescript", count: 100 },
-    { value: "nodejs", count: 100 },
-    { value: "python", count: 100 },
-    { value: "machine-learning", count: 100 },
-    { value: "data-science", count: 100 },
-    { value: "artificial-intelligence", count: 100 },
-    { value: "web-development", count: 100 },
-    { value: "mobile-development", count: 100 },
-    { value: "cloud-computing", count: 100 },
-    { value: "devOps", count: 100 },
-    { value: "blockchain", count: 100 },
-    { value: "cybersecurity", count: 100 },
-    { value: "ux-ui-design", count: 100 },
+    { id: 1, value: "react", count: 100 },
+    { id: 2, value: "javascript", count: 100 },
+    { id: 3, value: "typescript", count: 100 },
+    { id: 4, value: "nodejs", count: 100 },
+    { id: 5, value: "python", count: 100 },
+    { id: 6, value: "machine-learning", count: 100 },
+    { id: 7, value: "data-science", count: 100 },
+    { id: 8, value: "artificial-intelligence", count: 100 },
+    { id: 9, value: "web-development", count: 100 },
+    { id: 10, value: "mobile-development", count: 100 },
+    { id: 11, value: "cloud-computing", count: 100 },
+    { id: 12, value: "devOps", count: 100 },
+    { id: 13, value: "blockchain", count: 100 },
+    { id: 14, value: "cybersecurity", count: 100 },
+    { id: 15, value: "ux-ui-design", count: 100 },
   ];
   const res = allTopics
     .filter((topic) => topic.value.toLowerCase().includes(query.toLowerCase()))

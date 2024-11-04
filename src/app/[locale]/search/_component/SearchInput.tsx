@@ -1,11 +1,11 @@
 "use client";
 import Row from "@/components/Layout/Row";
-import { IconSearch2 } from "@/assets/svg/IconSearch";
+import { IconSearch2 } from "@/assets/svg";
 import React, { useEffect } from "react";
 import { useRouter } from "@/i18n/routing";
 import { useSearchParams } from "next/navigation";
 
-export function SearchInput() {
+export function SearchInput({ subject = "tags" }: { subject?: string }) {
   const { push } = useRouter();
   const searchParams = useSearchParams();
   const recentSearches = localStorage.getItem("recent_searches");
@@ -23,7 +23,7 @@ export function SearchInput() {
     );
     const json = JSON.stringify(arr);
     localStorage.setItem("recent_searches", json);
-    push("/search/tags?q=" + value);
+    push(`/search/${subject}?q=` + value);
   };
 
   useEffect(() => {
