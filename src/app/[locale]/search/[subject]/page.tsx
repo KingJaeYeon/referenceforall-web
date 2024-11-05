@@ -16,7 +16,7 @@ export function generateStaticParams() {
 }
 
 interface PageProps {
-  params: { subject: string };
+  params: { subject: string; locale: string };
   searchParams: Promise<{ [key: string]: string | undefined }>;
 }
 
@@ -45,7 +45,7 @@ export default async function Page({
   }
 
   if (!searchParams.q) {
-    return redirect("/search");
+    return redirect({ href: "/search", locale: params.locale });
   }
 
   const search = decodeURI(searchParams.q);
