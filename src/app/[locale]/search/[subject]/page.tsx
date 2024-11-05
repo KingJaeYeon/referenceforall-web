@@ -9,7 +9,7 @@ import TopicButton from "@/components/TopicButton";
 import Row from "@/components/Layout/Row";
 import { IconDropDownDown } from "@/assets/svg";
 
-export const revalidate = false;
+export const revalidate = 15;
 
 export function generateStaticParams() {
   return ["sites", "tags"].map((subject) => ({ subject }));

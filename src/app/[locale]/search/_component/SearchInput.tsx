@@ -35,7 +35,7 @@ export function SearchInput({ subject = "tags" }: { subject?: string }) {
 
   return (
     <form onSubmit={onSubmit}>
-      <Row className="relative mb-0 mt-[24px] min-h-[40px] w-full flex-wrap items-center rounded-full border border-gray-300 text-button-secondary-foreground tb:mb-[24px]">
+      <Row className="relative mb-0 mt-[8px] min-h-[40px] w-full flex-wrap items-center rounded-full border border-gray-300 text-button-secondary-foreground tb:mb-[24px] tb:mt-[24px]">
         <IconSearch2 className="mx-[9px] h-[18px] w-[18px] tb:mx-[12px] tb:h-[24px] tb:w-[24px]" />
         <input
           type="search"
