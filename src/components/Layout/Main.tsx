@@ -11,10 +11,7 @@ const Main = forwardRef<HTMLDivElement, Props>(
     return (
       <main
         ref={ref}
-        className={cn(
-          `flex min-h-screen flex-col items-center pb-[200px]`,
-          className,
-        )}
+        className={cn(`flex min-h-screen flex-col items-center`, className)}
         {...props}
       >
         {children}
