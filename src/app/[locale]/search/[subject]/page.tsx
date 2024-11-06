@@ -122,7 +122,9 @@ export default async function Page({
         }}
       >
         <Col className={"mb-[30px] mt-[40px]"}>
-          <Text className={"heading4 pb-[20px]"}>Topics matching react</Text>
+          <Text className={"heading4 pb-[20px] font-semibold"}>
+            Topics matching react
+          </Text>
         </Col>
       </Col>
     </Row>
