@@ -69,11 +69,11 @@
     }
 
     .body6 {
-        @apply font-pretendard text-13 font-normal leading-[120%] tracking-[0];
+        @apply font-pretendard text-13 font-normal leading-[20px] tracking-[0];
     }
 
     .body7 {
-        @apply font-pretendard text-12 font-normal leading-[120%] tracking-[0];
+        @apply font-pretendard text-12 font-normal leading-[20px] tracking-[0];
     }
 
     .body8 {

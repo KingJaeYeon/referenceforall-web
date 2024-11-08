@@ -1,9 +1,14 @@
+"use client";
 import { notFound } from "next/navigation";
 import TopicButton from "@/components/TopicButton";
 import Row from "@/components/Layout/Row";
 import Text from "@/components/Layout/Text";
 import { IconDropDownDown } from "@/assets/svg";
 import React from "react";
+import Col from "@/components/Layout/Col";
+import { useLocale } from "use-intl";
+import { utilDate } from "@/lib/dateFormat";
+import { Bookmark, MessageCircle } from "lucide-react";
 
 export default function TabContent({
   target,
@@ -55,6 +60,7 @@ function TagsContent({ data }: { data: any }) {
 }
 
 function SitesContent({ data }: { data: any }) {
+  const locale = useLocale();
   const sites = {
     name: "사이트 이름",
     description:
@@ -65,22 +71,49 @@ function SitesContent({ data }: { data: any }) {
     rating: 4.5,
     visitors: "1.2K",
     lastUpdate: "2024-03-15",
+    watchList: 100,
+    comments: 20,
   };
+
   return (
-    <Row className={"flex flex-wrap"}>
-      <Row>
-        <div>
-          <h2 className={"heading1 ellipsisLine2 max-h-[90px]"}>
-            {sites.name}
-          </h2>
-          <div className={"pt-[8px]"}>
-            <h3 className={"body3 ellipsisLine2 max-h-[40px]"}>
-              {sites.description}
-            </h3>
-          </div>
-        </div>
+    <article>
+      <Row className={"flex flex-wrap"}>
+        <Row className={"w-full"}>
+          <Col className={"w-full"}>
+            <h2 className={"heading1 ellipsisLine2 max-h-[90px]"}>
+              {sites.name}
+            </h2>
+            <Row className={"pt-[8px]"}>
+              <h3 className={"body3 ellipsisLine2 max-h-[40px]"}>
+                {sites.description}
+              </h3>
+            </Row>
+            <Row className={"mt-[10px] h-[48px] items-center justify-between"}>
+              <Row className={"gap-[16px]"}>
+                <Row className={"h-fit"}>
+                  <Text className={"body6"}>
+                    {utilDate({ date: sites.lastUpdate, locale })}
+                  </Text>
+                </Row>
+                <Row className={"h-fit items-center gap-[4px]"}>
+                  <MessageCircle className={"h-[16px] w-[16px]"} />
+                  <Text className={"body6"}>{sites.comments}</Text>
+                </Row>
+                <Row className={"h-fit items-center gap-[4px]"}>
+                  <MessageCircle className={"h-[16px] w-[16px]"} />
+                  <Text className={"body6"}>{sites.visitors}</Text>
+                </Row>
+              </Row>
+              <Row className={"h-fit items-center gap-[4px]"}>
+                <Bookmark className={"h-[16px] w-[16px]"} />
+                <Text className={"body6"}>{sites.watchList}</Text>
+              </Row>
+            </Row>
+          </Col>
+          <Row>dd</Row>
+        </Row>
+        <Row className={"mt-[20px] w-full border-b border-gray-300"} />
       </Row>
-      <Row className={"mt-[20px] w-full border-b border-gray-300"} />
-    </Row>
+    </article>
   );
 }
