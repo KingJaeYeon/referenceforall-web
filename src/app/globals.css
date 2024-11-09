@@ -346,3 +346,6 @@ textarea::-webkit-scrollbar-track {
     border-image-slice: 1; /* 필요에 따라 설정 */
 }
 
+img {
+    max-width: none;
+}
