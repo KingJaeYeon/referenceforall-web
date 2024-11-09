@@ -65,7 +65,7 @@ export default function Home() {
               <div className="relative mx-auto">
                 <div className="dt:mx-auto dt:max-w-6xl">
                   <img
-                    className="scale-110 transform"
+                    className="max-w-full scale-110 transform"
                     src="https://cdn.rareblocks.xyz/collection/clarity/images/hero/2/illustration.png"
                     alt=""
                   />
