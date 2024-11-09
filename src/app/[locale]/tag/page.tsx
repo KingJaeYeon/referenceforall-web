@@ -1,6 +1,6 @@
 import React from "react";
 import Text from "@/components/Layout/Text";
-import SearchInput from "@/app/[locale]/reference/[topic]/_component/SearchInput";
+import SearchInput from "@/app/[locale]/tag/[topic]/_component/SearchInput";
 import Row from "@/components/Layout/Row";
 import { Link } from "@/i18n/routing";
 
@@ -17,13 +17,13 @@ export default async function Page() {
       <SearchInput />
       <Row className={"body5 items-center justify-center"}>
         <Text className={"text-gray-500"}>Recommended:</Text>
-        <Link className={"ml-[12px]"} href={"/reference/react"}>
+        <Link className={"ml-[12px]"} href={"/tag/react"}>
           React
         </Link>
-        <Link className={"ml-[12px]"} href={"/reference/javascript"}>
+        <Link className={"ml-[12px]"} href={"/tag/javascript"}>
           Javascript
         </Link>
-        <Link className={"ml-[12px]"} href={"/reference/typescript"}>
+        <Link className={"ml-[12px]"} href={"/tag/typescript"}>
           Typescript
         </Link>
       </Row>

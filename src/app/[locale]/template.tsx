@@ -9,8 +9,8 @@ export default function Template({ children }: { children: React.ReactNode }) {
 
   let path = pathname;
 
-  if (pathname.includes("/reference")) {
-    path = "reference";
+  if (pathname.includes("/tag")) {
+    path = "tag";
   }
 
   if (pathname.includes("/search")) {

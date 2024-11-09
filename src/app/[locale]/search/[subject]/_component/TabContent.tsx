@@ -30,7 +30,7 @@ function TagsContent({ data }: { data: any }) {
         return (
           <TopicButton
             key={id}
-            href={`/reference/${value}`}
+            href={`/tag/${value}`}
             lastPath={value}
             className={"mb-[8px] mr-[18px] tb:mr-[18px]"}
           >

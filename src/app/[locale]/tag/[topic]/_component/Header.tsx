@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { IconPlus } from "@/assets/svg";
 import React, { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
-import { AddTopicPopup } from "@/app/[locale]/reference/[topic]/_component/AddTopicPopup";
+import { AddTopicPopup } from "@/app/[locale]/tag/[topic]/_component/AddTopicPopup";
 import { useSearchParams } from "next/navigation";
 
 export function Header({ topic }: { topic: string }) {

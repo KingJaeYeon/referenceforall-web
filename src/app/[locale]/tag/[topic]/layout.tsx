@@ -1,5 +1,5 @@
 import React from "react";
-import { Header } from "@/app/[locale]/reference/[topic]/_component/Header";
+import { Header } from "@/app/[locale]/tag/[topic]/_component/Header";
 
 export default async function Layout({
   children,

@@ -21,7 +21,7 @@ export default function Home() {
 
             <Col className="mt-9 w-full gap-4 px-8 mb:flex-row mb:items-center mb:justify-center">
               <Link
-                href="/reference"
+                href="/tag"
                 title=""
                 className="heading3 flex w-full items-center justify-center rounded-xl border-2 border-transparent bg-gray-900 px-8 py-3 text-white transition-all duration-200 hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2 mb:w-auto"
                 role="button"

@@ -80,14 +80,14 @@ export default function RecommendTopicList() {
         }
         style={{ scrollBehavior: "smooth" }}
       >
-        <TopicButton href={"/reference"} lastPath={"reference"}>
+        <TopicButton href={"/tag"} lastPath={"tag"}>
           <IconPlayerExpand />
           <Text className={"hidden tb:inline"}>Explore topics</Text>
         </TopicButton>
 
         {recommendTopics.map((topic) => (
           <TopicButton
-            href={`/reference/${topic}`}
+            href={`/tag/${topic}`}
             lastPath={topic}
             key={topic}
           >

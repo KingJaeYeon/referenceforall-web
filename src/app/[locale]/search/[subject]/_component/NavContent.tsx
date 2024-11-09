@@ -62,7 +62,7 @@ function NavTags({ data }: { data: any }) {
         {data?.slice(0, 6).map((item: any) => (
           <TopicButton
             key={item.id}
-            href={`/reference/${item.value}`}
+            href={`/tag/${item.value}`}
             lastPath={item.value}
             className={"mb-[8px] mr-[18px] tb:mr-[18px]"}
           >

@@ -1,7 +1,7 @@
 import React from "react";
 import Main from "@/components/Layout/Main";
 import Contents from "@/components/Layout/Contents";
-import RecommendTopicList from "@/app/[locale]/reference/[topic]/_component/RecommendTopicList";
+import RecommendTopicList from "@/app/[locale]/tag/[topic]/_component/RecommendTopicList";
 import Col from "@/components/Layout/Col";
 import { Viewport } from "next";
 

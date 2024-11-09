@@ -1,4 +1,4 @@
-import ReferencePage from "@/app/[locale]/reference/[topic]/_component/ReferencePage";
+import ReferencePage from "@/app/[locale]/tag/[topic]/_component/ReferencePage";
 
 export const revalidate = false;
 

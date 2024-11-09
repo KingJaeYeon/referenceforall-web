@@ -106,7 +106,7 @@ export default function SearchInput() {
                     value={item.value + "."}
                     onSelect={(currentValue) =>
                       push(
-                        "/reference/" +
+                        "/tag/" +
                           currentValue.substring(0, currentValue.length - 1),
                       )
                     }

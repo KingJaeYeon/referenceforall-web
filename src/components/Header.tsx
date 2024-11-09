@@ -40,7 +40,7 @@ function DesktopMenu() {
       <Logo />
       <Row className={"body5 items-center gap-[6px]"}>
         <Link
-          href={"/reference"}
+          href={"/tag"}
           className={cn(
             buttonVariants({
               variant: "ghost",
