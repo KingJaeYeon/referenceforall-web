@@ -1,7 +1,6 @@
 {
-  "title": "",
-  "about": "",
-  "test": "",
+  "title": "Hello world!",
+  "about": "Go to the about page",
   "en": "English",
   "ko": "한국어",
   "jp": "日本語",
@@ -21,5 +20,10 @@
   "desc_addSubject": "Please enter additional topics to search (up to {count}).",
   "searchMode": "Search Mode",
   "add_topic": "Add Topic",
-  "result_sites_cnt": "{count} sites have been found."
+  "result_sites_cnt": "{count} sites have been found.",
+  "see_all": "See all",
+  "show_more": "Show more",
+  "no_recent_searches_message": "You have no recent searches",
+  "recommended": "Recommended",
+  "explore_topics": "Explore topics"
 }

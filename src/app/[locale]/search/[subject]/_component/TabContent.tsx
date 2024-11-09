@@ -6,6 +6,7 @@ import Text from "@/components/Layout/Text";
 import { IconDropDownDown } from "@/assets/svg";
 import React from "react";
 import { SiteCard } from "@/app/[locale]/search/[subject]/_component/MainCard";
+import { useTranslations } from "next-intl";
 
 export default function TabContent(props: {
   target: "tags" | "sites" | string;
@@ -23,6 +24,7 @@ export default function TabContent(props: {
 }
 
 function TagsContent({ data }: { data: any }) {
+  const t = useTranslations();
   return (
     <div className={"relative"}>
       {data.map((topic: any) => {
@@ -44,7 +46,7 @@ function TagsContent({ data }: { data: any }) {
         }
       >
         <Text className={"body3 flex h-fit cursor-pointer items-center"}>
-          Show more
+          {t("show_more")}
         </Text>
         <IconDropDownDown
           className={"relative h-[18px] w-[18px] cursor-pointer"}

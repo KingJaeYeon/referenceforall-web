@@ -5,9 +5,11 @@ import { Button } from "@/components/ui/button";
 import Row from "@/components/Layout/Row";
 import { Link } from "@/i18n/routing";
 import Text from "@/components/Layout/Text";
+import { useTranslations } from "next-intl";
 
 export default function RecentSearchList() {
   const recentSearches = localStorage.getItem("recent_searches");
+  const t = useTranslations();
   const [list, setList] = React.useState<string[]>([]);
 
   useEffect(() => {
@@ -48,7 +50,7 @@ export default function RecentSearchList() {
         ))
       ) : (
         <Text className={"body3 h-[29px] pt-[11px]"}>
-          You have no recent searches
+          {t("no_recent_searches_message")}
         </Text>
       )}
     </ul>

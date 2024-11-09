@@ -6,6 +6,7 @@ import TopicButton from "@/components/TopicButton";
 import Row from "@/components/Layout/Row";
 import { Link } from "@/i18n/routing";
 import { useSearchParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 export default function NavContent(props: {
   target: "tags" | "sites" | string;
@@ -25,6 +26,7 @@ export default function NavContent(props: {
 function NavSites({ data }: { data: any }) {
   const searchParams = useSearchParams();
   const q = searchParams.get("q");
+  const t = useTranslations();
   return (
     <Col className={"mb-[30px] mt-[40px]"}>
       <Text className={"heading4 pb-[22px] font-semibold"}>
@@ -42,9 +44,9 @@ function NavSites({ data }: { data: any }) {
               </Text>
             </Row>
           </Link>
-        ))}{" "}
+        ))}
         <Link className={"body5 text-green-600"} href={`/search/sites?q=${q}`}>
-          See all
+          {t("see_all")}
         </Link>
       </Col>
     </Col>
@@ -53,6 +55,7 @@ function NavSites({ data }: { data: any }) {
 function NavTags({ data }: { data: any }) {
   const searchParams = useSearchParams();
   const q = searchParams.get("q");
+  const t = useTranslations();
   return (
     <Col className={"mb-[30px] mt-[40px]"}>
       <Text className={"heading4 pb-[22px] font-semibold"}>
@@ -74,7 +77,7 @@ function NavTags({ data }: { data: any }) {
         className={"body5 mt-[6px] text-green-600"}
         href={`/search/tags?q=${q}`}
       >
-        See all
+        {t("see_all")}
       </Link>
     </Col>
   );

@@ -8,6 +8,7 @@ import React from "react";
 import { useLocale } from "use-intl";
 import { IconDropDownDown } from "@/assets/svg";
 import { cn } from "@/lib/utils";
+import { useTranslations } from "next-intl";
 
 export function SiteCard(props: {
   site: any;
@@ -17,6 +18,7 @@ export function SiteCard(props: {
 }) {
   const locale = useLocale();
   const { site, isFirst, isLast, hasMore } = props;
+  const t = useTranslations();
   return (
     <article className={cn("relative", isFirst ? "" : "mt-[32px]")}>
       <Row className={"flex flex-wrap"}>
@@ -128,7 +130,7 @@ export function SiteCard(props: {
           }
         >
           <Text className={"body3 flex h-fit cursor-pointer items-center"}>
-            Show more
+            {t("show_more")}
           </Text>
           <IconDropDownDown
             className={"relative h-[18px] w-[18px] cursor-pointer"}

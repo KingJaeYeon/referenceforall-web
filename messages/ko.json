@@ -1,7 +1,6 @@
 {
   "title": "헬로우 월드!",
   "about": "소개 페이지로 이동",
-  "test": "테스트1",
   "en": "English",
   "ko": "한국어",
   "jp": "日本語",
@@ -21,5 +20,10 @@
   "desc_addSubject": "추가 검색할 주제를 입력해주세요.(최대 {count}개)",
   "searchMode": "검색 모드",
   "add_topic": "Topic 추가",
-  "result_sites_cnt": "{count}개의 사이트가 검색되었습니다."
+  "result_sites_cnt": "{count}개의 사이트가 검색되었습니다.",
+  "see_all": "전체보기",
+  "show_more": "더보기",
+  "no_recent_searches_message": "최근 검색 기록이 없습니다.",
+  "recommended": "추천",
+  "explore_topics": "관심 주제 찾기"
 }
