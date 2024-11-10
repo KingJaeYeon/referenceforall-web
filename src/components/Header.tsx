@@ -5,7 +5,16 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import SelectLangModal from "@/components/SelectLangModal";
 import { Link } from "@/i18n/routing";
-
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { Menu } from "lucide-react";
+import Text from "@/components/Layout/Text";
+import { useState } from "react";
 export default function Header() {
   return (
     <>
@@ -21,14 +30,73 @@ export default function Header() {
 
 function MobileMenu() {
   return (
-    <header
-      className={"bg-red-50 flex h-[60px] items-center justify-between px-4"}
-    >
+    <header className="flex h-[60px] items-center justify-between border-b bg-white px-4">
       <Logo />
-      <h1>MobileMenu</h1>
+      <Sheet>
+        <SheetTrigger asChild>
+          <Button variant="ghost" size="icon">
+            <Menu className="h-6 w-6" />
+          </Button>
+        </SheetTrigger>
+        <SheetContent className="w-[300px] sm:w-[300px]">
+          <SheetHeader>
+            <SheetTitle className="text-left">메뉴</SheetTitle>
+          </SheetHeader>
+          <nav className="mt-6 flex flex-col gap-2">
+            <Link
+              href="/tag"
+              className="rounded-lg p-3 transition-colors hover:bg-gray-100"
+            >
+              리스트
+            </Link>
+            <Link
+              href="/share"
+              className="rounded-lg p-3 transition-colors hover:bg-gray-100"
+            >
+              공유하기
+            </Link>
+            <Link
+              href="/watchlist"
+              className="rounded-lg p-3 transition-colors hover:bg-gray-100"
+            >
+              관심목록
+            </Link>
+            <div className="p-3">
+              <SelectLangModal />
+            </div>
+            <div className="mt-4">
+              <Button className="w-full" variant="default">
+                로그인
+              </Button>
+            </div>
+          </nav>
+        </SheetContent>
+      </Sheet>
     </header>
   );
 }
+
+// function SelectLanguage() {
+//   const [selectedLang, setSelectedLang] = useState("ko");
+//   const languages = ["ko", "jp", "en"];
+//
+//   return (
+//     <div className="mt-4 flex items-center gap-2">
+//       <label className="text-sm font-medium">언어 선택:</label>
+//       <select
+//         value={selectedLang}
+//         onChange={(e) => setSelectedLang(e.target.value)}
+//         className="rounded-md border border-gray-300 p-1"
+//       >
+//         {languages.map((lang) => (
+//           <option key={lang} value={lang}>
+//             {lang}
+//           </option>
+//         ))}
+//       </select>
+//     </div>
+//   );
+// }
 
 function DesktopMenu() {
   return (
