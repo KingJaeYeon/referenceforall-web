@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Bookmark,
@@ -21,6 +21,9 @@ import Row from "@/components/Layout/Row";
 export default function Component() {
   const [isBookmarked, setIsBookmarked] = useState(false);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const siteData = {
     name: "Medium",
     description:

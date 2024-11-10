@@ -6,6 +6,7 @@ import React from "react";
 import ScrollTabs from "@/app/[locale]/search/[subject]/_component/ScrollTabs";
 import TabContent from "@/app/[locale]/search/[subject]/_component/TabContent";
 import NavContent from "@/app/[locale]/search/[subject]/_component/NavContent";
+import { randomUUID } from "node:crypto";
 
 export const revalidate = 15;
 
@@ -54,6 +55,7 @@ const tags = [
 const sites = {
   sites: [
     {
+      id: randomUUID(),
       name: "Medium",
       description:
         "이 사이트는 멋진 서비스를 제공하는 웹사이트입니다. 다양한 기능을 체험해보세요.",
@@ -67,6 +69,7 @@ const sites = {
       comments: 20,
     },
     {
+      id: randomUUID(),
       name: "Medium",
       description:
         "이 사이트는 멋진 서비스를 제공하는 웹사이트입니다. 다양한 기능을 체험해보세요.",
@@ -80,6 +83,7 @@ const sites = {
       comments: 20,
     },
     {
+      id: randomUUID(),
       name: "사이트 이름",
       description:
         "이 사이트는 멋진 서비스를 제공하는 웹사이트입니다. 다양한 기능을 체험해보세요.",

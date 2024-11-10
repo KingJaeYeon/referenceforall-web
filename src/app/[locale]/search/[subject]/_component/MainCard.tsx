@@ -9,6 +9,7 @@ import { useLocale } from "use-intl";
 import { IconDropDownDown } from "@/assets/svg";
 import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/routing";
 
 export function SiteCard(props: {
   site: any;
@@ -21,108 +22,112 @@ export function SiteCard(props: {
   const t = useTranslations();
   return (
     <article className={cn("relative", isFirst ? "" : "mt-[32px]")}>
-      <Row className={"flex flex-wrap"}>
-        <Row className={"w-full"}>
-          <Col className={"w-full"}>
-            <h2 className={"heading2 tb:heading1 ellipsisLine2 max-h-[90px]"}>
-              {site.name}
-            </h2>
+      <Link href={`/site/${site.id}`}>
+        <Row className={"flex flex-wrap"}>
+          <Row className={"w-full"}>
+            <Col className={"w-full"}>
+              <h2 className={"heading2 tb:heading1 ellipsisLine2 max-h-[90px]"}>
+                {site.name}
+              </h2>
 
-            <Row className={"pt-[8px]"}>
-              <h3
+              <Row className={"pt-[8px]"}>
+                <h3
+                  className={
+                    "body4 tb:body3 ellipsisLine2 max-h-[40px] text-gray-500"
+                  }
+                >
+                  {site.description}
+                </h3>
+              </Row>
+              <Row
                 className={
-                  "body4 tb:body3 ellipsisLine2 max-h-[40px] text-gray-500"
+                  "mt-[10px] hidden h-[48px] max-w-[512px] items-center justify-between tb:flex"
                 }
               >
-                {site.description}
-              </h3>
-            </Row>
-            <Row
-              className={
-                "mt-[10px] hidden h-[48px] max-w-[512px] items-center justify-between tb:flex"
-              }
-            >
-              <Row className={"gap-[16px] text-gray-500"}>
-                <Row className={"h-fit"}>
-                  <Text className={"body6"}>
-                    {utilDate({ date: site.lastUpdate, locale })}
-                  </Text>
+                <Row className={"gap-[16px] text-gray-500"}>
+                  <Row className={"h-fit"}>
+                    <Text className={"body6"}>
+                      {utilDate({ date: site.lastUpdate, locale })}
+                    </Text>
+                  </Row>
+                  <Row className={"h-fit items-center gap-[4px]"}>
+                    <MessageCircle className={"h-[16px] w-[16px]"} />
+                    <Text className={"body6"}>{site.comments}</Text>
+                  </Row>
+                  <Row className={"h-fit items-center gap-[4px]"}>
+                    <Eye className={"h-[16px] w-[16px]"} />
+                    <Text className={"body6"}>{site.visitors}</Text>
+                  </Row>
                 </Row>
                 <Row className={"h-fit items-center gap-[4px]"}>
-                  <MessageCircle className={"h-[16px] w-[16px]"} />
-                  <Text className={"body6"}>{site.comments}</Text>
+                  <Bookmark className={"h-[24px] w-[24px] text-gray-500"} />
+                  <Text className={"body6"}>{site.watchList}</Text>
                 </Row>
-                <Row className={"h-fit items-center gap-[4px]"}>
-                  <Eye className={"h-[16px] w-[16px]"} />
-                  <Text className={"body6"}>{site.visitors}</Text>
-                </Row>
+              </Row>
+            </Col>
+            {!!site.imageUrl && (
+              <div className={"ml-[24px] tb:ml-[56px]"}>
+                <div className={"hidden tb:block"}>
+                  <img
+                    alt={site.name}
+                    className={"overflow-clip rounded-[2px] align-middle"}
+                    src={site.imageUrl}
+                    width={160}
+                    loading={"lazy"}
+                    height={107}
+                    style={{
+                      aspectRatio: "auto 160 / 107",
+                      overflowClipMargin: "content-box",
+                    }}
+                  />
+                </div>
+                <div className={"block tb:hidden"}>
+                  <img
+                    alt={site.name}
+                    className={"overflow-clip rounded-[2px] align-middle"}
+                    src={site.imageUrl}
+                    width={80}
+                    loading={"lazy"}
+                    height={53}
+                    style={{
+                      aspectRatio: "auto 80 / 53",
+                      overflowClipMargin: "content-box",
+                    }}
+                  />
+                </div>
+              </div>
+            )}
+          </Row>
+          <Row
+            className={
+              "mt-[12px] flex h-[48px] w-full items-center justify-between text-gray-500 tb:hidden"
+            }
+          >
+            <Row className={"gap-[16px]"}>
+              <Row className={"h-fit"}>
+                <Text className={"body6"}>
+                  {utilDate({ date: site.lastUpdate, locale })}
+                </Text>
               </Row>
               <Row className={"h-fit items-center gap-[4px]"}>
-                <Bookmark className={"h-[24px] w-[24px] text-gray-500"} />
-                <Text className={"body6"}>{site.watchList}</Text>
+                <MessageCircle className={"h-[16px] w-[16px]"} />
+                <Text className={"body6"}>{site.comments}</Text>
+              </Row>
+              <Row className={"h-fit items-center gap-[4px]"}>
+                <Eye className={"h-[16px] w-[16px]"} />
+                <Text className={"body6"}>{site.visitors}</Text>
               </Row>
             </Row>
-          </Col>
-          {!!site.imageUrl && (
-            <div className={"ml-[24px] tb:ml-[56px]"}>
-              <div className={"hidden tb:block"}>
-                <img
-                  className={"overflow-clip rounded-[2px] align-middle"}
-                  src={site.imageUrl}
-                  width={160}
-                  loading={"lazy"}
-                  height={107}
-                  style={{
-                    aspectRatio: "auto 160 / 107",
-                    overflowClipMargin: "content-box",
-                  }}
-                />
-              </div>
-              <div className={"block tb:hidden"}>
-                <img
-                  className={"overflow-clip rounded-[2px] align-middle"}
-                  src={site.imageUrl}
-                  width={80}
-                  loading={"lazy"}
-                  height={53}
-                  style={{
-                    aspectRatio: "auto 80 / 53",
-                    overflowClipMargin: "content-box",
-                  }}
-                />
-              </div>
-            </div>
+            <Row className={"h-fit items-center gap-[4px]"}>
+              <Bookmark className={"h-[24px] w-[24px]"} />
+              <Text className={"body6"}>{site.watchList}</Text>
+            </Row>
+          </Row>
+          {!isLast && (
+            <Row className={"mt-[20px] w-full border-b border-gray-300"} />
           )}
         </Row>
-        <Row
-          className={
-            "mt-[12px] flex h-[48px] w-full items-center justify-between text-gray-500 tb:hidden"
-          }
-        >
-          <Row className={"gap-[16px]"}>
-            <Row className={"h-fit"}>
-              <Text className={"body6"}>
-                {utilDate({ date: site.lastUpdate, locale })}
-              </Text>
-            </Row>
-            <Row className={"h-fit items-center gap-[4px]"}>
-              <MessageCircle className={"h-[16px] w-[16px]"} />
-              <Text className={"body6"}>{site.comments}</Text>
-            </Row>
-            <Row className={"h-fit items-center gap-[4px]"}>
-              <Eye className={"h-[16px] w-[16px]"} />
-              <Text className={"body6"}>{site.visitors}</Text>
-            </Row>
-          </Row>
-          <Row className={"h-fit items-center gap-[4px]"}>
-            <Bookmark className={"h-[24px] w-[24px]"} />
-            <Text className={"body6"}>{site.watchList}</Text>
-          </Row>
-        </Row>
-        {!isLast && (
-          <Row className={"mt-[20px] w-full border-b border-gray-300"} />
-        )}
-      </Row>
+      </Link>
       {hasMore && (
         <Row
           className={
