@@ -11,6 +11,14 @@ import QueryProvider from "@/provider/QueryProvider";
 import { routing } from "@/i18n/routing";
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
+import { Viewport } from "next";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1.0,
+  userScalable: false,
+};
 
 export const metadata: Metadata = {
   title: "ReferenceForAll",
