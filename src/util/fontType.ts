@@ -21,6 +21,9 @@ export type FontType =
   | undefined;
 
 export function utilFont(input: FontType, callback: () => string) {
-  if (input) return input;
+  if (input) {
+    const text = `${input} placeholder:${input}`;
+    return text;
+  }
   return callback();
 }

@@ -12,6 +12,7 @@ export interface InputProps
   errorMessage?: string;
   rounded?: "default" | "full";
   font?: FontType;
+  inputClassName?: string;
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
@@ -27,11 +28,12 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       value,
       errorMessage,
       font,
+      inputClassName,
       ...props
     },
     ref,
   ) => {
-    const customFont = utilFont(font, () => "body6");
+    const customFont = utilFont(font, () => "body6 placeholder:body6");
     return (
       <div
         className={cn(
@@ -48,6 +50,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             errorMessage && "border-red hover:border-red focus:border-red",
             rounded === "full" && "rounded-full",
             customFont,
+            inputClassName,
           )}
           ref={ref}
           maxLength={maxLength}
