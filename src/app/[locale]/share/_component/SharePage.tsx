@@ -22,7 +22,7 @@ import {
 } from "@/components/ui/accordion";
 import { z } from "zod";
 
-const ShareSiteForm = () => {
+export default function SharePage() {
   const [currentTag, setCurrentTag] = useState("");
   const shareFormSchema = z.object({
     link: z.string().url("올바른 URL을 입력해주세요"),
@@ -271,6 +271,4 @@ const ShareSiteForm = () => {
       </form>
     </Form>
   );
-};
-
-export default ShareSiteForm;
+}
