@@ -25,7 +25,9 @@ const ShareSiteForm = () => {
     tags: z.array(z.string()),
     image: z.object({
       main: z.string().url("올바른 이미지 URL을 입력해주세요"),
-      screenshots: z.array(z.string().url("올바른 이미지 URL을 입력해주세요")),
+      screenshots: z
+        .array(z.string().url("올바른 이미지 URL을 입력해주세요"))
+        .max(2, { message: "스크린샷은 최대 2개까지 등록할 수 있습니다" }),
     }),
     usageTiming: z.string().min(10, "사용 시나리오를 10자 이상 입력해주세요"),
     features: z.string().min(10, "주요 기능을 10자 이상 입력해주세요"),
@@ -88,8 +90,12 @@ const ShareSiteForm = () => {
     <Form {...form}>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="mx-auto max-w-3xl space-y-8 px-4 py-8"
+        className="mx-auto max-w-3xl space-y-5 px-4 py-8"
       >
+        <div className="bg-transparent text-black">
+          <h2 className="text-2xl font-bold">사이트 등록 페이지</h2>
+          <p className="text-sm">관리자가 확인 후 게시됩니다.</p>
+        </div>
         {/* 기본 정보 섹션 */}
         <div className="space-y-4">
           <FormField
@@ -154,7 +160,7 @@ const ShareSiteForm = () => {
             name="tags"
             render={() => (
               <FormItem>
-                <Label>태그</Label>
+                <Label>태그 *</Label>
                 <FormControl>
                   <div className="space-y-2">
                     <Input
@@ -196,7 +202,7 @@ const ShareSiteForm = () => {
             name="image.main"
             render={({ field }) => (
               <FormItem>
-                <Label>대표 이미지 URL *</Label>
+                <Label>대표 이미지 URL</Label>
                 <FormControl>
                   <Input
                     placeholder="대표 이미지 URL을 입력해주세요"
@@ -224,6 +230,7 @@ const ShareSiteForm = () => {
                         {...field}
                         inputClassName={"px-3"}
                       />
+
                       <Button
                         type="button"
                         variant="outline"
@@ -236,10 +243,12 @@ const ShareSiteForm = () => {
                   )}
                 />
               ))}
-              <Button type="button" variant="outline" onClick={addScreenshot}>
-                <ImagePlus className="mr-2 h-4 w-4" />
-                스크린샷 추가
-              </Button>
+              {screenshots.length < 2 && (
+                <Button type="button" variant="outline" onClick={addScreenshot}>
+                  <ImagePlus className="mr-2 h-4 w-4" />
+                  스크린샷 추가
+                </Button>
+              )}
             </div>
           </div>
         </div>
@@ -251,7 +260,7 @@ const ShareSiteForm = () => {
             name="usageTiming"
             render={({ field }) => (
               <FormItem>
-                <Label>사용 시나리오 *</Label>
+                <Label>사용 시나리오</Label>
                 <FormControl>
                   <Textarea
                     placeholder="사이트의 사용 시나리오를 입력해주세요"
@@ -269,7 +278,7 @@ const ShareSiteForm = () => {
             name="features"
             render={({ field }) => (
               <FormItem>
-                <Label>주요 기능 *</Label>
+                <Label>주요 기능</Label>
                 <FormControl>
                   <Textarea
                     placeholder="사이트의 주요 기능을 입력해주세요"
