@@ -14,6 +14,12 @@ import {
   FormItem,
   FormMessage,
 } from "@/components/ui/form";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { z } from "zod";
 
 const ShareSiteForm = () => {
@@ -153,144 +159,111 @@ const ShareSiteForm = () => {
           />
         </div>
 
-        {/* 태그 섹션 */}
-        <div className="space-y-4">
-          <FormField
-            control={control}
-            name="tags"
-            render={() => (
-              <FormItem>
-                <Label>태그 *</Label>
-                <FormControl>
-                  <div className="space-y-2">
-                    <Input
-                      placeholder="태그를 입력하고 Enter를 눌러주세요"
-                      value={currentTag}
-                      onChange={(e) => setCurrentTag(e.target.value)}
-                      onKeyDown={handleTagAdd}
-                      inputClassName={"px-3"}
-                    />
-                    <div className="flex flex-wrap gap-2">
-                      {tags.map((tag, index) => (
-                        <div
-                          key={index}
-                          className="flex items-center gap-1 rounded-full bg-blue-100 px-3 py-1"
-                        >
-                          <span>{tag}</span>
-                          <button
-                            type="button"
-                            onClick={() => removeTag(index)}
-                            className="text-blue-600 hover:text-blue-800"
-                          >
-                            <X size={14} />
-                          </button>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </div>
-
-        {/* 이미지 섹션 */}
-        <div className="space-y-4">
-          <FormField
-            control={control}
-            name="image.main"
-            render={({ field }) => (
-              <FormItem>
-                <Label>대표 이미지 URL</Label>
-                <FormControl>
-                  <Input
-                    placeholder="대표 이미지 URL을 입력해주세요"
-                    {...field}
-                    inputClassName={"px-3"}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <div className="space-y-2">
-            <Label>스크린샷 URL</Label>
-            <div className="space-y-2">
-              {screenshots.map((_, index) => (
-                <Controller
-                  key={index}
+        {/* 고급 옵션 섹션 */}
+        <Accordion
+          type="single"
+          collapsible
+          className="space-y-4 rounded-md bg-gray-50"
+        >
+          <AccordionItem value="advanced-options">
+            <AccordionTrigger className="rounded-md bg-gray-50 px-4 py-3 font-semibold">
+              고급 옵션 입력
+            </AccordionTrigger>
+            <AccordionContent>
+              <div className="space-y-4 px-4 pt-4">
+                <FormField
                   control={control}
-                  name={`image.screenshots.${index}`}
+                  name="image.main"
                   render={({ field }) => (
-                    <div className="flex gap-2">
-                      <Input
-                        placeholder={`스크린샷 ${index + 1} URL을 입력해주세요`}
-                        {...field}
-                        inputClassName={"px-3"}
-                      />
-
-                      <Button
-                        type="button"
-                        variant="outline"
-                        size="icon"
-                        onClick={() => removeScreenshot(index)}
-                      >
-                        <X size={16} />
-                      </Button>
-                    </div>
+                    <FormItem>
+                      <Label>대표 이미지 URL</Label>
+                      <FormControl>
+                        <Input
+                          placeholder="대표 이미지 URL을 입력해주세요"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
                   )}
                 />
-              ))}
-              {screenshots.length < 2 && (
-                <Button type="button" variant="outline" onClick={addScreenshot}>
-                  <ImagePlus className="mr-2 h-4 w-4" />
-                  스크린샷 추가
-                </Button>
-              )}
-            </div>
-          </div>
-        </div>
 
-        {/* 사용 시나리오 & 주요 기능 섹션 */}
-        <div className="space-y-4">
-          <FormField
-            control={control}
-            name="usageTiming"
-            render={({ field }) => (
-              <FormItem>
-                <Label>사용 시나리오</Label>
-                <FormControl>
-                  <Textarea
-                    placeholder="사이트의 사용 시나리오를 입력해주세요"
-                    className="min-h-[100px]"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+                <div className="space-y-2">
+                  <Label>스크린샷 URL</Label>
+                  <div className="space-y-2">
+                    {screenshots.map((_, index) => (
+                      <Controller
+                        key={index}
+                        control={control}
+                        name={`image.screenshots.${index}`}
+                        render={({ field }) => (
+                          <div className="flex gap-2">
+                            <Input
+                              placeholder={`스크린샷 ${index + 1} URL을 입력해주세요`}
+                              {...field}
+                            />
+                            <Button
+                              type="button"
+                              variant="outline"
+                              size="icon"
+                              onClick={() => removeScreenshot(index)}
+                            >
+                              <X size={16} />
+                            </Button>
+                          </div>
+                        )}
+                      />
+                    ))}
+                    <Button
+                      type="button"
+                      variant="outline"
+                      onClick={addScreenshot}
+                    >
+                      <ImagePlus className="mr-2 h-4 w-4" />
+                      스크린샷 추가
+                    </Button>
+                  </div>
+                </div>
 
-          <FormField
-            control={control}
-            name="features"
-            render={({ field }) => (
-              <FormItem>
-                <Label>주요 기능</Label>
-                <FormControl>
-                  <Textarea
-                    placeholder="사이트의 주요 기능을 입력해주세요"
-                    className="min-h-[100px]"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </div>
+                <FormField
+                  control={control}
+                  name="usageTiming"
+                  render={({ field }) => (
+                    <FormItem>
+                      <Label>사용 시나리오</Label>
+                      <FormControl>
+                        <Textarea
+                          placeholder="사이트의 사용 시나리오를 입력해주세요"
+                          className="min-h-[100px]"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={control}
+                  name="features"
+                  render={({ field }) => (
+                    <FormItem>
+                      <Label>주요 기능</Label>
+                      <FormControl>
+                        <Textarea
+                          placeholder="사이트의 주요 기능을 입력해주세요"
+                          className="min-h-[100px]"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
 
         <Button type="submit" className="w-full">
           사이트 등록하기
