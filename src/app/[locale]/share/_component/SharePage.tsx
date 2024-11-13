@@ -1,23 +1,14 @@
 "use client";
 import React, { useState } from "react";
-import { useForm, Controller } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
+import { ArrowRight, ImagePlus, X } from "lucide-react";
 import {
-  ImagePlus,
-  X,
-  Link as LinkIcon,
-  Tag,
-  ArrowLeft,
-  ArrowRight,
-} from "lucide-react";
-import {
-  Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-  CardFooter,
 } from "@/components/ui/card";
 import {
   Form,
@@ -32,6 +23,9 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import Col from "@/components/Layout/Col";
+import Text from "@/components/Layout/Text";
+import { Label } from "@/components/ui/label";
 
 const ImagePreview = ({ imageUrl, onRemove, index }) => {
   return (
@@ -81,12 +75,9 @@ const BasicInfoStep = ({
         name="link"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>사이트 링크</FormLabel>
+            <Label>사이트 링크</Label>
             <FormControl>
-              <div className="relative">
-                <LinkIcon className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
-                <Input className="pl-10" placeholder="https://" {...field} />
-              </div>
+              <Input inputClassName="px-3" placeholder="https://" {...field} />
             </FormControl>
             <FormMessage />
           </FormItem>
@@ -98,9 +89,13 @@ const BasicInfoStep = ({
         name="title"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>사이트 이름</FormLabel>
+            <Label>사이트 이름</Label>
             <FormControl>
-              <Input placeholder="사이트 이름을 입력해주세요" {...field} />
+              <Input
+                inputClassName="px-3"
+                placeholder="사이트 이름을 입력해주세요"
+                {...field}
+              />
             </FormControl>
             <FormMessage />
           </FormItem>
@@ -112,7 +107,7 @@ const BasicInfoStep = ({
         name="description"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>사이트 설명</FormLabel>
+            <Label>사이트 설명</Label>
             <FormControl>
               <Textarea
                 placeholder="사이트에 대한 간단한 설명을 입력해주세요 (10자 이상)"
@@ -130,19 +125,16 @@ const BasicInfoStep = ({
         name="tags"
         render={() => (
           <FormItem>
-            <FormLabel>태그</FormLabel>
+            <Label>태그</Label>
             <FormControl>
               <div className="space-y-2">
-                <div className="relative">
-                  <Tag className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
-                  <Input
-                    className="pl-10"
-                    placeholder="태그를 입력하고 Enter를 눌러주세요"
-                    value={currentTag}
-                    onChange={(e) => setCurrentTag(e.target.value)}
-                    onKeyDown={handleTagAdd}
-                  />
-                </div>
+                <Input
+                  inputClassName="px-3"
+                  placeholder="태그를 입력하고 Enter를 눌러주세요"
+                  value={currentTag}
+                  onChange={(e) => setCurrentTag(e.target.value)}
+                  onKeyDown={handleTagAdd}
+                />
                 <ScrollArea className="h-20">
                   <div className="flex flex-wrap gap-2">
                     {tags.map((tag, index) => (
@@ -433,54 +425,61 @@ export default function StepShareSiteForm() {
     <Form {...form}>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="mx-auto max-w-[780px] py-8"
+        className="mx-auto max-w-[780px] p-4 pb-[24px] tb:pt-[48px] dt:px-0"
       >
-        <div className="space-y-8">
-          {/* Step Indicator와 타이틀 */}
-          <div className="space-y-6">
-            <div className="space-y-1 text-center">
-              <h2 className="text-[12px] font-semibold">
-                Step {currentStep} / 3
-              </h2>
-              <h1 className="text-2xl font-bold">
-                {currentStep === 1 && "사이트의 기본 정보를 입력해주세요"}
-                {currentStep === 2 && "사이트의 이미지를 등록해주세요"}
-                {currentStep === 3 && "사이트의 상세 정보를 입력해주세요"}
-              </h1>
-              <p className="text-sm text-gray-500">
-                공유하고 싶은 사이트의 정보를 입력해주세요. 관리자 확인 후
-                게시됩니다.
-              </p>
-            </div>
-          </div>
+        {/* Step Indicator와 타이틀 */}
+        <Col className={"pb-[32px] tb:pb-[48px]"}>
+          <h2 className="body7 pb-[16px] text-gray-400 tb:pb-[24px]">
+            STEP {currentStep} / 3
+          </h2>
+          <h1 className="heading1 text-[28px] tb:text-[32px]">
+            {currentStep === 1 && "사이트의 기본 정보를 입력해주세요"}
+            {currentStep === 2 && "사이트의 이미지를 등록해주세요"}
+            {currentStep === 3 && "사이트의 상세 정보를 입력해주세요"}
+          </h1>
+          <Text className="body3 pt-[8px] text-gray-600 tb:pt-[12px]">
+            공유하고 싶은 사이트의 정보를 입력해주세요. 관리자 확인 후
+            게시됩니다.
+          </Text>
+        </Col>
 
-          {/* Form Content */}
-          <div className="min-h-[400px] py-8">{renderStep()}</div>
+        {/* Form Content */}
+        <div className="min-h-[400px]">{renderStep()}</div>
 
-          {/* Navigation */}
-          <div className="flex justify-between border-t pt-8">
+        {/* Navigation */}
+        <div className="flex h-[42px] border-t">
+          {currentStep > 1 && (
             <Button
               type="button"
-              variant="outline"
+              variant="default"
               onClick={handleBack}
               disabled={currentStep === 1}
-              className="w-24"
+              font={"heading4"}
+              className="mr-[32px] h-full"
             >
-              <ArrowLeft className="mr-2 h-4 w-4" />
               Back
             </Button>
+          )}
 
-            {currentStep === 3 ? (
-              <Button type="submit" className="w-24">
-                Submit
-              </Button>
-            ) : (
-              <Button type="button" onClick={handleNext} className="w-24">
-                Next
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            )}
-          </div>
+          {currentStep === 3 ? (
+            <Button
+              type="submit"
+              font={"heading4"}
+              className="h-full rounded-[4px] px-[24px] text-black"
+            >
+              Submit
+            </Button>
+          ) : (
+            <Button
+              type="button"
+              onClick={handleNext}
+              font={"heading4"}
+              className="h-full rounded-[4px] px-[24px] text-black"
+            >
+              Next
+              <ArrowRight className="h-4 w-4" />
+            </Button>
+          )}
         </div>
       </form>
     </Form>
