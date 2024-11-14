@@ -3,8 +3,9 @@ import React, { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { ArrowRight, ImagePlus, X } from "lucide-react";
+import { ArrowRight, ImagePlus, Plus, X } from "lucide-react";
 import {
+  Card,
   CardContent,
   CardDescription,
   CardHeader,
@@ -24,40 +25,6 @@ import Col from "@/components/Layout/Col";
 import Text from "@/components/Layout/Text";
 import { Label } from "@/components/ui/label";
 import TagSelector from "@/components/TagSelector";
-
-const ImagePreview = ({ imageUrl, onRemove, index }: any) => {
-  return (
-    <div className="group relative aspect-video w-full overflow-hidden rounded-lg border border-gray-200">
-      {imageUrl ? (
-        <>
-          <img
-            src={imageUrl}
-            alt={`Preview ${index + 1}`}
-            className="h-full w-full object-cover"
-            onError={(e) => {
-              const target = e.target as HTMLImageElement;
-              target.src = "/api/placeholder/400/225";
-              target.alt = "Invalid image URL";
-            }}
-          />
-          <div className="absolute inset-0 hidden bg-black/40 transition-all group-hover:block">
-            <button
-              onClick={onRemove}
-              className="absolute right-2 top-2 rounded-full bg-white p-1.5 shadow-lg hover:bg-gray-100"
-              type="button"
-            >
-              <X size={16} className="text-gray-600" />
-            </button>
-          </div>
-        </>
-      ) : (
-        <div className="flex h-full items-center justify-center bg-gray-50">
-          <ImagePlus className="h-8 w-8 text-gray-400" />
-        </div>
-      )}
-    </div>
-  );
-};
 
 const BasicInfoStep = ({ control, currentTag, setCurrentTag }: any) => {
   return (
@@ -147,6 +114,40 @@ const BasicInfoStep = ({ control, currentTag, setCurrentTag }: any) => {
   );
 };
 
+const ImagePreview = ({ imageUrl, onRemove, index }: any) => {
+  return (
+    <div className="group relative aspect-video w-full overflow-hidden rounded-lg border border-gray-200">
+      {imageUrl ? (
+        <>
+          <img
+            src={imageUrl}
+            alt={`Preview ${index + 1}`}
+            className="object-cover"
+            onError={(e) => {
+              const target = e.target as HTMLImageElement;
+              target.src = "/api/placeholder/400/225";
+              target.alt = "Invalid image URL";
+            }}
+          />
+          <div className="absolute inset-0 hidden bg-black/40 transition-all group-hover:block">
+            <Button
+              onClick={onRemove}
+              className="absolute right-2 top-2 rounded-full bg-white p-1.5 shadow-lg hover:bg-gray-100"
+              variant="ghost"
+            >
+              <X size={16} className="text-gray-600" />
+            </Button>
+          </div>
+        </>
+      ) : (
+        <div className="flex h-full items-center justify-center bg-gray-50">
+          <Plus className="h-8 w-8 text-gray-400" />
+        </div>
+      )}
+    </div>
+  );
+};
+
 const ImageStep = ({
   control,
   mainImage,
@@ -155,16 +156,16 @@ const ImageStep = ({
   onAddScreenshot,
 }: any) => {
   return (
-    <div className="mx-auto max-w-[780px]">
+    <Card className="mx-auto max-w-[780px]">
       <CardHeader>
-        <CardTitle>이미지</CardTitle>
+        <CardTitle>Property photos</CardTitle>
         <CardDescription>
-          사이트를 대표하는 이미지와 스크린샷을 등록해주세요.
+          You need 5 photos to start. You can add more later.
         </CardDescription>
       </CardHeader>
-      <CardContent className="space-y-8">
-        <div className="space-y-4">
-          <Label className="text-base">대표 이미지</Label>
+      <CardContent className="grid grid-cols-2 gap-4">
+        <div>
+          <p className="text-base font-medium">Main photo</p>
           <Controller
             control={control}
             name="image.main"
@@ -175,57 +176,49 @@ const ImageStep = ({
                   onRemove={() => field.onChange("")}
                   index={-1}
                 />
-                <Input
-                  placeholder="대표 이미지 URL을 입력해주세요"
-                  {...field}
-                />
+                <Input placeholder="Enter main photo URL" {...field} />
               </div>
             )}
           />
         </div>
-
         <div className="space-y-4">
-          <Label className="text-base">스크린샷</Label>
-          <div className="space-y-4">
-            {screenshots.map((_: any, index: number) => (
-              <div key={index} className="space-y-2">
-                <Controller
-                  control={control}
-                  name={`image.screenshots.${index}`}
-                  render={({ field }) => (
-                    <>
-                      <ImagePreview
-                        imageUrl={field.value}
-                        onRemove={() => onRemoveScreenshot(index)}
-                        index={index}
-                      />
-                      <Input
-                        placeholder={`스크린샷 ${index + 1} URL을 입력해주세요`}
-                        {...field}
-                      />
-                    </>
-                  )}
-                />
-              </div>
-            ))}
-            {screenshots.length < 2 && (
-              <Button
-                type="button"
-                variant="outline"
-                onClick={onAddScreenshot}
-                className="w-full py-2"
-              >
-                <ImagePlus className="mr-2 h-4 w-4" />
-                스크린샷 추가
-              </Button>
-            )}
-          </div>
+          <p className="text-base font-medium">Screenshots</p>
+          {screenshots.map((_: any, index: number) => (
+            <div key={index} className="space-y-2">
+              <Controller
+                control={control}
+                name={`image.screenshots.${index}`}
+                render={({ field }) => (
+                  <div>
+                    <ImagePreview
+                      imageUrl={field.value}
+                      onRemove={() => onRemoveScreenshot(index)}
+                      index={index}
+                    />
+                    <Input
+                      placeholder={`Enter screenshot ${index + 1} URL`}
+                      {...field}
+                    />
+                  </div>
+                )}
+              />
+            </div>
+          ))}
+          {screenshots.length < 5 && (
+            <Button
+              type="button"
+              variant="outline"
+              onClick={onAddScreenshot}
+              className="w-full"
+            >
+              <Plus className="mr-2 h-4 w-4" /> Add photo
+            </Button>
+          )}
         </div>
       </CardContent>
-    </div>
+    </Card>
   );
 };
-
 const DetailStep = ({ control }: any) => {
   return (
     <div className="mx-auto tb:max-w-[780px]">
@@ -275,7 +268,7 @@ const DetailStep = ({ control }: any) => {
 };
 
 export default function StepShareSiteForm() {
-  const [currentStep, setCurrentStep] = useState(1);
+  const [currentStep, setCurrentStep] = useState(3);
   const [currentTag, setCurrentTag] = useState([]);
 
   const shareFormSchema = z.object({
