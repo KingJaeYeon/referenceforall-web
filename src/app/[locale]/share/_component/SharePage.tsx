@@ -15,7 +15,6 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
@@ -27,7 +26,7 @@ import Col from "@/components/Layout/Col";
 import Text from "@/components/Layout/Text";
 import { Label } from "@/components/ui/label";
 
-const ImagePreview = ({ imageUrl, onRemove, index }) => {
+const ImagePreview = ({ imageUrl, onRemove, index }: any) => {
   return (
     <div className="group relative aspect-video w-full overflow-hidden rounded-lg border border-gray-200">
       {imageUrl ? (
@@ -37,8 +36,9 @@ const ImagePreview = ({ imageUrl, onRemove, index }) => {
             alt={`Preview ${index + 1}`}
             className="h-full w-full object-cover"
             onError={(e) => {
-              e.target.src = "/api/placeholder/400/225";
-              e.target.alt = "Invalid image URL";
+              const target = e.target as HTMLImageElement;
+              target.src = "/api/placeholder/400/225";
+              target.alt = "Invalid image URL";
             }}
           />
           <div className="absolute inset-0 hidden bg-black/40 transition-all group-hover:block">
@@ -67,7 +67,7 @@ const BasicInfoStep = ({
   tags,
   removeTag,
   handleTagAdd,
-}) => {
+}: any) => {
   return (
     <div className="space-y-6">
       <FormField
@@ -137,7 +137,7 @@ const BasicInfoStep = ({
                 />
                 <ScrollArea className="h-20">
                   <div className="flex flex-wrap gap-2">
-                    {tags.map((tag, index) => (
+                    {tags.map((tag: string, index: number) => (
                       <Badge
                         key={index}
                         variant="secondary"
@@ -171,7 +171,7 @@ const ImageStep = ({
   screenshots,
   onRemoveScreenshot,
   onAddScreenshot,
-}) => {
+}: any) => {
   return (
     <div className="mx-auto max-w-[780px]">
       <CardHeader>
@@ -182,7 +182,7 @@ const ImageStep = ({
       </CardHeader>
       <CardContent className="space-y-8">
         <div className="space-y-4">
-          <FormLabel className="text-base">대표 이미지</FormLabel>
+          <Label className="text-base">대표 이미지</Label>
           <Controller
             control={control}
             name="image.main"
@@ -203,9 +203,9 @@ const ImageStep = ({
         </div>
 
         <div className="space-y-4">
-          <FormLabel className="text-base">스크린샷</FormLabel>
+          <Label className="text-base">스크린샷</Label>
           <div className="space-y-4">
-            {screenshots.map((_, index) => (
+            {screenshots.map((_: any, index: number) => (
               <div key={index} className="space-y-2">
                 <Controller
                   control={control}
@@ -244,7 +244,7 @@ const ImageStep = ({
   );
 };
 
-const DetailStep = ({ control }) => {
+const DetailStep = ({ control }: any) => {
   return (
     <div className="mx-auto max-w-[780px]">
       <CardHeader>
@@ -257,7 +257,7 @@ const DetailStep = ({ control }) => {
           name="usageTiming"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>사용 시나리오</FormLabel>
+              <Label>사용 시나리오</Label>
               <FormControl>
                 <Textarea
                   placeholder="사이트의 사용 시나리오를 입력해주세요"
@@ -275,7 +275,7 @@ const DetailStep = ({ control }) => {
           name="features"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>주요 기능</FormLabel>
+              <Label>주요 기능</Label>
               <FormControl>
                 <Textarea
                   placeholder="사이트의 주요 기능을 입력해주세요"
@@ -298,7 +298,10 @@ export default function StepShareSiteForm() {
 
   const shareFormSchema = z.object({
     link: z.string().url("올바른 URL을 입력해주세요"),
-    title: z.string().min(1, "사이트 이름을 입력해주세요"),
+    title: z
+      .string()
+      .min(1, "사이트 이름을 입력해주세요")
+      .max(32, "사이트 이름은 32자 이내로 입력해주세요"),
     description: z.string().min(10, "설명을 10자 이상 입력해주세요"),
     tags: z.array(z.string()),
     image: z.object({
@@ -368,7 +371,7 @@ export default function StepShareSiteForm() {
   };
 
   const handleNext = async () => {
-    let fieldsToValidate = [];
+    let fieldsToValidate: any = [];
 
     switch (currentStep) {
       case 1:
