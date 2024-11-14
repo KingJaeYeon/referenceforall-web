@@ -5,6 +5,7 @@ import useDebounce from "@/hook/useDebounce";
 import { useQuery } from "@tanstack/react-query";
 import Row from "@/components/Layout/Row";
 import { Command, CommandItem, CommandList } from "@/components/ui/command";
+import { cn } from "@/lib/utils";
 
 const searchTopics = async (
   query: string,
@@ -37,9 +38,11 @@ const searchTopics = async (
 export default function TagSelector({
   tags,
   setTags,
+  className,
 }: {
   tags: string[];
   setTags: any;
+  className?: string;
 }) {
   const t = useTranslations();
 
@@ -163,7 +166,10 @@ export default function TagSelector({
   return (
     <Row
       ref={containerRef}
-      className="min-h-[53px] w-full flex-wrap items-center rounded border border-gray-400 bg-gray-50 px-[10px] py-[6px]"
+      className={cn(
+        "min-h-[53px] w-full flex-wrap items-center rounded border border-gray-400 bg-gray-50 px-[10px] py-[6px]",
+        className,
+      )}
     >
       {tags.map((tag, index) => (
         <TopicButton
@@ -231,7 +237,7 @@ const TopicButton = ({
     <button
       onClick={onRemove}
       onKeyDown={onKeyDown}
-      className="body4 relative m-1 rounded-[3px] border border-gray-200 bg-white py-[5px] pl-[10px] pr-[24px] capitalize text-gray-800 focus:outline-none focus:ring-1 focus:ring-blue-300"
+      className="body5 relative m-1 rounded-[3px] border border-gray-200 bg-white py-[4px] pl-[10px] pr-[24px] capitalize text-gray-800 focus:outline-none focus:ring-1 focus:ring-blue-300"
     >
       {label.split("-").join(" ")} <span className={"absolute right-2"}>×</span>
     </button>

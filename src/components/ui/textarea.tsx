@@ -10,7 +10,7 @@ export interface TextareaProps
 
 const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
   ({ className, font, ...props }, ref) => {
-    const customFont = utilFont(font, () => "body6");
+    const customFont = utilFont(font, () => "body6 placeholder:body6");
     return (
       <textarea
         className={cn(

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -20,11 +20,10 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { Badge } from "@/components/ui/badge";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import Col from "@/components/Layout/Col";
 import Text from "@/components/Layout/Text";
 import { Label } from "@/components/ui/label";
+import TagSelector from "@/components/TagSelector";
 
 const ImagePreview = ({ imageUrl, onRemove, index }: any) => {
   return (
@@ -60,26 +59,26 @@ const ImagePreview = ({ imageUrl, onRemove, index }: any) => {
   );
 };
 
-const BasicInfoStep = ({
-  control,
-  currentTag,
-  setCurrentTag,
-  tags,
-  removeTag,
-  handleTagAdd,
-}: any) => {
+const BasicInfoStep = ({ control, currentTag, setCurrentTag }: any) => {
   return (
-    <div className="space-y-6">
+    <Col className="h-[600px] gap-[20px] tb:gap-[28px]">
       <FormField
         control={control}
         name="link"
         render={({ field }) => (
           <FormItem>
-            <Label>사이트 링크</Label>
+            <Label font={"heading4"} className={"font-medium"}>
+              사이트 링크
+            </Label>
             <FormControl>
-              <Input inputClassName="px-3" placeholder="https://" {...field} />
+              <Input
+                inputClassName="px-3 mt-[8px] rounded-[3px]"
+                font={"body3"}
+                placeholder="https://"
+                {...field}
+              />
             </FormControl>
-            <FormMessage />
+            <FormMessage font={"body5"} className={"pt-2 font-light"} />
           </FormItem>
         )}
       />
@@ -89,15 +88,17 @@ const BasicInfoStep = ({
         name="title"
         render={({ field }) => (
           <FormItem>
-            <Label>사이트 이름</Label>
+            <Label font={"heading4"} className={"font-medium"}>
+              사이트 이름
+            </Label>
             <FormControl>
               <Input
-                inputClassName="px-3"
+                inputClassName="px-3 mt-[8px] rounded-[3px]"
                 placeholder="사이트 이름을 입력해주세요"
                 {...field}
               />
             </FormControl>
-            <FormMessage />
+            <FormMessage font={"body5"} className={"pt-2 font-light"} />
           </FormItem>
         )}
       />
@@ -107,15 +108,17 @@ const BasicInfoStep = ({
         name="description"
         render={({ field }) => (
           <FormItem>
-            <Label>사이트 설명</Label>
+            <Label font={"heading4"} className={"font-medium"}>
+              사이트 설명
+            </Label>
             <FormControl>
               <Textarea
                 placeholder="사이트에 대한 간단한 설명을 입력해주세요 (10자 이상)"
-                className="min-h-[100px] resize-none"
+                className="mt-[8px] min-h-[100px] resize-none rounded-[3px] px-3"
                 {...field}
               />
             </FormControl>
-            <FormMessage />
+            <FormMessage font={"body5"} className={"pt-2 font-light"} />
           </FormItem>
         )}
       />
@@ -125,43 +128,21 @@ const BasicInfoStep = ({
         name="tags"
         render={() => (
           <FormItem>
-            <Label>태그</Label>
+            <Label font={"heading4"} className={"font-medium"}>
+              태그
+            </Label>
             <FormControl>
-              <div className="space-y-2">
-                <Input
-                  inputClassName="px-3"
-                  placeholder="태그를 입력하고 Enter를 눌러주세요"
-                  value={currentTag}
-                  onChange={(e) => setCurrentTag(e.target.value)}
-                  onKeyDown={handleTagAdd}
-                />
-                <ScrollArea className="h-20">
-                  <div className="flex flex-wrap gap-2">
-                    {tags.map((tag: string, index: number) => (
-                      <Badge
-                        key={index}
-                        variant="secondary"
-                        className="cursor-default gap-1 px-3 py-1"
-                      >
-                        {tag}
-                        <button
-                          type="button"
-                          onClick={() => removeTag(index)}
-                          className="ml-1 inline-flex h-4 w-4 items-center justify-center rounded-full hover:bg-gray-200"
-                        >
-                          <X size={12} />
-                        </button>
-                      </Badge>
-                    ))}
-                  </div>
-                </ScrollArea>
-              </div>
+              <TagSelector
+                tags={currentTag}
+                setTags={setCurrentTag}
+                className={"mt-[8px] rounded-[3px] bg-transparent px-3"}
+              />
             </FormControl>
-            <FormMessage />
+            <FormMessage font={"body5"} className={"pt-2 font-light"} />
           </FormItem>
         )}
       />
-    </div>
+    </Col>
   );
 };
 
@@ -294,7 +275,7 @@ const DetailStep = ({ control }: any) => {
 
 export default function StepShareSiteForm() {
   const [currentStep, setCurrentStep] = useState(1);
-  const [currentTag, setCurrentTag] = useState("");
+  const [currentTag, setCurrentTag] = useState([]);
 
   const shareFormSchema = z.object({
     link: z.string().url("올바른 URL을 입력해주세요"),
@@ -303,7 +284,7 @@ export default function StepShareSiteForm() {
       .min(1, "사이트 이름을 입력해주세요")
       .max(32, "사이트 이름은 32자 이내로 입력해주세요"),
     description: z.string().min(10, "설명을 10자 이상 입력해주세요"),
-    tags: z.array(z.string()),
+    tags: z.array(z.string()).min(1, "태그를 1개 이상 입력해주세요"),
     image: z.object({
       main: z.string().optional(),
       screenshots: z
@@ -342,22 +323,9 @@ export default function StepShareSiteForm() {
     console.log(data);
   };
 
-  const handleTagAdd = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter" && currentTag.trim()) {
-      e.preventDefault();
-      if (!tags.includes(currentTag.trim())) {
-        setValue("tags", [...tags, currentTag.trim()]);
-      }
-      setCurrentTag("");
-    }
-  };
-
-  const removeTag = (indexToRemove: number) => {
-    setValue(
-      "tags",
-      tags.filter((_, index) => index !== indexToRemove),
-    );
-  };
+  useEffect(() => {
+    setValue("tags", currentTag);
+  }, [currentTag]);
 
   const addScreenshot = () => {
     setValue("image.screenshots", [...screenshots, ""]);
@@ -404,8 +372,6 @@ export default function StepShareSiteForm() {
             currentTag={currentTag}
             setCurrentTag={setCurrentTag}
             tags={tags}
-            removeTag={removeTag}
-            handleTagAdd={handleTagAdd}
           />
         );
       case 2:
@@ -431,7 +397,7 @@ export default function StepShareSiteForm() {
         className="mx-auto max-w-[780px] p-4 pb-[24px] tb:pt-[48px] dt:px-0"
       >
         {/* Step Indicator와 타이틀 */}
-        <Col className={"pb-[32px] tb:pb-[48px]"}>
+        <Col className={"pb-[24px] tb:pb-[40px]"}>
           <h2 className="body7 pb-[16px] text-gray-400 tb:pb-[24px]">
             STEP {currentStep} / 3
           </h2>
