@@ -39,10 +39,12 @@ export default function TagSelector({
   tags,
   setTags,
   className,
+  maxTags = 4,
 }: {
   tags: string[];
   setTags: any;
   className?: string;
+  maxTags?: number;
 }) {
   const t = useTranslations();
 
@@ -180,7 +182,7 @@ export default function TagSelector({
         />
       ))}
       <div className="relative w-fit">
-        {tags.length < 4 && (
+        {tags.length < maxTags && (
           <Command
             className={"bg-transparent"}
             onValueChange={setCommandValue}
@@ -214,7 +216,7 @@ export default function TagSelector({
             )}
           </Command>
         )}
-        {tags.length < 4 && isPlaceholderVisible && (
+        {tags.length < maxTags && isPlaceholderVisible && (
           <span className="body6 pointer-events-none absolute left-2 top-2 text-gray-400">
             Add a Topic
           </span>

@@ -136,6 +136,7 @@ const BasicInfoStep = ({ control, currentTag, setCurrentTag }: any) => {
                 tags={currentTag}
                 setTags={setCurrentTag}
                 className={"mt-[8px] rounded-[3px] bg-transparent px-3"}
+                maxTags={5}
               />
             </FormControl>
             <FormMessage font={"body5"} className={"pt-2 font-light"} />
