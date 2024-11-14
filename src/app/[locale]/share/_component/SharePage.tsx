@@ -61,7 +61,7 @@ const ImagePreview = ({ imageUrl, onRemove, index }: any) => {
 
 const BasicInfoStep = ({ control, currentTag, setCurrentTag }: any) => {
   return (
-    <Col className="h-[600px] gap-[20px] tb:gap-[28px]">
+    <Col className="gap-[20px] pb-[100px] sm:h-[600px] sm:pb-0 tb:gap-[28px]">
       <FormField
         control={control}
         name="link"
@@ -228,7 +228,7 @@ const ImageStep = ({
 
 const DetailStep = ({ control }: any) => {
   return (
-    <div className="mx-auto max-w-[780px]">
+    <div className="mx-auto tb:max-w-[780px]">
       <CardHeader>
         <CardTitle>상세 정보</CardTitle>
         <CardDescription>사이트의 상세 정보를 입력해주세요.</CardDescription>
