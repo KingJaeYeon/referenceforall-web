@@ -23,7 +23,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       rounded = "default",
       icon = "none",
       iconOnClick,
-      maxLength = 30,
+      maxLength = 255,
       disabled = false,
       value,
       errorMessage,

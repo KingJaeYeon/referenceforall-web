@@ -25,6 +25,8 @@ import Col from "@/components/Layout/Col";
 import Text from "@/components/Layout/Text";
 import { Label } from "@/components/ui/label";
 import TagSelector from "@/components/TagSelector";
+import { cn } from "@/lib/utils";
+import Row from "@/components/Layout/Row";
 
 const BasicInfoStep = ({ control, currentTag, setCurrentTag }: any) => {
   return (
@@ -156,67 +158,83 @@ const ImageStep = ({
   onAddScreenshot,
 }: any) => {
   return (
-    <Card className="mx-auto max-w-[780px]">
-      <CardHeader>
-        <CardTitle>Property photos</CardTitle>
-        <CardDescription>
-          You need 5 photos to start. You can add more later.
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="grid grid-cols-2 gap-4">
-        <div>
-          <p className="text-base font-medium">Main photo</p>
-          <Controller
-            control={control}
-            name="image.main"
-            render={({ field }) => (
-              <div className="space-y-2">
-                <ImagePreview
-                  imageUrl={field.value}
-                  onRemove={() => field.onChange("")}
-                  index={-1}
-                />
-                <Input placeholder="Enter main photo URL" {...field} />
-              </div>
-            )}
-          />
-        </div>
-        <div className="space-y-4">
-          <p className="text-base font-medium">Screenshots</p>
-          {screenshots.map((_: any, index: number) => (
-            <div key={index} className="space-y-2">
-              <Controller
-                control={control}
-                name={`image.screenshots.${index}`}
-                render={({ field }) => (
-                  <div>
-                    <ImagePreview
-                      imageUrl={field.value}
-                      onRemove={() => onRemoveScreenshot(index)}
-                      index={index}
-                    />
-                    <Input
-                      placeholder={`Enter screenshot ${index + 1} URL`}
-                      {...field}
-                    />
-                  </div>
-                )}
-              />
-            </div>
-          ))}
-          {screenshots.length < 5 && (
-            <Button
-              type="button"
-              variant="outline"
-              onClick={onAddScreenshot}
-              className="w-full"
-            >
-              <Plus className="mr-2 h-4 w-4" /> Add photo
-            </Button>
-          )}
-        </div>
-      </CardContent>
-    </Card>
+    <Col className="gap-[20px] pb-[100px] sm:h-[600px] sm:pb-0 tb:gap-[28px]">
+      <Col>
+        <Label font={"heading4"} className={"font-medium"}>
+          이미지
+        </Label>
+
+        <Button
+          variant={"default"}
+          className={
+            "h-[100px] max-w-[150px] border border-dashed border-gray-400"
+          }
+        >
+          dd
+        </Button>
+      </Col>
+    </Col>
+    // <Card className="mx-auto max-w-[780px]">
+    //   <CardHeader>
+    //     <CardTitle>Property photos</CardTitle>
+    //     <CardDescription>
+    //       You need 5 photos to start. You can add more later.
+    //     </CardDescription>
+    //   </CardHeader>
+    //   <CardContent className="grid grid-cols-2 gap-4">
+    //     <div>
+    //       <p className="text-base font-medium">Main photo</p>
+    //       <Controller
+    //         control={control}
+    //         name="image.main"
+    //         render={({ field }) => (
+    //           <div className="space-y-2">
+    //             <ImagePreview
+    //               imageUrl={field.value}
+    //               onRemove={() => field.onChange("")}
+    //               index={-1}
+    //             />
+    //             <Input placeholder="Enter main photo URL" {...field} />
+    //           </div>
+    //         )}
+    //       />
+    //     </div>
+    //     <div className="space-y-4">
+    //       <p className="text-base font-medium">Screenshots</p>
+    //       {screenshots.map((_: any, index: number) => (
+    //         <div key={index} className="space-y-2">
+    //           <Controller
+    //             control={control}
+    //             name={`image.screenshots.${index}`}
+    //             render={({ field }) => (
+    //               <div>
+    //                 <ImagePreview
+    //                   imageUrl={field.value}
+    //                   onRemove={() => onRemoveScreenshot(index)}
+    //                   index={index}
+    //                 />
+    //                 <Input
+    //                   placeholder={`Enter screenshot ${index + 1} URL`}
+    //                   {...field}
+    //                 />
+    //               </div>
+    //             )}
+    //           />
+    //         </div>
+    //       ))}
+    //       {screenshots.length < 5 && (
+    //         <Button
+    //           type="button"
+    //           variant="outline"
+    //           onClick={onAddScreenshot}
+    //           className="w-full"
+    //         >
+    //           <Plus className="mr-2 h-4 w-4" /> Add photo
+    //         </Button>
+    //       )}
+    //     </div>
+    //   </CardContent>
+    // </Card>
   );
 };
 const DetailStep = ({ control }: any) => {
@@ -392,7 +410,12 @@ export default function StepShareSiteForm() {
       >
         {/* Step Indicator와 타이틀 */}
         <Col className={"pb-[24px] tb:pb-[40px]"}>
-          <h2 className="body7 pb-[16px] text-gray-400 tb:pb-[24px]">
+          <h2
+            className={cn(
+              "body7 pb-[16px] text-gray-400 tb:pb-[24px]",
+              currentStep === 3 && "font-semibold text-green-500",
+            )}
+          >
             STEP {currentStep} / 3
           </h2>
           <h1 className="heading1 text-[28px] tb:text-[32px]">
