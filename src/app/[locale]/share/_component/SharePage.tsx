@@ -25,10 +25,12 @@ import Col from "@/components/Layout/Col";
 import Text from "@/components/Layout/Text";
 import { Label } from "@/components/ui/label";
 import TagSelector from "@/components/TagSelector";
+import Row from "@/components/Layout/Row";
+import { cn } from "@/lib/utils";
 
 const BasicInfoStep = ({ control, currentTag, setCurrentTag }: any) => {
   return (
-    <Col className="gap-[20px] pb-[100px] sm:h-[600px] sm:pb-0 tb:gap-[28px]">
+    <Col className="gap-[20px] sm:h-[600px] tb:gap-[28px]">
       <FormField
         control={control}
         name="link"
@@ -268,7 +270,7 @@ const DetailStep = ({ control }: any) => {
 };
 
 export default function StepShareSiteForm() {
-  const [currentStep, setCurrentStep] = useState(3);
+  const [currentStep, setCurrentStep] = useState(1);
   const [currentTag, setCurrentTag] = useState([]);
 
   const shareFormSchema = z.object({
@@ -385,66 +387,73 @@ export default function StepShareSiteForm() {
     }
   };
   return (
-    <Form {...form}>
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="mx-auto max-w-[780px] p-4 pb-[24px] tb:pt-[48px] dt:px-0"
+    <>
+      <Form {...form}>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="mx-auto max-w-[780px] p-4 pb-[24px] tb:pt-[48px] dt:px-0"
+        >
+          {/* Step Indicator와 타이틀 */}
+          <Col className={"pb-[24px] tb:pb-[40px]"}>
+            <h2 className="body7 pb-[16px] text-gray-400 tb:pb-[24px]">
+              STEP {currentStep} / 3
+            </h2>
+            <h1 className="heading1 text-[28px] tb:text-[32px]">
+              {currentStep === 1 && "사이트의 기본 정보를 입력해주세요"}
+              {currentStep === 2 && "사이트의 이미지를 등록해주세요"}
+              {currentStep === 3 && "사이트의 상세 정보를 입력해주세요"}
+            </h1>
+            <Text className="body3 pt-[8px] text-gray-600 tb:pt-[12px]">
+              공유하고 싶은 사이트의 정보를 입력해주세요. 관리자 확인 후
+              게시됩니다.
+            </Text>
+          </Col>
+
+          {/* Form Content */}
+          <div className="min-h-[400px]">{renderStep()}</div>
+        </form>
+      </Form>
+      {/* Navigation */}
+      <Row
+        className={cn(
+          "shadow-bottomNav sticky bottom-0 h-[66px] w-full justify-between bg-white px-6 py-3 tb:justify-end",
+        )}
       >
-        {/* Step Indicator와 타이틀 */}
-        <Col className={"pb-[24px] tb:pb-[40px]"}>
-          <h2 className="body7 pb-[16px] text-gray-400 tb:pb-[24px]">
-            STEP {currentStep} / 3
-          </h2>
-          <h1 className="heading1 text-[28px] tb:text-[32px]">
-            {currentStep === 1 && "사이트의 기본 정보를 입력해주세요"}
-            {currentStep === 2 && "사이트의 이미지를 등록해주세요"}
-            {currentStep === 3 && "사이트의 상세 정보를 입력해주세요"}
-          </h1>
-          <Text className="body3 pt-[8px] text-gray-600 tb:pt-[12px]">
-            공유하고 싶은 사이트의 정보를 입력해주세요. 관리자 확인 후
-            게시됩니다.
-          </Text>
-        </Col>
+        {currentStep > 1 ? (
+          <Button
+            type="button"
+            variant="default"
+            onClick={handleBack}
+            disabled={currentStep === 1}
+            font={"heading4"}
+            className="mr-[32px] h-[42px] font-semibold"
+          >
+            Back
+          </Button>
+        ) : (
+          <div />
+        )}
 
-        {/* Form Content */}
-        <div className="min-h-[400px]">{renderStep()}</div>
-
-        {/* Navigation */}
-        <div className="flex h-[42px] border-t">
-          {currentStep > 1 && (
-            <Button
-              type="button"
-              variant="default"
-              onClick={handleBack}
-              disabled={currentStep === 1}
-              font={"heading4"}
-              className="mr-[32px] h-full"
-            >
-              Back
-            </Button>
-          )}
-
-          {currentStep === 3 ? (
-            <Button
-              type="submit"
-              font={"heading4"}
-              className="h-full rounded-[4px] px-[24px] text-black"
-            >
-              Submit
-            </Button>
-          ) : (
-            <Button
-              type="button"
-              onClick={handleNext}
-              font={"heading4"}
-              className="h-full rounded-[4px] px-[24px] text-black"
-            >
-              Next
-              <ArrowRight className="h-4 w-4" />
-            </Button>
-          )}
-        </div>
-      </form>
-    </Form>
+        {currentStep === 3 ? (
+          <Button
+            type="submit"
+            font={"heading4"}
+            className="h-[42px] rounded-[4px] px-[20px] font-semibold text-black"
+          >
+            Submit
+          </Button>
+        ) : (
+          <Button
+            type="button"
+            onClick={handleNext}
+            font={"heading4"}
+            className="h-[42px] rounded-[4px] px-[20px] font-semibold text-black"
+          >
+            Continue
+            <ArrowRight className="h-4 w-4" />
+          </Button>
+        )}
+      </Row>
+    </>
   );
 }
