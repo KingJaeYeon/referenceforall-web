@@ -30,7 +30,7 @@ import { cn } from "@/lib/utils";
 
 const BasicInfoStep = ({ control, currentTag, setCurrentTag }: any) => {
   return (
-    <Col className="gap-[20px] sm:h-[600px] tb:gap-[28px]">
+    <Col className="gap-[20px] pb-[50px] sm:h-[600px] sm:pb-0 tb:gap-[28px]">
       <FormField
         control={control}
         name="link"
