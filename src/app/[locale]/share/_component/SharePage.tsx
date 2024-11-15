@@ -398,7 +398,7 @@ export default function StepShareSiteForm() {
             <h2 className="body7 pb-[16px] text-gray-400 tb:pb-[24px]">
               STEP {currentStep} / 3
             </h2>
-            <h1 className="heading1 text-[28px] tb:text-[32px]">
+            <h1 className="heading1 text-[28px] font-semibold tb:text-[32px]">
               {currentStep === 1 && "사이트의 기본 정보를 입력해주세요"}
               {currentStep === 2 && "사이트의 이미지를 등록해주세요"}
               {currentStep === 3 && "사이트의 상세 정보를 입력해주세요"}
