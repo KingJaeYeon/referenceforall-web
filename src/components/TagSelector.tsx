@@ -40,11 +40,13 @@ export default function TagSelector({
   setTags,
   className,
   maxTags = 4,
+  autoFocus,
 }: {
   tags: string[];
   setTags: any;
   className?: string;
   maxTags?: number;
+  autoFocus?: boolean;
 }) {
   const t = useTranslations();
 
@@ -62,7 +64,7 @@ export default function TagSelector({
   });
 
   useEffect(() => {
-    if (inputRef.current) {
+    if (inputRef.current && autoFocus) {
       inputRef.current.focus();
     }
   }, []);

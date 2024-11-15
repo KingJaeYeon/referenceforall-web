@@ -57,7 +57,7 @@ export function AddTopicPopup({ children }: { children: React.ReactNode }) {
               <Text className={"body5"}>
                 {t("desc_addSubject", { count: 4 })}
               </Text>
-              <TagSelector tags={tags} setTags={setTags} />
+              <TagSelector tags={tags} setTags={setTags} autoFocus={true} />
             </Col>
             <div className="flex items-center justify-between">
               <Label htmlFor="search-mode" className="text-right">
