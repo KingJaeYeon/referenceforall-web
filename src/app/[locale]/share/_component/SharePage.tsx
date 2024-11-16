@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -27,6 +27,7 @@ import { Label } from "@/components/ui/label";
 import TagSelector from "@/components/TagSelector";
 import Row from "@/components/Layout/Row";
 import { cn } from "@/lib/utils";
+import { Image } from "@/util/imageUpload";
 
 const BasicInfoStep = ({ control, currentTag, setCurrentTag }: any) => {
   return (
@@ -119,110 +120,150 @@ const BasicInfoStep = ({ control, currentTag, setCurrentTag }: any) => {
   );
 };
 
-const ImagePreview = ({ imageUrl, onRemove, index }: any) => {
-  return (
-    <div className="group relative aspect-video w-full overflow-hidden rounded-lg border border-gray-200">
-      {imageUrl ? (
-        <>
-          <img
-            src={imageUrl}
-            alt={`Preview ${index + 1}`}
-            className="object-cover"
-            onError={(e) => {
-              const target = e.target as HTMLImageElement;
-              target.src = "/api/placeholder/400/225";
-              target.alt = "Invalid image URL";
-            }}
-          />
-          <div className="absolute inset-0 hidden bg-black/40 transition-all group-hover:block">
-            <Button
-              onClick={onRemove}
-              className="absolute right-2 top-2 rounded-full bg-white p-1.5 shadow-lg hover:bg-gray-100"
-              variant="ghost"
-            >
-              <X size={16} className="text-gray-600" />
-            </Button>
-          </div>
-        </>
-      ) : (
-        <div className="flex h-full items-center justify-center bg-gray-50">
-          <Plus className="h-8 w-8 text-gray-400" />
-        </div>
-      )}
-    </div>
-  );
-};
+// Image Upload Components
+const ImageUploadButton = ({ onClick }: { onClick: () => void }) => (
+  <div
+    onClick={onClick}
+    className="group relative flex aspect-video w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 hover:bg-gray-100"
+  >
+    <ImagePlus className="h-10 w-10 text-gray-400" />
+    <p className="mt-2 text-sm text-gray-500">Click to upload photo</p>
+  </div>
+);
 
-const ImageStep = ({
-  control,
-  mainImage,
-  screenshots,
-  onRemoveScreenshot,
-  onAddScreenshot,
-}: any) => {
+const ImagePreview = ({
+  preview,
+  onRemove,
+}: {
+  preview: string;
+  onRemove: () => void;
+}) => (
+  <div className="group relative aspect-video w-full cursor-pointer rounded-lg border-2 border-dashed border-gray-300">
+    <img
+      src={preview}
+      alt="Preview"
+      className="h-full w-full rounded-lg object-cover"
+    />
+    <div className="absolute inset-0 hidden items-center justify-center rounded-lg bg-black/40 group-hover:flex">
+      <Button
+        onClick={onRemove}
+        variant="secondary"
+        size="icon"
+        className="h-8 w-8 rounded-full"
+      >
+        <X className="h-4 w-4" />
+      </Button>
+    </div>
+  </div>
+);
+
+const ImageStep = ({ control }: { control: any }) => {
+  const fileInputRef = React.useRef<HTMLInputElement>(null);
+  const screenshotInputRef = React.useRef<HTMLInputElement>(null);
+
+  const handleImageUpload = async (
+    event: React.ChangeEvent<HTMLInputElement>,
+    isMain: boolean,
+    field: any,
+  ) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        if (isMain) {
+          field.onChange({
+            file: file,
+            preview: reader.result as string,
+          });
+        } else {
+          const newScreenshot = {
+            file: file,
+            preview: reader.result as string,
+          };
+          field.onChange([...field.value, newScreenshot]);
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   return (
-    <Col className="gap-[20px] pb-[50px] sm:h-[600px] sm:pb-0 md:gap-[28px]">
-      <Card className="mx-auto max-w-[780px]">
-        <CardHeader>
-          <CardTitle>Property photos</CardTitle>
-          <CardDescription>
-            You need 5 photos to start. You can add more later.
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="grid grid-cols-2 gap-4">
-          <div>
-            <p className="text-base font-medium">Main photo</p>
-            <Controller
-              control={control}
-              name="image.main"
-              render={({ field }) => (
-                <div className="space-y-2">
-                  <ImagePreview
-                    imageUrl={field.value}
-                    onRemove={() => field.onChange("")}
-                    index={-1}
-                  />
-                  <Input placeholder="Enter main photo URL" {...field} />
-                </div>
-              )}
+    <Col className="gap-[20px] pb-[50px] sm:pb-0 md:gap-[28px]">
+      <FormField
+        control={control}
+        name="image.main"
+        render={({ field }) => (
+          <FormItem>
+            <Label font={"heading4"} className={"font-medium"}>
+              메인 이미지
+            </Label>
+            <input
+              type="file"
+              ref={fileInputRef}
+              className="hidden"
+              accept="image/*"
+              onChange={(e) => handleImageUpload(e, true, field)}
             />
-          </div>
-          <div className="space-y-4">
-            <p className="text-base font-medium">Screenshots</p>
-            {screenshots.map((_: any, index: number) => (
-              <div key={index} className="space-y-2">
-                <Controller
-                  control={control}
-                  name={`image.screenshots.${index}`}
-                  render={({ field }) => (
-                    <div>
-                      <ImagePreview
-                        imageUrl={field.value}
-                        onRemove={() => onRemoveScreenshot(index)}
-                        index={index}
-                      />
-                      <Input
-                        placeholder={`Enter screenshot ${index + 1} URL`}
-                        {...field}
-                      />
-                    </div>
-                  )}
+            <Row className="mt-[8px] min-h-[100px]">
+              {field.value?.preview ? (
+                <ImagePreview
+                  preview={field.value.preview}
+                  onRemove={() => {
+                    field.onChange({ file: null, preview: null });
+                    fileInputRef.current!.value = "";
+                  }}
                 />
-              </div>
-            ))}
-            {screenshots.length < 5 && (
-              <Button
-                type="button"
-                variant="outline"
-                onClick={onAddScreenshot}
-                className="w-full"
-              >
-                <Plus className="mr-2 h-4 w-4" /> Add photo
-              </Button>
-            )}
-          </div>
-        </CardContent>
-      </Card>
+              ) : (
+                <ImageUploadButton
+                  onClick={() => fileInputRef.current?.click()}
+                />
+              )}
+            </Row>
+            <FormMessage font={"body5"} className={"pt-2 font-light"} />
+          </FormItem>
+        )}
+      />
+
+      <FormField
+        control={control}
+        name="image.screenshots"
+        render={({ field }) => (
+          <FormItem>
+            <Label font={"heading4"} className={"font-medium"}>
+              스크린샷
+              <span className={"body3 ml-[6px] font-light text-gray-400"}>
+                Max to 2
+              </span>
+            </Label>
+            <input
+              type="file"
+              ref={screenshotInputRef}
+              className="hidden"
+              accept="image/*"
+              onChange={(e) => handleImageUpload(e, false, field)}
+            />
+            <div className="mt-[8px] grid grid-cols-1 gap-4 sm:grid-cols-2">
+              {field.value.map((screenshot: Image, index: number) => (
+                <ImagePreview
+                  key={index}
+                  preview={screenshot.preview!}
+                  onRemove={() => {
+                    const newScreenshots = [...field.value];
+                    newScreenshots.splice(index, 1);
+                    field.onChange(newScreenshots);
+                  }}
+                />
+              ))}
+              {field.value.length < 2 && (
+                <ImageUploadButton
+                  onClick={() => screenshotInputRef.current?.click()}
+                />
+              )}
+            </div>
+            <FormMessage font={"body5"} className={"pt-2 font-light"} />
+          </FormItem>
+        )}
+      />
     </Col>
   );
 };
@@ -276,6 +317,7 @@ const DetailStep = ({ control }: any) => {
 export default function StepShareSiteForm() {
   const [currentStep, setCurrentStep] = useState(3);
   const [currentTag, setCurrentTag] = useState([]);
+  const submitRef = useRef<HTMLButtonElement>(null);
 
   const shareFormSchema = z.object({
     link: z.string().url("올바른 URL을 입력해주세요"),
@@ -286,11 +328,18 @@ export default function StepShareSiteForm() {
     description: z.string().min(10, "설명을 10자 이상 입력해주세요"),
     tags: z.array(z.string()).min(1, "태그를 1개 이상 입력해주세요"),
     image: z.object({
-      main: z.string().optional(),
+      main: z.object({
+        file: z.instanceof(File).nullable(),
+        preview: z.string().nullable(),
+      }),
       screenshots: z
-        .array(z.string().url("올바른 이미지 URL을 입력해주세요"))
-        .max(2, "스크린샷은 최대 2개까지 등록할 수 있습니다")
-        .min(0),
+        .array(
+          z.object({
+            file: z.instanceof(File).nullable(),
+            preview: z.string().nullable(),
+          }),
+        )
+        .max(2, "스크린샷은 최대 2개까지 등록할 수 있습니다"),
     }),
     usageTiming: z.string().optional(),
     features: z.string().optional(),
@@ -306,7 +355,10 @@ export default function StepShareSiteForm() {
       description: "",
       tags: [],
       image: {
-        main: "",
+        main: {
+          file: null,
+          preview: null,
+        },
         screenshots: [],
       },
       usageTiming: "",
@@ -315,9 +367,7 @@ export default function StepShareSiteForm() {
   });
 
   const { control, handleSubmit, watch, setValue, trigger } = form;
-  const screenshots = watch("image.screenshots");
   const tags = watch("tags");
-  const mainImage = watch("image.main");
 
   const onSubmit = (data: ShareFormData) => {
     console.log(data);
@@ -326,17 +376,6 @@ export default function StepShareSiteForm() {
   useEffect(() => {
     setValue("tags", currentTag);
   }, [currentTag]);
-
-  const addScreenshot = () => {
-    setValue("image.screenshots", [...screenshots, ""]);
-  };
-
-  const removeScreenshot = (index: number) => {
-    setValue(
-      "image.screenshots",
-      screenshots.filter((_, i) => i !== index),
-    );
-  };
 
   const handleNext = async () => {
     let fieldsToValidate: any = [];
@@ -375,15 +414,7 @@ export default function StepShareSiteForm() {
           />
         );
       case 2:
-        return (
-          <ImageStep
-            control={control}
-            mainImage={mainImage}
-            screenshots={screenshots}
-            onRemoveScreenshot={removeScreenshot}
-            onAddScreenshot={addScreenshot}
-          />
-        );
+        return <ImageStep control={control} />;
       case 3:
         return <DetailStep control={control} />;
       default:
@@ -417,6 +448,7 @@ export default function StepShareSiteForm() {
 
             {/* Form Content */}
             <div className="min-h-[400px]">{renderStep()}</div>
+            <button type="submit" ref={submitRef} />
           </form>
         </Form>
       </Row>
@@ -443,9 +475,10 @@ export default function StepShareSiteForm() {
 
         {currentStep === 3 ? (
           <Button
-            type="submit"
+            type="button"
             font={"heading4"}
             className="h-[42px] rounded-[4px] px-[20px] font-semibold text-black"
+            onClick={() => submitRef.current?.click()}
           >
             Submit
           </Button>
