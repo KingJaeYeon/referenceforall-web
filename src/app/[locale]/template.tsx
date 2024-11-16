@@ -17,6 +17,10 @@ export default function Template({ children }: { children: React.ReactNode }) {
     path = "search";
   }
 
+  if (pathname.includes("/my/lists")) {
+    path = "my/lists";
+  }
+
   return (
     <motion.div
       key={path}

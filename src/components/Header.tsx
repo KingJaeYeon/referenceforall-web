@@ -13,8 +13,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
-import Text from "@/components/Layout/Text";
-import { useState } from "react";
+
 export default function Header() {
   return (
     <>
@@ -56,7 +55,7 @@ function MobileMenu() {
               공유하기
             </Link>
             <Link
-              href="/library"
+              href="/my/lists"
               className="rounded-lg p-3 transition-colors hover:bg-gray-100"
             >
               관심목록
@@ -110,7 +109,7 @@ function DesktopMenu() {
           공유하기
         </Link>
         <Link
-          href={"/library"}
+          href={"/my/lists"}
           className={cn(
             buttonVariants({
               variant: "ghost",

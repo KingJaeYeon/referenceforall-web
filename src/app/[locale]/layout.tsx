@@ -13,6 +13,8 @@ import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { Viewport } from "next";
 import Col from "@/components/Layout/Col";
+import { cookies } from "next/headers";
+import { parsePayload } from "@/util/util";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -44,6 +46,11 @@ export default async function RootLayout({
   // Enable static rendering
   setRequestLocale(locale);
 
+  const cookieStore = cookies();
+  const access = cookieStore.get("Authorization");
+  let user = parsePayload(access?.value);
+  user = { id: "cm3ifq9yr0001adx98mojy0lp", accountId: "wodus331" };
+
   const messages = await getMessages();
   return (
     <html lang={locale}>
@@ -51,7 +58,7 @@ export default async function RootLayout({
         className={`${pretendard.variable} ${notoSansKR.className} bg-background text-foreground`}
       >
         <NextIntlClientProvider messages={messages}>
-          <SystemProvider>
+          <SystemProvider user={user}>
             <QueryProvider>
               <Col className={"h-full min-h-[100dvh]"}>
                 <Toaster />

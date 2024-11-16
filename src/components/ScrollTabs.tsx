@@ -6,11 +6,16 @@ import React, { useEffect, useRef, useState } from "react";
 import { Link, usePathname } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
 
+export interface Tab {
+  label: string;
+  url: string;
+}
+
 export default function ScrollTabs({
   tabs,
   query,
 }: {
-  tabs: { label: string; url: string }[];
+  tabs: Tab[];
   query?: string;
 }) {
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
@@ -72,8 +77,9 @@ export default function ScrollTabs({
       >
         {tabs.map((tab) => {
           const { label, url } = tab;
+          const href = query ? `${url}?q=${query}` : url;
           return (
-            <LinkButton href={`${url}?q=${query}`} lastPath={url} key={label}>
+            <LinkButton href={href} lastPath={url} key={label}>
               {label}
             </LinkButton>
           );

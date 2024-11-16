@@ -3,7 +3,7 @@ import Col from "@/components/Layout/Col";
 import Text from "@/components/Layout/Text";
 import { SearchInput } from "@/app/[locale]/search/_component/SearchInput";
 import React from "react";
-import ScrollTabs from "@/app/[locale]/search/[subject]/_component/ScrollTabs";
+import ScrollTabs, { Tab } from "@/components/ScrollTabs";
 import TabContent from "@/app/[locale]/search/[subject]/_component/TabContent";
 import NavContent from "@/app/[locale]/search/[subject]/_component/NavContent";
 import { randomUUID } from "node:crypto";
@@ -123,7 +123,7 @@ export default async function Page({
   const subject = decodeURI(params.subject);
   const searchParams = await _searchParams;
 
-  const paths = [
+  const paths: Tab[] = [
     { url: `/search/sites`, label: "Sites" },
     { url: `/search/tags`, label: "Tags" },
   ];
