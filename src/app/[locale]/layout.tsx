@@ -12,6 +12,7 @@ import { routing } from "@/i18n/routing";
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { Viewport } from "next";
+import Col from "@/components/Layout/Col";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -47,14 +48,16 @@ export default async function RootLayout({
   return (
     <html lang={locale}>
       <body
-        className={`${pretendard.variable} ${notoSansKR.className} min-h-[100dvh] bg-background text-foreground`}
+        className={`${pretendard.variable} ${notoSansKR.className} bg-background text-foreground`}
       >
         <NextIntlClientProvider messages={messages}>
           <SystemProvider>
             <QueryProvider>
-              <Toaster />
-              <Header />
-              {children}
+              <Col className={"h-full min-h-[100dvh]"}>
+                <Toaster />
+                <Header />
+                {children}
+              </Col>
             </QueryProvider>
           </SystemProvider>
         </NextIntlClientProvider>

@@ -30,7 +30,7 @@ import { cn } from "@/lib/utils";
 
 const BasicInfoStep = ({ control, currentTag, setCurrentTag }: any) => {
   return (
-    <Col className="gap-[20px] pb-[50px] sm:h-[600px] sm:pb-0 md:gap-[28px]">
+    <Col className="gap-[20px] pb-[50px] sm:pb-0 md:gap-[28px]">
       <FormField
         control={control}
         name="link"
@@ -390,31 +390,34 @@ export default function StepShareSiteForm() {
   };
   return (
     <>
-      <Form {...form}>
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className="mx-auto max-w-[780px] p-4 pb-[24px] md:pt-[48px] lg:px-0"
-        >
-          {/* Step Indicator와 타이틀 */}
-          <Col className={"pb-[24px] md:pb-[40px]"}>
-            <h2 className="body7 pb-[16px] text-gray-400 md:pb-[24px]">
-              STEP {currentStep} / 3
-            </h2>
-            <h1 className="heading1 text-[28px] font-semibold md:text-[32px]">
-              {currentStep === 1 && "사이트의 기본 정보를 입력해주세요"}
-              {currentStep === 2 && "사이트의 이미지를 등록해주세요"}
-              {currentStep === 3 && "사이트의 상세 정보를 입력해주세요"}
-            </h1>
-            <Text className="body3 pt-[8px] text-gray-600 md:pt-[12px]">
-              공유하고 싶은 사이트의 정보를 입력해주세요. 관리자 확인 후
-              게시됩니다.
-            </Text>
-          </Col>
+      <Row
+        className={
+          "mx-auto w-full max-w-[780px] flex-1 p-4 pb-[24px] md:pt-[48px] lg:px-0"
+        }
+      >
+        <Form {...form}>
+          <form onSubmit={handleSubmit(onSubmit)} className="w-full">
+            {/* Step Indicator와 타이틀 */}
+            <Col className={"pb-[24px] md:pb-[40px]"}>
+              <h2 className="body7 pb-[16px] text-gray-400 md:pb-[24px]">
+                STEP {currentStep} / 3
+              </h2>
+              <h1 className="heading1 text-[28px] font-semibold md:text-[32px]">
+                {currentStep === 1 && "사이트의 기본 정보를 입력해주세요"}
+                {currentStep === 2 && "사이트의 이미지를 등록해주세요"}
+                {currentStep === 3 && "사이트의 상세 정보를 입력해주세요"}
+              </h1>
+              <Text className="body3 pt-[8px] text-gray-600 md:pt-[12px]">
+                공유하고 싶은 사이트의 정보를 입력해주세요. 관리자 확인 후
+                게시됩니다.
+              </Text>
+            </Col>
 
-          {/* Form Content */}
-          <div className="min-h-[400px]">{renderStep()}</div>
-        </form>
-      </Form>
+            {/* Form Content */}
+            <div className="min-h-[400px]">{renderStep()}</div>
+          </form>
+        </Form>
+      </Row>
       {/* Navigation */}
       <Row
         className={cn(

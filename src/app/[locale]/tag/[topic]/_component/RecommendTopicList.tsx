@@ -101,7 +101,7 @@ export default function RecommendTopicList() {
               variant={"default"}
               onClick={handleScrollLeft}
               aria-label="Scroll Left"
-              className={"px-0 sm:px-3"}
+              className={"px-0 sm:pr-3"}
             >
               <IconChevronLeft />
             </Button>
@@ -117,7 +117,7 @@ export default function RecommendTopicList() {
               variant={"default"}
               onClick={handleScrollRight}
               aria-label="Scroll Right"
-              className={"px-0 sm:px-3"}
+              className={"px-0 sm:pl-3"}
             >
               <IconChevronRight />
             </Button>
