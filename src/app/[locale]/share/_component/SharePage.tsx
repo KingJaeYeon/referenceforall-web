@@ -99,6 +99,9 @@ const BasicInfoStep = ({ control, currentTag, setCurrentTag }: any) => {
           <FormItem>
             <Label font={"heading4"} className={"font-medium"}>
               태그
+              <span className={"body3 ml-[6px] font-light text-gray-400"}>
+                Up to 1
+              </span>
             </Label>
             <FormControl>
               <TagSelector
@@ -225,48 +228,47 @@ const ImageStep = ({
 };
 const DetailStep = ({ control }: any) => {
   return (
-    <Col className="gap-[20px] pb-[50px] sm:h-[600px] sm:pb-0 md:gap-[28px]">
-      <CardHeader>
-        <CardTitle>상세 정보</CardTitle>
-        <CardDescription>사이트의 상세 정보를 입력해주세요.</CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-6">
-        <FormField
-          control={control}
-          name="usageTiming"
-          render={({ field }) => (
-            <FormItem>
-              <Label>사용 시나리오</Label>
-              <FormControl>
-                <Textarea
-                  placeholder="사이트의 사용 시나리오를 입력해주세요"
-                  className="min-h-[100px] resize-none"
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        <FormField
-          control={control}
-          name="features"
-          render={({ field }) => (
-            <FormItem>
-              <Label>주요 기능</Label>
-              <FormControl>
-                <Textarea
-                  placeholder="사이트의 주요 기능을 입력해주세요"
-                  className="min-h-[100px] resize-none"
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-      </CardContent>
+    <Col className="gap-[20px] pb-[50px] sm:pb-0 md:gap-[28px]">
+      <FormField
+        control={control}
+        name="usageTiming"
+        render={({ field }) => (
+          <FormItem>
+            <Label font={"heading4"} className={"font-medium"}>
+              사용 시나리오
+              <span className={"body3 ml-[6px] text-gray-400"}>Optional</span>
+            </Label>
+            <FormControl>
+              <Textarea
+                placeholder="사이트의 사용 시나리오를 입력해주세요"
+                className="mt-[8px] min-h-[100px] resize-none rounded-[3px] px-3"
+                {...field}
+              />
+            </FormControl>
+            <FormMessage font={"body5"} className={"pt-2 font-light"} />
+          </FormItem>
+        )}
+      />
+      <FormField
+        control={control}
+        name="features"
+        render={({ field }) => (
+          <FormItem>
+            <Label font={"heading4"} className={"font-medium"}>
+              주요 기능
+              <span className={"body3 ml-[6px] text-gray-400"}>Optional</span>
+            </Label>
+            <FormControl>
+              <Textarea
+                placeholder="사이트의 주요 기능을 입력해주세요"
+                className="mt-[8px] min-h-[100px] resize-none rounded-[3px] px-3"
+                {...field}
+              />
+            </FormControl>
+            <FormMessage font={"body5"} className={"pt-2 font-light"} />
+          </FormItem>
+        )}
+      />
     </Col>
   );
 };

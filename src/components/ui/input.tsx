@@ -33,7 +33,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     },
     ref,
   ) => {
-    const customFont = utilFont(font, () => "body6 placeholder:body6");
+    const customFont = utilFont(font, () => "body5 placeholder:body5");
     return (
       <div
         className={cn(
