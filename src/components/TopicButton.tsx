@@ -25,7 +25,7 @@ export default function TopicButton({
     <Button
       font={font}
       className={cn(
-        "mr-3 w-fit px-4 capitalize tb:mr-6",
+        "mr-3 w-fit px-4 capitalize md:mr-6",
         className,
         lastURL === lastPath && "border border-gray-900",
       )}

@@ -37,7 +37,7 @@ export function DesktopMain(props: {
                 href={`/tag/${tag}`}
                 lastPath={tag}
                 key={tag}
-                className={"mr-0 h-fit px-2 py-[0.5px] tb:mr-0"}
+                className={"mr-0 h-fit px-2 py-[0.5px] md:mr-0"}
                 font={"body7"}
               >
                 {tag}

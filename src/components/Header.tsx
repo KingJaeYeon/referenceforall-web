@@ -76,28 +76,6 @@ function MobileMenu() {
   );
 }
 
-// function SelectLanguage() {
-//   const [selectedLang, setSelectedLang] = useState("ko");
-//   const languages = ["ko", "jp", "en"];
-//
-//   return (
-//     <div className="mt-4 flex items-center gap-2">
-//       <label className="text-sm font-medium">언어 선택:</label>
-//       <select
-//         value={selectedLang}
-//         onChange={(e) => setSelectedLang(e.target.value)}
-//         className="rounded-md border border-gray-300 p-1"
-//       >
-//         {languages.map((lang) => (
-//           <option key={lang} value={lang}>
-//             {lang}
-//           </option>
-//         ))}
-//       </select>
-//     </div>
-//   );
-// }
-
 function DesktopMenu() {
   return (
     <header

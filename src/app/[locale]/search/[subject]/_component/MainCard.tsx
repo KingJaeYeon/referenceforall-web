@@ -26,14 +26,14 @@ export function SiteCard(props: {
         <Row className={"flex flex-wrap"}>
           <Row className={"w-full"}>
             <Col className={"w-full"}>
-              <h2 className={"heading2 tb:heading1 ellipsisLine2 max-h-[90px]"}>
+              <h2 className={"heading2 md:heading1 ellipsisLine2 max-h-[90px]"}>
                 {site.name}
               </h2>
 
               <Row className={"pt-[8px]"}>
                 <h3
                   className={
-                    "body4 tb:body3 ellipsisLine2 max-h-[40px] text-gray-500"
+                    "body4 md:body3 ellipsisLine2 max-h-[40px] text-gray-500"
                   }
                 >
                   {site.description}
@@ -41,7 +41,7 @@ export function SiteCard(props: {
               </Row>
               <Row
                 className={
-                  "mt-[10px] hidden h-[48px] max-w-[512px] items-center justify-between tb:flex"
+                  "mt-[10px] hidden h-[48px] max-w-[512px] items-center justify-between md:flex"
                 }
               >
                 <Row className={"gap-[16px] text-gray-500"}>
@@ -66,8 +66,8 @@ export function SiteCard(props: {
               </Row>
             </Col>
             {!!site.imageUrl && (
-              <div className={"ml-[24px] tb:ml-[56px]"}>
-                <div className={"hidden tb:block"}>
+              <div className={"ml-[24px] md:ml-[56px]"}>
+                <div className={"hidden md:block"}>
                   <img
                     alt={site.name}
                     className={"overflow-clip rounded-[2px] align-middle"}
@@ -81,7 +81,7 @@ export function SiteCard(props: {
                     }}
                   />
                 </div>
-                <div className={"block tb:hidden"}>
+                <div className={"block md:hidden"}>
                   <img
                     alt={site.name}
                     className={"overflow-clip rounded-[2px] align-middle"}
@@ -100,7 +100,7 @@ export function SiteCard(props: {
           </Row>
           <Row
             className={
-              "mt-[12px] flex h-[48px] w-full items-center justify-between text-gray-500 tb:hidden"
+              "mt-[12px] flex h-[48px] w-full items-center justify-between text-gray-500 md:hidden"
             }
           >
             <Row className={"gap-[16px]"}>

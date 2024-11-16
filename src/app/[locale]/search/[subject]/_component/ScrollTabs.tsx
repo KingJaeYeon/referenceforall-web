@@ -60,7 +60,7 @@ export default function ScrollTabs({
   return (
     <Row
       className={
-        "relative mb-[38px] border-b border-gray-200 mb:mt-[12px] tb:mb-[46px] tb:mt-[22px]"
+        "relative mb-[38px] border-b border-gray-200 sm:mt-[12px] md:mb-[46px] md:mt-[22px]"
       }
     >
       <Row
@@ -82,7 +82,7 @@ export default function ScrollTabs({
         {canScrollLeft && (
           <Row
             className={
-              "scroller-x-left absolute bottom-[1px] left-0 pr-[30px] duration-100 mb:pr-[42px]"
+              "scroller-x-left absolute bottom-[1px] left-0 pr-[30px] duration-100 sm:pr-[42px]"
             }
           >
             <Button
@@ -98,7 +98,7 @@ export default function ScrollTabs({
         {canScrollRight && (
           <Row
             className={
-              "scroller-x-right absolute bottom-[1px] right-0 pl-[30px] duration-100 mb:pl-[42px]"
+              "scroller-x-right absolute bottom-[1px] right-0 pl-[30px] duration-100 sm:pl-[42px]"
             }
           >
             <Button
@@ -129,7 +129,7 @@ function LinkButton({
   return (
     <Link
       className={cn(
-        "body5 mr-[32px] w-fit pb-[16px] capitalize tb:mr-6",
+        "body5 mr-[32px] w-fit pb-[16px] capitalize md:mr-6",
         pathname === lastPath && "border-b border-gray-900",
       )}
       href={href}

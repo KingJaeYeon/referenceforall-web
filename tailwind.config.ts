@@ -11,9 +11,9 @@ const config: Config = {
   theme: {
     extend: {
       screens: {
-        mb: "481px",
-        tb: "769px",
-        dt: "1280px",
+        sm: "481px",
+        md: "769px",
+        lg: "1280px",
       },
       fontFamily: {
         pretendard: ["var(--font-pretendard)", "sans-serif"],

@@ -30,7 +30,7 @@ import { cn } from "@/lib/utils";
 
 const BasicInfoStep = ({ control, currentTag, setCurrentTag }: any) => {
   return (
-    <Col className="gap-[20px] pb-[50px] sm:h-[600px] sm:pb-0 tb:gap-[28px]">
+    <Col className="gap-[20px] pb-[50px] sm:h-[600px] sm:pb-0 md:gap-[28px]">
       <FormField
         control={control}
         name="link"
@@ -158,72 +158,74 @@ const ImageStep = ({
   onAddScreenshot,
 }: any) => {
   return (
-    <Card className="mx-auto max-w-[780px]">
-      <CardHeader>
-        <CardTitle>Property photos</CardTitle>
-        <CardDescription>
-          You need 5 photos to start. You can add more later.
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="grid grid-cols-2 gap-4">
-        <div>
-          <p className="text-base font-medium">Main photo</p>
-          <Controller
-            control={control}
-            name="image.main"
-            render={({ field }) => (
-              <div className="space-y-2">
-                <ImagePreview
-                  imageUrl={field.value}
-                  onRemove={() => field.onChange("")}
-                  index={-1}
+    <Col className="gap-[20px] pb-[50px] sm:h-[600px] sm:pb-0 md:gap-[28px]">
+      <Card className="mx-auto max-w-[780px]">
+        <CardHeader>
+          <CardTitle>Property photos</CardTitle>
+          <CardDescription>
+            You need 5 photos to start. You can add more later.
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="grid grid-cols-2 gap-4">
+          <div>
+            <p className="text-base font-medium">Main photo</p>
+            <Controller
+              control={control}
+              name="image.main"
+              render={({ field }) => (
+                <div className="space-y-2">
+                  <ImagePreview
+                    imageUrl={field.value}
+                    onRemove={() => field.onChange("")}
+                    index={-1}
+                  />
+                  <Input placeholder="Enter main photo URL" {...field} />
+                </div>
+              )}
+            />
+          </div>
+          <div className="space-y-4">
+            <p className="text-base font-medium">Screenshots</p>
+            {screenshots.map((_: any, index: number) => (
+              <div key={index} className="space-y-2">
+                <Controller
+                  control={control}
+                  name={`image.screenshots.${index}`}
+                  render={({ field }) => (
+                    <div>
+                      <ImagePreview
+                        imageUrl={field.value}
+                        onRemove={() => onRemoveScreenshot(index)}
+                        index={index}
+                      />
+                      <Input
+                        placeholder={`Enter screenshot ${index + 1} URL`}
+                        {...field}
+                      />
+                    </div>
+                  )}
                 />
-                <Input placeholder="Enter main photo URL" {...field} />
               </div>
+            ))}
+            {screenshots.length < 5 && (
+              <Button
+                type="button"
+                variant="outline"
+                onClick={onAddScreenshot}
+                className="w-full"
+              >
+                <Plus className="mr-2 h-4 w-4" /> Add photo
+              </Button>
             )}
-          />
-        </div>
-        <div className="space-y-4">
-          <p className="text-base font-medium">Screenshots</p>
-          {screenshots.map((_: any, index: number) => (
-            <div key={index} className="space-y-2">
-              <Controller
-                control={control}
-                name={`image.screenshots.${index}`}
-                render={({ field }) => (
-                  <div>
-                    <ImagePreview
-                      imageUrl={field.value}
-                      onRemove={() => onRemoveScreenshot(index)}
-                      index={index}
-                    />
-                    <Input
-                      placeholder={`Enter screenshot ${index + 1} URL`}
-                      {...field}
-                    />
-                  </div>
-                )}
-              />
-            </div>
-          ))}
-          {screenshots.length < 5 && (
-            <Button
-              type="button"
-              variant="outline"
-              onClick={onAddScreenshot}
-              className="w-full"
-            >
-              <Plus className="mr-2 h-4 w-4" /> Add photo
-            </Button>
-          )}
-        </div>
-      </CardContent>
-    </Card>
+          </div>
+        </CardContent>
+      </Card>
+    </Col>
   );
 };
 const DetailStep = ({ control }: any) => {
   return (
-    <div className="mx-auto tb:max-w-[780px]">
+    <Col className="gap-[20px] pb-[50px] sm:h-[600px] sm:pb-0 md:gap-[28px]">
       <CardHeader>
         <CardTitle>상세 정보</CardTitle>
         <CardDescription>사이트의 상세 정보를 입력해주세요.</CardDescription>
@@ -265,7 +267,7 @@ const DetailStep = ({ control }: any) => {
           )}
         />
       </CardContent>
-    </div>
+    </Col>
   );
 };
 
@@ -391,19 +393,19 @@ export default function StepShareSiteForm() {
       <Form {...form}>
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="mx-auto max-w-[780px] p-4 pb-[24px] tb:pt-[48px] dt:px-0"
+          className="mx-auto max-w-[780px] p-4 pb-[24px] md:pt-[48px] lg:px-0"
         >
           {/* Step Indicator와 타이틀 */}
-          <Col className={"pb-[24px] tb:pb-[40px]"}>
-            <h2 className="body7 pb-[16px] text-gray-400 tb:pb-[24px]">
+          <Col className={"pb-[24px] md:pb-[40px]"}>
+            <h2 className="body7 pb-[16px] text-gray-400 md:pb-[24px]">
               STEP {currentStep} / 3
             </h2>
-            <h1 className="heading1 text-[28px] font-semibold tb:text-[32px]">
+            <h1 className="heading1 text-[28px] font-semibold md:text-[32px]">
               {currentStep === 1 && "사이트의 기본 정보를 입력해주세요"}
               {currentStep === 2 && "사이트의 이미지를 등록해주세요"}
               {currentStep === 3 && "사이트의 상세 정보를 입력해주세요"}
             </h1>
-            <Text className="body3 pt-[8px] text-gray-600 tb:pt-[12px]">
+            <Text className="body3 pt-[8px] text-gray-600 md:pt-[12px]">
               공유하고 싶은 사이트의 정보를 입력해주세요. 관리자 확인 후
               게시됩니다.
             </Text>
@@ -416,7 +418,7 @@ export default function StepShareSiteForm() {
       {/* Navigation */}
       <Row
         className={cn(
-          "shadow-bottomNav sticky bottom-0 h-[66px] w-full justify-between bg-white px-6 py-3 tb:justify-end",
+          "sticky bottom-0 h-[66px] w-full justify-between bg-white px-6 py-3 shadow-bottomNav md:justify-end",
         )}
       >
         {currentStep > 1 ? (

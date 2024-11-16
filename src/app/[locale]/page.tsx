@@ -10,20 +10,20 @@ export default function Home() {
   return (
     <Main>
       <Contents>
-        <section className="pt-6 tb:pt-16">
+        <section className="pt-6 md:pt-16">
           <Col className="items-center text-center">
-            <h1 className="body3 mb:body1 px-6 text-gray-600">
+            <h1 className="body3 sm:body1 px-6 text-gray-600">
               {t("main_theme")}
             </h1>
-            <Text className="heading1 mt-5 text-gray-900 mb:text-[36px] dt:w-[700px] dt:text-[60px]">
+            <Text className="heading1 mt-5 text-gray-900 sm:text-[36px] lg:w-[700px] lg:text-[60px]">
               {t("main_title")}
             </Text>
 
-            <Col className="mt-9 w-full gap-4 px-8 mb:flex-row mb:items-center mb:justify-center">
+            <Col className="mt-9 w-full gap-4 px-8 sm:flex-row sm:items-center sm:justify-center">
               <Link
                 href="/tag"
                 title=""
-                className="heading3 flex w-full items-center justify-center rounded-xl border-2 border-transparent bg-gray-900 px-8 py-3 text-white transition-all duration-200 hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2 mb:w-auto"
+                className="heading3 flex w-full items-center justify-center rounded-xl border-2 border-transparent bg-gray-900 px-8 py-3 text-white transition-all duration-200 hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2 sm:w-auto"
                 role="button"
               >
                 {t("find_site")}
@@ -32,7 +32,7 @@ export default function Home() {
               <Link
                 href="/share"
                 title=""
-                className="heading3 flex w-full items-center justify-center rounded-xl border-2 border-gray-400 px-6 py-3 text-gray-900 transition-all duration-200 hover:border-gray-900 hover:bg-gray-900 hover:text-white focus:border-gray-900 focus:bg-gray-900 focus:text-white focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2 mb:w-auto"
+                className="heading3 flex w-full items-center justify-center rounded-xl border-2 border-gray-400 px-6 py-3 text-gray-900 transition-all duration-200 hover:border-gray-900 hover:bg-gray-900 hover:text-white focus:border-gray-900 focus:bg-gray-900 focus:text-white focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2 sm:w-auto"
                 role="button"
               >
                 <svg
@@ -63,7 +63,7 @@ export default function Home() {
             <div className="relative">
               <div className="absolute inset-0 h-2/3"></div>
               <div className="relative mx-auto">
-                <div className="dt:mx-auto dt:max-w-6xl">
+                <div className="lg:mx-auto lg:max-w-6xl">
                   <img
                     className="max-w-full scale-110 transform"
                     src="https://cdn.rareblocks.xyz/collection/clarity/images/hero/2/illustration.png"

@@ -47,7 +47,7 @@ export function AddTopicPopup({ children }: { children: React.ReactNode }) {
       <DialogTrigger asChild className={"w-[80px]"}>
         {children}
       </DialogTrigger>
-      <DialogContent className="tb:max-w-[425px]">
+      <DialogContent className="md:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>{t("title_addTopic")}</DialogTitle>
         </DialogHeader>

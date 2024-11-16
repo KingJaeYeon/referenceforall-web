@@ -77,8 +77,8 @@ export default function SearchInput() {
   };
   return (
     <form onSubmit={onSubmit} className={"flex w-full justify-center"}>
-      <Row className="relative my-[24px] min-h-[40px] w-full flex-wrap items-center rounded-full bg-button-secondary text-button-secondary-foreground tb:min-h-[63px] tb:max-w-[680px]">
-        <Search className="mx-[12px] h-[24px] w-[24px] tb:ml-[24px] tb:mr-[16px]" />
+      <Row className="relative my-[24px] min-h-[40px] w-full flex-wrap items-center rounded-full bg-button-secondary text-button-secondary-foreground md:min-h-[63px] md:max-w-[680px]">
+        <Search className="mx-[12px] h-[24px] w-[24px] md:ml-[24px] md:mr-[16px]" />
         <Row className="flex-1">
           <Command
             className={"bg-transparent"}
@@ -96,7 +96,7 @@ export default function SearchInput() {
             {!!data && data?.length > 0 && (
               <CommandList
                 className={
-                  "absolute left-[24px] top-[37px] min-w-[250px] rounded-sm bg-white px-[12px] py-[15px] shadow tb:top-[55px]"
+                  "absolute left-[24px] top-[37px] min-w-[250px] rounded-sm bg-white px-[12px] py-[15px] shadow md:top-[55px]"
                 }
               >
                 {data.map((item) => (

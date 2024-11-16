@@ -47,7 +47,7 @@ export default async function RootLayout({
   return (
     <html lang={locale}>
       <body
-        className={`${pretendard.variable} ${notoSansKR.className} bg-background text-foreground`}
+        className={`${pretendard.variable} ${notoSansKR.className} min-h-[100dvh] bg-background text-foreground`}
       >
         <NextIntlClientProvider messages={messages}>
           <SystemProvider>

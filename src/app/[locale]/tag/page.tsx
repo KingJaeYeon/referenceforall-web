@@ -11,7 +11,7 @@ export default async function Page() {
     <>
       <Text
         className={
-          "heading1 min-h-[30px] font-medium tb:min-h-[52px] tb:text-[42px]"
+          "heading1 min-h-[30px] font-medium md:min-h-[52px] md:text-[42px]"
         }
       >
         {t("explore_topics")}

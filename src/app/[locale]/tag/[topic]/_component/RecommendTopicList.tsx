@@ -71,7 +71,7 @@ export default function RecommendTopicList() {
 
   return (
     <Row
-      className={"relative mb-[38px] mb:mt-[12px] tb:mb-[46px] tb:mt-[22px]"}
+      className={"relative mb-[38px] sm:mt-[12px] md:mb-[46px] md:mt-[22px]"}
     >
       <Row
         ref={scrollContainerRef}
@@ -82,15 +82,11 @@ export default function RecommendTopicList() {
       >
         <TopicButton href={"/tag"} lastPath={"tag"}>
           <IconPlayerExpand />
-          <Text className={"hidden tb:inline"}>Explore topics</Text>
+          <Text className={"hidden md:inline"}>Explore topics</Text>
         </TopicButton>
 
         {recommendTopics.map((topic) => (
-          <TopicButton
-            href={`/tag/${topic}`}
-            lastPath={topic}
-            key={topic}
-          >
+          <TopicButton href={`/tag/${topic}`} lastPath={topic} key={topic}>
             {topic.split("-").join(" ")}
           </TopicButton>
         ))}
@@ -98,14 +94,14 @@ export default function RecommendTopicList() {
         {canScrollLeft && (
           <Row
             className={
-              "scroller-x-left absolute pr-[30px] duration-100 mb:pr-[42px]"
+              "scroller-x-left absolute pr-[30px] duration-100 sm:pr-[42px]"
             }
           >
             <Button
               variant={"default"}
               onClick={handleScrollLeft}
               aria-label="Scroll Left"
-              className={"px-0 mb:px-3"}
+              className={"px-0 sm:px-3"}
             >
               <IconChevronLeft />
             </Button>
@@ -114,14 +110,14 @@ export default function RecommendTopicList() {
         {canScrollRight && (
           <Row
             className={
-              "scroller-x-right absolute right-0 pl-[30px] duration-100 mb:pl-[42px]"
+              "scroller-x-right absolute right-0 pl-[30px] duration-100 sm:pl-[42px]"
             }
           >
             <Button
               variant={"default"}
               onClick={handleScrollRight}
               aria-label="Scroll Right"
-              className={"px-0 mb:px-3"}
+              className={"px-0 sm:px-3"}
             >
               <IconChevronRight />
             </Button>

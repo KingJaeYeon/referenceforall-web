@@ -34,7 +34,7 @@ function TagsContent({ data }: { data: any }) {
             key={id}
             href={`/tag/${value}`}
             lastPath={value}
-            className={"mb-[8px] mr-[18px] tb:mr-[18px]"}
+            className={"mb-[8px] mr-[18px] md:mr-[18px]"}
           >
             {topic.value}
           </TopicButton>

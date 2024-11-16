@@ -67,7 +67,7 @@ function NavTags({ data }: { data: any }) {
             key={item.id}
             href={`/tag/${item.value}`}
             lastPath={item.value}
-            className={"mb-[8px] mr-[18px] tb:mr-[18px]"}
+            className={"mb-[8px] mr-[18px] md:mr-[18px]"}
           >
             {item.value}
           </TopicButton>

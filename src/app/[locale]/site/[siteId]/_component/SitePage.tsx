@@ -66,7 +66,7 @@ export default function SitePage() {
           comments={comments}
         />
       </MediaWrapper>
-      <MediaWrapper type={"mb"} isReverse={false}>
+      <MediaWrapper type={"mb"}>
         <MobileMain
           siteData={siteData}
           isBookmarked={isBookmarked}

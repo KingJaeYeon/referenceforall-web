@@ -138,13 +138,13 @@ export default async function Page({
     <>
       <Col
         className={
-          "mx-0 w-full max-w-[728px] tb:mx-[24px] tb:mb-[48px] tb:mt-[52px]"
+          "mx-0 w-full max-w-[728px] md:mx-[24px] md:mb-[48px] md:mt-[52px]"
         }
       >
-        <Col className={"flex flex-col-reverse tb:flex-col"}>
+        <Col className={"flex flex-col-reverse md:flex-col"}>
           <Text
             className={
-              "ellipsisLine1 heading1 mb-[30px] mt-[24px] min-h-[30px] font-medium text-gray-400 tb:my-0 tb:min-h-[52px] tb:text-[42px]"
+              "ellipsisLine1 heading1 mb-[30px] mt-[24px] min-h-[30px] font-medium text-gray-400 md:my-0 md:min-h-[52px] md:text-[42px]"
             }
           >
             {"Results for "}
