@@ -56,7 +56,7 @@ function MobileMenu() {
               공유하기
             </Link>
             <Link
-              href="/watchlist"
+              href="/library"
               className="rounded-lg p-3 transition-colors hover:bg-gray-100"
             >
               관심목록
@@ -95,7 +95,7 @@ function DesktopMenu() {
             }),
           )}
         >
-          리스트
+          검색하기
         </Link>
         <Link
           href={"/share"}
@@ -110,7 +110,7 @@ function DesktopMenu() {
           공유하기
         </Link>
         <Link
-          href={"/watchlist"}
+          href={"/library"}
           className={cn(
             buttonVariants({
               variant: "ghost",
