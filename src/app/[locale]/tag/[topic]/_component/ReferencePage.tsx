@@ -2,7 +2,7 @@
 
 import Row from "@/components/Layout/Row";
 import { Bookmark, Calendar, Star, Users } from "lucide-react";
-import React from "react";
+import React, { Suspense } from "react";
 import { Link } from "@/i18n/routing";
 
 export default function ReferencePage({ sites }: { sites: any[] }) {
@@ -12,7 +12,9 @@ export default function ReferencePage({ sites }: { sites: any[] }) {
         <div className="grid w-full gap-8 md:grid-cols-2 lg:grid-cols-3">
           {sites.map((site, index) => (
             <Row className={"relative h-auto"} key={index}>
-              <MediumStyleCard site={site} />
+              <Suspense fallback={<div>Loading...</div>}>
+                <MediumStyleCard site={site} />
+              </Suspense>
             </Row>
           ))}
         </div>

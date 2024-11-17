@@ -86,6 +86,7 @@ function DesktopMenu() {
       <Row className={"body5 items-center gap-[6px]"}>
         <Link
           href={"/tag"}
+          role={"link"}
           className={cn(
             buttonVariants({
               variant: "ghost",
@@ -98,6 +99,7 @@ function DesktopMenu() {
         </Link>
         <Link
           href={"/share"}
+          role={"link"}
           className={cn(
             buttonVariants({
               variant: "ghost",
@@ -110,6 +112,7 @@ function DesktopMenu() {
         </Link>
         <Link
           href={"/my/lists"}
+          role={"link"}
           className={cn(
             buttonVariants({
               variant: "ghost",
@@ -122,7 +125,7 @@ function DesktopMenu() {
         </Link>
         <SelectLangModalTrigger />
 
-        <Button variant={"default"} font={"heading6"}>
+        <Button variant={"default"} font={"heading6"} role={"link"}>
           로그인
         </Button>
       </Row>

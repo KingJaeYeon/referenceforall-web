@@ -1,7 +1,25 @@
 import ReferencePage from "@/app/[locale]/tag/[topic]/_component/ReferencePage";
 import { randomUUID } from "node:crypto";
+import React from "react";
 
 export const revalidate = false;
+
+export function generateStaticParams() {
+  return [
+    "technology",
+    "blockchain",
+    "artificial-intelligence",
+    "programming",
+    "machine-learning",
+    "data-science",
+    "defi",
+    "tech",
+    "crypto",
+    "business2",
+    "business1",
+    "business3",
+  ].map((topic) => ({ topic }));
+}
 
 export default async function Page({
   params: _params,

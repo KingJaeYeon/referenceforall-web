@@ -1,9 +1,13 @@
 import Main from "@/components/Layout/Main";
 import Contents from "@/components/Layout/Contents";
 import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/routing";
+import { Link, routing } from "@/i18n/routing";
 import Col from "@/components/Layout/Col";
 import Text from "@/components/Layout/Text";
+
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
 
 export default function Home() {
   const t = useTranslations();
@@ -24,7 +28,7 @@ export default function Home() {
                 href="/tag"
                 title=""
                 className="heading3 flex w-full items-center justify-center rounded-xl border-2 border-transparent bg-gray-900 px-8 py-3 text-white transition-all duration-200 hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2 sm:w-auto"
-                role="button"
+                role="link"
               >
                 {t("find_site")}
               </Link>
@@ -33,7 +37,8 @@ export default function Home() {
                 href="/share"
                 title=""
                 className="heading3 flex w-full items-center justify-center rounded-xl border-2 border-gray-400 px-6 py-3 text-gray-900 transition-all duration-200 hover:border-gray-900 hover:bg-gray-900 hover:text-white focus:border-gray-900 focus:bg-gray-900 focus:text-white focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2 sm:w-auto"
-                role="button"
+                role="link"
+                rel={"preload"}
               >
                 <svg
                   className="mr-2 h-5 w-5"
@@ -68,6 +73,7 @@ export default function Home() {
                     className="max-w-full scale-110 transform"
                     src="https://cdn.rareblocks.xyz/collection/clarity/images/hero/2/illustration.png"
                     alt=""
+                    rel={"preloads"}
                   />
                 </div>
               </div>
