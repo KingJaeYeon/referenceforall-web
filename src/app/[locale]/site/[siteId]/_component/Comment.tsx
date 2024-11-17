@@ -3,7 +3,6 @@ import { Separator } from "@/components/ui/separator";
 import Row from "@/components/Layout/Row";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ThumbsDown, ThumbsUp } from "lucide-react";
-import React from "react";
 
 export function DesktopComment(props: { comments: any }) {
   const { comments } = props;

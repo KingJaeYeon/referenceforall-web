@@ -1,10 +1,10 @@
-import React from "react";
 import { cookies } from "next/headers";
 import { parsePayload } from "@/util/util";
 import { notFound } from "next/navigation";
+import { ReactNode } from "react";
 
 interface Props {
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 export default async function Layout({ children }: Props) {

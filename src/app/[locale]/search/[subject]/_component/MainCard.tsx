@@ -4,7 +4,6 @@ import Col from "@/components/Layout/Col";
 import Text from "@/components/Layout/Text";
 import { utilDate } from "@/lib/dateFormat";
 import { Bookmark, Eye, MessageCircle } from "lucide-react";
-import React from "react";
 import { useLocale } from "use-intl";
 import { IconDropDownDown } from "@/assets/svg";
 import { cn } from "@/lib/utils";

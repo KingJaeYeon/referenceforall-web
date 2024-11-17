@@ -6,7 +6,7 @@ import {
   IconChevronRight,
   IconPlayerExpand,
 } from "@/assets/svg";
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Text from "@/components/Layout/Text";
 import TopicButton from "@/components/TopicButton";
 

@@ -1,11 +1,11 @@
-import React from "react";
+import { ReactNode } from "react";
 import { Header } from "@/app/[locale]/tag/[topic]/_component/Header";
 
 export default async function Layout({
   children,
   params: _params,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   params: Promise<{ topic: string }>;
 }) {
   const params = await _params;

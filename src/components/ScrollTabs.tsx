@@ -2,7 +2,7 @@
 import Row from "@/components/Layout/Row";
 import { Button } from "@/components/ui/button";
 import { IconChevronLeft, IconChevronRight } from "@/assets/svg";
-import React, { useEffect, useRef, useState } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
 import { Link, usePathname } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
 
@@ -127,7 +127,7 @@ function LinkButton({
   href,
   lastPath,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   href: string;
   lastPath: string;
 }) {

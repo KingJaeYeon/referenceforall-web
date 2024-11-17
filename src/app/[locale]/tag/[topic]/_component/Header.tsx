@@ -3,7 +3,7 @@ import Text from "@/components/Layout/Text";
 import Row from "@/components/Layout/Row";
 import { Button } from "@/components/ui/button";
 import { IconPlus } from "@/assets/svg";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { AddTopicPopup } from "@/app/[locale]/tag/[topic]/_component/AddTopicPopup";
 import { useSearchParams } from "next/navigation";

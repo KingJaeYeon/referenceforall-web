@@ -1,10 +1,10 @@
 "use client";
 
 import useWindowSize from "@/hook/useWindowSize";
-import React from "react";
+import { ReactNode } from "react";
 
 type Props = {
-  children: React.ReactNode | React.ReactNode[];
+  children: ReactNode | ReactNode[];
   type: "dt" | "tb" | "mb";
   isReverse?: boolean; // New prop to handle reverse logic
 };

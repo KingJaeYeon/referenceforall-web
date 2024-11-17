@@ -1,4 +1,3 @@
-import React from "react";
 import ScrollTabs, { Tab } from "@/components/ScrollTabs";
 import Col from "@/components/Layout/Col";
 import Text from "@/components/Layout/Text";

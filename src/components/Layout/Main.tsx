@@ -1,8 +1,8 @@
-import React, { ComponentProps, forwardRef } from "react";
+import { ComponentProps, forwardRef, ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 type Props = {
-  children?: React.ReactNode | React.ReactNode[];
+  children?: ReactNode | ReactNode[];
   className?: string;
 } & ComponentProps<"div">;
 

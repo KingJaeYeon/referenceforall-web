@@ -4,7 +4,6 @@ import TopicButton from "@/components/TopicButton";
 import Row from "@/components/Layout/Row";
 import Text from "@/components/Layout/Text";
 import { IconDropDownDown } from "@/assets/svg";
-import React from "react";
 import { SiteCard } from "@/app/[locale]/search/[subject]/_component/MainCard";
 import { useTranslations } from "next-intl";
 

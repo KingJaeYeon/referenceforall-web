@@ -1,5 +1,4 @@
 import ReferencePage from "@/app/[locale]/tag/[topic]/_component/ReferencePage";
-import React from "react";
 
 export const revalidate = false;
 

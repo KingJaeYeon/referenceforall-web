@@ -2,7 +2,6 @@ import { redirect } from "@/i18n/routing";
 import Col from "@/components/Layout/Col";
 import Text from "@/components/Layout/Text";
 import { SearchInput } from "@/app/[locale]/search/_component/SearchInput";
-import React from "react";
 import ScrollTabs, { Tab } from "@/components/ScrollTabs";
 import TabContent from "@/app/[locale]/search/[subject]/_component/TabContent";
 import NavContent from "@/app/[locale]/search/[subject]/_component/NavContent";

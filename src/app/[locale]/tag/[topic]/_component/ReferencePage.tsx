@@ -2,7 +2,7 @@
 
 import Row from "@/components/Layout/Row";
 import { Bookmark, Calendar, Star, Users } from "lucide-react";
-import React, { Suspense } from "react";
+import { Suspense } from "react";
 import { Link } from "@/i18n/routing";
 
 export default function ReferencePage({ sites }: { sites: any[] }) {

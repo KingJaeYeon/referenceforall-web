@@ -1,9 +1,7 @@
 "use client";
-import React from "react";
 import Link from "next/link";
 import Google from "@/assets/Google";
 import { useTranslations } from "next-intl";
-import Image from "next/image";
 
 export default function Logo() {
   const t = useTranslations();

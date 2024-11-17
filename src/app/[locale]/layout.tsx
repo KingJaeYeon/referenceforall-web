@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "@/app/globals.css";
 import { Toaster } from "@/components/ui/sonner";
-import React from "react";
+import { ReactNode } from "react";
 import { notoSansKR, pretendard } from "@/app/fonts/fonts";
 import Header from "@/components/Header";
 import SystemProvider from "@/provider/SystemProvider";
@@ -33,7 +33,7 @@ export default async function RootLayout({
   children,
   params: { locale },
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
   params: { locale: string };
 }>) {
   if (!routing.locales.includes(locale as any)) {

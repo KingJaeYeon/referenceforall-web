@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Row from "@/components/Layout/Row";
@@ -10,7 +10,7 @@ import { useTranslations } from "next-intl";
 export default function RecentSearchList() {
   const recentSearches = localStorage.getItem("recent_searches");
   const t = useTranslations();
-  const [list, setList] = React.useState<string[]>([]);
+  const [list, setList] = useState<string[]>([]);
 
   useEffect(() => {
     setList(JSON.parse(recentSearches ?? "[]"));

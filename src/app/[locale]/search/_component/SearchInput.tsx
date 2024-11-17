@@ -1,7 +1,7 @@
 "use client";
 import Row from "@/components/Layout/Row";
 import { IconSearch2 } from "@/assets/svg";
-import React, { useEffect } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { useRouter } from "@/i18n/routing";
 import { useSearchParams } from "next/navigation";
 
@@ -9,9 +9,9 @@ export function SearchInput({ subject = "tags" }: { subject?: string }) {
   const { push } = useRouter();
   const searchParams = useSearchParams();
   const recentSearches = localStorage.getItem("recent_searches");
-  const [value, setValue] = React.useState("");
+  const [value, setValue] = useState("");
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!value || !value.trim()) {
       return push("/search");

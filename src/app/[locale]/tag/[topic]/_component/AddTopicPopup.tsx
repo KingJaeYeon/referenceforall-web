@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { ReactNode, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import useUrlParams from "@/hook/useUrlParams";
 import { useTranslations } from "next-intl";
@@ -18,7 +18,7 @@ import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
 
-export function AddTopicPopup({ children }: { children: React.ReactNode }) {
+export function AddTopicPopup({ children }: { children: ReactNode }) {
   const searchParams = useSearchParams();
   const { updateUrlParams } = useUrlParams();
   const t = useTranslations();

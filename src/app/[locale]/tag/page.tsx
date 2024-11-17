@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import { Suspense } from "react";
 import Text from "@/components/Layout/Text";
 import SearchInput from "@/app/[locale]/tag/[topic]/_component/SearchInput";
 import Row from "@/components/Layout/Row";

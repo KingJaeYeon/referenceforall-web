@@ -1,4 +1,3 @@
-import React from "react";
 import Text from "@/components/Layout/Text";
 import Col from "@/components/Layout/Col";
 import { SearchInput } from "@/app/[locale]/search/_component/SearchInput";

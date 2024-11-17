@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import { ReactNode } from "react";
 import { usePathname, useRouter } from "@/i18n/routing";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -12,7 +12,7 @@ export default function TopicButton({
   className,
   font = "body4",
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   href: string;
   lastPath: string;
   className?: string;

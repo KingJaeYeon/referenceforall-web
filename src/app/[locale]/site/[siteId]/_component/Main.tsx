@@ -12,7 +12,6 @@ import {
 import { Separator } from "@/components/ui/separator";
 import Col from "@/components/Layout/Col";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import React from "react";
 import {
   DesktopComment,
   MobileComment,

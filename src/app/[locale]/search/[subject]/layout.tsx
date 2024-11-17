@@ -1,8 +1,8 @@
-import React from "react";
 import Main from "@/components/Layout/Main";
 import Contents from "@/components/Layout/Contents";
 import { Viewport } from "next";
 import Row from "@/components/Layout/Row";
+import { ReactNode } from "react";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -11,11 +11,7 @@ export const viewport: Viewport = {
   userScalable: false,
 };
 
-export default async function Layout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default async function Layout({ children }: { children: ReactNode }) {
   return (
     <Main>
       <Contents>

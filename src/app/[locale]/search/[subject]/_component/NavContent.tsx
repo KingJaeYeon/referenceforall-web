@@ -1,7 +1,6 @@
 "use client";
 import Text from "@/components/Layout/Text";
 import Col from "@/components/Layout/Col";
-import React from "react";
 import TopicButton from "@/components/TopicButton";
 import Row from "@/components/Layout/Row";
 import { Link } from "@/i18n/routing";
