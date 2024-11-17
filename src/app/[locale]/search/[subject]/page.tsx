@@ -14,7 +14,7 @@ export function generateStaticParams() {
 }
 
 interface PageProps {
-  params: { subject: string; locale: string };
+  params: Promise<{ subject: string; locale: string }>;
   searchParams: Promise<{ [key: string]: string | undefined }>;
 }
 
@@ -115,12 +115,10 @@ const getTempData = (subject: string) => {
   }
 };
 
-export default async function Page({
-  params,
-  searchParams: _searchParams,
-}: PageProps) {
+export default async function Page(props: PageProps) {
+  const params = await props.params;
   const subject = decodeURI(params.subject);
-  const searchParams = await _searchParams;
+  const searchParams = await props.searchParams;
 
   const paths: Tab[] = [
     { url: `/search/sites`, label: "Sites" },

@@ -29,13 +29,18 @@ export const metadata: Metadata = {
   description: "ReferenceForAll",
 };
 
-export default async function RootLayout({
-  children,
-  params: { locale },
-}: Readonly<{
-  children: ReactNode;
-  params: { locale: string };
-}>) {
+export default async function RootLayout(
+  props: Readonly<{
+    children: ReactNode;
+    params: { locale: string };
+  }>,
+) {
+  const params = await props.params;
+
+  const { locale } = params;
+
+  const { children } = props;
+
   if (!routing.locales.includes(locale as any)) {
     notFound();
   }
@@ -43,7 +48,7 @@ export default async function RootLayout({
   // Enable static rendering
   setRequestLocale(locale);
 
-  const cookieStore = cookies();
+  const cookieStore = await cookies();
   const access = cookieStore.get("Authorization");
   let user = parsePayload(access?.value);
   user = { id: "cm3ifq9yr0001adx98mojy0lp", accountId: "wodus331" };

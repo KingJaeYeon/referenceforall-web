@@ -8,7 +8,7 @@ interface Props {
 }
 
 export default async function Layout({ children }: Props) {
-  const cookieStore = cookies();
+  const cookieStore = await cookies();
   const access = cookieStore.get("Authorization");
   let user = parsePayload(access?.value);
   user = { id: "cm3ifq9yr0001adx98mojy0lp", accountId: "wodus331" };
