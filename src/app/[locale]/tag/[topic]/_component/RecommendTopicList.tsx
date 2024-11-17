@@ -11,7 +11,7 @@ import Text from "@/components/Layout/Text";
 import TopicButton from "@/components/TopicButton";
 
 export default function RecommendTopicList() {
-  const scrollContainerRef = useRef<HTMLDivElement | null>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
 

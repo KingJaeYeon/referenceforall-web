@@ -18,7 +18,7 @@ export default function ScrollTabs({
   tabs: Tab[];
   query?: string;
 }) {
-  const scrollContainerRef = useRef<HTMLDivElement | null>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
 

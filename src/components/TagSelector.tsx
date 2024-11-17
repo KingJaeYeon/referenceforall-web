@@ -54,8 +54,8 @@ export default function TagSelector({
   const debounce = useDebounce(inputValue);
   const [isPlaceholderVisible, setIsPlaceholderVisible] = useState(true);
   const [commandValue, setCommandValue] = useState("");
-  const inputRef = useRef<HTMLInputElement | null>(null);
-  const containerRef = useRef<HTMLDivElement | null>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const { data, isLoading } = useQuery({
     queryFn: () => searchTopics(debounce),

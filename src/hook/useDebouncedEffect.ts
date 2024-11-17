@@ -4,8 +4,8 @@ type Effect = () => void | (() => void | undefined);
 
 function useDebouncedEffect(effect: Effect, delay: number, deps: any[] = []) {
   const effectRef = useRef<Effect>(effect);
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const cleanupRef = useRef<void | (() => void | undefined)>();
+  const timeoutRef = useRef<NodeJS.Timeout>(null);
+  const cleanupRef = useRef<void | (() => void)>(null);
 
   // 최신의 effect를 항상 참조하도록 업데이트
   useEffect(() => {
