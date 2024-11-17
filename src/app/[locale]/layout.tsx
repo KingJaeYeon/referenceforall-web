@@ -15,6 +15,7 @@ import { Viewport } from "next";
 import Col from "@/components/Layout/Col";
 import { cookies } from "next/headers";
 import { parsePayload } from "@/util/util";
+import GlobalModal from "@/components/modal/GlobalModal";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -64,6 +65,7 @@ export default async function RootLayout({
                 <Toaster />
                 <Header />
                 {children}
+                <GlobalModal />
               </Col>
             </QueryProvider>
           </SystemProvider>

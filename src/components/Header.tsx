@@ -3,7 +3,6 @@ import Row from "@/components/Layout/Row";
 import Logo from "@/components/Logo";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import SelectLangModal from "@/components/SelectLangModal";
 import { Link } from "@/i18n/routing";
 import {
   Sheet,
@@ -13,6 +12,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
+import { SelectLangModalTrigger } from "@/components/modal/SelectLangModal";
 
 export default function Header() {
   return (
@@ -61,7 +61,7 @@ function MobileMenu() {
               관심목록
             </Link>
             <div className="p-3">
-              <SelectLangModal />
+              <SelectLangModalTrigger />
             </div>
             <div className="mt-4">
               <Button className="w-full" variant="default">
@@ -120,7 +120,7 @@ function DesktopMenu() {
         >
           관심목록
         </Link>
-        <SelectLangModal />
+        <SelectLangModalTrigger />
 
         <Button variant={"default"} font={"heading6"}>
           로그인
