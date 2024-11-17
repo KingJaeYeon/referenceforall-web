@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState } from "react";
+import { HTMLAttributes, useEffect, useRef, useState } from "react";
 import Row from "@/components/Layout/Row";
 import { cn } from "@/lib/utils";
-import { useSpring, animated } from "@react-spring/web";
+import { useSpring, animated, AnimatedProps } from "@react-spring/web";
 
 type Props = {
   state: string;
@@ -12,6 +12,10 @@ type Props = {
     label: any;
     value: string;
   }[];
+};
+
+type AnimatedDivProps = AnimatedProps<HTMLAttributes<HTMLDivElement>> & {
+  className?: string;
 };
 
 export default function ButtonSwitcher({
@@ -47,12 +51,14 @@ export default function ButtonSwitcher({
   return (
     <Row className={cn("relative rounded-full bg-button-secondary p-[3px]")}>
       <animated.div
+        style={animatedStyle}
         className={cn(
           "z-2 absolute left-[3px] top-[50%] h-[26px] translate-y-[-50%] rounded-full bg-card",
           wrapperClassName,
         )}
-        style={animatedStyle}
+        {...({} as AnimatedDivProps)}
       />
+
       {list.map((item, index) => {
         return (
           <Row

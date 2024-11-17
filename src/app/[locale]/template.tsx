@@ -6,7 +6,6 @@ import { usePathname } from "@/i18n/routing";
 
 export default function Template({ children }: { children: ReactNode }) {
   const pathname = usePathname();
-
   let path = pathname;
 
   if (pathname.includes("/tag")) {
