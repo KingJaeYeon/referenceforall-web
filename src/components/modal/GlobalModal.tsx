@@ -2,6 +2,7 @@
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import { SelectLangModal } from "@/components/modal/SelectLangModal";
 import { useGlobalModalStore } from "@/store/globalModalStore";
+import { CreateNewListModal } from "@/components/modal/CreateNewListModal";
 
 export default function GlobalModal() {
   const { key, onClose } = useGlobalModalStore();
@@ -9,6 +10,8 @@ export default function GlobalModal() {
     switch (key) {
       case "selectLang":
         return <SelectLangModal />;
+      case "createNewList":
+        return <CreateNewListModal />;
       default:
         return null;
     }

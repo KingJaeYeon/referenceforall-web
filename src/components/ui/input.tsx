@@ -4,10 +4,11 @@ import { cn } from "@/lib/utils";
 import { IconSearch } from "@/assets/svg/IconSearch";
 import { IconDelete } from "@/assets/svg/IconDelete";
 import { FontType, utilFont } from "@/util/fontType";
+import Row from "@/components/Layout/Row";
 
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
-  icon?: "none" | "search" | "delete" | "length";
+  icon?: "search" | "delete" | "length";
   iconOnClick?: () => void;
   errorMessage?: string;
   rounded?: "default" | "full";
@@ -21,7 +22,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       className, //
       type,
       rounded = "default",
-      icon = "none",
+      icon,
       iconOnClick,
       maxLength = 255,
       disabled = false,
@@ -35,9 +36,9 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ) => {
     const customFont = utilFont(font, () => "body5 placeholder:body5");
     return (
-      <div
+      <Row
         className={cn(
-          "relative h-[42px] w-full",
+          "relative h-[42px] w-full items-center",
           className,
           disabled && "cursor-not-allowed",
         )}
@@ -46,7 +47,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           type={type}
           className={cn(
             "placeholder:body4 flex h-full w-full rounded-[6px] border border-input-border bg-input px-[20px] py-2 placeholder:text-input-placeholder hover:border-input-focus-border focus:border-input-focus-border focus-visible:outline-none disabled:pointer-events-none disabled:border-input-disabled-border disabled:text-input-disabled-foreground disabled:placeholder:opacity-20",
-            icon !== "none" ? "pr-[40px]" : "",
+            !!icon ? "pr-[65px]" : "",
             errorMessage && "border-red hover:border-red focus:border-red",
             rounded === "full" && "rounded-full",
             customFont,
@@ -70,7 +71,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             {errorMessage}
           </Text>
         )}
-      </div>
+      </Row>
     );
   },
 );
@@ -85,14 +86,25 @@ function InputIcon({
   disabled,
   value,
 }: {
-  icon: "none" | "search" | "delete" | "length";
+  icon?: "search" | "delete" | "length";
   iconOnClick?: () => void;
   maxLength?: number;
   disabled?: boolean;
   value?: any;
 }) {
-  if (icon === "none") {
+  if (!icon) {
     return null;
+  }
+
+  if (icon === "length") {
+    return (
+      <div className={cn("absolute right-[14px] top-[11px]")}>
+        <Text className="body5 pt-[3px] text-gray-500">
+          {`${!value?.length ? 0 : value?.length} `}
+          <span className="text-gray-neutral">{`/ ${maxLength}`}</span>
+        </Text>
+      </div>
+    );
   }
 
   return (
@@ -106,12 +118,6 @@ function InputIcon({
       {icon === "search" && <IconSearch className={"h-[20px] w-[20px]"} />}
       {!!value && value.length > 0 && icon === "delete" && (
         <IconDelete className={"h-[20px] w-[20px]"} />
-      )}
-      {icon === "length" && (
-        <Text className="body5 pt-[3px]">
-          {`${!value?.length ? 0 : value?.length} `}
-          <span className="text-gray-neutral">{`/ ${maxLength}`}</span>
-        </Text>
       )}
     </div>
   );
