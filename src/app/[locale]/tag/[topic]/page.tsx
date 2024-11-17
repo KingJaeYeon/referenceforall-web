@@ -1,5 +1,4 @@
 import ReferencePage from "@/app/[locale]/tag/[topic]/_component/ReferencePage";
-import { randomUUID } from "node:crypto";
 import React from "react";
 
 export const revalidate = false;
@@ -20,7 +19,7 @@ export default async function Page({
     : [];
   const sites = [
     {
-      id: randomUUID(),
+      id: "c4c6d219-56c1-4c2a-b67b-b56e1367bbd4",
       name: "사이트 이름",
       description:
         "이 사이트는 멋진 서비스를 제공하는 웹사이트입니다. 다양한 기능을 체험해보세요.",
@@ -32,7 +31,7 @@ export default async function Page({
       lastUpdate: "2024-03-15",
     },
     {
-      id: randomUUID(),
+      id: "58d1cdf9-5864-444b-be85-4ee7fddbcbd3",
       name: "사이트 이름",
       description:
         "이 사이트는 멋진 서비스를 제공하는 웹사이트입니다. 다양한 기능을 체험해보세요.",
@@ -44,7 +43,7 @@ export default async function Page({
       lastUpdate: "2024-03-15",
     },
     {
-      id: randomUUID(),
+      id: "c4c6d219-56c1-4c2a-b67b-b56e1367bbd4",
       name: "사이트 이름",
       description:
         "이 사이트는 멋진 서비스를 제공하는 웹사이트입니다. 다양한 기능을 체험해보세요.",

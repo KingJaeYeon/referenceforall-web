@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import Text from "@/components/Layout/Text";
 import SearchInput from "@/app/[locale]/tag/[topic]/_component/SearchInput";
 import Row from "@/components/Layout/Row";
@@ -16,7 +16,9 @@ export default async function Page() {
       >
         {t("explore_topics")}
       </Text>
-      <SearchInput />
+      <Suspense fallback={null}>
+        <SearchInput />
+      </Suspense>
       <Row className={"body5 items-center justify-center"}>
         <Text className={"text-gray-500"}>{t("recommended")}:</Text>
         <Link className={"ml-[12px]"} href={"/tag/react"}>
