@@ -55,7 +55,7 @@ function SelectLangModal() {
   };
 
   return (
-    <DialogContent className="flex h-full w-[100%] max-w-full flex-col gap-[20px] rounded-[0px] px-0 py-5 md:h-auto md:max-w-[425px] md:rounded-[10px]">
+    <DialogContent className="flex-col gap-[20px] px-0 py-7 md:max-w-[500px] md:px-4">
       <DialogHeader className={"gap-[20px] px-5"}>
         <DialogTitle>{t("language")}</DialogTitle>
       </DialogHeader>

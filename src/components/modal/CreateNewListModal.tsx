@@ -5,7 +5,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { DialogBody } from "next/dist/client/components/react-dev-overlay/internal/components/Dialog";
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useGlobalModalStore } from "@/store/globalModalStore";
@@ -41,7 +40,7 @@ export function CreateNewListModal() {
     onClose();
   };
   return (
-    <DialogContent className="md:max-w-[525px]">
+    <DialogContent className="md:max-w-[625px]">
       <DialogHeader>
         <DialogTitle>Create New List</DialogTitle>
       </DialogHeader>
@@ -86,10 +85,15 @@ export function CreateNewListModal() {
       </div>
 
       <DialogFooter>
-        <Button type="button" variant="outline" onClick={onClose}>
+        <Button
+          type="button"
+          variant="outline"
+          onClick={onClose}
+          font={"body4"}
+        >
           Cancel
         </Button>
-        <Button type="submit" onClick={handleSubmit}>
+        <Button type="submit" onClick={handleSubmit} font={"body4"}>
           Create List
         </Button>
       </DialogFooter>
