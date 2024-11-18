@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import MediaWrapper from "@/components/MediaWrapper";
 import {
   DesktopMain,
@@ -8,10 +8,6 @@ import {
 
 export default function SitePage() {
   const [isBookmarked, setIsBookmarked] = useState(false);
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   const siteData = {
     name: "Medium",

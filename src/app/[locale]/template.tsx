@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ReactNode } from "react";
+import { ReactNode, useEffect } from "react";
 import { usePathname } from "@/i18n/routing";
 
 export default function Template({ children }: { children: ReactNode }) {
@@ -19,6 +19,9 @@ export default function Template({ children }: { children: ReactNode }) {
   if (pathname.includes("/my/lists")) {
     path = "my/lists";
   }
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <motion.div
