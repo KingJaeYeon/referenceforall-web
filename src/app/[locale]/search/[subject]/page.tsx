@@ -115,7 +115,7 @@ const getTempData = (subject: string) => {
   }
 };
 
-export default async function Page(props: PageProps) {
+export default async function SearchesPage(props: PageProps) {
   const params = await props.params;
   const subject = decodeURI(params.subject);
   const searchParams = await props.searchParams;

@@ -2,7 +2,7 @@ import SitePage from "@/app/[locale]/site/[siteId]/_component/SitePage";
 import Main from "@/components/Layout/Main";
 import Contents from "@/components/Layout/Contents";
 
-export default function SiteDetailPage() {
+export default function SiteDetailsPage() {
   return (
     <Main>
       <Contents>
