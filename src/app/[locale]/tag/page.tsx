@@ -1,11 +1,10 @@
-import { Suspense } from "react";
 import Text from "@/components/Layout/Text";
 import SearchInput from "@/app/[locale]/tag/[topic]/_component/SearchInput";
 import Row from "@/components/Layout/Row";
 import { Link } from "@/i18n/routing";
 import { getTranslations } from "next-intl/server";
 
-export default async function Page() {
+export default async function ExploreTagPage() {
   const t = await getTranslations();
   return (
     <>
@@ -16,9 +15,8 @@ export default async function Page() {
       >
         {t("explore_topics")}
       </Text>
-      <Suspense fallback={null}>
-        <SearchInput />
-      </Suspense>
+      <SearchInput />
+
       <Row className={"body5 items-center justify-center"}>
         <Text className={"text-gray-500"}>{t("recommended")}:</Text>
         <Link className={"ml-[12px]"} href={"/tag/react"}>

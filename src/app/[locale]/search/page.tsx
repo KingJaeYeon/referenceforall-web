@@ -6,7 +6,7 @@ import Main from "@/components/Layout/Main";
 import Contents from "@/components/Layout/Contents";
 import Row from "@/components/Layout/Row";
 
-export default async function Page() {
+export default async function RecentSearchesPage() {
   return (
     <Main>
       <Contents>

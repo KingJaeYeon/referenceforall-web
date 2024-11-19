@@ -2,7 +2,7 @@ import ReferencePage from "@/app/[locale]/tag/[topic]/_component/ReferencePage";
 
 export const revalidate = false;
 
-export default async function Page({
+export default async function TagDetailPage({
   params: _params,
   searchParams: _searchParams,
 }: {
