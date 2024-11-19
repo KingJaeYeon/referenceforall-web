@@ -3,7 +3,7 @@ import "@/app/globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import { ReactNode } from "react";
 import { notoSansKR, pretendard } from "@/app/fonts/fonts";
-import Header from "@/components/Header";
+import MainHeader from "@/components/MainHeader";
 import SystemProvider from "@/provider/SystemProvider";
 import { getMessages } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
@@ -64,7 +64,7 @@ export default async function RootLayout(
             <QueryProvider>
               <Col className={"h-full min-h-[100dvh]"}>
                 <Toaster />
-                <Header />
+                <MainHeader />
                 {children}
                 <GlobalModal />
               </Col>
