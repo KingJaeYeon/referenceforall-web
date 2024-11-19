@@ -1,6 +1,7 @@
 "use client";
 import {
   DialogContent,
+  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
@@ -40,9 +41,10 @@ export function CreateNewListModal() {
     onClose();
   };
   return (
-    <DialogContent className="md:max-w-[625px]">
+    <DialogContent className="md:max-w-[625px] md:px-16 md:py-14">
       <DialogHeader>
         <DialogTitle>Create New List</DialogTitle>
+        <DialogDescription hidden>Create New List</DialogDescription>
       </DialogHeader>
       <Col className="gap-0 md:gap-[20px]">
         <Input

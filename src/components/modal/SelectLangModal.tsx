@@ -1,6 +1,7 @@
 "use client";
 import {
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
@@ -20,7 +21,6 @@ import { useRouter } from "next/navigation";
 import { usePathname } from "@/i18n/routing";
 import { useGlobalModalStore } from "@/store/globalModalStore";
 import { buttonVariants } from "@/components/ui/button";
-
 export { SelectLangModalTrigger, SelectLangModal };
 
 function SelectLangModalTrigger() {
@@ -55,12 +55,13 @@ function SelectLangModal() {
   };
 
   return (
-    <DialogContent className="flex-col gap-[20px] px-0 py-7 md:max-w-[500px] md:px-4">
-      <DialogHeader className={"gap-[20px] px-5"}>
+    <DialogContent className="md:max-w-[500px] md:px-16 md:py-10">
+      <DialogHeader>
         <DialogTitle>{t("language")}</DialogTitle>
+        <DialogDescription hidden>{t("language")}</DialogDescription>
       </DialogHeader>
       <DialogBody
-        className={"scrollWidth3 flex flex-col gap-[25px] overflow-auto px-5"}
+        className={"scrollWidth3 flex flex-col gap-[25px] overflow-auto"}
       >
         <CurrencyCard onChangeLang={onChangeLang} />
       </DialogBody>
