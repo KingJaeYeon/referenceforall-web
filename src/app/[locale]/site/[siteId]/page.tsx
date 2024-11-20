@@ -12,9 +12,10 @@ export async function generateMetadata({ params: _params }: PageProps) {
   const siteId = decodeURI(params.siteId);
 
   // 사이트 가져오는 로직
-  if (!siteId) {
-    notFound();
-  }
+
+  // if (!siteId) {
+  //   notFound();
+  // }
 
   return {
     title: "Site Details - " + siteId,
@@ -22,11 +23,7 @@ export async function generateMetadata({ params: _params }: PageProps) {
   };
 }
 
-export default function SiteDetailsPage({
-  params,
-}: {
-  params: { siteId: string };
-}) {
+export default function SiteDetailsPage() {
   return (
     <Main>
       <Contents>
