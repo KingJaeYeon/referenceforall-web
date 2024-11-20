@@ -79,9 +79,9 @@ export default function ScrollTabs({
           const { label, url } = tab;
           const href = query ? `${url}?q=${query}` : url;
           return (
-            <LinkButton href={href} lastPath={url} key={label}>
+            <TabLinkButton href={href} lastPath={url} key={label}>
               {label}
-            </LinkButton>
+            </TabLinkButton>
           );
         })}
 
@@ -122,7 +122,7 @@ export default function ScrollTabs({
   );
 }
 
-function LinkButton({
+function TabLinkButton({
   children,
   href,
   lastPath,

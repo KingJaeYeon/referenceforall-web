@@ -6,6 +6,7 @@ import ScrollTabs, { Tab } from "@/components/ScrollTabs";
 import TabContent from "@/app/[locale]/search/[subject]/_component/TabContent";
 import NavContent from "@/app/[locale]/search/[subject]/_component/NavContent";
 import { randomUUID } from "node:crypto";
+import { notFound } from "next/navigation";
 
 export const revalidate = 15;
 
@@ -16,6 +17,18 @@ export function generateStaticParams() {
 interface PageProps {
   params: Promise<{ subject: string; locale: string }>;
   searchParams: Promise<{ [key: string]: string | undefined }>;
+}
+
+export async function generateMetadata({
+  params: _params,
+  searchParams,
+}: PageProps) {
+  const query = await searchParams;
+
+  return {
+    title: "Search - " + query.q,
+    description: "Search - " + query.q,
+  };
 }
 
 const tags = [

@@ -1,4 +1,3 @@
-import MediaWrapper from "@/components/MediaWrapper";
 import Row from "@/components/Layout/Row";
 import Logo from "@/components/Logo";
 import { Button } from "@/components/ui/button";

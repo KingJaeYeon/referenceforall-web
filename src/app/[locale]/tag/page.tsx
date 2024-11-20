@@ -3,6 +3,12 @@ import SearchInput from "@/app/[locale]/tag/[topic]/_component/SearchInput";
 import Row from "@/components/Layout/Row";
 import { Link } from "@/i18n/routing";
 import { getTranslations } from "next-intl/server";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Explore Tag",
+  description: "Explore Tag Page",
+};
 
 export default async function ExploreTagPage() {
   const t = await getTranslations();

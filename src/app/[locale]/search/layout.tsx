@@ -4,13 +4,6 @@ import { Viewport } from "next";
 import Row from "@/components/Layout/Row";
 import { ReactNode } from "react";
 
-export const viewport: Viewport = {
-  width: "device-width",
-  initialScale: 1,
-  maximumScale: 1.0,
-  userScalable: false,
-};
-
 export default async function Layout({ children }: { children: ReactNode }) {
   return (
     <Main>

@@ -1,14 +1,29 @@
 import ReferencePage from "@/app/[locale]/tag/[topic]/_component/ReferencePage";
+import { Header } from "@/app/[locale]/tag/[topic]/_component/Header";
 
 export const revalidate = false;
+
+interface PageProps {
+  params: Promise<{ topic: string }>;
+  searchParams: Promise<{ [key: string]: string | undefined }>;
+}
+
+export async function generateMetadata({
+  params: _params,
+  searchParams,
+}: PageProps) {
+  const params = await _params;
+  const topic = decodeURI(params.topic).split("-").join(" ");
+  return {
+    title: "Tag - " + topic,
+    description: "Tag Page",
+  };
+}
 
 export default async function TagDetailsPage({
   params: _params,
   searchParams: _searchParams,
-}: {
-  params: Promise<{ topic: string }>;
-  searchParams: Promise<{ [key: string]: string | undefined }>;
-}) {
+}: PageProps) {
   const params = await _params;
   const topic = decodeURI(params.topic);
   const searchParams = await _searchParams;
@@ -55,5 +70,10 @@ export default async function TagDetailsPage({
     },
   ];
 
-  return <ReferencePage sites={sites} />;
+  return (
+    <>
+      <Header topic={topic} />
+      <ReferencePage sites={sites} />
+    </>
+  );
 }
