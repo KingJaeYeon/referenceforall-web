@@ -148,7 +148,7 @@ export default async function SearchesPage(props: PageProps) {
     <>
       <Col
         className={
-          "mx-0 w-full max-w-[728px] md:mx-[24px] md:mb-[48px] md:mt-[52px]"
+          "mx-0 w-full max-w-[680px] md:mx-[24px] md:mb-[48px] md:mt-[52px]"
         }
       >
         <Col className={"flex flex-col-reverse md:flex-col"}>
@@ -169,7 +169,7 @@ export default async function SearchesPage(props: PageProps) {
       </Col>
       <Col
         className={
-          "hidden h-[100dvh] w-full max-w-[368px] border-l border-gray-200 lg:flex"
+          "hidden h-[100dvh] w-full max-w-[320px] border-l border-gray-200 lg:flex"
         }
         style={{
           paddingLeft: "clamp(24px,24px + 100vw - 1080px,40px)",
