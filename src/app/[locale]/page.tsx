@@ -1,5 +1,5 @@
-import Main from "@/components/Layout/Main";
-import Contents from "@/components/Layout/Contents";
+import PageWrapper from "@/components/Layout/PageWrapper";
+import ContentWrapper from "@/components/Layout/ContentWrapper";
 import { useTranslations } from "next-intl";
 import { Link, routing } from "@/i18n/routing";
 import Col from "@/components/Layout/Col";
@@ -12,8 +12,8 @@ export function generateStaticParams() {
 export default function Home() {
   const t = useTranslations();
   return (
-    <Main>
-      <Contents>
+    <PageWrapper>
+      <ContentWrapper>
         <section className="pt-6 md:pt-16">
           <Col className="items-center text-center">
             <h1 className="body3 sm:body1 px-6 text-gray-600">
@@ -80,7 +80,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-      </Contents>
-    </Main>
+      </ContentWrapper>
+    </PageWrapper>
   );
 }

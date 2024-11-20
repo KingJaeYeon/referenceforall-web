@@ -1,6 +1,6 @@
 import SitePage from "@/app/[locale]/site/[siteId]/_component/SitePage";
-import Main from "@/components/Layout/Main";
-import Contents from "@/components/Layout/Contents";
+import PageWrapper from "@/components/Layout/PageWrapper";
+import ContentWrapper from "@/components/Layout/ContentWrapper";
 import { notFound } from "next/navigation";
 
 interface PageProps {
@@ -25,10 +25,10 @@ export async function generateMetadata({ params: _params }: PageProps) {
 
 export default function SiteDetailsPage() {
   return (
-    <Main>
-      <Contents>
+    <PageWrapper>
+      <ContentWrapper>
         <SitePage />
-      </Contents>
-    </Main>
+      </ContentWrapper>
+    </PageWrapper>
   );
 }

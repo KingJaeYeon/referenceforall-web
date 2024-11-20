@@ -7,7 +7,7 @@ type Props = {
   className?: string;
 };
 
-const Contents = forwardRef<HTMLDivElement, Props>(
+const ContentWrapper = forwardRef<HTMLDivElement, Props>(
   ({ children, className }, ref) => {
     return (
       <Col
@@ -23,6 +23,6 @@ const Contents = forwardRef<HTMLDivElement, Props>(
   },
 );
 
-Contents.displayName = "Contents";
+ContentWrapper.displayName = "Contents";
 
-export default Contents;
+export default ContentWrapper;

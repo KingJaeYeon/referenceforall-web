@@ -1,25 +1,22 @@
 import { ComponentProps, forwardRef, ReactNode } from "react";
 import { cn } from "@/lib/utils";
+import Col from "@/components/Layout/Col";
 
 type Props = {
   children?: ReactNode | ReactNode[];
   className?: string;
 } & ComponentProps<"div">;
 
-const Main = forwardRef<HTMLDivElement, Props>(
+const PageWrapper = forwardRef<HTMLDivElement, Props>(
   ({ children, className, ...props }, ref) => {
     return (
-      <main
-        ref={ref}
-        className={cn(`flex flex-col items-center`, className)}
-        {...props}
-      >
+      <Col ref={ref} className={cn(`items-center`, className)} {...props}>
         {children}
-      </main>
+      </Col>
     );
   },
 );
 
-Main.displayName = "Main";
+PageWrapper.displayName = "PageWrapper";
 
-export default Main;
+export default PageWrapper;
