@@ -148,13 +148,13 @@ export default async function SearchesPage(props: PageProps) {
     <>
       <Col
         className={
-          "mx-0 w-full max-w-[680px] md:mx-[24px] md:mb-[48px] md:mt-[52px]"
+          "mx-0 w-full max-w-[680px] gap-[12px] md:mx-[24px] md:mb-[48px] md:mt-[52px] md:gap-0"
         }
       >
-        <Col className={"flex flex-col-reverse md:flex-col"}>
+        <Col>
           <Text
             className={
-              "ellipsisLine1 heading1 mb-[30px] mt-[24px] min-h-[30px] font-medium text-gray-400 md:my-0 md:min-h-[52px] md:text-[42px]"
+              "ellipsisLine1 heading1 mb-[12px] mt-[24px] min-h-[30px] font-medium text-gray-400 md:my-0 md:min-h-[52px] md:text-[42px]"
             }
           >
             {"Results for "}

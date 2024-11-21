@@ -17,13 +17,13 @@ export default async function RecentSearchesPage() {
     <>
       <Col
         className={
-          "mx-0 w-full max-w-[728px] md:mx-[24px] md:mb-[48px] md:mt-[52px]"
+          "mx-0 w-full max-w-[728px] gap-[12px] md:mx-[24px] md:mb-[48px] md:mt-[52px] md:gap-0"
         }
       >
-        <Col className={"flex flex-col-reverse md:flex-col"}>
+        <Col>
           <Text
             className={
-              "heading1 mb-[30px] mt-[24px] min-h-[30px] font-medium md:my-0 md:min-h-[52px] md:text-[42px]"
+              "heading1 mb-[12px] mt-[24px] min-h-[30px] font-medium md:my-0 md:min-h-[52px] md:text-[42px]"
             }
           >
             {"Recent searches"}
