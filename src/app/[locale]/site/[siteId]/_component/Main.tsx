@@ -192,7 +192,7 @@ export function MobileMain(props: {
   const { siteData, setIsBookmarked, isBookmarked, comments } = props;
   const { back } = useRouter();
   return (
-    <div className="mx-auto mt-[24px] max-w-full">
+    <div className="mx-auto mb-[100px] mt-[24px] max-w-full">
       {/* 페이지 타이틀 & 액션 버튼 */}
       <div className="mb-4 space-y-4">
         <Row className={"items-center gap-[6px]"}>
