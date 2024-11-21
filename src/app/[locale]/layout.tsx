@@ -62,7 +62,7 @@ export default async function RootLayout(
         <NextIntlClientProvider messages={messages}>
           <SystemProvider user={user}>
             <QueryProvider>
-              <Col className={"h-full min-h-[100dvh]"}>
+              <Col className={"relative h-[100dvh]"}>
                 <Toaster />
                 <MainHeader />
                 {children}

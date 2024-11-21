@@ -17,7 +17,7 @@ export default function MainHeader() {
   return (
     <header
       className={
-        "relative flex h-[60px] w-full items-center justify-between border-b bg-white px-4 md:sticky md:left-0 md:top-0 md:z-[50] md:border-gray-300 md:bg-transparent md:bg-opacity-95 md:px-8 md:backdrop-blur"
+        "absolute bottom-0 h-[60px] w-full items-center justify-between border-b bg-white px-4 md:sticky md:left-0 md:top-0 md:z-[50] md:flex md:border-gray-300 md:bg-transparent md:bg-opacity-95 md:px-8 md:backdrop-blur"
       }
     >
       <Logo />
