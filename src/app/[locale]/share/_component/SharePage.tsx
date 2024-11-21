@@ -149,7 +149,7 @@ export default function StepShareSiteForm() {
             {/* Form Content */}
             <div>{renderStep()}</div>
             <button type="submit" ref={submitRef} />
-            <Row className={"flex h-[100px] justify-end md:hidden"}>
+            <Row className={"flex h-[200px] justify-end md:hidden"}>
               {currentStep > 1 ? (
                 <Button
                   type="button"
