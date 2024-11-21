@@ -13,7 +13,7 @@ import React from "react";
 
 export function BasicInfoStep({ control, currentTag, setCurrentTag }: any) {
   return (
-    <Col className="gap-[20px] pb-[50px] sm:pb-0 md:gap-[28px]">
+    <Col className="gap-[20px] md:gap-[28px]">
       <FormField
         control={control}
         name="link"

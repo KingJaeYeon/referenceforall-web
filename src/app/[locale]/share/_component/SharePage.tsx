@@ -135,27 +135,65 @@ export default function StepShareSiteForm() {
               <h2 className="body7 pb-[16px] text-gray-400 md:pb-[24px]">
                 STEP {currentStep} / 3
               </h2>
-              <h1 className="heading1 text-[28px] font-semibold md:text-[32px]">
+              <h1 className="heading1 text-[24px] font-semibold sm:text-[28px] md:text-[32px]">
                 {currentStep === 1 && "사이트의 기본 정보를 입력해주세요"}
                 {currentStep === 2 && "사이트의 이미지를 등록해주세요"}
                 {currentStep === 3 && "사이트의 상세 정보를 입력해주세요"}
               </h1>
-              <Text className="body3 pt-[8px] text-gray-600 md:pt-[12px]">
-                공유하고 싶은 사이트의 정보를 입력해주세요. 관리자 확인 후
-                게시됩니다.
+              <Text className="body3 pt-[8px] text-[15px] text-gray-600 md:pt-[12px]">
+                공유하고 싶은 사이트의 정보를 입력해주세요. <br />
+                관리자가 확인 후 미입력 정보는 추가해서 게시됩니다.
               </Text>
             </Col>
 
             {/* Form Content */}
-            <div className="min-h-[400px]">{renderStep()}</div>
+            <div>{renderStep()}</div>
             <button type="submit" ref={submitRef} />
+            <Row className={"flex h-[100px] justify-end md:hidden"}>
+              {currentStep > 1 ? (
+                <Button
+                  type="button"
+                  variant="default"
+                  onClick={handleBack}
+                  disabled={currentStep === 1}
+                  font={"heading4"}
+                  className="mr-[32px] h-[42px] font-semibold"
+                >
+                  Back
+                </Button>
+              ) : (
+                <div />
+              )}
+
+              {currentStep === 3 ? (
+                <Button
+                  type="button"
+                  font={"heading4"}
+                  className="h-[42px] rounded-[4px] px-[20px] font-semibold text-black"
+                  onClick={() => submitRef.current?.click()}
+                >
+                  Submit
+                </Button>
+              ) : (
+                <Button
+                  type="button"
+                  onClick={handleNext}
+                  font={"heading4"}
+                  className="h-[42px] rounded-[4px] px-[20px] font-semibold text-black"
+                >
+                  Continue
+                  <ArrowRight className="h-4 w-4" />
+                </Button>
+              )}
+            </Row>
           </form>
         </Form>
       </Row>
       {/* Navigation */}
+
       <Row
         className={cn(
-          "fixed bottom-0 h-[66px] w-full justify-between bg-white px-6 py-3 shadow-bottomNav md:justify-end",
+          "fixed bottom-0 hidden h-[66px] w-full justify-between bg-white px-6 py-3 shadow-bottomNav md:flex md:justify-end",
         )}
       >
         {currentStep > 1 ? (

@@ -11,7 +11,7 @@ import React from "react";
 
 export function DetailStep({ control }: any) {
   return (
-    <Col className="gap-[20px] pb-[50px] sm:pb-0 md:gap-[28px]">
+    <Col className="gap-[20px] md:gap-[28px]">
       <FormField
         control={control}
         name="usageTiming"

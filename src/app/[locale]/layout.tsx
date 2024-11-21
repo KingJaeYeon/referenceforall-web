@@ -63,12 +63,10 @@ export default async function RootLayout(
         <NextIntlClientProvider messages={messages}>
           <SystemProvider user={user}>
             <QueryProvider>
-              <Col className={"relative min-h-[100dvh]"}>
-                <Toaster />
-                <NavigationHeader />
-                {children}
-                <GlobalModal />
-              </Col>
+              <Toaster />
+              <NavigationHeader />
+              {children}
+              <GlobalModal />
               <NavigationBottom />
             </QueryProvider>
           </SystemProvider>
