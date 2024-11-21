@@ -1,11 +1,5 @@
 import BottomTabLink from "@/components/BottomTabLink";
-import {
-  Library,
-  LibrarySquareIcon,
-  ListIcon,
-  Share2Icon,
-  VideoIcon,
-} from "lucide-react";
+import { LibrarySquareIcon, ListIcon, Share2Icon } from "lucide-react";
 import { IconSearch } from "@/assets/svg";
 import UserAvatar from "@/components/UserAvatar";
 

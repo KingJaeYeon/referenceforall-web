@@ -68,8 +68,8 @@ export default async function RootLayout(
                 <NavigationHeader />
                 {children}
                 <GlobalModal />
-                <NavigationBottom />
               </Col>
+              <NavigationBottom />
             </QueryProvider>
           </SystemProvider>
         </NextIntlClientProvider>
