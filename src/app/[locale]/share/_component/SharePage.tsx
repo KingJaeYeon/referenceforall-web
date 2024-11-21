@@ -155,7 +155,7 @@ export default function StepShareSiteForm() {
       {/* Navigation */}
       <Row
         className={cn(
-          "sticky bottom-0 h-[66px] w-full justify-between bg-white px-6 py-3 shadow-bottomNav md:justify-end",
+          "fixed bottom-0 h-[66px] w-full justify-between bg-white px-6 py-3 shadow-bottomNav md:justify-end",
         )}
       >
         {currentStep > 1 ? (
