@@ -7,7 +7,7 @@ export default function NavigationBottom() {
   return (
     <header
       className={
-        "fixed bottom-0 left-0 z-[50] flex h-full max-h-[65px] w-full items-center justify-between border-t border-gray-300 bg-background px-8 md:hidden"
+        "fixed bottom-0 left-0 z-[50] flex h-full max-h-[65px] w-full items-center justify-between border-t border-gray-300 bg-background bg-red px-8 md:hidden"
       }
     >
       <BottomTabLink icon={<ListIcon />} href={"/tag"}>
