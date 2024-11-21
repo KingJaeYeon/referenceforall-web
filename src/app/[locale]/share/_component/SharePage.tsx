@@ -125,7 +125,7 @@ export default function StepShareSiteForm() {
     <>
       <Row
         className={
-          "mx-auto w-full max-w-[780px] flex-1 p-4 pb-[24px] md:pt-[48px] lg:px-0"
+          "mx-auto mt-[20px] w-full max-w-[780px] flex-1 p-4 pb-[24px] md:mt-0 md:pt-[48px] lg:px-0"
         }
       >
         <Form {...form}>
