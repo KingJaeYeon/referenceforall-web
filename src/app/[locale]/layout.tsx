@@ -3,7 +3,7 @@ import "@/app/globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import { ReactNode } from "react";
 import { notoSansKR, pretendard } from "@/app/fonts/fonts";
-import MainHeader from "@/components/MainHeader";
+import NavigationHeader from "@/components/NavigationHeader";
 import SystemProvider from "@/provider/SystemProvider";
 import { getMessages } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
@@ -16,6 +16,7 @@ import Col from "@/components/Layout/Col";
 import { cookies } from "next/headers";
 import { parsePayload } from "@/util/util";
 import GlobalModal from "@/components/modal/GlobalModal";
+import NavigationBottom from "@/components/NavigationBottom";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -64,9 +65,10 @@ export default async function RootLayout(
             <QueryProvider>
               <Col className={"relative min-h-[100dvh]"}>
                 <Toaster />
-                <MainHeader />
+                <NavigationHeader />
                 {children}
                 <GlobalModal />
+                <NavigationBottom />
               </Col>
             </QueryProvider>
           </SystemProvider>
