@@ -28,7 +28,7 @@ export default function MyListPage({ library }: { library?: string }) {
           </Text>
           {library ? null : <CreateNewListModalTrigger />}
         </Row>
-        <Col>
+        <Col className={"items-center"}>
           <ScrollTabs tabs={paths} />
           <TabContentCSR />
         </Col>

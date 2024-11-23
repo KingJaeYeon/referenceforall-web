@@ -65,13 +65,13 @@ export default function ScrollTabs({
   return (
     <Row
       className={
-        "relative mb-[38px] border-b border-gray-200 sm:mt-[12px] md:mb-[46px] md:mt-[22px]"
+        "relative mb-[38px] w-[calc(100%+2rem)] border-b border-gray-200 sm:mt-[12px] md:mb-[46px] md:mt-[22px] md:w-full"
       }
     >
       <Row
         ref={scrollContainerRef}
         className={
-          "scrollNone overflow-y-hidden overflow-x-scroll scroll-smooth"
+          "scrollNone overflow-y-hidden overflow-x-scroll scroll-smooth px-4 md:px-0"
         }
         style={{ scrollBehavior: "smooth" }}
       >

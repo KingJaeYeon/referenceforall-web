@@ -162,7 +162,7 @@ export default async function SearchesPage(props: PageProps) {
           </Text>
           <SearchInput subject={subject} />
         </Col>
-        <Col>
+        <Col className={"items-center"}>
           <ScrollTabs query={search} tabs={paths} />
           <TabContent target={subject} data={data?.main} />
         </Col>
