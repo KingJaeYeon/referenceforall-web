@@ -2,9 +2,6 @@ import Text from "@/components/Layout/Text";
 import Col from "@/components/Layout/Col";
 import { SearchInput } from "@/app/[locale]/search/_component/SearchInput";
 import RecentSearchList from "@/app/[locale]/search/_component/RecentSearchList";
-import PageWrapper from "@/components/Layout/PageWrapper";
-import ContentWrapper from "@/components/Layout/ContentWrapper";
-import Row from "@/components/Layout/Row";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {

@@ -6,8 +6,11 @@ import { useTranslations } from "next-intl";
 import { usePathname } from "@/i18n/routing";
 import Col from "@/components/Layout/Col";
 import { Card } from "@/components/ui/card";
-import { Globe, LockIcon, MoreHorizontal, Settings } from "lucide-react";
+import { LockIcon, MoreHorizontal } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Row from "@/components/Layout/Row";
+import { cn } from "@/lib/utils";
+import Text from "@/components/Layout/Text";
 
 export default function TabContentCSR() {
   const pathName = usePathname();
@@ -41,86 +44,192 @@ function SitesContent({ data }: { data: any }) {
     />
   ));
 }
-const BookmarkListCard = ({
+
+const BookmarkPreviewCard = ({
   title,
-  ownerNickname,
+  author,
   bookmarkCount,
   isPrivate,
-  thumbnails,
+  bookmarkPreviews,
 }: any) => {
-  return (
-    <div className="flex h-[150px] w-full max-w-[680px] overflow-hidden rounded-xl bg-white shadow-md">
-      {/* 이미지 영역 */}
-      <div className="h-full w-1/3">
-        {thumbnails && thumbnails.length > 0 ? (
-          <div
-            className="h-full w-full bg-cover bg-center"
-            style={{
-              backgroundImage: `url(${thumbnails[0]})`,
-            }}
-          />
-        ) : (
-          <div className="flex h-full w-full items-center justify-center bg-gray-200 text-gray-500">
-            이미지 없음
-          </div>
-        )}
-      </div>
+  // 이미지 미리보기 최대 3개로 제한
+  const previews = bookmarkPreviews.slice(0, 3);
+  const hasMorePreviews = bookmarkPreviews.length > 3;
 
-      {/* 콘텐츠 영역 */}
-      <div className="flex w-2/3 flex-col justify-between p-4">
-        <div>
-          <div className="mb-2 flex items-start justify-between">
-            <div>
-              <p className="mb-1 text-sm text-gray-500">{ownerNickname}</p>
-              <h2 className="truncate text-lg font-bold text-gray-800">
-                {title}
-              </h2>
+  return (
+    <Card className="mb-10 overflow-hidden rounded-sm border-none bg-white transition-all hover:shadow-lg">
+      <Col className="h-[250px] md:h-[150px] md:flex-row">
+        {/* 모바일 이미지 프리뷰 */}
+        <div className="md:hidden">
+          <div
+            className={cn(
+              "relative h-40 bg-cover bg-center",
+              previews[0]?.thumbnail ? "" : "bg-gray-100",
+            )}
+            style={
+              previews[0]?.thumbnail
+                ? { backgroundImage: `url(${previews[0].thumbnail})` }
+                : {}
+            }
+          >
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 p-4">
+              <Text className="body4 text-white/80">{author}</Text>
+              <h3 className="heading4 line-clamp-2 text-white">{title}</h3>
             </div>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="text-gray-500 hover:bg-gray-100"
-            >
-              <MoreHorizontal size={20} />
-            </Button>
           </div>
         </div>
 
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-2 text-sm text-gray-500">
-            {isPrivate ? <LockIcon size={16} /> : <Globe size={16} />}
+        {/* 컨텐츠 섹션 */}
+        <Col className="flex-1 justify-between p-4 md:p-6">
+          {/* 데스크탑 헤더 */}
+          <div className="hidden md:block">
+            <Row className="items-start justify-between">
+              <Col>
+                <Text className="body3 text-gray-500">{author}</Text>
+                <h3 className="heading2 mt-1 line-clamp-2">{title}</h3>
+              </Col>
+              <Button variant="ghost" size="icon" className="h-8 w-8">
+                <MoreHorizontal className="h-5 w-5" />
+              </Button>
+            </Row>
+          </div>
+
+          {/* 모바일 추가 정보 */}
+          <Row className="mt-2 items-center justify-between md:hidden">
+            <Row className="body6 items-center gap-[6px] text-gray-500">
+              {isPrivate && <LockIcon className="h-3 w-3" />}
+              <Text>{bookmarkCount}개의 북마크</Text>
+            </Row>
+            <Button variant="ghost" size="icon" className="h-8 w-8">
+              <MoreHorizontal className="h-5 w-5" />
+            </Button>
+          </Row>
+
+          {/* 데스크탑 하단 정보 */}
+          <div className="body6 hidden items-center gap-[6px] text-gray-500 md:flex">
+            {isPrivate && <LockIcon className="h-4 w-4" />}
             <span>{bookmarkCount}개의 북마크</span>
           </div>
+        </Col>
+
+        {/* 데스크탑 이미지 프리뷰 섹션 */}
+        <div className="relative hidden h-full w-[300px] gap-[2px] overflow-hidden md:flex">
+          <div
+            className={cn(
+              `h-full w-[170px] bg-cover bg-center`,
+              previews[0]?.thumbnail ? "" : "bg-gray-100",
+            )}
+            style={
+              previews[0]?.thumbnail
+                ? { backgroundImage: `url(${previews[0].thumbnail})` }
+                : {}
+            }
+          />
+          <Col className="w-[130px] gap-[2px]">
+            {[0, 1].map((_, index) => (
+              <div
+                key={index}
+                className={cn(
+                  `h-1/2 w-full bg-cover bg-center`,
+                  previews[index + 1]?.thumbnail ? "" : "bg-gray-100",
+                )}
+                style={
+                  previews[index + 1]?.thumbnail
+                    ? {
+                        backgroundImage: `url(${previews[index + 1].thumbnail})`,
+                      }
+                    : {}
+                }
+              />
+            ))}
+          </Col>
         </div>
-      </div>
-    </div>
+      </Col>
+    </Card>
   );
 };
 
-export function BookmarkList() {
-  const TEMP_BOOKMARK_LISTS = [
+const BookmarkList = () => {
+  const bookmarks = [
     {
       id: 1,
-      title: "여행 추천 스팟",
-      ownerNickname: "트래블러",
-      bookmarkCount: 15,
+      title: "2024 여행 버킷리스트",
+      author: "여행러버",
+      bookmarkCount: 24,
       isPrivate: false,
-      thumbnails: [
-        "/placeholder.svg?height=400&width=800",
-        "/placeholder.svg?height=400&width=800",
-        "/placeholder.svg?height=400&width=800",
+      bookmarkPreviews: [
+        {
+          thumbnail:
+            "https://images.unsplash.com/photo-1732535725600-f805d8b33c9c?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyfHx8ZW58MHx8fHx8",
+        },
+        {
+          thumbnail:
+            "https://images.unsplash.com/photo-1731586030995-a131d90a5d04?q=80&w=1672&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        },
+        {
+          thumbnail:
+            "https://images.unsplash.com/photo-1731951338443-360860e13f51?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        },
+        {
+          thumbnail:
+            "https://images.unsplash.com/photo-1732535725600-f805d8b33c9c?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyfHx8ZW58MHx8fHx8",
+        },
+        {
+          thumbnail:
+            "https://images.unsplash.com/photo-1732535725600-f805d8b33c9c?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyfHx8ZW58MHx8fHx8",
+        },
+        {
+          thumbnail:
+            "https://images.unsplash.com/photo-1732535725600-f805d8b33c9c?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyfHx8ZW58MHx8fHx8",
+        },
+      ],
+    },
+    {
+      id: 2,
+      title: "2024 여행 버킷리스트",
+      author: "여행러버",
+      bookmarkCount: 0,
+      isPrivate: true,
+      bookmarkPreviews: [
+        {
+          thumbnail:
+            "https://images.unsplash.com/photo-1732535725600-f805d8b33c9c?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyfHx8ZW58MHx8fHx8",
+        },
+      ],
+    },
+    {
+      id: 3,
+      title: "2024 여행 버킷리스트",
+      author: "여행러버",
+      bookmarkCount: 0,
+      isPrivate: false,
+      bookmarkPreviews: [],
+    },
+    {
+      id: 4,
+      title: "2024 여행 버킷리스트",
+      author: "여행러버",
+      bookmarkCount: 0,
+      isPrivate: false,
+      bookmarkPreviews: [
+        {
+          thumbnail:
+            "https://images.unsplash.com/photo-1732535725600-f805d8b33c9c?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyfHx8ZW58MHx8fHx8",
+        },
+        {
+          thumbnail:
+            "https://images.unsplash.com/photo-1732535725600-f805d8b33c9c?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyfHx8ZW58MHx8fHx8",
+        },
       ],
     },
   ];
 
-  return TEMP_BOOKMARK_LISTS.map((list) => (
-    <BookmarkListCard
-      key={list.id}
-      title={list.title}
-      ownerNickname={list.ownerNickname}
-      bookmarkCount={list.bookmarkCount}
-      isPrivate={list.isPrivate}
-      thumbnails={list.thumbnails}
-    />
-  ));
-}
+  return (
+    <div className="mb-[60px] w-full">
+      {bookmarks.map((bookmark) => (
+        <BookmarkPreviewCard key={bookmark.id} {...bookmark} />
+      ))}
+    </div>
+  );
+};

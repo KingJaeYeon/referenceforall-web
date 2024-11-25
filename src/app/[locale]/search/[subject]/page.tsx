@@ -6,7 +6,6 @@ import ScrollTabs, { Tab } from "@/components/ScrollTabs";
 import TabContent from "@/app/[locale]/search/[subject]/_component/TabContent";
 import NavContent from "@/app/[locale]/search/[subject]/_component/NavContent";
 import { randomUUID } from "node:crypto";
-import { notFound } from "next/navigation";
 
 export const revalidate = 15;
 
@@ -169,7 +168,7 @@ export default async function SearchesPage(props: PageProps) {
       </Col>
       <Col
         className={
-          "hidden h-[100dvh] w-full max-w-[320px] border-l border-gray-200 lg:flex"
+          "ls:flex hidden h-[100dvh] w-full max-w-[320px] border-l border-gray-200"
         }
         style={{
           paddingLeft: "clamp(24px,24px + 100vw - 1080px,40px)",
