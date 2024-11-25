@@ -147,7 +147,7 @@ export default async function SearchesPage(props: PageProps) {
     <>
       <Col
         className={
-          "mx-0 mb-[100px] w-full max-w-[680px] gap-[20px] md:mx-[24px] md:mt-[52px] md:gap-0"
+          "mx-0 mb-[100px] w-full max-w-[680px] gap-[8px] md:mx-[24px] md:mt-[52px] md:gap-0"
         }
       >
         <Col>

@@ -18,10 +18,12 @@ export default function MyListPage({ library }: { library?: string }) {
           "mx-0 w-full max-w-[680px] md:mx-[24px] md:mb-[48px] md:mt-[52px]"
         }
       >
-        <Row className={"items-center justify-between"}>
+        <Row
+          className={"mb-[12px] mt-[24px] items-center justify-between md:my-0"}
+        >
           <Text
             className={
-              "ellipsisLine1 heading1 mb-[30px] mt-[24px] min-h-[30px] font-medium text-black md:my-0 md:min-h-[52px] md:text-[42px]"
+              "ellipsisLine1 heading1 min-h-[30px] font-medium text-black md:min-h-[52px] md:text-[42px]"
             }
           >
             {"Your library"}

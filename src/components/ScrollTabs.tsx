@@ -65,7 +65,7 @@ export default function ScrollTabs({
   return (
     <Row
       className={
-        "relative mb-[38px] w-[calc(100%+2rem)] border-b border-gray-200 sm:mt-[12px] md:mb-[46px] md:mt-[22px] md:w-full"
+        "sticky top-0 z-10 mb-[38px] w-[calc(100%+2rem)] border-b border-gray-200 bg-background pt-[20px] sm:pt-[12px] md:relative md:mb-[46px] md:w-full"
       }
     >
       <Row
