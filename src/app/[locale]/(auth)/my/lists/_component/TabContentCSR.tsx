@@ -58,9 +58,9 @@ const BookmarkPreviewCard = ({
 
   return (
     <Card className="mb-10 overflow-hidden rounded-sm border-none bg-white transition-all hover:shadow-lg">
-      <Col className="h-[250px] md:h-[150px] md:flex-row">
+      <Col className="h-[250px] sm:h-[150px] sm:flex-row">
         {/* 모바일 이미지 프리뷰 */}
-        <div className="md:hidden">
+        <div className="sm:hidden">
           <div
             className={cn(
               "relative h-40 bg-cover bg-center",
@@ -81,9 +81,9 @@ const BookmarkPreviewCard = ({
         </div>
 
         {/* 컨텐츠 섹션 */}
-        <Col className="flex-1 justify-between p-4 md:p-6">
+        <Col className="flex-1 justify-between p-4 sm:p-6">
           {/* 데스크탑 헤더 */}
-          <div className="hidden md:block">
+          <div className="hidden sm:block">
             <Row className="items-start justify-between">
               <Col>
                 <Text className="body3 text-gray-500">{author}</Text>
@@ -96,7 +96,7 @@ const BookmarkPreviewCard = ({
           </div>
 
           {/* 모바일 추가 정보 */}
-          <Row className="mt-2 items-center justify-between md:hidden">
+          <Row className="mt-2 items-center justify-between sm:hidden">
             <Row className="body6 items-center gap-[6px] text-gray-500">
               {isPrivate && <LockIcon className="h-3 w-3" />}
               <Text>{bookmarkCount}개의 북마크</Text>
@@ -107,17 +107,17 @@ const BookmarkPreviewCard = ({
           </Row>
 
           {/* 데스크탑 하단 정보 */}
-          <div className="body6 hidden items-center gap-[6px] text-gray-500 md:flex">
+          <div className="body6 hidden items-center gap-[6px] text-gray-500 sm:flex">
             {isPrivate && <LockIcon className="h-4 w-4" />}
             <span>{bookmarkCount}개의 북마크</span>
           </div>
         </Col>
 
         {/* 데스크탑 이미지 프리뷰 섹션 */}
-        <div className="relative hidden h-full w-[300px] gap-[2px] overflow-hidden md:flex">
+        <div className="relative hidden h-full w-[45%] gap-[2px] overflow-hidden sm:flex">
           <div
             className={cn(
-              `h-full w-[170px] bg-cover bg-center`,
+              `h-full w-[60%] bg-cover bg-center`,
               previews[0]?.thumbnail ? "" : "bg-gray-100",
             )}
             style={
@@ -126,7 +126,7 @@ const BookmarkPreviewCard = ({
                 : {}
             }
           />
-          <Col className="w-[130px] gap-[2px]">
+          <Col className="w-[40%] gap-[2px]">
             {[0, 1].map((_, index) => (
               <div
                 key={index}
