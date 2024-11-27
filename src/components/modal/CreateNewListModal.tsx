@@ -14,9 +14,16 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Switch } from "@/components/ui/switch";
 import Col from "@/components/Layout/Col";
+import { usePathname } from "@/i18n/routing";
 
 export function CreateNewListModalTrigger() {
   const { setKey } = useGlobalModalStore();
+  const pathname = usePathname();
+
+  if (pathname !== "/my/lists") {
+    return null;
+  }
+
   return (
     <Button
       font={"body3"}
