@@ -58,66 +58,31 @@ const BookmarkPreviewCard = ({
 
   return (
     <Card className="mb-10 overflow-hidden rounded-sm border-none bg-white transition-all hover:shadow-lg">
-      <Col className="h-[250px] sm:h-[150px] sm:flex-row">
-        {/* 모바일 이미지 프리뷰 */}
-        <div className="sm:hidden">
-          <div
-            className={cn(
-              "relative h-40 bg-cover bg-center",
-              previews[0]?.thumbnail ? "" : "bg-gray-100",
-            )}
-            style={
-              previews[0]?.thumbnail
-                ? { backgroundImage: `url(${previews[0].thumbnail})` }
-                : {}
-            }
-          >
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-            <div className="absolute bottom-0 left-0 right-0 p-4">
-              <Text className="body4 text-white/80">{author}</Text>
-              <h3 className="heading4 line-clamp-2 text-white">{title}</h3>
-            </div>
-          </div>
-        </div>
-
+      <Col className="flex-col-reverse sm:h-[145px] sm:flex-row">
         {/* 컨텐츠 섹션 */}
-        <Col className="flex-1 justify-between p-4 sm:p-6">
+        <Col className="min-h-[110px] flex-1 justify-between p-4 sm:h-full sm:p-6">
           {/* 데스크탑 헤더 */}
-          <div className="hidden sm:block">
-            <Row className="items-start justify-between">
-              <Col>
-                <Text className="body3 text-gray-500">{author}</Text>
-                <h3 className="heading2 mt-1 line-clamp-2">{title}</h3>
-              </Col>
-              <Button variant="ghost" size="icon" className="h-8 w-8">
-                <MoreHorizontal className="h-5 w-5" />
-              </Button>
-            </Row>
-          </div>
-
-          {/* 모바일 추가 정보 */}
-          <Row className="mt-2 items-center justify-between sm:hidden">
+          <Text className="body5 min-h-[20px] text-gray-500">{author}</Text>
+          <h3 className="heading4 ellipsisLine2 mt-3 line-clamp-2 max-h-[40px] min-h-[20px]">
+            {title}
+          </h3>
+          {/* 데스크탑 하단 정보 */}
+          <Row className={"justify-between"}>
             <Row className="body6 items-center gap-[6px] text-gray-500">
-              {isPrivate && <LockIcon className="h-3 w-3" />}
-              <Text>{bookmarkCount}개의 북마크</Text>
+              {isPrivate && <LockIcon className="h-4 w-4" />}
+              <span>{bookmarkCount}개의 북마크</span>
             </Row>
             <Button variant="ghost" size="icon" className="h-8 w-8">
               <MoreHorizontal className="h-5 w-5" />
             </Button>
           </Row>
-
-          {/* 데스크탑 하단 정보 */}
-          <div className="body6 hidden items-center gap-[6px] text-gray-500 sm:flex">
-            {isPrivate && <LockIcon className="h-4 w-4" />}
-            <span>{bookmarkCount}개의 북마크</span>
-          </div>
         </Col>
 
         {/* 데스크탑 이미지 프리뷰 섹션 */}
-        <div className="relative hidden h-full w-[45%] gap-[2px] overflow-hidden sm:flex">
+        <Row className="relative h-[110px] w-full gap-[2px] overflow-hidden sm:h-full sm:w-[45%]">
           <div
             className={cn(
-              `h-full w-[60%] bg-cover bg-center`,
+              `h-full w-[45%] bg-cover bg-center sm:w-[60%]`,
               previews[0]?.thumbnail ? "" : "bg-gray-100",
             )}
             style={
@@ -126,13 +91,14 @@ const BookmarkPreviewCard = ({
                 : {}
             }
           />
-          <Col className="w-[40%] gap-[2px]">
+          <Row className="w-[55%] gap-[2px] sm:w-[40%] sm:flex-col">
             {[0, 1].map((_, index) => (
               <div
                 key={index}
                 className={cn(
-                  `h-1/2 w-full bg-cover bg-center`,
+                  `h-full bg-cover bg-center sm:h-1/2 sm:w-full`,
                   previews[index + 1]?.thumbnail ? "" : "bg-gray-100",
+                  index === 0 ? "w-[65%]" : "w-[35%]",
                 )}
                 style={
                   previews[index + 1]?.thumbnail
@@ -143,8 +109,8 @@ const BookmarkPreviewCard = ({
                 }
               />
             ))}
-          </Col>
-        </div>
+          </Row>
+        </Row>
       </Col>
     </Card>
   );
