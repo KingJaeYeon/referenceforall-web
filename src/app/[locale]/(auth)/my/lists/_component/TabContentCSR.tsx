@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl";
 import { usePathname } from "@/i18n/routing";
 import Col from "@/components/Layout/Col";
 import { Card } from "@/components/ui/card";
-import { LockIcon, MoreHorizontal } from "lucide-react";
+import { LucideLock, MoreHorizontal } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Row from "@/components/Layout/Row";
 import { cn } from "@/lib/utils";
@@ -57,29 +57,29 @@ const BookmarkPreviewCard = ({
   const hasMorePreviews = bookmarkPreviews.length > 3;
 
   return (
-    <Card className="mb-10 overflow-hidden rounded-sm border-none bg-white transition-all hover:shadow-lg">
+    <Card className="mb-10 overflow-hidden rounded-sm border border-gray-50 bg-gray-50 transition-all hover:shadow-lg">
       <Col className="flex-col-reverse sm:h-[145px] sm:flex-row">
         {/* 컨텐츠 섹션 */}
-        <Col className="min-h-[110px] flex-1 justify-between p-4 sm:h-full sm:p-6">
+        <Col className="min-h-[105px] flex-1 justify-between p-4 pb-3 sm:h-full sm:p-6">
           {/* 데스크탑 헤더 */}
           <Text className="body5 min-h-[20px] text-gray-500">{author}</Text>
-          <h3 className="heading4 ellipsisLine2 mt-3 line-clamp-2 max-h-[40px] min-h-[20px]">
+          <h3 className="heading4 ellipsisLine2 mt-2 line-clamp-2 max-h-[40px] min-h-[20px]">
             {title}
           </h3>
           {/* 데스크탑 하단 정보 */}
           <Row className={"justify-between"}>
             <Row className="body6 items-center gap-[6px] text-gray-500">
-              {isPrivate && <LockIcon className="h-4 w-4" />}
-              <span>{bookmarkCount}개의 북마크</span>
+              <span>{bookmarkCount} items</span>
+              {isPrivate && <LucideLock className="h-3 w-3" />}
             </Row>
-            <Button variant="ghost" size="icon" className="h-8 w-8">
+            <Button variant="ghost" size="icon" className="h-6 w-6">
               <MoreHorizontal className="h-5 w-5" />
             </Button>
           </Row>
         </Col>
 
         {/* 데스크탑 이미지 프리뷰 섹션 */}
-        <Row className="relative h-[110px] w-full gap-[2px] overflow-hidden sm:h-full sm:w-[45%]">
+        <Row className="relative h-[125px] w-full gap-[2px] overflow-hidden sm:h-full sm:w-[45%]">
           <div
             className={cn(
               `h-full w-[45%] bg-cover bg-center sm:w-[60%]`,
