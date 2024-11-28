@@ -1,15 +1,18 @@
 import { ReactNode } from "react";
 import PageWrapper from "@/components/Layout/PageWrapper";
 import ContentWrapper from "@/components/Layout/ContentWrapper";
-import RecommendTopicList from "@/app/[locale]/tag/[topic]/_component/RecommendTopicList";
 import Col from "@/components/Layout/Col";
+import TagPageHeader from "@/app/[locale]/tag/_component/TagPageHeader";
 
-export default async function Layout({ children }: { children: ReactNode }) {
+interface PageProps {
+  children: ReactNode;
+}
+export default async function Layout({ children }: PageProps) {
   return (
     <PageWrapper>
       <ContentWrapper>
         <Col className={"text-center"}>
-          <RecommendTopicList />
+          <TagPageHeader />
           {children}
         </Col>
       </ContentWrapper>

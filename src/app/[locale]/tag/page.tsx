@@ -14,15 +14,7 @@ export default async function ExploreTagPage() {
   const t = await getTranslations();
   return (
     <>
-      <Text
-        className={
-          "heading1 min-h-[30px] font-medium md:min-h-[52px] md:text-[42px]"
-        }
-      >
-        {t("explore_topics")}
-      </Text>
       <SearchInput />
-
       <Row className={"body5 items-center justify-center"}>
         <Text className={"text-gray-500"}>{t("recommended")}:</Text>
         <Link className={"ml-[12px]"} href={"/tag/react"}>

@@ -18,7 +18,7 @@ export default function ListsHeader() {
     >
       <Row
         className={
-          "mb-[6px] mt-[24px] h-[42px] items-center justify-between md:my-0"
+          "mb-[6px] mt-[24px] h-[42px] items-center justify-between md:mb-[12px] md:mt-0"
         }
       >
         <Text

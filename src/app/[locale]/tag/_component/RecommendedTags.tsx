@@ -9,8 +9,9 @@ import {
 import { useEffect, useRef, useState } from "react";
 import Text from "@/components/Layout/Text";
 import TopicButton from "@/components/TopicButton";
+import Col from "@/components/Layout/Col";
 
-export default function RecommendTopicList() {
+export default function RecommendedTags() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
@@ -48,11 +49,11 @@ export default function RecommendTopicList() {
   };
 
   const handleScrollLeft = () => {
-    scrollByAmount(-100);
+    scrollByAmount(-200);
   };
 
   const handleScrollRight = () => {
-    scrollByAmount(100);
+    scrollByAmount(200);
   };
   const recommendTopics = [
     "technology",
@@ -70,60 +71,60 @@ export default function RecommendTopicList() {
   ];
 
   return (
-    <Row
-      className={"relative mb-[38px] sm:mt-[12px] md:mb-[46px] md:mt-[22px]"}
-    >
-      <Row
-        ref={scrollContainerRef}
-        className={
-          "scrollNone overflow-y-hidden overflow-x-scroll scroll-smooth"
-        }
-        style={{ scrollBehavior: "smooth" }}
-      >
-        <TopicButton href={"/tag"} lastPath={"tag"}>
-          <IconPlayerExpand />
-          <Text className={"hidden md:inline"}>Explore topics</Text>
-        </TopicButton>
-
-        {recommendTopics.map((topic) => (
-          <TopicButton href={`/tag/${topic}`} lastPath={topic} key={topic}>
-            {topic.split("-").join(" ")}
+    <Col>
+      <Row className={"relative mb-[38px] mt-[12px] md:mb-[46px] md:mt-[22px]"}>
+        <Row
+          ref={scrollContainerRef}
+          className={
+            "scrollNone overflow-y-hidden overflow-x-scroll scroll-smooth"
+          }
+          style={{ scrollBehavior: "smooth" }}
+        >
+          <TopicButton href={"/tag"} lastPath={"tag"}>
+            <IconPlayerExpand />
+            <Text className={"hidden md:inline"}>Explore topics</Text>
           </TopicButton>
-        ))}
 
-        {canScrollLeft && (
-          <Row
-            className={
-              "scroller-x-left absolute pr-[30px] duration-100 sm:pr-[42px]"
-            }
-          >
-            <Button
-              variant={"default"}
-              onClick={handleScrollLeft}
-              aria-label="Scroll Left"
-              className={"px-0 sm:pr-3"}
+          {recommendTopics.map((topic) => (
+            <TopicButton href={`/tag/${topic}`} lastPath={topic} key={topic}>
+              {topic.split("-").join(" ")}
+            </TopicButton>
+          ))}
+
+          {canScrollLeft && (
+            <Row
+              className={
+                "scroller-x-left absolute pr-[30px] duration-100 sm:pr-[42px]"
+              }
             >
-              <IconChevronLeft />
-            </Button>
-          </Row>
-        )}
-        {canScrollRight && (
-          <Row
-            className={
-              "scroller-x-right absolute right-0 pl-[30px] duration-100 sm:pl-[42px]"
-            }
-          >
-            <Button
-              variant={"default"}
-              onClick={handleScrollRight}
-              aria-label="Scroll Right"
-              className={"px-0 sm:pl-3"}
+              <Button
+                variant={"default"}
+                onClick={handleScrollLeft}
+                aria-label="Scroll Left"
+                className={"px-0 sm:pr-3"}
+              >
+                <IconChevronLeft />
+              </Button>
+            </Row>
+          )}
+          {canScrollRight && (
+            <Row
+              className={
+                "scroller-x-right absolute right-0 pl-[30px] duration-100 sm:pl-[42px]"
+              }
             >
-              <IconChevronRight />
-            </Button>
-          </Row>
-        )}
+              <Button
+                variant={"default"}
+                onClick={handleScrollRight}
+                aria-label="Scroll Right"
+                className={"px-0 sm:pl-3"}
+              >
+                <IconChevronRight />
+              </Button>
+            </Row>
+          )}
+        </Row>
       </Row>
-    </Row>
+    </Col>
   );
 }
