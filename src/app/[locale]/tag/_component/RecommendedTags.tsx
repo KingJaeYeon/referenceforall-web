@@ -1,17 +1,13 @@
 "use client";
 import Row from "@/components/Layout/Row";
 import { Button } from "@/components/ui/button";
-import {
-  IconChevronLeft,
-  IconChevronRight,
-  IconPlayerExpand,
-} from "@/assets/svg";
+import { IconChevronLeft, IconChevronRight, IconCompass } from "@/assets/svg";
 import { useEffect, useRef, useState } from "react";
 import Text from "@/components/Layout/Text";
 import TopicButton from "@/components/TopicButton";
 import Col from "@/components/Layout/Col";
 
-export default function RecommendedTags() {
+export default function RecommendedTags({ tags }: { tags: any }) {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
@@ -55,24 +51,10 @@ export default function RecommendedTags() {
   const handleScrollRight = () => {
     scrollByAmount(200);
   };
-  const recommendTopics = [
-    "technology",
-    "blockchain",
-    "artificial-intelligence",
-    "programming",
-    "machine-learning",
-    "data-science",
-    "defi",
-    "tech",
-    "crypto",
-    "business2",
-    "business1",
-    "business3",
-  ];
 
   return (
     <Col>
-      <Row className={"relative mb-[38px] mt-[12px] md:mb-[46px] md:mt-[22px]"}>
+      <Row className={"relative my-0 md:mb-[46px] md:mt-[22px]"}>
         <Row
           ref={scrollContainerRef}
           className={
@@ -80,12 +62,12 @@ export default function RecommendedTags() {
           }
           style={{ scrollBehavior: "smooth" }}
         >
-          <TopicButton href={"/tag"} lastPath={"tag"}>
-            <IconPlayerExpand />
+          <TopicButton href={"/tag"} lastPath={"tag"} className={"md:mr-6"}>
+            <IconCompass />
             <Text className={"hidden md:inline"}>Explore topics</Text>
           </TopicButton>
 
-          {recommendTopics.map((topic) => (
+          {tags.map((topic: any) => (
             <TopicButton href={`/tag/${topic}`} lastPath={topic} key={topic}>
               {topic.split("-").join(" ")}
             </TopicButton>

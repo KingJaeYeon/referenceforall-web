@@ -18,6 +18,7 @@ import {
 import { IconError } from "@/assets/svg/IconError";
 import { IconSearch, IconSearch2 } from "@/assets/svg/IconSearch";
 import { IconMoon, IconSun } from "@/assets/svg/IconTheme";
+import { IconCompass } from "@/assets/svg/IconCompass";
 //
 // import {
 //   IconDown,
@@ -178,3 +179,4 @@ export { IconChevronLeft, IconChevronRight };
 //   IconLinearPieChart,
 //   IconSolidPieChart,
 // };
+export { IconCompass };

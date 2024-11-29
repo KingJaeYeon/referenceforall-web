@@ -31,6 +31,7 @@ export default async function TagDetailsPage({
   const tags = !!searchParams.tags
     ? decodeURI(searchParams.tags).split(",")
     : [];
+
   const sites = [
     {
       id: "c4c6d219-56c1-4c2a-b67b-b56e1367bbd4",

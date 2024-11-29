@@ -24,12 +24,9 @@ export function Header({ topic }: { topic: string }) {
     <>
       <Text
         className={
-          "heading1 min-h-[30px] font-medium capitalize md:min-h-[52px] md:text-[42px]"
+          "body4 md:body3 mb-[12px] mt-[20px] md:mb-[24px] md:mt-[16px]"
         }
       >
-        {topic.split("-").join(" ")}
-      </Text>
-      <Text className={"body4 md:body3 mb-[24px] mt-[12px] md:mt-[16px]"}>
         {t("result_sites_cnt", { count: 10 })}
       </Text>
       <Row
