@@ -3,7 +3,6 @@ import PageWrapper from "@/components/Layout/PageWrapper";
 import ContentWrapper from "@/components/Layout/ContentWrapper";
 import Col from "@/components/Layout/Col";
 import TagPageHeader from "@/app/[locale]/tag/_component/TagPageHeader";
-import { randomUUID } from "node:crypto";
 
 interface PageProps {
   children: ReactNode;
