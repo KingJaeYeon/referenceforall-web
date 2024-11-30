@@ -90,7 +90,7 @@ export default async function TagDetailsPage({
       </Text>
       <AddTopic />
       <Row className={"mb-[100px] mt-[40px] w-full flex-wrap text-center"}>
-        <div className="grid w-full gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="custom-680:grid-cols-2 grid w-full gap-8 ls:grid-cols-3">
           {sites.map((site, index) => (
             <Row className={"relative h-auto"} key={index}>
               <Suspense fallback={<div>Loading...</div>}>

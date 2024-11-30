@@ -5,7 +5,6 @@ import { IconChevronLeft, IconChevronRight, IconCompass } from "@/assets/svg";
 import { useEffect, useRef, useState } from "react";
 import Text from "@/components/Layout/Text";
 import TopicButton from "@/components/TopicButton";
-import Col from "@/components/Layout/Col";
 
 export default function RecommendedTags({ tags }: { tags: any }) {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
