@@ -1,13 +1,11 @@
 import PageWrapper from "@/components/Layout/PageWrapper";
 import ContentWrapper from "@/components/Layout/ContentWrapper";
-import Row from "@/components/Layout/Row";
+import React from "react";
 
-export default function Layout() {
+export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <PageWrapper>
-      <ContentWrapper>
-        <Row className={"w-full justify-evenly"}>dd</Row>
-      </ContentWrapper>
+      <ContentWrapper>{children}</ContentWrapper>
     </PageWrapper>
   );
 }

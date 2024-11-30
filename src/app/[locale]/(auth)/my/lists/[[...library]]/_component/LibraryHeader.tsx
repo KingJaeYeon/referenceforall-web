@@ -1,12 +1,11 @@
-import Row from "@/components/Layout/Row";
 import Text from "@/components/Layout/Text";
 import { CreateNewListModalTrigger } from "@/components/modal/CreateNewListModal";
 
-export default function ListsHeader() {
+export default function LibraryHeader() {
   return (
-    <Row
+    <header
       className={
-        "mb-[6px] mt-[24px] h-[42px] items-center justify-between md:mb-[12px] md:mt-0"
+        "mb-[6px] mt-[24px] flex h-[42px] items-center justify-between md:mb-[12px] md:mt-0"
       }
     >
       <Text
@@ -17,6 +16,6 @@ export default function ListsHeader() {
         {"Your library"}
       </Text>
       <CreateNewListModalTrigger />
-    </Row>
+    </header>
   );
 }

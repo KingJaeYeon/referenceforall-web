@@ -3,7 +3,7 @@ import ContentWrapper from "@/components/Layout/ContentWrapper";
 import Row from "@/components/Layout/Row";
 import { ReactNode } from "react";
 import type { Metadata } from "next";
-import ListsHeader from "@/app/[locale]/(auth)/my/lists/[[...library]]/_component/ListsHeader";
+import LibraryHeader from "@/app/[locale]/(auth)/my/lists/[[...library]]/_component/LibraryHeader";
 import Col from "@/components/Layout/Col";
 import ScrollTabs, { Tab } from "@/components/ScrollTabs";
 import TabContent from "@/app/[locale]/(auth)/my/lists/[[...library]]/_component/TabContent";
@@ -48,7 +48,7 @@ export default async function Layout(props: PageProps) {
               "mx-0 w-full max-w-[680px] md:mx-[24px] md:mb-[48px] md:mt-[52px]"
             }
           >
-            <ListsHeader />
+            <LibraryHeader />
             <Col className={"items-center"}>
               <ScrollTabs tabs={paths} />
               <TabContent library={libraryPath} />
