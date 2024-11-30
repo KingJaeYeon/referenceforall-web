@@ -11,7 +11,7 @@ import { notFound } from "next/navigation";
 import NavContent from "@/app/[locale]/(auth)/my/lists/[[...library]]/_component/NavContent";
 
 interface PageProps {
-  params: { library?: string[] };
+  params: Promise<{ library?: string[] }>;
   children: ReactNode;
 }
 
@@ -20,12 +20,8 @@ export const metadata: Metadata = {
   description: "Watch your Library",
 };
 
-export async function generateStaticParams() {
-  const allowedPaths = ["", "saved"];
-  return allowedPaths.map((path) => ({ library: path }));
-}
-
-export default function Layout({ params }: PageProps) {
+export default async function Layout(props: PageProps) {
+  const params = await props.params;
   const library = params.library || [];
 
   const ALLOWED_URLS = ["saved"];

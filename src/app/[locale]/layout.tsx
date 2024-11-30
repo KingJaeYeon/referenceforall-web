@@ -12,7 +12,6 @@ import { routing } from "@/i18n/routing";
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { Viewport } from "next";
-import Col from "@/components/Layout/Col";
 import { cookies } from "next/headers";
 import { parsePayload } from "@/util/util";
 import GlobalModal from "@/components/modal/GlobalModal";
