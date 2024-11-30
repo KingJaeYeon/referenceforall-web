@@ -12,10 +12,10 @@ export default function LibraryDetailHeader(props: {
   const { locale, detail } = props;
   return (
     <header className={"flex min-h-[42px] flex-col"}>
-      <Row className={"mb-[24px] mt-[32px] h-[48px] items-center"}>
+      <Row className={"mb-[12px] mt-[32px] h-[48px] items-center"}>
         <UserAvatar className={"mr-4 h-12 w-12"} />
         <Col className={"h-full justify-between"}>
-          <Text className={"body3 h-6"}>{detail.title}</Text>
+          <Text className={"body3 h-6"}>{detail.username}</Text>
           <Row className={"body5 h-[22px] items-center text-gray-500"}>
             <Text className={"h-[18px]"}>
               {utilDate({ date: detail.createdAt, locale, isFull: true })}
@@ -28,7 +28,7 @@ export default function LibraryDetailHeader(props: {
       </Row>
       <Text
         className={
-          "ellipsisLine1 heading1 min-h-[30px] text-[32px] font-semibold text-black md:min-h-[52px]"
+          "heading1 min-h-[30px] break-all font-semibold text-black sm:text-[28px] md:min-h-[52px] md:text-[32px]"
         }
       >
         {detail.title}
