@@ -12,7 +12,7 @@ export default function LibraryDetailHeader(props: {
   const { locale, detail } = props;
   return (
     <header className={"flex min-h-[42px] flex-col"}>
-      <Row className={"mb-[12px] mt-[32px] h-[48px] items-center"}>
+      <Row className={"mb-[18px] mt-[32px] h-[48px] items-center"}>
         <UserAvatar className={"mr-4 h-12 w-12"} />
         <Col className={"h-full justify-between"}>
           <Text className={"body3 h-6"}>{detail.username}</Text>
