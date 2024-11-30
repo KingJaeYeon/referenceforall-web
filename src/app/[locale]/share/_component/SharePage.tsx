@@ -125,7 +125,7 @@ export default function StepShareSiteForm() {
     <>
       <Row
         className={
-          "mx-auto mt-[20px] w-full max-w-[780px] flex-1 p-4 pb-[24px] md:mt-0 md:pt-[48px] lg:px-0"
+          "mx-auto w-full max-w-[780px] flex-1 px-4 pb-[120px] pt-[20px] md:pt-[48px]"
         }
       >
         <Form {...form}>
@@ -149,7 +149,7 @@ export default function StepShareSiteForm() {
             {/* Form Content */}
             <div>{renderStep()}</div>
             <button type="submit" ref={submitRef} />
-            <Row className={"flex h-[200px] justify-end md:hidden"}>
+            <Row className={"flex h-[50px] justify-end md:hidden"}>
               {currentStep > 1 ? (
                 <Button
                   type="button"
