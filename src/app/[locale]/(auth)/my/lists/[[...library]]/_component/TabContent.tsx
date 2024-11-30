@@ -1,12 +1,7 @@
-"use client";
-import { notFound } from "next/navigation";
 import React from "react";
-import { usePathname } from "@/i18n/routing";
 import { BookmarkPreviewCard } from "@/components/BookmarkPreviewCard";
 
-export default function TabContentCSR() {
-  const pathName = usePathname();
-  const target = pathName.split("/").pop();
+export default function TabContent({ library }: { library?: string }) {
   const bookmarks = [
     {
       id: 1,
@@ -163,13 +158,11 @@ export default function TabContentCSR() {
     },
   ];
 
-  switch (target) {
-    case "lists":
+  switch (library) {
+    case "root":
       return <BookmarkList data={bookmarks} />;
     case "saved":
       return <BookmarkList data={otherBookmarks} />;
-    default:
-      return notFound();
   }
 }
 

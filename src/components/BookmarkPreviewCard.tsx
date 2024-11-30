@@ -25,7 +25,7 @@ export function BookmarkPreviewCard({
   return (
     <Card
       className="mb-10 overflow-hidden rounded-sm border border-gray-50 bg-gray-50 transition-all hover:shadow-lg"
-      onClick={() => push(`/my/lists/${id}`)}
+      onClick={() => push(`/@${author}/list/${title.split(" ").join("-")}`)}
     >
       <Col className="flex-col-reverse sm:h-[145px] sm:flex-row">
         {/* 컨텐츠 섹션 */}

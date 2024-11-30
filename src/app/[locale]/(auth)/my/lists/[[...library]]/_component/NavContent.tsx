@@ -1,30 +1,22 @@
-"use client";
-import { notFound } from "next/navigation";
 import TopicButton from "@/components/TopicButton";
 import Row from "@/components/Layout/Row";
 import Text from "@/components/Layout/Text";
 import { IconDropDownDown } from "@/assets/svg";
 import React from "react";
 import { SiteCard } from "@/app/[locale]/search/[subject]/_component/MainCard";
-import { useTranslations } from "next-intl";
-import { usePathname } from "@/i18n/routing";
+import { getTranslations } from "next-intl/server";
 
-export default function NavContentCSR() {
-  const pathName = usePathname();
-  const target = pathName.split("/").pop();
-
-  switch (target) {
-    case "lists":
+export default function NavContent({ library }: { library?: string }) {
+  switch (library) {
+    case "root":
       return <TagsContent data={{}} />;
     case "saved":
       return <SitesContent data={{}} />;
-    default:
-      return notFound();
   }
 }
 
-function TagsContent({ data }: { data: any }) {
-  const t = useTranslations();
+async function TagsContent({ data }: { data: any }) {
+  const t = await getTranslations();
   return null;
   return (
     <div className={"relative"}>
@@ -61,7 +53,7 @@ function SitesContent({ data }: { data: any }) {
   return null;
   const { sites, total } = data;
 
-  return sites.map((site:any, index:any) => (
+  return sites.map((site: any, index: any) => (
     <SiteCard
       key={index}
       site={site}
