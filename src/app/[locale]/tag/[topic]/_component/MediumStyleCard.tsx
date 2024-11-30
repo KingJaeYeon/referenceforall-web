@@ -1,29 +1,8 @@
-"use client";
-
 import Row from "@/components/Layout/Row";
 import { Bookmark, Calendar, Star, Users } from "lucide-react";
-import { Suspense } from "react";
 import { Link } from "@/i18n/routing";
 
-export default function ReferencePage({ sites }: { sites: any[] }) {
-  return (
-    <Row className={"mt-[40px] text-center"}>
-      <Row className={"w-full flex-wrap"}>
-        <div className="grid w-full gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {sites.map((site, index) => (
-            <Row className={"relative h-auto"} key={index}>
-              <Suspense fallback={<div>Loading...</div>}>
-                <MediumStyleCard site={site} />
-              </Suspense>
-            </Row>
-          ))}
-        </div>
-      </Row>
-    </Row>
-  );
-}
-
-const MediumStyleCard = ({ site }: { site: any }) => {
+export default function MediumStyleCard({ site }: { site: any }) {
   return (
     <Link href={`/site/${site.id}`} scroll={true}>
       <div
@@ -44,7 +23,6 @@ const MediumStyleCard = ({ site }: { site: any }) => {
               <span
                 key={index}
                 className="rounded-full bg-gray-100 px-2.5 py-1 text-xs text-gray-600 transition-colors hover:bg-gray-200"
-                onClick={(e) => e.stopPropagation()}
               >
                 {tag}
               </span>
@@ -73,10 +51,7 @@ const MediumStyleCard = ({ site }: { site: any }) => {
                 <span>{site.lastUpdate}</span>
               </Row>
             </Row>
-            <button
-              className="flex items-center gap-1 text-gray-500 transition-colors hover:text-gray-700"
-              onClick={(e) => e.stopPropagation()}
-            >
+            <button className="flex items-center gap-1 text-gray-500 transition-colors hover:text-gray-700">
               <Bookmark className="h-4 w-4" />
             </button>
           </Row>
@@ -84,4 +59,4 @@ const MediumStyleCard = ({ site }: { site: any }) => {
       </div>
     </Link>
   );
-};
+}

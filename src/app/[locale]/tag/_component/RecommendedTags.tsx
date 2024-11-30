@@ -53,60 +53,58 @@ export default function RecommendedTags({ tags }: { tags: any }) {
   };
 
   return (
-    <Col>
-      <Row className={"relative my-0 md:mb-[46px] md:mt-[22px]"}>
-        <Row
-          ref={scrollContainerRef}
-          className={
-            "scrollNone overflow-y-hidden overflow-x-scroll scroll-smooth"
-          }
-          style={{ scrollBehavior: "smooth" }}
-        >
-          <TopicButton href={"/tag"} lastPath={"tag"} className={"md:mr-6"}>
-            <IconCompass />
-            <Text className={"hidden md:inline"}>Explore topics</Text>
+    <Row className={"relative mb-[46px] mt-[22px]"}>
+      <Row
+        ref={scrollContainerRef}
+        className={
+          "scrollNone overflow-y-hidden overflow-x-scroll scroll-smooth"
+        }
+        style={{ scrollBehavior: "smooth" }}
+      >
+        <TopicButton href={"/tag"} lastPath={"tag"} className={"px-2 md:mr-6"}>
+          <IconCompass />
+          <Text className={"hidden md:inline"}>Explore topics</Text>
+        </TopicButton>
+
+        {tags.map((topic: any) => (
+          <TopicButton href={`/tag/${topic}`} lastPath={topic} key={topic}>
+            {topic.split("-").join(" ")}
           </TopicButton>
+        ))}
 
-          {tags.map((topic: any) => (
-            <TopicButton href={`/tag/${topic}`} lastPath={topic} key={topic}>
-              {topic.split("-").join(" ")}
-            </TopicButton>
-          ))}
-
-          {canScrollLeft && (
-            <Row
-              className={
-                "scroller-x-left absolute pr-[30px] duration-100 sm:pr-[42px]"
-              }
+        {canScrollLeft && (
+          <Row
+            className={
+              "scroller-x-left absolute pr-[30px] duration-100 sm:pr-[42px]"
+            }
+          >
+            <Button
+              variant={"default"}
+              onClick={handleScrollLeft}
+              aria-label="Scroll Left"
+              className={"px-0 sm:pr-3"}
             >
-              <Button
-                variant={"default"}
-                onClick={handleScrollLeft}
-                aria-label="Scroll Left"
-                className={"px-0 sm:pr-3"}
-              >
-                <IconChevronLeft />
-              </Button>
-            </Row>
-          )}
-          {canScrollRight && (
-            <Row
-              className={
-                "scroller-x-right absolute right-0 pl-[30px] duration-100 sm:pl-[42px]"
-              }
+              <IconChevronLeft />
+            </Button>
+          </Row>
+        )}
+        {canScrollRight && (
+          <Row
+            className={
+              "scroller-x-right absolute right-0 pl-[30px] duration-100 sm:pl-[42px]"
+            }
+          >
+            <Button
+              variant={"default"}
+              onClick={handleScrollRight}
+              aria-label="Scroll Right"
+              className={"px-0 sm:pl-3"}
             >
-              <Button
-                variant={"default"}
-                onClick={handleScrollRight}
-                aria-label="Scroll Right"
-                className={"px-0 sm:pl-3"}
-              >
-                <IconChevronRight />
-              </Button>
-            </Row>
-          )}
-        </Row>
+              <IconChevronRight />
+            </Button>
+          </Row>
+        )}
       </Row>
-    </Col>
+    </Row>
   );
 }

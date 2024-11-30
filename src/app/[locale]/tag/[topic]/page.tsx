@@ -1,5 +1,9 @@
-import ReferencePage from "@/app/[locale]/tag/[topic]/_component/ReferencePage";
-import { Header } from "@/app/[locale]/tag/[topic]/_component/Header";
+import MediumStyleCard from "@/app/[locale]/tag/[topic]/_component/MediumStyleCard";
+import { AddTopic } from "@/app/[locale]/tag/[topic]/_component/AddTopic";
+import Text from "@/components/Layout/Text";
+import { getTranslations } from "next-intl/server";
+import Row from "@/components/Layout/Row";
+import { Suspense } from "react";
 
 export const revalidate = false;
 
@@ -24,6 +28,7 @@ export default async function TagDetailsPage({
   params: _params,
   searchParams: _searchParams,
 }: PageProps) {
+  const t = await getTranslations();
   const params = await _params;
   const topic = decodeURI(params.topic);
   const searchParams = await _searchParams;
@@ -73,8 +78,28 @@ export default async function TagDetailsPage({
 
   return (
     <>
-      <Header topic={topic} />
-      <ReferencePage sites={sites} />
+      <Text
+        className={
+          "heading1 min-h-[30px] font-medium capitalize md:min-h-[52px] md:text-[42px]"
+        }
+      >
+        {topic.split("-").join(" ")}
+      </Text>
+      <Text className={"body4 md:body3 mb-[24px] mt-[12px] md:mt-[16px]"}>
+        {t("result_sites_cnt", { count: 10 })}
+      </Text>
+      <AddTopic />
+      <Row className={"mb-[100px] mt-[40px] w-full flex-wrap text-center"}>
+        <div className="grid w-full gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {sites.map((site, index) => (
+            <Row className={"relative h-auto"} key={index}>
+              <Suspense fallback={<div>Loading...</div>}>
+                <MediumStyleCard site={site} />
+              </Suspense>
+            </Row>
+          ))}
+        </div>
+      </Row>
     </>
   );
 }
