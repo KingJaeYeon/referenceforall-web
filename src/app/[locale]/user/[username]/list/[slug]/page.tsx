@@ -1,14 +1,26 @@
 import Col from "@/components/Layout/Col";
 import Row from "@/components/Layout/Row";
 import LibraryDetailHeader from "@/app/[locale]/user/[username]/list/[slug]/_component/LibraryDetailHeader";
-import { ReactNode } from "react";
+import { Metadata } from "next";
 
-export default async function UserPage(
-  props: Readonly<{
-    children: ReactNode;
-    params: { locale: string };
-  }>,
-) {
+interface PageProps {
+  params: Promise<{
+    locale: string;
+    username: string;
+    slug: string;
+  }>;
+}
+export async function generateMetadata(props: PageProps): Promise<Metadata> {
+  const params = await props.params;
+  // Your metadata generation logic here
+  const username = decodeURIComponent(params.username).slice(1);
+  const slug = decodeURI(params.slug).split("-").join(" ").toLocaleUpperCase();
+  return {
+    title: `${username} - ${slug}`,
+  };
+}
+
+export default async function UserPage(props: PageProps) {
   const detail = {
     id: "a",
     username: "Wodus331",

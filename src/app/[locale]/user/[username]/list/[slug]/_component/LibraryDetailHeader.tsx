@@ -1,18 +1,15 @@
 import Text from "@/components/Layout/Text";
-import { CreateNewListModalTrigger } from "@/components/modal/CreateNewListModal";
 import UserAvatar from "@/components/UserAvatar";
 import Row from "@/components/Layout/Row";
 import Col from "@/components/Layout/Col";
 import { utilDate } from "@/lib/dateFormat";
 import { LockIcon } from "lucide-react";
 
-export default function LibraryDetailHeader({
-  detail,
-  locale,
-}: {
+export default function LibraryDetailHeader(props: {
   detail: any;
   locale: string;
 }) {
+  const { locale, detail } = props;
   return (
     <header className={"flex min-h-[42px] flex-col"}>
       <Row className={"mb-[24px] mt-[32px] h-[48px] items-center"}>
@@ -36,7 +33,6 @@ export default function LibraryDetailHeader({
       >
         {detail.title}
       </Text>
-      <CreateNewListModalTrigger />
     </header>
   );
 }
