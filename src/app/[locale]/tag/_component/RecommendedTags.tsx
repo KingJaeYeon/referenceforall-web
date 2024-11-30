@@ -39,6 +39,15 @@ export default function RecommendedTags({ tags }: { tags: any }) {
   const scrollByAmount = (amount: number) => {
     const container = scrollContainerRef.current;
     if (container) {
+      const { scrollLeft, scrollWidth, clientWidth } = container;
+
+      if (scrollLeft + amount < 0) {
+        amount = -scrollLeft;
+      }
+      if (scrollLeft + clientWidth + amount > scrollWidth) {
+        amount = scrollWidth - clientWidth - scrollLeft;
+      }
+
       container.scrollBy({ left: amount, behavior: "smooth" });
     }
   };
