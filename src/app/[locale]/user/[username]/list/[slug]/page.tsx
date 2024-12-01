@@ -38,7 +38,7 @@ export default async function UserPage(props: PageProps) {
 
   return (
     <Row className={"w-full justify-evenly"}>
-      <Col className={"mx-0 w-full max-w-[680px]"}>
+      <Col className={"mx-0 w-full max-w-[680px] px-0 md:px-4"}>
         <LibraryDetailHeader detail={detail} locale={locale} />
       </Col>
       <Col

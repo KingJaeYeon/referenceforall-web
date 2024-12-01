@@ -1,7 +1,6 @@
 import SitePage from "@/app/[locale]/site/[siteId]/_component/SitePage";
 import PageWrapper from "@/components/Layout/PageWrapper";
 import ContentWrapper from "@/components/Layout/ContentWrapper";
-import { notFound } from "next/navigation";
 
 interface PageProps {
   params: Promise<{ siteId: string; locale: string }>;

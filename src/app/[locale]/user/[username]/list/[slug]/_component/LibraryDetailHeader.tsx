@@ -3,7 +3,7 @@ import UserAvatar from "@/components/UserAvatar";
 import Row from "@/components/Layout/Row";
 import Col from "@/components/Layout/Col";
 import { utilDate } from "@/lib/dateFormat";
-import { LockIcon } from "lucide-react";
+import { Bookmark, LockIcon, MoreHorizontal } from "lucide-react";
 import MobileBackButton from "@/components/MobileBackButton";
 
 export default function LibraryDetailHeader(props: {
@@ -15,12 +15,14 @@ export default function LibraryDetailHeader(props: {
     <header className={"flex min-h-[42px] justify-center"}>
       <Col
         className={
-          "min-w-[calc(100%+32px)] flex-col-reverse border-b border-gray-300 px-4 pb-4 md:flex-col md:px-0"
+          "min-w-[calc(100%+32px)] flex-col-reverse border-b border-gray-200 px-4 pb-4 md:min-w-full md:flex-col md:px-0 md:pb-0"
         }
       >
         <Col>
           <Row
-            className={"mb-[18px] mt-[12px] h-[48px] items-center md:mt-[32px]"}
+            className={
+              "mb-[18px] mt-[12px] h-[48px] items-center md:mb-[32px] md:mt-[56px]"
+            }
           >
             <UserAvatar className={"mr-4 h-12 w-12"} />
             <Col className={"h-full justify-between"}>
@@ -50,8 +52,26 @@ export default function LibraryDetailHeader(props: {
             {detail.description}
           </Text>
         </Col>
-        <Row className={"mt-[18px] justify-between md:mt-0"}>
+        <Row
+          className={
+            "mt-[18px] items-center justify-between border-gray-200 py-0 md:mt-6 md:border-t md:py-3"
+          }
+        >
           <MobileBackButton className={"md:hidden"} />
+          <Row className={"flex-1 justify-end gap-3 md:gap-5"}>
+            <button className={"tooltip"}>
+              <span className="tooltiptext tooltip-top body6 hidden md:block">
+                Bookmark
+              </span>
+              <Bookmark className={"stroke-1 text-gray-500 hover:text-black"} />
+            </button>
+            <button className={"tooltip"}>
+              <span className="tooltiptext tooltip-top body6 hidden md:block">
+                More
+              </span>
+              <MoreHorizontal className={"text-gray-500 hover:text-black"} />
+            </button>
+          </Row>
         </Row>
       </Col>
     </header>

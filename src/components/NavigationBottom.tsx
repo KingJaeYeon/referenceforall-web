@@ -1,10 +1,5 @@
 import BottomTabLink from "@/components/BottomTabLink";
-import {
-  BookmarkIcon,
-  LibrarySquareIcon,
-  ListIcon,
-  Share2Icon,
-} from "lucide-react";
+import { BookmarkIcon, ListIcon, Share2Icon } from "lucide-react";
 import { IconSearch } from "@/assets/svg";
 import UserAvatar from "@/components/UserAvatar";
 
