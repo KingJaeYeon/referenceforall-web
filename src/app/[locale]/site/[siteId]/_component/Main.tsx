@@ -2,7 +2,6 @@ import Row from "@/components/Layout/Row";
 import TopicButton from "@/components/TopicButton";
 import { Button } from "@/components/ui/button";
 import {
-  ArrowLeft,
   Bookmark,
   ExternalLink,
   Eye,
@@ -17,7 +16,7 @@ import {
   DesktopComment,
   MobileComment,
 } from "@/app/[locale]/site/[siteId]/_component/Comment";
-import { useRouter } from "@/i18n/routing";
+import MobileBackButton from "@/components/MobileBackButton";
 
 export function DesktopMain(props: {
   siteData: any;
@@ -190,15 +189,12 @@ export function MobileMain(props: {
   comments: any;
 }) {
   const { siteData, setIsBookmarked, isBookmarked, comments } = props;
-  const { back } = useRouter();
   return (
     <div className="mx-auto mb-[100px] mt-[24px] max-w-full">
       {/* 페이지 타이틀 & 액션 버튼 */}
       <div className="mb-4 space-y-4">
         <Row className={"items-center gap-[6px]"}>
-          <button onClick={() => back()}>
-            <ArrowLeft />
-          </button>
+          <MobileBackButton />
           <h1 className="heading1">{siteData.name}</h1>
         </Row>
         <Row className="flex-wrap gap-2">

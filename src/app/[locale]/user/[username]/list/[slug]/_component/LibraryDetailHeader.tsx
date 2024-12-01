@@ -4,6 +4,7 @@ import Row from "@/components/Layout/Row";
 import Col from "@/components/Layout/Col";
 import { utilDate } from "@/lib/dateFormat";
 import { LockIcon } from "lucide-react";
+import MobileBackButton from "@/components/MobileBackButton";
 
 export default function LibraryDetailHeader(props: {
   detail: any;
@@ -14,30 +15,44 @@ export default function LibraryDetailHeader(props: {
     <header className={"flex min-h-[42px] justify-center"}>
       <Col
         className={
-          "min-w-[calc(100%+32px)] border-b border-gray-300 px-4 pb-4 md:px-0"
+          "min-w-[calc(100%+32px)] flex-col-reverse border-b border-gray-300 px-4 pb-4 md:flex-col md:px-0"
         }
       >
-        <Row className={"mb-[18px] mt-[32px] h-[48px] items-center"}>
-          <UserAvatar className={"mr-4 h-12 w-12"} />
-          <Col className={"h-full justify-between"}>
-            <Text className={"body3 h-6"}>{detail.username}</Text>
-            <Row className={"body5 h-[22px] items-center text-gray-500"}>
-              <Text className={"h-[18px]"}>
-                {utilDate({ date: detail.createdAt, locale, isFull: true })}
-              </Text>
-              <span className={"mx-1.5 mb-1"}>.</span>
-              <Text className={"mr-1.5 h-[18px]"}>{detail.total} lists</Text>
-              {detail.isPrivate && <LockIcon className={"mt-0.5 h-3 w-3"} />}
-            </Row>
-          </Col>
+        <Col>
+          <Row
+            className={"mb-[18px] mt-[12px] h-[48px] items-center md:mt-[32px]"}
+          >
+            <UserAvatar className={"mr-4 h-12 w-12"} />
+            <Col className={"h-full justify-between"}>
+              <Text className={"body3 h-6"}>{detail.username}</Text>
+              <Row className={"body5 h-[22px] items-center text-gray-500"}>
+                <Text className={"h-[18px]"}>
+                  {utilDate({ date: detail.createdAt, locale, isFull: true })}
+                </Text>
+                <span className={"mx-1.5 mb-1"}>.</span>
+                <Text className={"mr-1.5 h-[18px]"}>{detail.total} lists</Text>
+                {detail.isPrivate && <LockIcon className={"mt-0.5 h-3 w-3"} />}
+              </Row>
+            </Col>
+          </Row>
+          <Text
+            className={
+              "heading1 min-h-[30px] break-all font-semibold text-black sm:text-[28px] md:min-h-[52px] md:text-[32px]"
+            }
+          >
+            {detail.title}
+          </Text>
+          <Text
+            className={
+              "body2 min-h-[24px] break-all text-gray-600 md:min-h-[24px]"
+            }
+          >
+            {detail.description}
+          </Text>
+        </Col>
+        <Row className={"mt-[18px] justify-between md:mt-0"}>
+          <MobileBackButton className={"md:hidden"} />
         </Row>
-        <Text
-          className={
-            "heading1 min-h-[30px] break-all font-semibold text-black sm:text-[28px] md:min-h-[52px] md:text-[32px]"
-          }
-        >
-          {detail.title}
-        </Text>
       </Col>
     </header>
   );

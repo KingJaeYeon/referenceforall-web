@@ -28,7 +28,7 @@ export default async function UserPage(props: PageProps) {
     isPrivate: true,
     title: "2024 여행 버킷리스트",
     total: 10,
-    description: "",
+    description: "description test",
     list: [{}],
   };
 

@@ -1,5 +1,10 @@
 import BottomTabLink from "@/components/BottomTabLink";
-import { LibrarySquareIcon, ListIcon, Share2Icon } from "lucide-react";
+import {
+  BookmarkIcon,
+  LibrarySquareIcon,
+  ListIcon,
+  Share2Icon,
+} from "lucide-react";
 import { IconSearch } from "@/assets/svg";
 import UserAvatar from "@/components/UserAvatar";
 
@@ -19,7 +24,7 @@ export default function NavigationBottom() {
       <BottomTabLink icon={<Share2Icon />} href={"/share"}>
         공유하기
       </BottomTabLink>
-      <BottomTabLink icon={<LibrarySquareIcon />} href={"/my/lists"}>
+      <BottomTabLink icon={<BookmarkIcon />} href={["/my/lists", "/@"]}>
         관심목록
       </BottomTabLink>
       <BottomTabLink
