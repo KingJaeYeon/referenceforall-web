@@ -25,7 +25,11 @@ export function SiteCard(props: {
         <Row className={"flex flex-wrap"}>
           <Row className={"w-full"}>
             <Col className={"w-full"}>
-              <h2 className={"heading2 md:heading1 ellipsisLine2 max-h-[90px]"}>
+              <h2
+                className={
+                  "heading1 ellipsisLine2 max-h-[90px] font-semibold md:text-[28px]"
+                }
+              >
                 {site.name}
               </h2>
 
