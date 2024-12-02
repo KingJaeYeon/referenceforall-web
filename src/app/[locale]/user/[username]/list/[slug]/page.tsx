@@ -3,6 +3,10 @@ import Row from "@/components/Layout/Row";
 import LibraryDetailHeader from "@/app/[locale]/user/[username]/list/[slug]/_component/LibraryDetailHeader";
 import { Metadata } from "next";
 import { Suspense } from "react";
+import {
+  ParentComponent,
+  SiteCard,
+} from "@/app/[locale]/user/[username]/list/[slug]/_component/SiteCard";
 
 interface PageProps {
   params: Promise<{
@@ -46,7 +50,7 @@ export default async function UserPage(props: PageProps) {
       <Col className={"mx-0 w-full max-w-[680px] px-0 md:px-4"}>
         <Suspense fallback={<div>Loading...</div>}>
           <LibraryDetailHeader detail={detail} locale={locale} />
-          <ListDetailCard list={detail.list} />
+          <ParentComponent />
         </Suspense>
       </Col>
       <Col
@@ -60,8 +64,4 @@ export default async function UserPage(props: PageProps) {
       ></Col>
     </Row>
   );
-}
-
-function ListDetailCard({ list }: { list: any[] }) {
-  return <Row>dd</Row>;
 }
