@@ -20,7 +20,7 @@ export function SiteCard(props: {
   const { site, isFirst, isLast, hasMore } = props;
   const t = useTranslations();
   return (
-    <article className={cn("relative", isFirst ? "" : "mt-[32px]")}>
+    <article className={cn("relative w-full", isFirst ? "" : "mt-[32px]")}>
       <Link href={`/site/${site.id}`}>
         <Row className={"flex flex-wrap"}>
           <Row className={"w-full"}>
