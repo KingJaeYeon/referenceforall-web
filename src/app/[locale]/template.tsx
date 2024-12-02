@@ -8,8 +8,12 @@ export default function Template({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   let path = pathname;
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   if (pathname.includes("/tag")) {
-    path = "tag";
+    return <>{children}</>;
   }
 
   if (pathname.includes("/search")) {
@@ -19,9 +23,6 @@ export default function Template({ children }: { children: ReactNode }) {
   if (pathname.includes("/my/lists")) {
     path = "my/lists";
   }
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   return (
     <motion.div

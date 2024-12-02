@@ -2,6 +2,7 @@ import Col from "@/components/Layout/Col";
 import Row from "@/components/Layout/Row";
 import LibraryDetailHeader from "@/app/[locale]/user/[username]/list/[slug]/_component/LibraryDetailHeader";
 import { Metadata } from "next";
+import { Suspense } from "react";
 
 interface PageProps {
   params: Promise<{
@@ -29,7 +30,11 @@ export default async function UserPage(props: PageProps) {
     title: "2024 여행 버킷리스트",
     total: 10,
     description: "description test",
-    list: [{}],
+    list: [
+      {
+        id: 1,
+      },
+    ],
   };
 
   const params = await props.params;
@@ -39,7 +44,10 @@ export default async function UserPage(props: PageProps) {
   return (
     <Row className={"w-full justify-evenly"}>
       <Col className={"mx-0 w-full max-w-[680px] px-0 md:px-4"}>
-        <LibraryDetailHeader detail={detail} locale={locale} />
+        <Suspense fallback={<div>Loading...</div>}>
+          <LibraryDetailHeader detail={detail} locale={locale} />
+          <ListDetailCard list={detail.list} />
+        </Suspense>
       </Col>
       <Col
         className={
@@ -52,4 +60,8 @@ export default async function UserPage(props: PageProps) {
       ></Col>
     </Row>
   );
+}
+
+function ListDetailCard({ list }: { list: any[] }) {
+  return <Row>dd</Row>;
 }

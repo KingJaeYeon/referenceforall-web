@@ -32,7 +32,7 @@ export function SiteCard(props: {
               <Row className={"pt-[8px]"}>
                 <h3
                   className={
-                    "body4 md:body3 ellipsisLine2 max-h-[40px] text-gray-500"
+                    "body4 md:body3 ellipsisLine2 min-h-[40px] text-gray-500"
                   }
                 >
                   {site.description}
@@ -58,7 +58,7 @@ export function SiteCard(props: {
                     <Text className={"body6"}>{site.visitors}</Text>
                   </Row>
                 </Row>
-                <Row className={"h-fit items-center gap-[4px]"}>
+                <Row className={"h-fit items-center gap-[6px]"}>
                   <Bookmark className={"h-[24px] w-[24px] text-gray-500"} />
                   <Text className={"body6"}>{site.watchList}</Text>
                 </Row>

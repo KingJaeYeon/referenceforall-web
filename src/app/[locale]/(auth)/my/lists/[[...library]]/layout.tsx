@@ -1,7 +1,7 @@
 import PageWrapper from "@/components/Layout/PageWrapper";
 import ContentWrapper from "@/components/Layout/ContentWrapper";
 import Row from "@/components/Layout/Row";
-import { ReactNode } from "react";
+import { ReactNode, Suspense } from "react";
 import type { Metadata } from "next";
 import LibraryHeader from "@/app/[locale]/(auth)/my/lists/[[...library]]/_component/LibraryHeader";
 import Col from "@/components/Layout/Col";
@@ -48,11 +48,13 @@ export default async function Layout(props: PageProps) {
               "mx-0 w-full max-w-[680px] md:mx-[24px] md:mb-[48px] md:mt-[52px]"
             }
           >
-            <LibraryHeader />
-            <Col className={"items-center"}>
-              <ScrollTabs tabs={paths} />
-              <TabContent library={libraryPath} />
-            </Col>
+            <Suspense fallback={<div>Loading...</div>}>
+              <LibraryHeader />
+              <Col className={"items-center"}>
+                <ScrollTabs tabs={paths} />
+                <TabContent library={libraryPath} />
+              </Col>
+            </Suspense>
           </Col>
           <Col
             className={
@@ -63,7 +65,9 @@ export default async function Layout(props: PageProps) {
               paddingRight: "24px",
             }}
           >
-            <NavContent library={libraryPath} />
+            <Suspense fallback={<div>Loading...</div>}>
+              <NavContent library={libraryPath} />
+            </Suspense>
           </Col>
         </Row>
       </ContentWrapper>
