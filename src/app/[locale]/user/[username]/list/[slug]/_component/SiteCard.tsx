@@ -1,280 +1,159 @@
 "use client";
 
-import { useState } from "react";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useRef, useState } from "react";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
+
 import {
-  Bookmark,
-  MessageSquare,
-  Eye,
+  BookmarkIcon,
+  Star,
   Calendar,
-  Plus,
-  X,
-  ExternalLink,
+  MessageSquare,
+  Hash,
 } from "lucide-react";
-import { useTranslations } from "next-intl";
-import { format } from "date-fns";
-import { IconDropDownDown } from "@/assets/svg";
-import { cn } from "@/lib/utils";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+import Row from "@/components/Layout/Row";
 
-interface AdditionalUrl {
-  url: string;
+type Site = {
+  id: number;
+  title: string;
+  description: string;
+  imageUrl: string;
+  createdAt: string;
+  commentCount: number;
+  tags: string[];
+  bookmarkCount: number;
+  rating: number;
   memo: string;
-}
+  domain: string;
+  subdomain: string;
+};
 
-interface UserBookmark {
-  isBookmarked: boolean;
-  memo: string;
-  additionalUrls: AdditionalUrl[];
-}
+export function SiteCard({ bookmarkId }: { bookmarkId: string }) {
+  const [sites, setSites] = useState<Site[]>([
+    {
+      id: 1,
+      title: "예시 사이트",
+      description: "이것은 예시 사이트입니다.",
+      imageUrl: "/placeholder.svg",
+      createdAt: "2023-06-01",
+      commentCount: 5,
+      tags: ["웹", "개발", "디자인"],
+      bookmarkCount: 10,
+      rating: 4.5,
+      memo: "좋은 사이트입니다.",
+      domain: "example.com",
+      subdomain: "example",
+    },
+    // 더 많은 사이트를 여기에 추가할 수 있습니다.
+  ]);
+  const textarea = useRef<HTMLTextAreaElement>(null);
 
-export function ParentComponent() {
-  const [userBookmarks, setUserBookmarks] = useState<
-    Record<string, UserBookmark>
-  >({});
-
-  const handleBookmarkUpdate = (siteId: string, bookmark: UserBookmark) => {
-    setUserBookmarks((prev) => ({
-      ...prev,
-      [siteId]: bookmark,
-    }));
-    // 여기에서 서버로 업데이트된 북마크 정보를 전송할 수 있습니다.
-  };
-
-  const siteData = {
-    id: "1",
-    name: "Example Site",
-    description: "This is an example site description.",
-    imageUrl: "/example-site-image.jpg",
-    url: "https://example.com",
-    lastUpdate: "2023-06-01",
-    comments: 10,
-    visitors: 1000,
-    watchList: 50,
-  };
-
-  return (
-    <SiteCard
-      site={siteData}
-      isFirst={true}
-      isLast={false}
-      hasMore={true}
-      userBookmark={
-        userBookmarks[siteData.id] || {
-          isBookmarked: false,
-          memo: "",
-          additionalUrls: [],
-        }
-      }
-      onBookmarkUpdate={handleBookmarkUpdate}
-    />
-  );
-}
-
-export function SiteCard(props: {
-  site: any;
-  isFirst: boolean;
-  isLast: boolean;
-  hasMore: boolean;
-  userBookmark: UserBookmark;
-  onBookmarkUpdate: (siteId: string, bookmark: UserBookmark) => void;
-}) {
-  const { site, isFirst, isLast, hasMore, userBookmark, onBookmarkUpdate } =
-    props;
-  const [localBookmark, setLocalBookmark] =
-    useState<UserBookmark>(userBookmark);
-  const [newUrl, setNewUrl] = useState("");
-  const [isPreviewOpen, setIsPreviewOpen] = useState(false);
-  const t = useTranslations();
-
-  const handleBookmarkToggle = () => {
-    const updatedBookmark = {
-      ...localBookmark,
-      isBookmarked: !localBookmark.isBookmarked,
-    };
-    setLocalBookmark(updatedBookmark);
-    onBookmarkUpdate(site.id, updatedBookmark);
-  };
-
-  const handleMemoChange = (newMemo: string) => {
-    const updatedBookmark = { ...localBookmark, memo: newMemo.slice(0, 100) };
-    setLocalBookmark(updatedBookmark);
-    onBookmarkUpdate(site.id, updatedBookmark);
-  };
-
-  const handleAddUrl = () => {
-    if (newUrl) {
-      const updatedUrls = [
-        ...localBookmark.additionalUrls,
-        { url: newUrl, memo: "" },
-      ];
-      const updatedBookmark = { ...localBookmark, additionalUrls: updatedUrls };
-      setLocalBookmark(updatedBookmark);
-      setNewUrl("");
-      onBookmarkUpdate(site.id, updatedBookmark);
+  const onChangeMemo = (id: any, value: any) => {
+    if (textarea.current) {
+      textarea.current.style.height = "auto"; //height 초기화
+      textarea.current.style.height = textarea.current.scrollHeight + "px";
     }
+    updateMemo(id, value);
   };
 
-  const handleRemoveUrl = (index: number) => {
-    const updatedUrls = localBookmark.additionalUrls.filter(
-      (_, i) => i !== index,
+  const toggleBookmark = (siteId: number) => {
+    setSites(
+      sites.map((site) =>
+        site.id === siteId
+          ? {
+              ...site,
+              bookmarkCount:
+                site.bookmarkCount + (site.bookmarkCount % 2 === 0 ? 1 : -1),
+            }
+          : site,
+      ),
     );
-    const updatedBookmark = { ...localBookmark, additionalUrls: updatedUrls };
-    setLocalBookmark(updatedBookmark);
-    onBookmarkUpdate(site.id, updatedBookmark);
   };
 
-  const handleUrlMemoChange = (index: number, newMemo: string) => {
-    const updatedUrls = localBookmark.additionalUrls.map((url, i) =>
-      i === index ? { ...url, memo: newMemo.slice(0, 100) } : url,
+  const updateMemo = (siteId: number, memo: string) => {
+    setSites(
+      sites.map((site) => (site.id === siteId ? { ...site, memo } : site)),
     );
-    const updatedBookmark = { ...localBookmark, additionalUrls: updatedUrls };
-    setLocalBookmark(updatedBookmark);
-    onBookmarkUpdate(site.id, updatedBookmark);
+  };
+
+  const updateSubdomain = (siteId: number, subdomain: string) => {
+    setSites(
+      sites.map((site) => (site.id === siteId ? { ...site, subdomain } : site)),
+    );
   };
 
   return (
-    <Card className={cn("w-full max-w-2xl", isFirst ? "" : "mt-[32px]")}>
-      <CardHeader className="flex flex-row items-center gap-4">
-        <Avatar className="h-16 w-16">
-          <AvatarImage src={site.imageUrl} alt={site.name} />
-          <AvatarFallback>{site.name.slice(0, 2).toUpperCase()}</AvatarFallback>
-        </Avatar>
-        <div className="flex-1">
-          <CardTitle className="text-2xl">{site.name}</CardTitle>
-          <p className="text-sm text-muted-foreground">{site.description}</p>
-        </div>
-        <div className="flex space-x-2">
-          <Dialog open={isPreviewOpen} onOpenChange={setIsPreviewOpen}>
-            <DialogTrigger asChild>
-              <Button variant="outline">
-                <ExternalLink className="mr-2 h-4 w-4" />
-                {"preview"}
-              </Button>
-            </DialogTrigger>
-            <DialogContent className="h-[80vh] w-full max-w-4xl">
-              <DialogHeader>
-                <DialogTitle>{site.name}</DialogTitle>
-                <DialogDescription>{site.url}</DialogDescription>
-              </DialogHeader>
-              <iframe
-                src={site.url}
-                className="h-full w-full border-0"
-                title={`Preview of ${site.name}`}
-              />
-            </DialogContent>
-          </Dialog>
-          <Button
-            variant={localBookmark.isBookmarked ? "secondary" : "outline"}
-            onClick={handleBookmarkToggle}
-          >
-            <Bookmark
-              className={cn(
-                "h-4 w-4",
-                localBookmark.isBookmarked ? "fill-current" : "",
-              )}
+    <div className="space-y-8">
+      {sites.map((site) => (
+        <div key={site.id} className="mb-12 last:mb-0">
+          <Row className={"mb-6"}>
+            <Textarea
+              ref={textarea}
+              value={site.memo}
+              rows={1}
+              onChange={(e) => onChangeMemo(site.id, e.target.value)}
+              placeholder="메모를 입력하세요..."
+              className={"h-[37px] min-h-0 w-full resize-none md:min-h-0"}
             />
-            <span className="sr-only">
-              {localBookmark.isBookmarked ? "remove_bookmark" : "add_bookmark"}
-            </span>
-          </Button>
-        </div>
-      </CardHeader>
-      <CardContent className="space-y-4">
-        <div className="flex items-center space-x-4 text-sm text-muted-foreground">
-          <span className="flex items-center">
-            <Calendar className="mr-1 h-4 w-4" />
-            {format(new Date(site.lastUpdate), "MMM d, yyyy")}
-          </span>
-          <span className="flex items-center">
-            <MessageSquare className="mr-1 h-4 w-4" />
-            {site.comments}
-          </span>
-          <span className="flex items-center">
-            <Eye className="mr-1 h-4 w-4" />
-            {site.visitors}
-          </span>
-          <Badge variant="secondary" className="flex items-center">
-            <Bookmark className="mr-1 h-4 w-4" />
-            {site.watchList}
-          </Badge>
-        </div>
-        {localBookmark.isBookmarked && (
-          <>
-            <div className="space-y-2">
-              <Input
-                value={localBookmark.memo}
-                onChange={(e) => handleMemoChange(e.target.value)}
-                placeholder={"enter_memo"}
-                maxLength={100}
-              />
-              <p className="text-xs text-muted-foreground">
-                {"characters_remaining"}
-              </p>
-            </div>
-            <div className="space-y-2">
-              <div className="flex items-center space-x-2">
-                <Input
-                  value={newUrl}
-                  onChange={(e) => setNewUrl(e.target.value)}
-                  placeholder={"enter_additional_url"}
-                  className="flex-1"
-                />
-                <Button onClick={handleAddUrl}>
-                  <Plus className="h-4 w-4" />
-                </Button>
+            <Row className={"w-[20%]"}>
+              <button>Done</button>
+              <button>Cancel</button>
+            </Row>
+          </Row>
+          <div className="flex items-start gap-4">
+            <Image
+              src={site.imageUrl}
+              alt={site.title}
+              width={100}
+              height={100}
+              className="rounded"
+            />
+            <div className="flex-grow">
+              <h2 className="mb-2 text-2xl font-bold">{site.title}</h2>
+              <p className="mb-4 text-gray-600">{site.description}</p>
+              <div className="mb-4 flex items-center space-x-4 text-sm text-gray-500">
+                <span className="flex items-center">
+                  <Calendar className="mr-1 h-4 w-4" />
+                  {site.createdAt}
+                </span>
+                <span className="flex items-center">
+                  <MessageSquare className="mr-1 h-4 w-4" />
+                  {site.commentCount}
+                </span>
+                <span className="flex items-center">
+                  <BookmarkIcon className="mr-1 h-4 w-4" />
+                  {site.bookmarkCount}
+                </span>
+                <span className="flex items-center">
+                  <Star className="mr-1 h-4 w-4 fill-yellow-400 stroke-yellow-400" />
+                  {site.rating}
+                </span>
               </div>
-              {localBookmark.additionalUrls.map((urlItem, index) => (
-                <div key={index} className="flex items-center space-x-2">
-                  <Input value={urlItem.url} readOnly className="flex-1" />
-                  <Input
-                    value={urlItem.memo}
-                    onChange={(e) => handleUrlMemoChange(index, e.target.value)}
-                    placeholder={"enter_url_memo"}
-                    maxLength={100}
-                    className="flex-1"
-                  />
-                  <Button
-                    variant="ghost"
-                    onClick={() => handleRemoveUrl(index)}
-                  >
-                    <X className="h-4 w-4" />
-                  </Button>
-                </div>
-              ))}
+              <div className="mb-4">
+                {site.tags.slice(0, 5).map((tag, index) => (
+                  <Badge key={index} variant="secondary" className="mr-2">
+                    <Hash className="mr-1 h-3 w-3" />
+                    {tag}
+                  </Badge>
+                ))}
+              </div>
             </div>
-          </>
-        )}
-      </CardContent>
-      <CardFooter className="flex justify-between">
-        <Button variant="outline">
-          <a href={`/site/${site.id}`}>{"view_details"}</a>
-        </Button>
-        {!isLast && <div className="w-full border-b border-gray-300" />}
-        {hasMore && (
-          <div className="flex cursor-pointer items-center gap-1">
-            <span className="text-sm">{"show_more"}</span>
-            <IconDropDownDown className="h-4 w-4" />
           </div>
-        )}
-      </CardFooter>
-    </Card>
+          <Row className="mt-6 items-center">
+            <Input
+              type="text"
+              value={site.subdomain}
+              onChange={(e) => updateSubdomain(site.id, e.target.value)}
+              placeholder="서브도메인 입력"
+              className="mr-2"
+            />
+            <span className="text-gray-500">.{site.domain}</span>
+          </Row>
+        </div>
+      ))}
+    </div>
   );
 }

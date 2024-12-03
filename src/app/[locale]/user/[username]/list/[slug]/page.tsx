@@ -4,7 +4,7 @@ import LibraryDetailHeader from "@/app/[locale]/user/[username]/list/[slug]/_com
 import { Metadata } from "next";
 import { Suspense } from "react";
 import {
-  ParentComponent,
+  // ParentComponent,
   SiteCard,
 } from "@/app/[locale]/user/[username]/list/[slug]/_component/SiteCard";
 
@@ -50,7 +50,8 @@ export default async function UserPage(props: PageProps) {
       <Col className={"mx-0 w-full max-w-[680px] px-0 md:px-4"}>
         <Suspense fallback={<div>Loading...</div>}>
           <LibraryDetailHeader detail={detail} locale={locale} />
-          <ParentComponent />
+          {/*<ParentComponent />*/}
+          <SiteCard bookmarkId={"1"} />
         </Suspense>
       </Col>
       <Col

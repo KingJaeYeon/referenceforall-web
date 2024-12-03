@@ -12,7 +12,7 @@ export default function LibraryDetailHeader(props: {
 }) {
   const { locale, detail } = props;
   return (
-    <header className={"flex min-h-[42px] justify-center"}>
+    <header className={"mb-[48px] flex min-h-[42px] justify-center"}>
       <Col
         className={
           "min-w-[calc(100%+32px)] flex-col-reverse border-b border-gray-200 px-4 pb-4 md:min-w-full md:flex-col md:px-0 md:pb-0"
