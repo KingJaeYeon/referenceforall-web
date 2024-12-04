@@ -99,7 +99,11 @@ export function SiteCard({ bookmarkId }: { bookmarkId: string }) {
               onChange={(e) => onChangeMemo(site.id, e.target.value)}
               className={"h-[37px] min-h-0 w-full resize-none md:min-h-0"}
             />
-            <Row className={"w-[20%] justify-end gap-4"}>
+            <Row
+              className={
+                "w-[20%] flex-wrap justify-center gap-4 md:justify-end"
+              }
+            >
               <button className={"body6 text-destructive"}>Cancel</button>
               <button
                 className={"body6 text-description hover:text-foreground"}
