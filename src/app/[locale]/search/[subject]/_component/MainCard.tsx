@@ -3,12 +3,20 @@ import Row from "@/components/Layout/Row";
 import Col from "@/components/Layout/Col";
 import Text from "@/components/Layout/Text";
 import { utilDate } from "@/lib/dateFormat";
-import { Bookmark, Eye, MessageCircle } from "lucide-react";
+import {
+  Bookmark,
+  Calendar,
+  Eye,
+  Hash,
+  MessageCircle,
+  Star,
+} from "lucide-react";
 import { useLocale } from "use-intl";
 import { IconDropDownDown } from "@/assets/svg";
 import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
+import { Badge } from "@/components/ui/badge";
 
 export function SiteCard(props: {
   site: any;
@@ -36,7 +44,7 @@ export function SiteCard(props: {
               <Row className={"pt-[8px]"}>
                 <h3
                   className={
-                    "body4 md:body3 ellipsisLine2 min-h-[40px] text-gray-500"
+                    "body4 md:body3 ellipsisLine2 min-h-[24px] text-gray-500 md:min-h-[40px]"
                   }
                 >
                   {site.description}
@@ -48,18 +56,17 @@ export function SiteCard(props: {
                 }
               >
                 <Row className={"gap-[16px] text-gray-500"}>
-                  <Row className={"h-fit"}>
-                    <Text className={"body6"}>
-                      {utilDate({ date: site.lastUpdate, locale })}
-                    </Text>
+                  <Row className={"h-fit items-center"}>
+                    <Calendar className="mr-1 h-4 w-4" />
+                    <Text className={"body6"}>{site.lastUpdate}</Text>
                   </Row>
                   <Row className={"h-fit items-center gap-[4px]"}>
                     <MessageCircle className={"h-[16px] w-[16px]"} />
                     <Text className={"body6"}>{site.comments}</Text>
                   </Row>
-                  <Row className={"h-fit items-center gap-[4px]"}>
-                    <Eye className={"h-[16px] w-[16px]"} />
-                    <Text className={"body6"}>{site.visitors}</Text>
+                  <Row className={"h-fit items-center"}>
+                    <Star className="h-4 w-4 fill-yellow-400 stroke-yellow-400" />
+                    <Text className={"body6"}>{site.rating}</Text>
                   </Row>
                 </Row>
                 <Row className={"h-fit items-center gap-[6px]"}>
@@ -89,7 +96,7 @@ export function SiteCard(props: {
                     alt={site.name}
                     className={"overflow-clip rounded-[2px] align-middle"}
                     src={site.imageUrl}
-                    width={80}
+                    width={90}
                     loading={"lazy"}
                     height={53}
                     style={{
@@ -101,9 +108,10 @@ export function SiteCard(props: {
               </div>
             )}
           </Row>
+
           <Row
             className={
-              "mt-[12px] flex h-[48px] w-full items-center justify-between text-gray-500 md:hidden"
+              "flex min-h-[48px] w-full items-center justify-between text-gray-500 md:mt-[12px] md:hidden"
             }
           >
             <Row className={"gap-[16px]"}>
@@ -117,8 +125,8 @@ export function SiteCard(props: {
                 <Text className={"body6"}>{site.comments}</Text>
               </Row>
               <Row className={"h-fit items-center gap-[4px]"}>
-                <Eye className={"h-[16px] w-[16px]"} />
-                <Text className={"body6"}>{site.visitors}</Text>
+                <Star className="h-4 w-4 fill-yellow-400 stroke-yellow-400" />
+                <Text className={"body6"}>{site.rating}</Text>
               </Row>
             </Row>
             <Row className={"h-fit items-center gap-[4px]"}>
@@ -131,6 +139,7 @@ export function SiteCard(props: {
           )}
         </Row>
       </Link>
+
       {hasMore && (
         <Row
           className={

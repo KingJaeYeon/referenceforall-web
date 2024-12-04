@@ -72,6 +72,7 @@ export function CreateNewListModal() {
           Description
         </Label>
         <Textarea
+          showMaxLength
           id="description"
           value={description}
           maxLength={280}

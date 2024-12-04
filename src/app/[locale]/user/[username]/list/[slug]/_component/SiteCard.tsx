@@ -89,18 +89,23 @@ export function SiteCard({ bookmarkId }: { bookmarkId: string }) {
     <div className="space-y-8">
       {sites.map((site) => (
         <div key={site.id} className="mb-12 last:mb-0">
-          <Row className={"mb-6"}>
+          <Row className={"mb-6 items-center gap-[6px]"}>
             <Textarea
               ref={textarea}
               value={site.memo}
               rows={1}
+              variant={"blockquote"}
+              placeholder={"Use this memo"}
               onChange={(e) => onChangeMemo(site.id, e.target.value)}
-              placeholder="메모를 입력하세요..."
               className={"h-[37px] min-h-0 w-full resize-none md:min-h-0"}
             />
-            <Row className={"w-[20%]"}>
-              <button>Done</button>
-              <button>Cancel</button>
+            <Row className={"w-[20%] justify-end gap-4"}>
+              <button className={"body6 text-destructive"}>Cancel</button>
+              <button
+                className={"body6 text-description hover:text-foreground"}
+              >
+                Done
+              </button>
             </Row>
           </Row>
           <div className="flex items-start gap-4">

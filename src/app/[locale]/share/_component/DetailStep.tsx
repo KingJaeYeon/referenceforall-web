@@ -23,6 +23,7 @@ export function DetailStep({ control }: any) {
             </Label>
             <FormControl>
               <Textarea
+                showMaxLength
                 placeholder="사이트의 사용 시나리오를 입력해주세요"
                 className="mt-[8px] min-h-[100px] resize-none rounded-[3px] px-3"
                 {...field}
@@ -43,6 +44,7 @@ export function DetailStep({ control }: any) {
             </Label>
             <FormControl>
               <Textarea
+                showMaxLength
                 placeholder="사이트의 주요 기능을 입력해주세요"
                 className="mt-[8px] min-h-[100px] resize-none rounded-[3px] px-3"
                 {...field}

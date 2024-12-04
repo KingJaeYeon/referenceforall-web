@@ -65,6 +65,7 @@ export function BasicInfoStep({ control, currentTag, setCurrentTag }: any) {
             </Label>
             <FormControl>
               <Textarea
+                showMaxLength
                 placeholder="사이트에 대한 간단한 설명을 입력해주세요 (10자 이상)"
                 className="mt-[8px] min-h-[100px] resize-none rounded-[3px] px-3"
                 {...field}
