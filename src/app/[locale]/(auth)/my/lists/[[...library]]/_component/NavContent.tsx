@@ -3,7 +3,7 @@ import Row from "@/components/Layout/Row";
 import Text from "@/components/Layout/Text";
 import { IconDropDownDown } from "@/assets/svg";
 import React from "react";
-import { SiteCard } from "@/app/[locale]/search/[subject]/_component/MainCard";
+import { MainCard } from "@/app/[locale]/search/[subject]/_component/MainCard";
 import { getTranslations } from "next-intl/server";
 
 export default function NavContent({ library }: { library?: string }) {
@@ -54,7 +54,7 @@ function SitesContent({ data }: { data: any }) {
   const { sites, total } = data;
 
   return sites.map((site: any, index: any) => (
-    <SiteCard
+    <MainCard
       key={index}
       site={site}
       isFirst={index === 0}

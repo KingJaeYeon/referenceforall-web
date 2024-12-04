@@ -4,7 +4,7 @@ import TopicButton from "@/components/TopicButton";
 import Row from "@/components/Layout/Row";
 import Text from "@/components/Layout/Text";
 import { IconDropDownDown } from "@/assets/svg";
-import { SiteCard } from "@/app/[locale]/search/[subject]/_component/MainCard";
+import { MainCard } from "@/app/[locale]/search/[subject]/_component/MainCard";
 import { useTranslations } from "next-intl";
 
 export default function TabContent(props: {
@@ -59,7 +59,7 @@ function SitesContent({ data }: { data: { sites: any[]; total: number } }) {
   const { sites, total } = data;
 
   return sites.map((site, index) => (
-    <SiteCard
+    <MainCard
       key={index}
       site={site}
       isFirst={index === 0}

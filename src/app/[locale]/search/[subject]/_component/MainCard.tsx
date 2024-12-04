@@ -6,9 +6,8 @@ import { utilDate } from "@/lib/dateFormat";
 import {
   Bookmark,
   Calendar,
-  Eye,
-  Hash,
   MessageCircle,
+  MoreHorizontal,
   Star,
 } from "lucide-react";
 import { useLocale } from "use-intl";
@@ -16,21 +15,60 @@ import { IconDropDownDown } from "@/assets/svg";
 import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
-import { Badge } from "@/components/ui/badge";
+import { Textarea } from "@/components/ui/textarea";
+import { useState, useRef } from "react";
 
-export function SiteCard(props: {
+export function MainCard(props: {
   site: any;
   isFirst: boolean;
   isLast: boolean;
   hasMore: boolean;
+  readonly?: boolean;
 }) {
   const locale = useLocale();
-  const { site, isFirst, isLast, hasMore } = props;
+  const { site, isFirst, isLast, hasMore, readonly = true } = props;
   const t = useTranslations();
+
+  const textarea = useRef<HTMLTextAreaElement>(null);
+  const [memo, setMemo] = useState("");
+
+  const onChangeMemo = (value: any) => {
+    if (textarea.current) {
+      textarea.current.style.height = "auto"; //height 초기화
+      textarea.current.style.height = textarea.current.scrollHeight + "px";
+    }
+    setMemo(value);
+  };
+
   return (
     <article className={cn("relative w-full", isFirst ? "" : "mt-[32px]")}>
-      <Link href={`/site/${site.id}`}>
-        <Row className={"flex flex-wrap"}>
+      <Row className={"flex flex-wrap"}>
+        {!readonly && (
+          <Row className={"mb-6 w-full items-center gap-[6px]"}>
+            <Textarea
+              ref={textarea}
+              value={!!memo ? memo : site?.memo}
+              rows={1}
+              variant={"blockquote"}
+              placeholder={"Use this memo"}
+              onChange={(e) => onChangeMemo(e.target.value)}
+              className={"h-[37px] min-h-0 w-full resize-none md:min-h-0"}
+            />
+            <Col
+              className={
+                "w-[20%] items-end gap-4 md:flex-row-reverse md:justify-start"
+              }
+            >
+              <button
+                className={"body6 text-description hover:text-foreground"}
+              >
+                Done
+              </button>
+              <button className={"body6 text-destructive"}>Cancel</button>
+            </Col>
+          </Row>
+        )}
+        <Link href={`/site/${site.id}`} className={"w-full"}>
           <Row className={"w-full"}>
             <Col className={"w-full"}>
               <h2
@@ -65,13 +103,15 @@ export function SiteCard(props: {
                     <Text className={"body6"}>{site.comments}</Text>
                   </Row>
                   <Row className={"h-fit items-center"}>
-                    <Star className="h-4 w-4 fill-yellow-400 stroke-yellow-400" />
-                    <Text className={"body6"}>{site.rating}</Text>
+                    <Bookmark className={"mr-1 h-[16px] w-[16px]"} />
+                    <Text className={"body6"}>{site.watchList}</Text>
                   </Row>
                 </Row>
-                <Row className={"h-fit items-center gap-[6px]"}>
+                <Row className={"h-fit items-center gap-[12px]"}>
                   <Bookmark className={"h-[24px] w-[24px] text-gray-500"} />
-                  <Text className={"body6"}>{site.watchList}</Text>
+                  <MoreHorizontal
+                    className={"h-[24px] w-[24px] text-gray-500"}
+                  />
                 </Row>
               </Row>
             </Col>
@@ -125,20 +165,20 @@ export function SiteCard(props: {
                 <Text className={"body6"}>{site.comments}</Text>
               </Row>
               <Row className={"h-fit items-center gap-[4px]"}>
-                <Star className="h-4 w-4 fill-yellow-400 stroke-yellow-400" />
-                <Text className={"body6"}>{site.rating}</Text>
+                <Bookmark className={"mr-1 h-[16px] w-[16px]"} />
+                <Text className={"body6"}>{site.watchList}</Text>
               </Row>
             </Row>
-            <Row className={"h-fit items-center gap-[4px]"}>
-              <Bookmark className={"h-[24px] w-[24px]"} />
-              <Text className={"body6"}>{site.watchList}</Text>
+            <Row className={"h-fit items-center gap-[12px]"}>
+              <Bookmark className={"h-[24px] w-[24px] text-gray-500"} />
+              <MoreHorizontal className={"h-[24px] w-[24px] text-gray-500"} />
             </Row>
           </Row>
-          {!isLast && (
-            <Row className={"mt-[20px] w-full border-b border-gray-300"} />
-          )}
-        </Row>
-      </Link>
+        </Link>
+        {!isLast && (
+          <Row className={"mt-[20px] w-full border-b border-gray-300"} />
+        )}
+      </Row>
 
       {hasMore && (
         <Row

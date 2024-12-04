@@ -63,7 +63,7 @@ export default function LibraryDetailHeader(props: {
               <span className="tooltiptext tooltip-top body6 hidden md:block">
                 Bookmark
               </span>
-              <Bookmark className={"stroke-1 text-gray-500 hover:text-black"} />
+              <Bookmark className={"text-gray-500 hover:text-black"} />
             </button>
             <button className={"tooltip"}>
               <span className="tooltiptext tooltip-top body6 hidden md:block">
