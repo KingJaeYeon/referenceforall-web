@@ -15,7 +15,7 @@ export const textareaVariants = cva(
         default:
           "border border-input-border rounded-sm hover:border-input-focus-border focus:border-input-focus-border placeholder:text-input-placeholder",
         blockquote:
-          "placeholder:leading-7 py-1 relative max-w-[40rem] mx-auto leading-7 bg-transparent border-l-4 border-r-none border-input-focus-border",
+          "rounded-none placeholder:leading-7 py-1 relative max-w-[40rem] mx-auto leading-7 bg-transparent border-l-4 border-r-none border-input-focus-border",
       },
       error: {
         true: "border-red hover:border-red focus:border-red",
