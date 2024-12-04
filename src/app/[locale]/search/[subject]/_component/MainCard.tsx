@@ -16,7 +16,7 @@ import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { Textarea } from "@/components/ui/textarea";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 export function MainCard(props: {
   site: any;
@@ -40,6 +40,18 @@ export function MainCard(props: {
     setMemo(value);
   };
 
+  useEffect(() => {
+    if (!readonly && textarea) {
+      let temp = site.memo;
+
+      if (site.subDomain.length > 0) {
+        temp += `<br/> <div>${site.subDomain[0].url}</div>`;
+      }
+
+      onChangeMemo(temp);
+    }
+  }, [site, textarea]);
+
   return (
     <article className={cn("relative w-full", isFirst ? "" : "mt-[32px]")}>
       <Row className={"flex flex-wrap"}>
@@ -47,7 +59,7 @@ export function MainCard(props: {
           <Row className={"mb-6 w-full items-center gap-[6px]"}>
             <Textarea
               ref={textarea}
-              value={!!memo ? memo : site?.memo}
+              value={memo}
               rows={1}
               variant={"blockquote"}
               placeholder={"Use this memo"}

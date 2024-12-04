@@ -19,6 +19,10 @@ export function SiteCard({ bookmarkId }: { bookmarkId: string }) {
       watchList: 100,
       comments: 20,
       memo: "",
+      subDomain: [
+        { url: "/list", label: "주소" },
+        { url: "/search", label: "검색" },
+      ],
     },
     {
       id: "12cdsdsadadsd",
@@ -33,6 +37,8 @@ export function SiteCard({ bookmarkId }: { bookmarkId: string }) {
       lastUpdate: "2024-03-15",
       watchList: 100,
       comments: 20,
+      memo: "",
+      subDomain: [],
     },
     // 더 많은 사이트를 여기에 추가할 수 있습니다.
   ]);
