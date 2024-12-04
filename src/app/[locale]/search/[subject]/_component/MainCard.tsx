@@ -116,7 +116,7 @@ export function MainCard(props: {
               </Row>
             </Col>
             {!!site.imageUrl && (
-              <div className={"ml-[24px] md:ml-[56px]"}>
+              <div className={"ml-[24px] mt-3 md:ml-[56px]"}>
                 <div className={"hidden md:block"}>
                   <img
                     alt={site.name}
@@ -131,7 +131,7 @@ export function MainCard(props: {
                     }}
                   />
                 </div>
-                <div className={"block md:hidden"}>
+                <div className={"mt-2 block md:hidden"}>
                   <img
                     alt={site.name}
                     className={"overflow-clip rounded-[2px] align-middle"}
