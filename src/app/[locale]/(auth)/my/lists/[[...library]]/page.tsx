@@ -7,7 +7,7 @@ import Col from "@/components/Layout/Col";
 import LibraryHeader from "@/app/[locale]/(auth)/my/lists/[[...library]]/_component/LibraryHeader";
 import TabContent from "@/app/[locale]/(auth)/my/lists/[[...library]]/_component/TabContent";
 import NavContent from "@/app/[locale]/(auth)/my/lists/[[...library]]/_component/NavContent";
-import { Suspense, ReactNode } from "react";
+import { Suspense } from "react";
 import { Metadata } from "next";
 
 export async function generateStaticParams() {
@@ -17,7 +17,6 @@ export async function generateStaticParams() {
 
 interface PageProps {
   params: Promise<{ library?: string[] }>;
-  children: ReactNode;
 }
 
 export const metadata: Metadata = {
@@ -25,7 +24,7 @@ export const metadata: Metadata = {
   description: "Watch your Library",
 };
 
-export default async function Page(props: PageProps) {
+export default async function LibraryPage(props: PageProps) {
   const params = await props.params;
   const library = params.library || [];
 
