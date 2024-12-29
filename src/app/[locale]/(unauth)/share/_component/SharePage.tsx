@@ -10,9 +10,9 @@ import Col from "@/components/Layout/Col";
 import Text from "@/components/Layout/Text";
 import Row from "@/components/Layout/Row";
 import { cn } from "@/lib/utils";
-import { BasicInfoStep } from "@/app/[locale]/share/_component/BasicInfoStep";
-import { DetailStep } from "@/app/[locale]/share/_component/DetailStep";
-import { ImageStep } from "@/app/[locale]/share/_component/ImageStep";
+import { BasicInfoStep } from "@/app/[locale]/(unauth)/share/_component/BasicInfoStep";
+import { DetailStep } from "@/app/[locale]/(unauth)/share/_component/DetailStep";
+import { ImageStep } from "@/app/[locale]/(unauth)/share/_component/ImageStep";
 
 export default function StepShareSiteForm() {
   const [currentStep, setCurrentStep] = useState(1);

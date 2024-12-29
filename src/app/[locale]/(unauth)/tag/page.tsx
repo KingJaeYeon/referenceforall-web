@@ -1,5 +1,5 @@
 import Text from "@/components/Layout/Text";
-import SearchInput from "@/app/[locale]/tag/[topic]/_component/SearchInput";
+import SearchInput from "@/app/[locale]/(unauth)/tag/[topic]/_component/SearchInput";
 import Row from "@/components/Layout/Row";
 import { Link } from "@/i18n/routing";
 import { getTranslations } from "next-intl/server";

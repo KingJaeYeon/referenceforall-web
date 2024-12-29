@@ -1,5 +1,5 @@
 import React from "react";
-import SiteShareForm from "@/app/[locale]/share/_component/SharePage";
+import SiteShareForm from "@/app/[locale]/(unauth)/share/_component/SharePage";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {

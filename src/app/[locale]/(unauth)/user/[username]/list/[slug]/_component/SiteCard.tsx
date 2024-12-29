@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { MainCard } from "@/app/[locale]/search/[subject]/_component/MainCard";
+import { MainCard } from "@/app/[locale]/(unauth)/search/[subject]/_component/MainCard";
 
 export function SiteCard({ bookmarkId }: { bookmarkId: string }) {
   const [sites, setSites] = useState([

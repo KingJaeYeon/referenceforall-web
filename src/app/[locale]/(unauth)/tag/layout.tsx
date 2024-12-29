@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import PageWrapper from "@/components/Layout/PageWrapper";
 import ContentWrapper from "@/components/Layout/ContentWrapper";
 import Col from "@/components/Layout/Col";
-import RecommendedTags from "@/app/[locale]/tag/_component/RecommendedTags";
+import RecommendedTags from "@/app/[locale]/(unauth)/tag/_component/RecommendedTags";
 
 interface PageProps {
   children: ReactNode;

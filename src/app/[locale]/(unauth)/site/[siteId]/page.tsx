@@ -1,4 +1,4 @@
-import SitePage from "@/app/[locale]/site/[siteId]/_component/SitePage";
+import SitePage from "@/app/[locale]/(unauth)/site/[siteId]/_component/SitePage";
 import PageWrapper from "@/components/Layout/PageWrapper";
 import ContentWrapper from "@/components/Layout/ContentWrapper";
 

@@ -1,12 +1,12 @@
 import Col from "@/components/Layout/Col";
 import Row from "@/components/Layout/Row";
-import LibraryDetailHeader from "@/app/[locale]/user/[username]/list/[slug]/_component/LibraryDetailHeader";
+import LibraryDetailHeader from "@/app/[locale]/(unauth)/user/[username]/list/[slug]/_component/LibraryDetailHeader";
 import { Metadata } from "next";
 import { Suspense } from "react";
 import {
   // ParentComponent,
   SiteCard,
-} from "@/app/[locale]/user/[username]/list/[slug]/_component/SiteCard";
+} from "@/app/[locale]/(unauth)/user/[username]/list/[slug]/_component/SiteCard";
 
 interface PageProps {
   params: Promise<{

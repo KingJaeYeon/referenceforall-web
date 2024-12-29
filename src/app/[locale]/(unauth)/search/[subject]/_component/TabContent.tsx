@@ -4,7 +4,7 @@ import TopicButton from "@/components/TopicButton";
 import Row from "@/components/Layout/Row";
 import Text from "@/components/Layout/Text";
 import { IconDropDownDown } from "@/assets/svg";
-import { MainCard } from "@/app/[locale]/search/[subject]/_component/MainCard";
+import { MainCard } from "@/app/[locale]/(unauth)/search/[subject]/_component/MainCard";
 import { useTranslations } from "next-intl";
 
 export default function TabContent(props: {

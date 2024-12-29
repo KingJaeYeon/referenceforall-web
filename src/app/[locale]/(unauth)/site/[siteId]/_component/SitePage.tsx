@@ -4,7 +4,7 @@ import MediaWrapper from "@/components/MediaWrapper";
 import {
   DesktopMain,
   MobileMain,
-} from "@/app/[locale]/site/[siteId]/_component/Main";
+} from "@/app/[locale]/(unauth)/site/[siteId]/_component/Main";
 
 export default function SitePage({
   comments,

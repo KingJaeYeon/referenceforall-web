@@ -15,7 +15,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   DesktopComment,
   MobileComment,
-} from "@/app/[locale]/site/[siteId]/_component/Comment";
+} from "@/app/[locale]/(unauth)/site/[siteId]/_component/Comment";
 import MobileBackButton from "@/components/MobileBackButton";
 
 export function DesktopMain(props: {

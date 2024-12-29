@@ -1,5 +1,5 @@
-import MediumStyleCard from "@/app/[locale]/tag/[topic]/_component/MediumStyleCard";
-import { AddTopic } from "@/app/[locale]/tag/[topic]/_component/AddTopic";
+import MediumStyleCard from "@/app/[locale]/(unauth)/tag/[topic]/_component/MediumStyleCard";
+import { AddTopic } from "@/app/[locale]/(unauth)/tag/[topic]/_component/AddTopic";
 import Text from "@/components/Layout/Text";
 import { getTranslations } from "next-intl/server";
 import Row from "@/components/Layout/Row";
