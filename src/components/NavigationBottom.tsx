@@ -5,7 +5,7 @@ import UserAvatar from "@/components/UserAvatar";
 
 export default function NavigationBottom() {
   return (
-    <header
+    <div
       className={
         "fixed bottom-0 left-0 z-[50] flex h-full max-h-[65px] w-full items-center justify-between border-t border-gray-300 bg-background px-8 md:hidden"
       }
@@ -28,6 +28,6 @@ export default function NavigationBottom() {
       >
         내정보
       </BottomTabLink>
-    </header>
+    </div>
   );
 }

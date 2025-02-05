@@ -30,7 +30,7 @@ export function login(data: ILogin) {
 export function logout() {
   return request({
     url: "/auth/logout",
-    method: "GET",
+    method: "POST",
   });
 }
 

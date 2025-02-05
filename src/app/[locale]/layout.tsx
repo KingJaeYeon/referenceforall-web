@@ -16,6 +16,7 @@ import { cookies } from "next/headers";
 import { parsePayload } from "@/util/util";
 import GlobalModal from "@/components/modal/GlobalModal";
 import NavigationBottom from "@/components/NavigationBottom";
+import { Authorization } from "@/config";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -49,9 +50,8 @@ export default async function RootLayout(
   setRequestLocale(locale);
 
   const cookieStore = await cookies();
-  const access = cookieStore.get("Authorization");
+  const access = cookieStore.get(Authorization);
   let user = parsePayload(access?.value);
-  user = { id: "cm3ifq9yr0001adx98mojy0lp", accountId: "wodus331" };
 
   const messages = await getMessages();
   return (
@@ -63,7 +63,7 @@ export default async function RootLayout(
           <SystemProvider user={user}>
             <QueryProvider>
               <Toaster />
-              <NavigationHeader />
+              <NavigationHeader user={user}/>
               {children}
               <GlobalModal />
               <NavigationBottom />

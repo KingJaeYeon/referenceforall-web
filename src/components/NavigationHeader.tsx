@@ -1,11 +1,10 @@
-'use client'
 import Row from "@/components/Layout/Row";
 import Logo from "@/components/Logo";
 import { SelectLangModalTrigger } from "@/components/modal/SelectLangModal";
 import NavLink from "@/components/NavLink";
-import { Link } from "@/i18n/routing";
+import AuthButton from "@/components/AuthButton";
 
-export default function NavigationHeader() {
+export default function NavigationHeader({ user }: { user: any }) {
   return (
     <div
       className={
@@ -18,9 +17,7 @@ export default function NavigationHeader() {
         <NavLink href={"/share"}>공유하기</NavLink>
         <NavLink href={"/my/lists"}>관심목록</NavLink>
         <SelectLangModalTrigger />
-        <Link className={'heading6'} href={"/login"}>
-          로그인
-        </Link>
+        <AuthButton isLogin={!!user} />
       </Row>
     </div>
   );
