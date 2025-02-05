@@ -1,12 +1,12 @@
 import { request } from "@/lib/axios";
 
 export interface ILogin {
-  accountId: string;
+  email: string;
   password: string;
 }
 
 export interface IJoin {
-  accountId: string;
+  email: string;
   password: string;
   rePassword: string;
   name: string;
@@ -21,7 +21,7 @@ export function refreshTokens() {
 
 export function login(data: ILogin) {
   return request({
-    url: "/admins/login",
+    url: "/auth/login",
     method: "POST",
     data: data,
   });

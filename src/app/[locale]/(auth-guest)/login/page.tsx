@@ -1,6 +1,6 @@
 import PageWrapper from "@/components/Layout/PageWrapper";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import LoginForm from "@/app/[locale]/login/_component/LoginForm";
+import LoginForm from "@/app/[locale]/(auth-guest)/login/_component/LoginForm";
 import { Link } from "@/i18n/routing";
 import Row from "@/components/Layout/Row";
 

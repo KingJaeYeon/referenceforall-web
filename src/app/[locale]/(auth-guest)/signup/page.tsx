@@ -1,7 +1,7 @@
 import PageWrapper from "@/components/Layout/PageWrapper";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import Row from "@/components/Layout/Row";
-import SignupForm from "@/app/[locale]/signup/_component/SignupForm";
+import SignupForm from "@/app/[locale]/(auth-guest)/signup/_component/SignupForm";
 
 export default function Page() {
   return (
