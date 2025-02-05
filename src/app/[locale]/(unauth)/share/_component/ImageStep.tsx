@@ -17,26 +17,11 @@ const ImageUploadButton = ({ onClick }: { onClick: () => void }) => (
     <p className="mt-2 text-sm text-gray-500">Click to upload photo</p>
   </div>
 );
-const ImagePreview = ({
-  preview,
-  onRemove,
-}: {
-  preview: string;
-  onRemove: () => void;
-}) => (
+const ImagePreview = ({ preview, onRemove }: { preview: string; onRemove: () => void }) => (
   <div className="group relative aspect-video w-full cursor-pointer rounded-lg border-2 border-dashed border-gray-300">
-    <img
-      src={preview}
-      alt="Preview"
-      className="h-full w-full rounded-lg object-cover"
-    />
+    <img src={preview} alt="Preview" className="h-full w-full rounded-lg object-cover" />
     <div className="absolute inset-0 hidden items-center justify-center rounded-lg bg-black/40 group-hover:flex">
-      <Button
-        onClick={onRemove}
-        variant="secondary"
-        size="icon"
-        className="h-8 w-8 rounded-full"
-      >
+      <Button onClick={onRemove} variant="secondary" size="icon" className="h-8 w-8 rounded-full">
         <X className="h-4 w-4" />
       </Button>
     </div>
@@ -47,11 +32,7 @@ export function ImageStep({ control }: { control: any }) {
   const fileInputRef = React.useRef<HTMLInputElement>(null);
   const screenshotInputRef = React.useRef<HTMLInputElement>(null);
 
-  const handleImageUpload = async (
-    event: React.ChangeEvent<HTMLInputElement>,
-    isMain: boolean,
-    field: any,
-  ) => {
+  const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>, isMain: boolean, field: any) => {
     const file = event.target.files?.[0];
     if (file) {
       const reader = new FileReader();
@@ -100,9 +81,7 @@ export function ImageStep({ control }: { control: any }) {
                   }}
                 />
               ) : (
-                <ImageUploadButton
-                  onClick={() => fileInputRef.current?.click()}
-                />
+                <ImageUploadButton onClick={() => fileInputRef.current?.click()} />
               )}
             </Row>
             <FormMessage font={"body5"} className={"pt-2 font-light"} />
@@ -117,9 +96,7 @@ export function ImageStep({ control }: { control: any }) {
           <FormItem>
             <Label font={"heading4"} className={"font-medium"}>
               스크린샷
-              <span className={"body3 ml-[6px] font-light text-gray-400"}>
-                Max to 2
-              </span>
+              <span className={"body3 ml-[6px] font-light text-gray-400"}>Max to 2</span>
             </Label>
             <input
               type="file"
@@ -140,11 +117,7 @@ export function ImageStep({ control }: { control: any }) {
                   }}
                 />
               ))}
-              {field.value.length < 2 && (
-                <ImageUploadButton
-                  onClick={() => screenshotInputRef.current?.click()}
-                />
-              )}
+              {field.value.length < 2 && <ImageUploadButton onClick={() => screenshotInputRef.current?.click()} />}
             </div>
             <FormMessage font={"body5"} className={"pt-2 font-light"} />
           </FormItem>
