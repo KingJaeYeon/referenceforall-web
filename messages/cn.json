@@ -25,5 +25,10 @@
   "show_more": "Show more",
   "no_recent_searches_message": "You have no recent searches",
   "recommended": "Recommended",
-  "explore_topics": "Explore topics"
+  "explore_topics": "Explore topics",
+  "error": {
+    "auth": {
+      "invalid_password": "아이디 또는 비밀번호가 올바르지 않습니다. 다시 확인해주세요"
+    }
+  }
 }

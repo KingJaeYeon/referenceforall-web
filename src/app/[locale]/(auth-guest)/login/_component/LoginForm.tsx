@@ -9,6 +9,7 @@ import Text from "@/components/Layout/Text";
 import GoogleLogin from "@/app/[locale]/(auth-guest)/login/_component/GoogleLogin";
 import React from "react";
 import { login } from "@/service/auth-service";
+import { useTranslations } from "next-intl";
 
 interface IError {
   email?: string;
@@ -16,6 +17,7 @@ interface IError {
 }
 
 export default function LoginForm() {
+  const t = useTranslations();
   const loginSchema = z.object({
     email: z.string().min(1, "이메일을 입력해주세요").email("올바른 이메일 형식이 아닙니다"),
     password: z.string().min(1, "비밀번호를 입력해주세요").min(6, "비밀번호는 최소 6자 이상이어야 합니다"),
@@ -36,7 +38,7 @@ export default function LoginForm() {
     } catch (error: any) {
       const { message, code } = error;
       if (code === "AUTH-002") {
-        setErrors((prev) => ({ ...prev, password: message }));
+        setErrors((prev) => ({ ...prev, password: t(message) }));
       }
     }
   };

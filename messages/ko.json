@@ -25,5 +25,10 @@
   "show_more": "더보기",
   "no_recent_searches_message": "최근 검색 기록이 없습니다.",
   "recommended": "추천",
-  "explore_topics": "관심 주제 찾기"
+  "explore_topics": "관심 주제 찾기",
+  "error": {
+    "auth": {
+      "invalid_password": "아이디 또는 비밀번호가 올바르지 않습니다. 다시 확인해주세요"
+    }
+  }
 }
