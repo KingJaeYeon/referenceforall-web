@@ -1,8 +1,9 @@
+'use client'
 import Row from "@/components/Layout/Row";
 import Logo from "@/components/Logo";
-import { Button } from "@/components/ui/button";
 import { SelectLangModalTrigger } from "@/components/modal/SelectLangModal";
 import NavLink from "@/components/NavLink";
+import { Link } from "@/i18n/routing";
 
 export default function NavigationHeader() {
   return (
@@ -17,9 +18,9 @@ export default function NavigationHeader() {
         <NavLink href={"/share"}>공유하기</NavLink>
         <NavLink href={"/my/lists"}>관심목록</NavLink>
         <SelectLangModalTrigger />
-        <Button variant={"default"} font={"heading6"} role={"link"}>
+        <Link className={'heading6'} href={"/login"}>
           로그인
-        </Button>
+        </Link>
       </Row>
     </div>
   );
