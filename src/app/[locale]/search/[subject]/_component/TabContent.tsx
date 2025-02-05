@@ -1,23 +1,29 @@
+"use client";
+import { notFound } from "next/navigation";
 import TopicButton from "@/components/TopicButton";
 import Row from "@/components/Layout/Row";
 import Text from "@/components/Layout/Text";
 import { IconDropDownDown } from "@/assets/svg";
-import React from "react";
 import { MainCard } from "@/app/[locale]/search/[subject]/_component/MainCard";
-import { getTranslations } from "next-intl/server";
+import { useTranslations } from "next-intl";
 
-export default function NavContent({ library }: { library?: string }) {
-  switch (library) {
-    case "root":
-      return <TagsContent data={{}} />;
-    case "saved":
-      return <SitesContent data={{}} />;
+export default function TabContent(props: {
+  target: "tags" | "sites" | string;
+  data: any;
+}) {
+  const { target, data } = props;
+  switch (target) {
+    case "tags":
+      return <TagsContent data={data} />;
+    case "sites":
+      return <SitesContent data={data} />;
+    default:
+      return notFound();
   }
 }
 
-async function TagsContent({ data }: { data: any }) {
-  const t = await getTranslations();
-  return null;
+function TagsContent({ data }: { data: any }) {
+  const t = useTranslations();
   return (
     <div className={"relative"}>
       {data.map((topic: any) => {
@@ -49,11 +55,10 @@ async function TagsContent({ data }: { data: any }) {
   );
 }
 
-function SitesContent({ data }: { data: any }) {
-  return null;
+function SitesContent({ data }: { data: { sites: any[]; total: number } }) {
   const { sites, total } = data;
 
-  return sites.map((site: any, index: any) => (
+  return sites.map((site, index) => (
     <MainCard
       key={index}
       site={site}
