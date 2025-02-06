@@ -1,10 +1,10 @@
 import { Button } from "@/components/ui/button";
+import { googleLogin } from "@/service/auth-service";
 
 export default function GoogleLogin() {
   const handleGoogleLogin = async () => {
     try {
-      // 구글 로그인 로직 구현
-      console.log("구글 로그인 시도");
+      googleLogin();
     } catch (error) {
       console.error("구글 로그인 에러:", error);
     }

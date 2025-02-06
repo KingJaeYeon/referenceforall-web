@@ -12,14 +12,14 @@ import { login } from "@/service/auth-service";
 import { useTranslations } from "next-intl";
 
 interface IError {
-  email?: string;
+  username?: string;
   password?: string;
 }
 
 export default function LoginForm() {
   const t = useTranslations();
   const loginSchema = z.object({
-    email: z.string().min(1, "이메일을 입력해주세요").email("올바른 이메일 형식이 아닙니다"),
+    username: z.string().min(1, "유저이름을 입력해주세요").min(1, "유저이름을 입력해주세요"),
     password: z.string().min(1, "비밀번호를 입력해주세요").min(6, "비밀번호는 최소 6자 이상이어야 합니다"),
   });
 
@@ -44,10 +44,10 @@ export default function LoginForm() {
   };
 
   const onErrors = (errors: any) => {
-    const email = errors.email?.message;
+    const username = errors.username?.message;
     const password = errors.password?.message;
-    if (email) {
-      setErrors((prev) => ({ ...prev, email }));
+    if (username) {
+      setErrors((prev) => ({ ...prev, username }));
     }
     if (password) {
       setErrors((prev) => ({ ...prev, password }));
@@ -58,15 +58,15 @@ export default function LoginForm() {
     <React.Fragment>
       <form onSubmit={handleSubmit(onSubmit, onErrors)} className="space-y-4">
         <div className="space-y-2">
-          <Label htmlFor="email">이메일</Label>
+          <Label htmlFor="username">유저이름</Label>
           <Input
-            id="email"
-            type="email"
-            placeholder="name@example.com"
-            {...register("email")}
-            className={errors.email ? "border-red-500" : ""}
+            id="username"
+            type="text"
+            placeholder="username"
+            {...register("username")}
+            className={errors.username ? "border-red-500" : ""}
           />
-          {errors.email && <Text className={"body7 pl-2 text-destructive"}>{errors.email}</Text>}
+          {errors.username && <Text className={"body7 pl-2 text-destructive"}>{errors.username}</Text>}
         </div>
         <div className="space-y-2">
           <Label htmlFor="password">비밀번호</Label>
