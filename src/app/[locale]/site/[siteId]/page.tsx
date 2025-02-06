@@ -6,9 +6,9 @@ interface PageProps {
   params: Promise<{ siteId: string; locale: string }>;
 }
 
-export async function generateMetadata({ params: _params }: PageProps) {
-  const params = await _params;
-  const siteId = decodeURI(params.siteId);
+export async function generateMetadata({ params }: PageProps) {
+  const p = await params;
+  const siteId = decodeURI(p.siteId);
 
   // 사이트 가져오는 로직
 
