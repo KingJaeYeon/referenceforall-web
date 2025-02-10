@@ -24,6 +24,10 @@ export default function Template({ children }: { children: ReactNode }) {
     path = "my/lists";
   }
 
+  if (pathname.includes("/signup")) {
+    return <>{children}</>;
+  }
+
   return (
     <motion.div
       key={path}

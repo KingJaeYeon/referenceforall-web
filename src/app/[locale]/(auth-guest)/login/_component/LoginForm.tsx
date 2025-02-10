@@ -10,6 +10,7 @@ import GoogleLogin from "@/app/[locale]/(auth-guest)/login/_component/GoogleLogi
 import React from "react";
 import { login } from "@/service/auth-service";
 import { useTranslations } from "next-intl";
+import { RadioGroupItem } from "@/components/ui/radio-group";
 
 interface IError {
   username?: string;
@@ -19,7 +20,7 @@ interface IError {
 export default function LoginForm() {
   const t = useTranslations();
   const loginSchema = z.object({
-    username: z.string().min(1, "유저이름을 입력해주세요").min(1, "유저이름을 입력해주세요"),
+    username: z.string().min(1, "유저이름을 입력해주세요").min(4, "유저이름은 최소 4자 이상이여야 합니다."),
     password: z.string().min(1, "비밀번호를 입력해주세요").min(6, "비밀번호는 최소 6자 이상이어야 합니다"),
   });
 
