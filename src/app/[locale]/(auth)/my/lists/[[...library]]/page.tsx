@@ -24,11 +24,12 @@ export const metadata: Metadata = {
   description: "Watch your Library",
 };
 
+const ALLOWED_URLS = ["saved"];
+
 export default async function LibraryPage(props: PageProps) {
   const params = await props.params;
   const library = params.library || [];
 
-  const ALLOWED_URLS = ["saved"];
   const IS_ALLOWED_URL =
     library.length > 1 || (library[0] && !ALLOWED_URLS.includes(library[0]));
 

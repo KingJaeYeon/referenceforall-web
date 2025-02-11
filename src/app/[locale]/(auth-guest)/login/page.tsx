@@ -6,7 +6,7 @@ import Row from "@/components/Layout/Row";
 
 export default function Page() {
   return (
-    <PageWrapper className={"h-[80vh]"}>
+    <PageWrapper className={"h-[calc(100vh-60px)] md:bg-[#f0f4f9]"}>
       <Row className={"h-full w-full items-center justify-evenly"}>
         <Card className="w-full md:max-w-md" onlyMobile>
           <CardHeader className="space-y-1">

@@ -10,7 +10,6 @@ import GoogleLogin from "@/app/[locale]/(auth-guest)/login/_component/GoogleLogi
 import React from "react";
 import { login } from "@/service/auth-service";
 import { useTranslations } from "next-intl";
-import { RadioGroupItem } from "@/components/ui/radio-group";
 
 interface IError {
   username?: string;

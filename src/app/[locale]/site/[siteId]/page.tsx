@@ -1,9 +1,14 @@
 import SitePage from "@/app/[locale]/site/[siteId]/_component/SitePage";
 import PageWrapper from "@/components/Layout/PageWrapper";
 import ContentWrapper from "@/components/Layout/ContentWrapper";
+import { routing } from "@/i18n/routing";
 
 interface PageProps {
   params: Promise<{ siteId: string; locale: string }>;
+}
+
+export function generateStaticParams() {
+  return routing.locales.flatMap((locale) => ({ locale }));
 }
 
 export async function generateMetadata({ params }: PageProps) {
@@ -36,10 +41,7 @@ export default function SiteDetailsPage() {
     comments: 20,
     usageTiming: ["글쓰기", "기술 트렌드 파악", "지식 공유"],
     features: ["글쓰기", "팔로우", "클래핑", "뉴스레터"],
-    screenshots: [
-      "/placeholder.svg?height=400&width=800",
-      "/placeholder.svg?height=400&width=800",
-    ],
+    screenshots: ["/placeholder.svg?height=400&width=800", "/placeholder.svg?height=400&width=800"],
   };
 
   const comments = [
@@ -48,8 +50,7 @@ export default function SiteDetailsPage() {
       author: "홍길동",
       // avatar: "/placeholder.svg?height=40&width=40",
       avatar: "https://github.com/shadcn.png",
-      content:
-        "매일 사용하는 유용한 사이트입니다. 특히 기술 블로그 섹션이 좋아요.",
+      content: "매일 사용하는 유용한 사이트입니다. 특히 기술 블로그 섹션이 좋아요.",
       date: "2024-03-15",
       likes: 5,
       dislikes: 1,
