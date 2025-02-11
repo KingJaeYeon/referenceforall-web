@@ -7,9 +7,10 @@ import { RadioButton } from "@/components/RadioButton";
 import { Label } from "@/components/ui/label";
 import { AlertTip } from "@/components/AlertTip";
 import NextStepButton from "@/app/[locale]/(auth-guest)/signup/[[...step]]/_component/NextStepButton";
-import { Input } from "@/components/ui/input";
+import { FloatingOutlinedInput } from "@/app/components/FloatingOutlinedInput";
+import Row from "@/components/Layout/Row";
 
-type FormField = { value: string; isError: boolean };
+type FormField = { value: string; errorMessage: string };
 
 type InitFormDataType = Record<"type" | "username" | "displayName" | "verify" | "password" | "confirmPwd", FormField>;
 
@@ -20,28 +21,31 @@ export default function SignupForm({ step = "type" }: { step?: string }) {
   let content, label;
 
   const [formData, setFormData] = useState<InitFormDataType>({
-    type: { value: searchParams.get("type") || "", isError: false },
-    username: { value: searchParams.get("username") || "", isError: false },
-    displayName: { value: searchParams.get("displayName") || "", isError: false },
-    verify: { value: searchParams.get("verify") || "", isError: false },
-    password: { value: searchParams.get("password") || "", isError: false },
-    confirmPwd: { value: searchParams.get("confirmPwd") || "", isError: false },
+    type: { value: searchParams.get("type") || "", errorMessage: "" },
+    username: { value: searchParams.get("username") || "", errorMessage: "" },
+    displayName: { value: searchParams.get("displayName") || "", errorMessage: "" },
+    verify: { value: searchParams.get("verify") || "", errorMessage: "" },
+    password: { value: searchParams.get("password") || "", errorMessage: "" },
+    confirmPwd: { value: searchParams.get("confirmPwd") || "", errorMessage: "" },
   });
 
   const onChangeHandler = (key: InitFormDataKeys, value: string) => {
     setFormData((prev) => ({ ...prev, [key]: { ...prev[key], value } }));
   };
 
-  const onErrorHandler = (key: InitFormDataKeys, value: boolean) => {
-    setFormData((prev) => ({ ...prev, [key]: { ...prev[key], isError: value } }));
+  const onErrorHandler = (key: InitFormDataKeys, value: string) => {
+    setFormData((prev) => ({ ...prev, [key]: { ...prev[key], errorMessage: value } }));
   };
 
   switch (step) {
     case "username":
       label = { title: "유저이름 입력", description: "4글자 이상으로 입력해주세요." };
-      content = <StepUserName />;
+      content = <StepUserName formData={formData} onChangeHandler={onChangeHandler} />;
       break;
-
+    case "password":
+      label = { title: "안전한 비밀번호 만들기", description: "8글자 이상으로 비밀번호를 만드세요." };
+      content = <StepPwd formData={formData} onChangeHandler={onChangeHandler} />;
+      break;
     default:
       label = { title: "모두의 레퍼런스 계정 만들기", description: "이메일이나 유저이름을 선택해주세요." };
       content = <StepSelectedType formData={formData} onChangeHandler={onChangeHandler} />;
@@ -75,7 +79,7 @@ function StepSelectedType({
         selected={formData.type.value}
         onChange={(value) => onChangeHandler("type", value)}
         className={"gap-4 border-b border-[#c4c7c5] py-4"}
-        isError={formData.type.isError}
+        isError={!!formData.type.errorMessage}
       >
         <Label
           htmlFor="email"
@@ -91,7 +95,7 @@ function StepSelectedType({
         selected={formData.type.value}
         onChange={(value) => onChangeHandler("type", value)}
         className={"gap-4 border-b border-[#c4c7c5] py-4"}
-        isError={formData.type.isError}
+        isError={!!formData.type.errorMessage}
       >
         <Label
           htmlFor="email"
@@ -102,22 +106,35 @@ function StepSelectedType({
           이메일
         </Label>
       </RadioButton>
-      {formData.type.isError && <AlertTip label={"회원가입 타입을 선택해주세요."} />}
+      {formData.type.errorMessage && <AlertTip label={formData.type.errorMessage} />}
     </CardContent>
   );
 }
 
-function StepUserName() {
+function StepUserName({
+  formData,
+  onChangeHandler,
+}: {
+  formData: InitFormDataType;
+  onChangeHandler: (key: InitFormDataKeys, value: string) => void;
+}) {
   return (
     <CardContent className={"animate-slide-in flex-1 px-0 py-6"}>
-      <Col>
-        <input className={'h-[52px]'}/>
-        <p>비밀번호</p>
-      </Col>
-      <Col className={"pt-6"}>
-        <Input className={'h-[52px]'}/>
-        <p>확인</p>
-      </Col>
+      <FloatingOutlinedInput
+        id={"displayName"}
+        label={"닉네임(선택사항)"}
+        value={formData.displayName.value}
+        onChangeValue={(value: string) => onChangeHandler("displayName", value)}
+      />
+      <FloatingOutlinedInput
+        id={"username"}
+        label={"유저이름"}
+        className={"mt-6"}
+        value={formData.username.value}
+        onChangeValue={(value: string) => onChangeHandler("username", value)}
+        isError={!!formData.username.errorMessage}
+      />
+      {formData.username.errorMessage && <AlertTip label={formData.username.errorMessage} />}
     </CardContent>
   );
 }
@@ -130,6 +147,36 @@ function StepVerifyEmail() {
   return;
 }
 
-function StepPwd() {
-  return;
+function StepPwd({
+  formData,
+  onChangeHandler,
+}: {
+  formData: InitFormDataType;
+  onChangeHandler: (key: InitFormDataKeys, value: string) => void;
+}) {
+  return (
+    <CardContent className={"animate-slide-in flex-1 px-0 py-6"}>
+      <FloatingOutlinedInput
+        id={"password"}
+        label={"비밀번호"}
+        type={"password"}
+        value={formData.password.value}
+        onChangeValue={(value: string) => onChangeHandler("password", value)}
+      />
+      <FloatingOutlinedInput
+        id={"confirmPwd"}
+        label={"확인"}
+        className={"mt-6"}
+        type={"password"}
+        value={formData.confirmPwd.value}
+        onChangeValue={(value: string) => onChangeHandler("confirmPwd", value)}
+        isError={!!formData.confirmPwd.errorMessage}
+      />
+      {formData.username.errorMessage && <AlertTip label={formData.username.errorMessage} />}
+      <Row className={'pt-2'}>
+        <input type={'checkbox'}/>
+        <Label className={'ml-4'}>비밀번호 표시</Label>
+      </Row>
+    </CardContent>
+  );
 }

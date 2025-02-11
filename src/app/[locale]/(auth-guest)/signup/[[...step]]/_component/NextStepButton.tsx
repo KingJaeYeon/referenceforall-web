@@ -8,7 +8,7 @@ import { InitFormDataKeys } from "@/app/[locale]/(auth-guest)/signup/[[...step]]
 
 interface FormField {
   value: string;
-  isError: boolean;
+  errorMessage: string;
 }
 
 type FormData = Record<string, FormField>;
@@ -16,7 +16,7 @@ type FormData = Record<string, FormField>;
 interface NextStepButtonProps {
   currentStep: string;
   formData: FormData;
-  setFormErrorAction: (key: InitFormDataKeys, value: boolean) => void;
+  setFormErrorAction: (key: InitFormDataKeys, value: string) => void;
   className?: string;
 }
 
@@ -25,24 +25,53 @@ export default function NextStepButton({ currentStep, formData, setFormErrorActi
   const searchParams = useSearchParams();
 
   const getNextPath = () => {
+    let result = "";
     // type 스텝인 경우 type 값에 따라 다른 경로 반환
     if (currentStep === "type") {
       if (!formData.type.value) {
-        setFormErrorAction("type", true);
+        setFormErrorAction("type", "회원가입 타입을 선택해주세요.");
         return null;
       }
-      return `/signup/${formData.type.value}`;
+      result = `/signup/${formData.type.value}`;
     }
 
-    // 다른 스텝들의 경로 매핑
-    const stepRoutes: Record<string, string> = {
-      username: "/signup/verify",
-      email: "/signup/verify",
-      verify: "/signup/password",
-      password: "/signup/complete",
-    };
+    if (currentStep === "username") {
+      const type = formData.type.value;
+      let usernameError = "";
+      if (!formData.username.value) {
+        usernameError = "필수입력칸이 비어있습니다.";
+      }
+      if (formData.username.value.length < 4 && type === "username") {
+        usernameError = "유저이름은 4글자 이상 입력해주세요.";
+      }
+      if (!formData.username.value.includes("@") && type === "email") {
+        usernameError = "이메일의 형식이 잘못되었습니다.";
+      }
 
-    return stepRoutes[currentStep];
+      if (usernameError) {
+        setFormErrorAction("username", usernameError);
+
+        // 포커싱: id가 "username"인 "input"에 포커스 설정
+        const usernameInput = document.getElementById("username");
+        if (usernameInput) {
+          usernameInput.focus();
+        }
+        return null;
+      }
+      result = type === "email" ? `/signup/verify` : `/signup/password`;
+    }
+
+    return result;
+
+    // 다른 스텝들의 경로 매핑
+    // const stepRoutes: Record<string, string> = {
+    //   username: "/signup/verify",
+    //   email: "/signup/verify",
+    //   verify: "/signup/password",
+    //   password: "/signup/complete",
+    // };
+    //
+    // return stepRoutes[currentStep];
   };
 
   const handleNext = () => {
@@ -70,7 +99,7 @@ export default function NextStepButton({ currentStep, formData, setFormErrorActi
             "my-[6px] h-[40px] rounded-[20px] bg-[#0b57d0] px-6 font-light text-white hover:bg-[#0847a8] hover:text-white"
           }
         >
-          다음
+          {currentStep === "password" ? "가입하기" : "다음"}
         </Button>
       </Row>
     </Row>
