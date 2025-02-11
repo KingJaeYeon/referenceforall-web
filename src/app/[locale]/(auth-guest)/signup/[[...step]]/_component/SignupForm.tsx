@@ -1,6 +1,6 @@
 "use client";
 import { useSearchParams } from "next/navigation";
-import React, { useState } from "react";
+import React, { ReactNode, useState } from "react";
 import Col from "@/components/Layout/Col";
 import { CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { RadioButton } from "@/components/RadioButton";
@@ -154,12 +154,13 @@ function StepPwd({
   formData: InitFormDataType;
   onChangeHandler: (key: InitFormDataKeys, value: string) => void;
 }) {
+  const [inputType, setInputType] = useState("password");
   return (
     <CardContent className={"animate-slide-in flex-1 px-0 py-6"}>
       <FloatingOutlinedInput
         id={"password"}
         label={"비밀번호"}
-        type={"password"}
+        type={inputType}
         value={formData.password.value}
         onChangeValue={(value: string) => onChangeHandler("password", value)}
       />
@@ -167,16 +168,29 @@ function StepPwd({
         id={"confirmPwd"}
         label={"확인"}
         className={"mt-6"}
-        type={"password"}
+        type={inputType}
         value={formData.confirmPwd.value}
         onChangeValue={(value: string) => onChangeHandler("confirmPwd", value)}
         isError={!!formData.confirmPwd.errorMessage}
       />
       {formData.username.errorMessage && <AlertTip label={formData.username.errorMessage} />}
-      <Row className={'pt-2'}>
-        <input type={'checkbox'}/>
-        <Label className={'ml-4'}>비밀번호 표시</Label>
+      <Row className={"items-center pt-2"}>
+        <EmptyCheckbox
+          checked={inputType === "text"}
+          onCheckedChange={(checked) => setInputType(checked ? "text" : "password")}
+        />
+        <Label className={"ml-4 cursor-pointer"}>비밀번호 표시</Label>
       </Row>
     </CardContent>
+  );
+}
+
+function EmptyCheckbox() {
+  return (
+    <Row className={"relative h-6 w-6 items-center justify-center"}>
+      <div className={"absolute top-[-12px] p-[11px]"}>
+        <div className={"relative m-1 h-[18px] w-[18px] cursor-pointer rounded-[2px] border-2 border-[#444746]"} />
+      </div>
+    </Row>
   );
 }
