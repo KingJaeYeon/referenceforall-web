@@ -9,6 +9,7 @@ import {
   InitFormDataKeys,
   InitFormDataType,
 } from "@/app/[locale]/(auth-guest)/signup/[[...step]]/_component/SignupForm";
+import { EmptyCheckbox } from "@/app/components/EmptyCheckbox";
 
 interface IStepContents {
   formData: InitFormDataType;
@@ -87,6 +88,7 @@ function StepVerifyEmail() {
 
 function StepPwd({ formData, onChangeHandler }: IStepContents) {
   const [inputType, setInputType] = useState("password");
+
   return (
     <CardContent className={"flex-1 animate-slide-in px-0 py-6"}>
       <FloatingOutlinedInput
@@ -108,22 +110,15 @@ function StepPwd({ formData, onChangeHandler }: IStepContents) {
       {formData.username.errorMessage && <AlertTip label={formData.username.errorMessage} />}
       <Row className={"items-center pt-2"}>
         <EmptyCheckbox
-          checked={inputType === "text"}
-          onCheckedChange={(checked) => setInputType(checked ? "text" : "password")}
+          isChecked={inputType === "text"}
+          setIsChecked={(checked) => setInputType(checked ? "text" : "password")}
+          id={"pwd-visible"}
         />
-        <Label className={"ml-4 cursor-pointer"}>비밀번호 표시</Label>
+        <Label className={"ml-4 cursor-pointer"} htmlFor={"pwd-visible"}>
+          비밀번호 표시
+        </Label>
       </Row>
     </CardContent>
-  );
-}
-
-function EmptyCheckbox() {
-  return (
-    <Row className={"relative h-6 w-6 items-center justify-center"}>
-      <div className={"absolute top-[-12px] p-[11px]"}>
-        <div className={"relative m-1 h-[18px] w-[18px] cursor-pointer rounded-[2px] border-2 border-[#444746]"} />
-      </div>
-    </Row>
   );
 }
 
