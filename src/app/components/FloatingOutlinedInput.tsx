@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Col from "@/components/Layout/Col";
 import { cn } from "@/lib/utils";
 import Row from "@/components/Layout/Row";
@@ -11,8 +11,14 @@ interface IFloatingOutlinedInputProps extends React.InputHTMLAttributes<HTMLInpu
 }
 
 export function FloatingOutlinedInput(props: IFloatingOutlinedInputProps) {
-  const { label, className, onChangeValue, isError,...rest} = props;
+  const { label, className, onChangeValue, isError, ...rest } = props;
   const [isFocused, setIsFocused] = useState(false);
+
+  useEffect(() => {
+    if (rest.value) {
+      setIsFocused(true);
+    }
+  }, []);
 
   return (
     <Col className={cn("relative h-[56px] justify-center", className)}>

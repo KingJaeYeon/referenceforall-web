@@ -97,6 +97,7 @@ function StepPwd({ formData, onChangeHandler }: IStepContents) {
         type={inputType}
         value={formData.password.value}
         onChangeValue={(value: string) => onChangeHandler("password", value)}
+        isError={!!formData.password.errorMessage}
       />
       <FloatingOutlinedInput
         id={"confirmPwd"}
@@ -107,7 +108,9 @@ function StepPwd({ formData, onChangeHandler }: IStepContents) {
         onChangeValue={(value: string) => onChangeHandler("confirmPwd", value)}
         isError={!!formData.confirmPwd.errorMessage}
       />
-      {formData.username.errorMessage && <AlertTip label={formData.username.errorMessage} />}
+      {(formData.password.errorMessage || formData.confirmPwd.errorMessage) && (
+        <AlertTip label={formData.password.errorMessage || formData.confirmPwd.errorMessage} />
+      )}
       <Row className={"items-center pt-2"}>
         <EmptyCheckbox
           isChecked={inputType === "text"}
