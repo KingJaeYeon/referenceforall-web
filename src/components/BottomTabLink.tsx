@@ -29,7 +29,7 @@ export default function BottomTabLink(props: NavLinkProps) {
         isIncludes ? "" : "opacity-50",
       )}
     >
-      <Col className={"min-h-[22px]"}>{icon}</Col>
+      {icon}
       {children}
     </Link>
   );
