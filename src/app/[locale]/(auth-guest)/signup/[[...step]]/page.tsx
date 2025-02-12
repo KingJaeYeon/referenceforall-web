@@ -22,9 +22,9 @@ export default async function SignupPage(props: PageProps) {
   }
 
   return (
-    <PageWrapper className={"h-[calc(100vh-60px)] md:bg-[#f0f4f9] md:px-4"}>
+    <PageWrapper className={"justify-center pb-[100px] pt-[50px] md:min-h-[calc(100vh-60px)] md:bg-[#f0f4f9] md:px-4"}>
       <Row className={"h-full w-full items-center justify-evenly"}>
-        <Card className="z-0 w-full px-10 py-4 md:max-w-[52rem] overflow-hidden" onlyMobile>
+        <Card className="z-0 w-full p-4 md:max-w-[52rem] overflow-hidden" onlyMobile>
           <div className={"pt-4"}>
             <Logo className={"h-[40px] w-[37px]"} />
           </div>
