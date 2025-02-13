@@ -8,10 +8,11 @@ interface IFloatingOutlinedInputProps extends React.InputHTMLAttributes<HTMLInpu
   className?: string;
   onChangeValue: (value: string) => void;
   isError?: boolean;
+  id?: string;
 }
 
 export function FloatingOutlinedInput(props: IFloatingOutlinedInputProps) {
-  const { label, className, onChangeValue, isError, ...rest } = props;
+  const { label, className, onChangeValue, isError, id, ...rest } = props;
   const [isFocused, setIsFocused] = useState(false);
 
   useEffect(() => {
@@ -23,6 +24,7 @@ export function FloatingOutlinedInput(props: IFloatingOutlinedInputProps) {
   return (
     <Col className={cn("relative h-[56px] justify-center", className)}>
       <input
+        id={id}
         onFocus={() => setIsFocused(true)}
         onBlur={(e) => {
           if (!e.target.value) setIsFocused(false);
@@ -31,7 +33,8 @@ export function FloatingOutlinedInput(props: IFloatingOutlinedInputProps) {
         className={"body3 m-[2px] flex h-[28px] flex-1 border-none px-[14px] py-[12px] focus-visible:outline-none"}
         {...rest}
       />
-      <p
+      <label
+        htmlFor={id}
         className={cn(
           "body3 absolute left-2 bg-white px-2",
           isFocused ? "left-1 translate-y-[-110%] scale-[0.8] text-[#0b57b0]" : "",
@@ -40,7 +43,7 @@ export function FloatingOutlinedInput(props: IFloatingOutlinedInputProps) {
         style={{ transition: "all .3s cubic-bezier(0.4,0,0.2,1)" }}
       >
         {label}
-      </p>
+      </label>
       <Row
         className={cn(
           "absolute z-[-1] h-full w-full rounded-[4px] border border-[#1f1f1f]",
