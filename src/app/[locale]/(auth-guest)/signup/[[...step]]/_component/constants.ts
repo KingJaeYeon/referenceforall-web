@@ -1,3 +1,5 @@
+import { InitFormDataKeys } from "@/app/[locale]/(auth-guest)/signup/[[...step]]/_component/SignupForm";
+
 export const SIGNUP_STEPS = {
   TYPE: "type",
   USERNAME: "username",
@@ -15,3 +17,11 @@ export const ALLOWED_STEPS = [
 ] as const;
 
 export type StepType = (typeof ALLOWED_STEPS)[number];
+
+
+export interface FormField {
+  value: string;
+  errorMessage: string;
+}
+
+export type FormData = Record<InitFormDataKeys, FormField>;

@@ -5,13 +5,6 @@ export interface ILogin {
   password: string;
 }
 
-export interface IJoin {
-  username: string;
-  password: string;
-  rePassword: string;
-  name: string;
-}
-
 const prefix = (path: string) => `/auth/${path}`;
 
 export function refreshTokens() {
@@ -40,10 +33,10 @@ export function logout() {
   });
 }
 
-export function join(data: IJoin) {
+export function validUsername(username: string) {
   return request({
-    url: prefix("join"),
+    url: prefix("valid-username"),
     method: "POST",
-    data,
+    data: { username },
   });
 }

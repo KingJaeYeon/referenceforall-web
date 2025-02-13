@@ -29,6 +29,12 @@
   "error": {
     "auth": {
       "invalid_password": "아이디 또는 비밀번호가 올바르지 않습니다. 다시 확인해주세요"
+    },
+    "common": {
+      "empty": "필수 입력칸을 채워주세요."
+    },
+    "user": {
+      "already_exists": "이미 사용된 사용자 이름입니다."
     }
   }
 }

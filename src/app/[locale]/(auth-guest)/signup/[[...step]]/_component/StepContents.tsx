@@ -5,18 +5,12 @@ import { AlertTip } from "@/components/AlertTip";
 import { FloatingOutlinedInput } from "@/app/components/FloatingOutlinedInput";
 import React, { useState } from "react";
 import Row from "@/components/Layout/Row";
-import {
-  InitFormDataKeys,
-  InitFormDataType,
-} from "@/app/[locale]/(auth-guest)/signup/[[...step]]/_component/SignupForm";
 import { EmptyCheckbox } from "@/app/components/EmptyCheckbox";
+import useSignupStore from "@/store/useSignupStore";
 
-interface IStepContents {
-  formData: InitFormDataType;
-  onChangeHandler: (key: InitFormDataKeys, value: string) => void;
-}
+function StepSelectedType() {
+  const { formData, onChangeHandler } = useSignupStore();
 
-function StepSelectedType({ formData, onChangeHandler }: IStepContents) {
   return (
     <CardContent className={"flex-1 animate-slide-in px-0 py-6"}>
       <RadioButton
@@ -56,7 +50,8 @@ function StepSelectedType({ formData, onChangeHandler }: IStepContents) {
   );
 }
 
-function StepUserName({ formData, onChangeHandler }: IStepContents) {
+function StepUserName() {
+  const { formData, onChangeHandler } = useSignupStore();
   return (
     <CardContent className={"flex-1 animate-slide-in px-0 py-6"}>
       <FloatingOutlinedInput
@@ -79,21 +74,58 @@ function StepUserName({ formData, onChangeHandler }: IStepContents) {
 }
 
 function StepEmail() {
-  return;
+  const { formData, onChangeHandler } = useSignupStore();
+  return (
+    <CardContent className={"flex-1 animate-slide-in px-0 py-6"}>
+      <FloatingOutlinedInput
+        id={"displayName"}
+        label={"닉네임(선택사항)"}
+        value={formData.displayName.value}
+        onChangeValue={(value: string) => onChangeHandler("displayName", value)}
+      />
+      <FloatingOutlinedInput
+        id={"username"}
+        label={"이메일"}
+        required
+        className={"mt-6"}
+        value={formData.username.value}
+        onChangeValue={(value: string) => onChangeHandler("username", value)}
+        isError={!!formData.username.errorMessage}
+      />
+      {formData.username.errorMessage && <AlertTip label={formData.username.errorMessage} />}
+    </CardContent>
+  );
 }
 
 function StepVerifyEmail() {
-  return;
+  const { formData, onChangeHandler } = useSignupStore();
+  return (
+    <CardContent className={"flex-1 animate-slide-in px-0 py-6"}>
+      <p
+        className={"body6 pb-3 pt-1 text-[0.8rem]"}
+      >{`인증 코드가 포함된 이메일이 ${formData.username.value}(으)로 전송되었습니다.`}</p>
+      <FloatingOutlinedInput
+        id={"verify"}
+        required
+        label={"인증코드"}
+        value={formData.verify.value}
+        onChangeValue={(value: string) => onChangeHandler("verify", value)}
+        isError={!!formData.verify.errorMessage}
+      />
+      {formData.verify.errorMessage && <AlertTip label={formData.verify.errorMessage} />}
+    </CardContent>
+  );
 }
 
-function StepPwd({ formData, onChangeHandler }: IStepContents) {
+function StepPwd() {
   const [inputType, setInputType] = useState("password");
-
+  const { formData, onChangeHandler } = useSignupStore();
   return (
     <CardContent className={"flex-1 animate-slide-in px-0 py-6"}>
       <FloatingOutlinedInput
         id={"password"}
         label={"비밀번호"}
+        required
         type={inputType}
         value={formData.password.value}
         onChangeValue={(value: string) => onChangeHandler("password", value)}
@@ -102,6 +134,7 @@ function StepPwd({ formData, onChangeHandler }: IStepContents) {
       <FloatingOutlinedInput
         id={"confirmPwd"}
         label={"확인"}
+        required
         className={"mt-6"}
         type={inputType}
         value={formData.confirmPwd.value}
