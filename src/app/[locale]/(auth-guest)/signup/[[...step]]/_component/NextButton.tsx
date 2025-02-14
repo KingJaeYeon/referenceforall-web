@@ -16,7 +16,7 @@ export function NextButton({ isLoading, label, ...props }: ButtonProps) {
         "my-[6px] h-[40px] rounded-[20px] bg-[#0b57d0] px-6 font-light text-white hover:bg-[#0847a8] hover:text-white"
       }
     >
-      {isLoading ? <Loader2 /> : label}
+      {isLoading ? <Loader2 className={'animate-spin w-3.5 h-3.5'}/> : label}
     </Button>
   );
 }

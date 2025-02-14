@@ -40,3 +40,19 @@ export function validUsername(username: string) {
     data: { username },
   });
 }
+
+export function validSignupCode({ email, verify }: { email: string; verify: string }) {
+  return request({
+    url: prefix("valid-email"),
+    method: "POST",
+    data: { email, verify },
+  });
+}
+
+export function sendSignupCode(username: string) {
+  return request({
+    url: prefix("send-signup-code"),
+    method: "POST",
+    data: { username },
+  });
+}

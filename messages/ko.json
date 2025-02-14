@@ -39,10 +39,15 @@
     "common": {
       "empty": "필수 입력칸을 채워주세요.",
       "min_length": "{key}는 {length}자 이상이어야 합니다.",
-      "input_empty": "입력칸이 비어있습니다."
+      "input_empty": "입력칸이 비어있습니다.",
+      "length": "자릿수가 잘못되었습니다. 다시 시도해주세요."
     },
     "user": {
       "already_exists": "이미 사용된 사용자 이름입니다."
+    },
+    "token": {
+      "invalid": "코드가 잘못되었습니다. 다시 시도해주세요",
+      "expired": "유효시간이 지난 코드입니다. 다시 진행해주세요."
     }
   },
   "password": "비밀번호",

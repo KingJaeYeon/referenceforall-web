@@ -11,6 +11,7 @@ import {
 import { StepSelectedTypeBtn } from "@/app/[locale]/(auth-guest)/signup/[[...step]]/_component/StepSelectedTypeBtn";
 import { StepUserNameBtn } from "@/app/[locale]/(auth-guest)/signup/[[...step]]/_component/StepUserNameBtn";
 import { StepPwdBtn } from "@/app/[locale]/(auth-guest)/signup/[[...step]]/_component/StepPwdBtn";
+import { StepVerifyEmailBtn } from "@/app/[locale]/(auth-guest)/signup/[[...step]]/_component/StepVerifyEmailBtn";
 
 interface ISignUpSteps {
   step?: string;
@@ -33,6 +34,7 @@ export default function SignUpSteps({ step }: ISignUpSteps) {
     case "verify":
       label = { title: "코드 입력", description: "본인 확인을 위한 인증코드가 발송되었습니다." };
       content = <StepVerifyEmail />;
+      button = <StepVerifyEmailBtn />;
       break;
     case "password":
       label = { title: "안전한 비밀번호 만들기", description: "8글자 이상으로 비밀번호를 만드세요." };

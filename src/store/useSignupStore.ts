@@ -15,6 +15,8 @@ interface ISignupStore {
   onErrorHandler: (key: InitFormDataKeys, value: string) => void;
   failStep: string;
   setFailStep: (key: string) => void;
+  resend: boolean;
+  setResend: (value: boolean) => void;
   initData: () => void;
 }
 
@@ -33,6 +35,8 @@ const getInitialFormData = (): InitFormDataType => {
 const useSignupStore = create<ISignupStore>((set, get) => ({
   formData: getInitialFormData(),
   failStep: "",
+  resend: false,
+  setResend: (value: boolean) => set({ resend: value }),
   initData: () => set({ formData: getInitialFormData(), failStep: "" }),
   onChangeHandler: (key: InitFormDataKeys, value: string) => {
     const formData = get().formData;

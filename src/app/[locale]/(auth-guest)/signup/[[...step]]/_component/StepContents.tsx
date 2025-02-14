@@ -7,6 +7,11 @@ import React, { useState } from "react";
 import Row from "@/components/Layout/Row";
 import { EmptyCheckbox } from "@/app/components/EmptyCheckbox";
 import useSignupStore from "@/store/useSignupStore";
+import { useMutation } from "@tanstack/react-query";
+import { Loader2 } from "lucide-react";
+import { sendSignupCode } from "@/service/auth-service";
+import { useTranslations } from "next-intl";
+import { toast } from "sonner";
 
 function StepSelectedType() {
   const { formData, onChangeHandler } = useSignupStore();
@@ -112,8 +117,43 @@ function StepVerifyEmail() {
         onChangeValue={(value: string) => onChangeHandler("verify", value)}
         isError={!!formData.verify.errorMessage}
       />
-      {formData.verify.errorMessage && <AlertTip label={formData.verify.errorMessage} />}
+      {formData.verify.errorMessage && (
+        <Row className={"items-center gap-2"}>
+          <AlertTip label={formData.verify.errorMessage} />
+          <ResendMailBtn />
+        </Row>
+      )}
     </CardContent>
+  );
+}
+
+function ResendMailBtn() {
+  const { formData, onErrorHandler, resend, setResend } = useSignupStore();
+  const t = useTranslations();
+
+  const { isPending, mutate } = useMutation({
+    mutationFn: sendSignupCode,
+    onSuccess: () => {
+      setResend(false);
+      toast.success(t("send_verify"));
+    },
+    onError: (e) => {
+      onErrorHandler("verify", t(e.message));
+    },
+  });
+
+  if (!resend) {
+    return;
+  }
+
+  const onClickHandler = () => {
+    mutate(formData.username.value);
+  };
+
+  return (
+    <button className={"body7 pt-2 text-blue-700"} onClick={onClickHandler} disabled={isPending}>
+      {isPending ? <Loader2 className={"h-3.5 w-3.5 animate-spin"} /> : "인증메일 보내기"}
+    </button>
   );
 }
 
