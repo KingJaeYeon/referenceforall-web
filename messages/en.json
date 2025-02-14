@@ -28,13 +28,28 @@
   "explore_topics": "Explore topics",
   "error": {
     "auth": {
-      "invalid_password": "아이디 또는 비밀번호가 올바르지 않습니다. 다시 확인해주세요"
+      "login_fail": "아이디 또는 비밀번호가 올바르지 않습니다. 다시 확인해주세요",
+      "mismatch_password": "비밀번호가 일치하지 않습니다.",
+      "email_invalid": "이메일의 형식이 잘못되었습니다.",
+      "invalid_username": "현재 사용자 이름은 사용할 수 없습니다.",
+      "invalid_type": "Invalid type. Allowed values: email, username",
+      "invalid_password": "현재 비밀번호는 사용할 수 없습니다.",
+      "selected_type": "회원가입 타입을 선택해주세요."
     },
     "common": {
-      "empty": "필수 입력칸을 채워주세요."
+      "empty": "필수 입력칸을 채워주세요.",
+      "min_length": "{key}는 {length}자 이상이어야 합니다.",
+      "input_empty": "입력칸이 비어있습니다."
     },
     "user": {
       "already_exists": "이미 사용된 사용자 이름입니다."
     }
-  }
+  },
+  "password": "password",
+  "success": {
+    "signup": "회원가입 되었습니다."
+  },
+  "username": "username",
+  "next": "다음",
+  "send_verify": "인증코드 발송"
 }

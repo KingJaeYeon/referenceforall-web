@@ -10,6 +10,7 @@ import { useTranslations } from "next-intl";
 
 export function StepUserNameBtn() {
   const { formData, onErrorHandler, setFailStep } = useSignupStore();
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const input = getInputElement("username");
   const t = useTranslations();
   const { push } = useRouter();
@@ -24,29 +25,31 @@ export function StepUserNameBtn() {
     },
     onError: (e) => {
       input?.focus();
-      onErrorHandler("username", t(e.message));
+      const message = t(e.message) ?? t("error_auth.error.auth.invalid_username");
+      onErrorHandler("username", message);
     },
   });
 
   const validate = async (value: string) => {
     const isEmpty = value === "";
     const inValidUsername = value.length < 4 && formData.type.value === "username";
-    const inValidEmail = !(value.includes("@") && value.split("@")[1].length > 4) && formData.type.value === "email";
+    const inValidEmail = !emailRegex.test(value) && formData.type.value === "email";
 
     if (isEmpty) {
-      onErrorHandler("username", "입력칸이 비어있습니다.");
+      onErrorHandler("username", t("error.common.input_empty"));
       setFailStep("username");
       input?.focus();
       return false;
     }
     if (inValidUsername) {
-      onErrorHandler("username", "유저이름은 4글자 이상 입력해주세요.");
+      const i18Key = t("username");
+      onErrorHandler("username", t("error.common.min_length", { key: i18Key, length: 4 }));
       setFailStep("username");
       input?.focus();
       return false;
     }
     if (inValidEmail) {
-      onErrorHandler("username", "이메일의 형식이 잘못되었습니다.");
+      onErrorHandler("username", t("error.auth.email_invalid"));
       setFailStep("username");
       input?.focus();
       return false;
@@ -63,7 +66,11 @@ export function StepUserNameBtn() {
   return (
     <Row className={"mt-[32px] justify-end"}>
       <Row className={"gap-4"}>
-        <NextButton onClick={onClickHandler} isLoading={isPending} />
+        <NextButton
+          onClick={onClickHandler}
+          isLoading={isPending}
+          label={formData.type.value === "email" ? t("send_verify") : t("next")}
+        />
       </Row>
     </Row>
   );

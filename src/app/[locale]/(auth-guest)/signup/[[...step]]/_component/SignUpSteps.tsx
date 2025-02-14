@@ -1,7 +1,3 @@
-import {
-  InitFormDataKeys,
-  InitFormDataType,
-} from "@/app/[locale]/(auth-guest)/signup/[[...step]]/_component/SignupForm";
 import React from "react";
 import { CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import Col from "@/components/Layout/Col";
@@ -14,82 +10,10 @@ import {
 } from "@/app/[locale]/(auth-guest)/signup/[[...step]]/_component/StepContents";
 import { StepSelectedTypeBtn } from "@/app/[locale]/(auth-guest)/signup/[[...step]]/_component/StepSelectedTypeBtn";
 import { StepUserNameBtn } from "@/app/[locale]/(auth-guest)/signup/[[...step]]/_component/StepUserNameBtn";
-import useSignupStore from "@/store/useSignupStore";
-import { useTranslations } from "next-intl";
-import { useMutation } from "@tanstack/react-query";
-import { validUsername } from "@/service/auth-service";
-import { getInputElement } from "@/app/[locale]/(auth-guest)/signup/[[...step]]/_component/util";
-import { useRouter } from "@/i18n/routing";
-import Row from "@/components/Layout/Row";
-import { NextButton } from "@/app/[locale]/(auth-guest)/signup/[[...step]]/_component/NextButton";
-import { signup } from "@/service/user-service";
-import { toast } from "sonner";
+import { StepPwdBtn } from "@/app/[locale]/(auth-guest)/signup/[[...step]]/_component/StepPwdBtn";
 
 interface ISignUpSteps {
   step?: string;
-}
-
-function StepPwdBtn() {
-  const { formData, onErrorHandler } = useSignupStore();
-  const t = useTranslations();
-  const passwordInput = getInputElement("password");
-  const confirmPwdInput = getInputElement("confirmPwd");
-
-  const { mutate, isPending } = useMutation({
-    mutationFn: signup,
-    onSuccess: () => {
-      onErrorHandler("username", "");
-      toast.success('회원가입 되었습니다.')
-      localStorage.removeItem("signup");
-      router.push("/login");
-    },
-    onError: (e) => {
-      onErrorHandler("password", t(e.message));
-      passwordInput?.focus();
-    },
-  });
-
-  const router = useRouter();
-
-  const validate = async () => {
-    const isMinLength = formData.password.value.length < 8;
-    const isPwdMismatch = formData.password.value !== formData.confirmPwd.value;
-
-    if (isMinLength) {
-      onErrorHandler("password", "비밀번호는 8글자 이상 입력해주세요.");
-      passwordInput?.focus();
-      return false;
-    }
-    if (isPwdMismatch) {
-      onErrorHandler("confirmPwd", "비밀번호가 일치하지 않습니다.");
-      confirmPwdInput?.focus();
-      return false;
-    }
-    onErrorHandler("password", "");
-    onErrorHandler("confirmPwd", "");
-    return true;
-  };
-
-  const onClickHandler = async () => {
-    const isValid = await validate();
-    if (!isValid) return;
-
-    mutate({
-      username: formData.username.value,
-      password: formData.password.value,
-      displayName: formData.displayName.value,
-      verifyCode: formData.verify.value,
-      type: formData.type.value,
-    });
-  };
-
-  return (
-    <Row className={"mt-[32px] justify-end"}>
-      <Row className={"gap-4"}>
-        <NextButton onClick={onClickHandler} disabled={isPending} />
-      </Row>
-    </Row>
-  );
 }
 
 export default function SignUpSteps({ step }: ISignUpSteps) {
