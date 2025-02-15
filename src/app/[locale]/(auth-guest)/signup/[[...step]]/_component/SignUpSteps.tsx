@@ -13,11 +13,7 @@ import { StepUserNameBtn } from "@/app/[locale]/(auth-guest)/signup/[[...step]]/
 import { StepPwdBtn } from "@/app/[locale]/(auth-guest)/signup/[[...step]]/_component/StepPwdBtn";
 import { StepVerifyEmailBtn } from "@/app/[locale]/(auth-guest)/signup/[[...step]]/_component/StepVerifyEmailBtn";
 
-interface ISignUpSteps {
-  step?: string;
-}
-
-export default function SignUpSteps({ step }: ISignUpSteps) {
+export default function SignUpSteps({ step }: { step?: string }) {
   let label, content, button;
 
   switch (step) {

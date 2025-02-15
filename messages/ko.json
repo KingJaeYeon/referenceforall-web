@@ -40,7 +40,8 @@
       "empty": "필수 입력칸을 채워주세요.",
       "min_length": "{key}는 {length}자 이상이어야 합니다.",
       "input_empty": "입력칸이 비어있습니다.",
-      "length": "자릿수가 잘못되었습니다. 다시 시도해주세요."
+      "length": "자릿수가 잘못되었습니다. 다시 시도해주세요.",
+      "wrong_approach": "잘못된 접근입니다."
     },
     "user": {
       "already_exists": "이미 사용된 사용자 이름입니다."
@@ -56,5 +57,11 @@
   },
   "username": "유저이름",
   "next": "다음",
-  "send_verify": "인증코드 발송"
+  "send_verify": "인증코드 발송",
+  "create_account": "계정 만들기",
+  "confirm": "확인",
+  "show_password": "비밀번호 표시",
+  "email": "이메일",
+  "optional": "{key}(선택사항)",
+  "display_name": "닉네임"
 }

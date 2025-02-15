@@ -15,7 +15,7 @@ import { toast } from "sonner";
 
 function StepSelectedType() {
   const { formData, onChangeHandler } = useSignupStore();
-
+  const t = useTranslations();
   return (
     <CardContent className={"flex-1 animate-slide-in px-0 py-6"}>
       <RadioButton
@@ -31,7 +31,7 @@ function StepSelectedType() {
           onClick={() => onChangeHandler("type", "username")}
           className={"cursor-pointer"}
         >
-          유저이름
+          {t("username")}
         </Label>
       </RadioButton>
       <RadioButton
@@ -47,7 +47,7 @@ function StepSelectedType() {
           onClick={() => onChangeHandler("type", "email")}
           className={"cursor-pointer"}
         >
-          이메일
+          {t("email")}
         </Label>
       </RadioButton>
       {formData.type.errorMessage && <AlertTip label={formData.type.errorMessage} />}
@@ -57,17 +57,18 @@ function StepSelectedType() {
 
 function StepUserName() {
   const { formData, onChangeHandler } = useSignupStore();
+  const t = useTranslations();
   return (
     <CardContent className={"flex-1 animate-slide-in px-0 py-6"}>
       <FloatingOutlinedInput
         id={"displayName"}
-        label={"닉네임(선택사항)"}
+        label={t("optional", { key: t("display_name") })}
         value={formData.displayName.value}
         onChangeValue={(value: string) => onChangeHandler("displayName", value)}
       />
       <FloatingOutlinedInput
         id={"username"}
-        label={"유저이름"}
+        label={t("username")}
         className={"mt-6"}
         value={formData.username.value}
         onChangeValue={(value: string) => onChangeHandler("username", value)}
@@ -80,17 +81,18 @@ function StepUserName() {
 
 function StepEmail() {
   const { formData, onChangeHandler } = useSignupStore();
+  const t = useTranslations();
   return (
     <CardContent className={"flex-1 animate-slide-in px-0 py-6"}>
       <FloatingOutlinedInput
         id={"displayName"}
-        label={"닉네임(선택사항)"}
+        label={t("optional", { key: t("display_name") })}
         value={formData.displayName.value}
         onChangeValue={(value: string) => onChangeHandler("displayName", value)}
       />
       <FloatingOutlinedInput
         id={"username"}
-        label={"이메일"}
+        label={t("email")}
         required
         className={"mt-6"}
         value={formData.username.value}
@@ -104,6 +106,7 @@ function StepEmail() {
 
 function StepVerifyEmail() {
   const { formData, onChangeHandler } = useSignupStore();
+  const t = useTranslations();
   return (
     <CardContent className={"flex-1 animate-slide-in px-0 py-6"}>
       <p
@@ -160,11 +163,12 @@ function ResendMailBtn() {
 function StepPwd() {
   const [inputType, setInputType] = useState("password");
   const { formData, onChangeHandler } = useSignupStore();
+  const t = useTranslations();
   return (
     <CardContent className={"flex-1 animate-slide-in px-0 py-6"}>
       <FloatingOutlinedInput
         id={"password"}
-        label={"비밀번호"}
+        label={t("password")}
         required
         type={inputType}
         value={formData.password.value}
@@ -173,7 +177,7 @@ function StepPwd() {
       />
       <FloatingOutlinedInput
         id={"confirmPwd"}
-        label={"확인"}
+        label={t("confirm")}
         required
         className={"mt-6"}
         type={inputType}
@@ -191,7 +195,7 @@ function StepPwd() {
           id={"pwd-visible"}
         />
         <Label className={"ml-4 cursor-pointer"} htmlFor={"pwd-visible"}>
-          비밀번호 표시
+          {t("show_password")}
         </Label>
       </Row>
     </CardContent>

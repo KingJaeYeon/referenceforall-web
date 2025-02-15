@@ -4,7 +4,6 @@ import { getInputElement } from "@/app/[locale]/(auth-guest)/signup/[[...step]]/
 import { useMutation } from "@tanstack/react-query";
 import { signup } from "@/service/user-service";
 import { toast } from "sonner";
-import { useRouter } from "@/i18n/routing";
 import Row from "@/components/Layout/Row";
 import { NextButton } from "@/app/[locale]/(auth-guest)/signup/[[...step]]/_component/NextButton";
 import React from "react";
@@ -21,15 +20,13 @@ export function StepPwdBtn() {
       localStorage.removeItem("signup");
       initData();
       toast.success(t("success.signup"));
-      router.push("/login");
+      window.location.href = "/";
     },
     onError: (e) => {
       onErrorHandler("password", t(e.message));
       passwordInput?.focus();
     },
   });
-
-  const router = useRouter();
 
   const validate = async (password: string, confirmPwd: string) => {
     const isMinLength = password.length < 8;
@@ -67,7 +64,7 @@ export function StepPwdBtn() {
   return (
     <Row className={"mt-[32px] justify-end"}>
       <Row className={"gap-4"}>
-        <NextButton onClick={onClickHandler} disabled={isPending} />
+        <NextButton onClick={onClickHandler} disabled={isPending} label={t("create_account")} />
       </Row>
     </Row>
   );

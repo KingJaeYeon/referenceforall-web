@@ -40,7 +40,8 @@
       "empty": "필수 입력칸을 채워주세요.",
       "min_length": "{key}는 {length}자 이상이어야 합니다.",
       "input_empty": "입력칸이 비어있습니다.",
-      "length": "자릿수가 잘못되었습니다. 다시 시도해주세요."
+      "length": "자릿수가 잘못되었습니다. 다시 시도해주세요.",
+      "wrong_approach": "잘못된 접근입니다."
     },
     "user": {
       "already_exists": "이미 사용된 사용자 이름입니다."
@@ -50,11 +51,17 @@
       "expired": "유효시간이 지난 코드입니다. 다시 진행해주세요."
     }
   },
-  "password": "v",
+  "password": "密碼",
   "success": {
     "signup": "회원가입 되었습니다."
   },
-  "username": "username",
-  "next": "다음",
-  "send_verify": "인증코드 발송"
+  "username": "用户名",
+  "next": "下一頁",
+  "send_verify": "인증코드 발송",
+  "create_account": "建立帳戶",
+  "confirm": "確認",
+  "show_password": "顯示密碼",
+  "email": "电子邮件",
+  "optional": "{key}(選填)",
+  "display_name": "显示名称"
 }

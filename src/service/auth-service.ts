@@ -35,7 +35,7 @@ export function logout() {
 
 export function validUsername(username: string) {
   return request({
-    url: prefix("valid-username"),
+    url: prefix("validate/username"),
     method: "POST",
     data: { username },
   });
@@ -43,7 +43,7 @@ export function validUsername(username: string) {
 
 export function validSignupCode({ email, verify }: { email: string; verify: string }) {
   return request({
-    url: prefix("valid-email"),
+    url: prefix("validate/email"),
     method: "POST",
     data: { email, verify },
   });
