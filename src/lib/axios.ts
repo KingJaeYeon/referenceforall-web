@@ -43,3 +43,8 @@ client.interceptors.response.use(
 export const request = async function (options: AxiosRequestConfig) {
   return client(options);
 };
+
+export const changeServerLang = (lang: string) => {
+  console.log("changeServerLang", lang);
+  client.defaults.headers.common["x-lang"] = lang;
+};

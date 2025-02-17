@@ -1,7 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { googleLogin } from "@/service/auth-service";
+import { useTranslations } from "next-intl";
 
 export default function GoogleLogin() {
+  const t = useTranslations();
   const handleGoogleLogin = async () => {
     try {
       googleLogin();
@@ -35,7 +37,7 @@ export default function GoogleLogin() {
           fill="#EA4335"
         />
       </svg>
-      Google로 로그인
+      {t("login_with_google")}
     </Button>
   );
 }

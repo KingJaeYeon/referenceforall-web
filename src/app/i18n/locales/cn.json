@@ -83,5 +83,5 @@
   "signup_code_send": "包含验证码的电子邮件已发送至 {{email}}。",
   "authcode": "验证码",
   "signup_password_title": "创建安全的密码",
-  "signup_password_desc": "创建至少8个字符的密码。"
+  "signup_password_desc": "创建至少{{cnt}}个字符的密码。"
 }

@@ -1,21 +1,35 @@
-import createMiddleware from "next-intl/middleware";
-import { routing } from "@/i18n/routing";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
+import acceptLanguage from "accept-language";
+import { fallbackLng, languages, cookieName } from "./app/i18n/settings";
 
-// next-intl 미들웨어 생성
-const intlMiddleware = createMiddleware(routing);
-
-export function middleware(request: NextRequest) {
-  // 요청 경로 출력
-  const pathname = request.nextUrl.pathname;
-
-  // 커스텀 헤더로 pathname 전달
-  const response = intlMiddleware(request);
-  response.headers.set("x-pathname", pathname); // 헤더에 경로 추가
-  return response;
-}
+acceptLanguage.languages(languages);
 
 export const config = {
-  // Match only internationalized pathnames
-  matcher: ["/", "/(ko|en|jp|cn)/:path*"],
+  // matcher: '/:lng*'
+  matcher: ["/((?!api|_next/static|_next/image|assets|favicon.ico|sw.js|site.webmanifest).*)"],
 };
+
+export function middleware(req: any) {
+  let lng;
+  if (req.cookies.has(cookieName)) lng = acceptLanguage.get(req.cookies.get(cookieName).value);
+  if (!lng) lng = acceptLanguage.get(req.headers.get("Accept-Language"));
+  if (!lng) lng = fallbackLng;
+
+  // Redirect if lng in path is not supported
+  if (
+    !languages.some((loc) => req.nextUrl.pathname.startsWith(`/${loc}`)) &&
+    !req.nextUrl.pathname.startsWith("/_next")
+  ) {
+    return NextResponse.redirect(new URL(`/${lng}${req.nextUrl.pathname}`, req.url));
+  }
+
+  if (req.headers.has("referer")) {
+    const refererUrl = new URL(req.headers.get("referer"));
+    const lngInReferer = languages.find((l) => refererUrl.pathname.startsWith(`/${l}`));
+    const response = NextResponse.next();
+    if (lngInReferer) response.cookies.set(cookieName, lngInReferer);
+    return response;
+  }
+
+  return NextResponse.next();
+}

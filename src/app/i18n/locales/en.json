@@ -83,5 +83,5 @@
   "signup_code_send": "An email containing the verification code has been sent to {{email}}.",
   "authcode": "Verification code",
   "signup_password_title": "Create a secure password",
-  "signup_password_desc": "Create a password with at least 8 characters."
+  "signup_password_desc": "Create a password with at least {{cnt}} characters."
 }

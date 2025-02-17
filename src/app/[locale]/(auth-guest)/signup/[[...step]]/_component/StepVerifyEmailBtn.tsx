@@ -1,25 +1,26 @@
 import useSignupStore from "@/store/useSignupStore";
 import { getInputElement, saveFormDataToLocal } from "@/app/[locale]/(auth-guest)/signup/[[...step]]/_component/util";
-import { useTranslations } from "next-intl";
-import { useRouter } from "@/i18n/routing";
+
+import { useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
 import { validSignupCode } from "@/service/auth-service";
 import { toast } from "sonner";
 import Row from "@/components/Layout/Row";
 import { NextButton } from "@/app/[locale]/(auth-guest)/signup/[[...step]]/_component/NextButton";
 import React from "react";
+import { useTranslation } from "@/app/i18n/client";
 
 export function StepVerifyEmailBtn() {
   const { formData, onErrorHandler, setFailStep, setResend } = useSignupStore();
   const input = getInputElement("verify");
-  const t = useTranslations();
+  const { t } = useTranslation();
   const { push, replace } = useRouter();
 
   const { mutate, isPending } = useMutation({
     mutationFn: validSignupCode,
     onSuccess: () => {
       onErrorHandler("verify", "");
-      saveFormDataToLocal("verify", formData, push("/signup"));
+      saveFormDataToLocal("verify", formData, () => push("/signup"));
       push("/signup/password");
     },
     onError: (e: any) => {

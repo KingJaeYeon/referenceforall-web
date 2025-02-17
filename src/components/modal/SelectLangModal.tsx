@@ -1,13 +1,7 @@
 "use client";
-import {
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
+import { DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { DialogBody } from "next/dist/client/components/react-dev-overlay/internal/components/Dialog";
 import React from "react";
-import { useTranslations } from "next-intl";
 import Col from "@/components/Layout/Col";
 import Row from "@/components/Layout/Row";
 import { useLocale } from "use-intl";
@@ -18,16 +12,16 @@ import { getLanguageImg } from "@/util/image";
 import Text from "@/components/Layout/Text";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useRouter } from "next/navigation";
-import { usePathname } from "@/i18n/routing";
+import { usePathname } from "next/navigation";
 import { useGlobalModalStore } from "@/store/globalModalStore";
 import { buttonVariants } from "@/components/ui/button";
+import { useTranslation } from "@/app/i18n/client";
+
 export { SelectLangModalTrigger, SelectLangModal };
 
 function SelectLangModalTrigger() {
-  const t = useTranslations();
+  const { t, i18n } = useTranslation();
   const { setKey } = useGlobalModalStore();
-  const locale = useLocale();
-
   return (
     <Row
       onClick={() => setKey("selectLang")}
@@ -37,14 +31,14 @@ function SelectLangModalTrigger() {
         className: "w-fit cursor-pointer items-center gap-2 px-3 py-2",
       })}
     >
-      <Image src={getLanguageImg(locale)} alt={locale} width={20} height={20} />
-      <Text className={"body4"}>{t(locale)}</Text>
+      <Image src={getLanguageImg(i18n.language)} alt={i18n.language} width={20} height={20} />
+      <Text className={"body4"}>{t(i18n.language)}</Text>
     </Row>
   );
 }
 
 function SelectLangModal() {
-  const t = useTranslations();
+  const { t } = useTranslation();
   const { onClose } = useGlobalModalStore();
   const { replace } = useRouter();
   const pathname = usePathname();
@@ -60,9 +54,7 @@ function SelectLangModal() {
         <DialogTitle>{t("language")}</DialogTitle>
         <DialogDescription hidden>{t("language")}</DialogDescription>
       </DialogHeader>
-      <DialogBody
-        className={"scrollWidth3 flex flex-col gap-[25px] overflow-auto"}
-      >
+      <DialogBody className={"scrollWidth3 flex flex-col gap-[25px] overflow-auto"}>
         <CurrencyCard onChangeLang={onChangeLang} />
       </DialogBody>
     </DialogContent>
@@ -72,8 +64,9 @@ function SelectLangModal() {
 interface CurrencyCardProps {
   onChangeLang: (lang: string) => Promise<void>;
 }
+
 function CurrencyCard({ onChangeLang }: CurrencyCardProps) {
-  const t = useTranslations();
+  const { t } = useTranslation();
   const dropDownList = [
     { symbol: "ko", name: t("ko") },
     { symbol: "en", name: t("en") },
@@ -85,20 +78,18 @@ function CurrencyCard({ onChangeLang }: CurrencyCardProps) {
     <Col className={"w-full max-w-full gap-[10px]"}>
       <Row className={"flex-wrap gap-[10px]"}>
         {dropDownList.map((item) => (
-          <CurrencyItem
-            key={item.symbol}
-            item={item}
-            onChangeLang={onChangeLang}
-          />
+          <CurrencyItem key={item.symbol} item={item} onChangeLang={onChangeLang} />
         ))}
       </Row>
     </Col>
   );
 }
+
 interface CurrencyItemProps {
   item: any;
   onChangeLang: (lang: string) => Promise<void>;
 }
+
 function CurrencyItem({ item, onChangeLang }: CurrencyItemProps) {
   const locale = useLocale();
 
@@ -109,12 +100,7 @@ function CurrencyItem({ item, onChangeLang }: CurrencyItemProps) {
       )}
       onClick={() => onChangeLang(item.symbol)}
     >
-      <Image
-        src={getLanguageImg(item.symbol)}
-        alt={item}
-        width={26}
-        height={26}
-      />
+      <Image src={getLanguageImg(item.symbol)} alt={item} width={26} height={26} />
       <Text className={"heading9 flex-1 text-foreground"}>{item.name}</Text>
       <Checkbox checked={locale === item.symbol} />
     </Label>

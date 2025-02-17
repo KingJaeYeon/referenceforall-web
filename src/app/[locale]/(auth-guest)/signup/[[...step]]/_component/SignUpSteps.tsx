@@ -12,33 +12,34 @@ import { StepSelectedTypeBtn } from "@/app/[locale]/(auth-guest)/signup/[[...ste
 import { StepUserNameBtn } from "@/app/[locale]/(auth-guest)/signup/[[...step]]/_component/StepUserNameBtn";
 import { StepPwdBtn } from "@/app/[locale]/(auth-guest)/signup/[[...step]]/_component/StepPwdBtn";
 import { StepVerifyEmailBtn } from "@/app/[locale]/(auth-guest)/signup/[[...step]]/_component/StepVerifyEmailBtn";
+import { useTranslation } from "@/app/i18n/client";
 
 export default function SignUpSteps({ step }: { step?: string }) {
   let label, content, button;
-
+  const { t } = useTranslation();
   switch (step) {
     case "username":
-      label = { title: "유저이름 입력", description: "4글자 이상으로 입력해주세요." };
+      label = { title: t("signup_username_title"), description: t("signup_username_desc") };
       content = <StepUserName />;
       button = <StepUserNameBtn />;
       break;
     case "email":
-      label = { title: "이메일 입력", description: "사용하실 이메일을 입력해주세요." };
+      label = { title: t("signup_email_title"), description: t("signup_email_desc") };
       content = <StepEmail />;
       button = <StepUserNameBtn />;
       break;
     case "verify":
-      label = { title: "코드 입력", description: "본인 확인을 위한 인증코드가 발송되었습니다." };
+      label = { title: t("signup_code_title"), description: t("signup_code_desc") };
       content = <StepVerifyEmail />;
       button = <StepVerifyEmailBtn />;
       break;
     case "password":
-      label = { title: "안전한 비밀번호 만들기", description: "8글자 이상으로 비밀번호를 만드세요." };
+      label = { title: t("signup_password_title"), description: t("signup_password_desc", { cnt: 8 }) };
       content = <StepPwd />;
       button = <StepPwdBtn />;
       break;
     default:
-      label = { title: "모두의 레퍼런스 계정 만들기", description: "이메일이나 유저이름을 선택해주세요." };
+      label = { title: t("signup_type_title"), description: t("signup_type_desc") };
       content = <StepSelectedType />;
       button = <StepSelectedTypeBtn />;
   }

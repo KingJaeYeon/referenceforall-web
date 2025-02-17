@@ -14,6 +14,7 @@ import { notFound } from "next/navigation";
 import { getJwtPayload } from "@/util/jwt-payload";
 import GlobalModal from "@/components/modal/GlobalModal";
 import NavigationBottom from "@/components/NavigationBottom";
+import { languages } from "@/app/i18n/settings";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -30,6 +31,10 @@ export const metadata: Metadata = {
 interface LayoutProps {
   children: ReactNode;
   params: Promise<{ locale: string }>;
+}
+
+export async function generateStaticParams() {
+  return languages.map((locale) => ({ locale }));
 }
 
 export default async function RootLayout({ children, params }: Readonly<LayoutProps>) {

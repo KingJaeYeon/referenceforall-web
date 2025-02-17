@@ -1,7 +1,7 @@
 import useSignupStore from "@/store/useSignupStore";
 import { useMutation } from "@tanstack/react-query";
 import { validUsername } from "@/service/auth-service";
-import { useRouter } from "@/i18n/routing";
+import { useRouter } from "next/navigation";
 import { getInputElement, saveFormDataToLocal } from "@/app/[locale]/(auth-guest)/signup/[[...step]]/_component/util";
 import Row from "@/components/Layout/Row";
 import { NextButton } from "@/app/[locale]/(auth-guest)/signup/[[...step]]/_component/NextButton";
@@ -11,6 +11,7 @@ import { useTranslations } from "next-intl";
 export function StepUserNameBtn() {
   const { formData, onErrorHandler, setFailStep } = useSignupStore();
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  const usernameRegex = /^[a-zA-Z0-9]{4,}$/;
   const input = getInputElement("username");
   const t = useTranslations();
   const { push } = useRouter();
@@ -32,22 +33,22 @@ export function StepUserNameBtn() {
 
   const validate = async (value: string) => {
     const isEmpty = value === "";
-    const inValidUsername = value.length < 4 && formData.type.value === "username";
     const inValidEmail = !emailRegex.test(value) && formData.type.value === "email";
-
+    const inValidUsername = !usernameRegex.test(value) && formData.type.value === "username";
     if (isEmpty) {
       onErrorHandler("username", t("error.common.input_empty"));
       setFailStep("username");
       input?.focus();
       return false;
     }
+
     if (inValidUsername) {
-      const i18Key = t("username");
-      onErrorHandler("username", t("error.common.min_length", { key: i18Key, length: 4 }));
+      onErrorHandler("username", t("error.auth.username_invalid", { cnt: 4 }));
       setFailStep("username");
       input?.focus();
       return false;
     }
+
     if (inValidEmail) {
       onErrorHandler("username", t("error.auth.email_invalid"));
       setFailStep("username");

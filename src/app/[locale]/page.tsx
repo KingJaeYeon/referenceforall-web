@@ -1,13 +1,9 @@
 import PageWrapper from "@/components/Layout/PageWrapper";
 import ContentWrapper from "@/components/Layout/ContentWrapper";
 import { useTranslations } from "next-intl";
-import { Link, routing } from "@/i18n/routing";
+import { Link } from "@/i18n/routing";
 import Col from "@/components/Layout/Col";
 import Text from "@/components/Layout/Text";
-
-export function generateStaticParams() {
-  return routing.locales.map((locale) => ({ locale }));
-}
 
 export default function Home() {
   const t = useTranslations();

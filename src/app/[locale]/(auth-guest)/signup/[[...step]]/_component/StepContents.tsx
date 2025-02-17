@@ -10,12 +10,13 @@ import useSignupStore from "@/store/useSignupStore";
 import { useMutation } from "@tanstack/react-query";
 import { Loader2 } from "lucide-react";
 import { sendSignupCode } from "@/service/auth-service";
-import { useTranslations } from "next-intl";
+
 import { toast } from "sonner";
+import { useTranslation } from "@/app/i18n/client";
 
 function StepSelectedType() {
   const { formData, onChangeHandler } = useSignupStore();
-  const t = useTranslations();
+  const { t } = useTranslation();
   return (
     <CardContent className={"flex-1 animate-slide-in px-0 py-6"}>
       <RadioButton
@@ -57,7 +58,7 @@ function StepSelectedType() {
 
 function StepUserName() {
   const { formData, onChangeHandler } = useSignupStore();
-  const t = useTranslations();
+  const { t } = useTranslation();
   return (
     <CardContent className={"flex-1 animate-slide-in px-0 py-6"}>
       <FloatingOutlinedInput
@@ -81,7 +82,7 @@ function StepUserName() {
 
 function StepEmail() {
   const { formData, onChangeHandler } = useSignupStore();
-  const t = useTranslations();
+  const { t } = useTranslation();
   return (
     <CardContent className={"flex-1 animate-slide-in px-0 py-6"}>
       <FloatingOutlinedInput
@@ -106,16 +107,14 @@ function StepEmail() {
 
 function StepVerifyEmail() {
   const { formData, onChangeHandler } = useSignupStore();
-  const t = useTranslations();
+  const { t } = useTranslation();
   return (
     <CardContent className={"flex-1 animate-slide-in px-0 py-6"}>
-      <p
-        className={"body6 pb-3 pt-1 text-[0.8rem]"}
-      >{`인증 코드가 포함된 이메일이 ${formData.username.value}(으)로 전송되었습니다.`}</p>
+      <p className={"body6 pb-3 pt-1 text-[0.8rem]"}>{t("signup_code_send", { email: formData.username.value })}</p>
       <FloatingOutlinedInput
         id={"verify"}
         required
-        label={"인증코드"}
+        label={t("authcode")}
         value={formData.verify.value}
         onChangeValue={(value: string) => onChangeHandler("verify", value)}
         isError={!!formData.verify.errorMessage}
@@ -132,7 +131,7 @@ function StepVerifyEmail() {
 
 function ResendMailBtn() {
   const { formData, onErrorHandler, resend, setResend } = useSignupStore();
-  const t = useTranslations();
+  const { t } = useTranslation();
 
   const { isPending, mutate } = useMutation({
     mutationFn: sendSignupCode,
@@ -163,7 +162,7 @@ function ResendMailBtn() {
 function StepPwd() {
   const [inputType, setInputType] = useState("password");
   const { formData, onChangeHandler } = useSignupStore();
-  const t = useTranslations();
+  const { t } = useTranslation();
   return (
     <CardContent className={"flex-1 animate-slide-in px-0 py-6"}>
       <FloatingOutlinedInput

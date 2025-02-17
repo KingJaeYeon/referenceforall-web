@@ -1,5 +1,5 @@
 import useSignupStore from "@/store/useSignupStore";
-import { useRouter } from "@/i18n/routing";
+import { useRouter } from "next/navigation";
 import { saveFormDataToLocal } from "@/app/[locale]/(auth-guest)/signup/[[...step]]/_component/util";
 import Row from "@/components/Layout/Row";
 import { NextButton } from "@/app/[locale]/(auth-guest)/signup/[[...step]]/_component/NextButton";
@@ -14,7 +14,7 @@ export function StepSelectedTypeBtn() {
   const validateType = (type: string) => {
     const typeValid = ["username", "email"].includes(type);
     if (!typeValid) {
-      onErrorHandler("type", t('error.auth.selected_type'));
+      onErrorHandler("type", t("error.auth.selected_type"));
       return false;
     }
     onErrorHandler("type", "");
@@ -23,7 +23,7 @@ export function StepSelectedTypeBtn() {
 
   const onClickHandler = () => {
     if (!validateType(formData.type.value)) return;
-    saveFormDataToLocal("type", formData, router.replace("/signup"));
+    saveFormDataToLocal("type", formData, () => router.replace("/signup"));
 
     router.push(`/signup/${formData.type.value}`);
   };

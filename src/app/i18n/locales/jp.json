@@ -83,5 +83,5 @@
   "signup_code_send": "{{email}} に認証コードが記載されたメールが送信されました。",
   "authcode": "認証コード",
   "signup_password_title": "安全なパスワードを作成",
-  "signup_password_desc": "パスワードは8文字以上で作成してください。"
+  "signup_password_desc": "パスワードは{{cnt}}文字以上で作成してください。"
 }

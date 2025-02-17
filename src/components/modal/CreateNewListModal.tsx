@@ -14,7 +14,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Switch } from "@/components/ui/switch";
 import Col from "@/components/Layout/Col";
-import { usePathname } from "@/i18n/routing";
+import { usePathname } from "next/navigation";
 
 export function CreateNewListModalTrigger() {
   const { setKey } = useGlobalModalStore();

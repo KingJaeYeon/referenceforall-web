@@ -9,7 +9,7 @@ import Text from "@/components/Layout/Text";
 import GoogleLogin from "@/app/[locale]/(auth-guest)/login/_component/GoogleLogin";
 import React from "react";
 import { login } from "@/service/auth-service";
-import { useTranslations } from "next-intl";
+import { useTranslation } from "@/app/i18n/client";
 
 interface IError {
   username?: string;
@@ -17,10 +17,16 @@ interface IError {
 }
 
 export default function LoginForm() {
-  const t = useTranslations();
+  const { t } = useTranslation();
   const loginSchema = z.object({
-    username: z.string().min(1, "유저이름을 입력해주세요").min(4, "유저이름은 최소 4자 이상이여야 합니다."),
-    password: z.string().min(1, "비밀번호를 입력해주세요").min(6, "비밀번호는 최소 6자 이상이어야 합니다"),
+    username: z
+      .string()
+      .min(1, t("enter_username"))
+      .min(4, t("username_min_length", { cnt: 4 })),
+    password: z
+      .string()
+      .min(1, t("enter_password"))
+      .min(8, t("password_min_length", { cnt: 8 })),
   });
 
   type LoginFormValues = z.infer<typeof loginSchema>;
@@ -46,30 +52,25 @@ export default function LoginForm() {
   const onErrors = (errors: any) => {
     const username = errors.username?.message;
     const password = errors.password?.message;
-    if (username) {
-      setErrors((prev) => ({ ...prev, username }));
-    }
-    if (password) {
-      setErrors((prev) => ({ ...prev, password }));
-    }
+    setErrors(() => ({ password: password, username: username }));
   };
 
   return (
     <React.Fragment>
       <form onSubmit={handleSubmit(onSubmit, onErrors)} className="space-y-4">
         <div className="space-y-2">
-          <Label htmlFor="username">유저이름</Label>
+          <Label htmlFor="username">{t("username")}</Label>
           <Input
             id="username"
             type="text"
-            placeholder="username"
+            placeholder={t("username")}
             {...register("username")}
             className={errors.username ? "border-red-500" : ""}
           />
           {errors.username && <Text className={"body7 pl-2 text-destructive"}>{errors.username}</Text>}
         </div>
         <div className="space-y-2">
-          <Label htmlFor="password">비밀번호</Label>
+          <Label htmlFor="password">{t("password")}</Label>
           <Input
             id="password"
             type="password"
@@ -80,7 +81,7 @@ export default function LoginForm() {
         </div>
 
         <Button type="submit" className="w-full">
-          로그인
+          {t("login")}
         </Button>
       </form>
       <GoogleLogin />

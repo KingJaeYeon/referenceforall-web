@@ -28,7 +28,7 @@ async function TextSheet() {
 
     // JSON 파일로 저장
     Object.entries(sheets).forEach(([lang, data]) => {
-      const outputPath = path.join(__dirname, "messages", `${lang}.json`);
+      const outputPath = path.join(__dirname, "src/app/i18n/locales", `${lang}.json`);
       fs.writeFileSync(outputPath, JSON.stringify(data, null, 2), "utf-8");
     });
 
