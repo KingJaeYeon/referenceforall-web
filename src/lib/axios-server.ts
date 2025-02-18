@@ -1,7 +1,6 @@
-import axios, { AxiosRequestConfig } from "axios";
-import { refreshTokens } from "@/service/auth-service";
+import axios from "axios";
 
-let server = axios.create({
+export const server = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
   headers: {
     "Content-Type": "application/json",
@@ -11,30 +10,3 @@ let server = axios.create({
   },
   withCredentials: true,
 });
-
-server.interceptors.response.use(
-  async (res) => {
-    const { status } = res;
-
-    if (status === 401) {
-      await refreshTokens().then((r: any) => {
-        if (r.logout) {
-          window.location.href = "/";
-        }
-      });
-      throw new Error("refresh token", { cause: { status: status } });
-    }
-
-    return res.data;
-  },
-  (error) => {
-    // refresh token
-
-    return Promise.reject(error?.response?.data ?? error);
-  },
-);
-
-export const request = async function (options: AxiosRequestConfig) {
-  console.log(options.url);
-  return server(options);
-};

@@ -1,9 +1,9 @@
-import { request } from "@/lib/axios-server";
+import { server } from "@/lib/axios-server";
 
 const prefix = (path: string) => `/posts/${path}`;
 
 export function fetchTags(params: { type?: "recommend"; take: number }) {
-  return request({
+  return server({
     url: prefix("recommend-tags"),
     params,
   });
