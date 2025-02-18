@@ -1,7 +1,7 @@
 import { ReactNode, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import useUrlParams from "@/hook/useUrlParams";
-import { useTranslations } from "next-intl";
+import { useTranslation } from "@/app/i18n/client";
 import {
   Dialog,
   DialogContent,
@@ -21,7 +21,7 @@ import { Button } from "@/components/ui/button";
 export function AddTopicPopup({ children }: { children: ReactNode }) {
   const searchParams = useSearchParams();
   const { updateUrlParams } = useUrlParams();
-  const t = useTranslations();
+  const { t } = useTranslation();
   const [searchMode, setSearchMode] = useState<string>("and");
   const [tags, setTags] = useState<string[]>([]);
   const [open, setOpen] = useState(false);

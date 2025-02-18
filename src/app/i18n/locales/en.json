@@ -17,10 +17,10 @@
   "tag_alreadyExist": "You have already added this tag.",
   "save": "Save",
   "title_addTopic": "Add More Topics",
-  "desc_addSubject": "Please enter additional topics to search (up to {count}).",
+  "desc_addSubject": "Please enter additional topics to search (up to {{count}}).",
   "searchMode": "Search Mode",
   "add_topic": "Add Topic",
-  "result_sites_cnt": "{count} sites have been found.",
+  "result_sites_cnt": "{{count}} sites have been found.",
   "see_all": "See all",
   "show_more": "Show more",
   "no_recent_searches_message": "You have no recent searches",
@@ -39,7 +39,7 @@
     },
     "common": {
       "empty": "Please fill in the required fields.",
-      "min_length": "{key} must be at least {length} characters long.",
+      "min_length": "{{key}} must be at least {{length}} characters long.",
       "input_empty": "The input field is empty.",
       "length": "Incorrect number of digits. Please try again.",
       "wrong_approach": "Invalid access."

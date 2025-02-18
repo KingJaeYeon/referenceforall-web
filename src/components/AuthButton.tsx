@@ -1,7 +1,8 @@
 "use client";
-import { Link } from "@/i18n/routing";
+
 import { Button } from "@/components/ui/button";
 import { logout } from "@/service/auth-service";
+import Link from "next/link";
 
 export default function AuthButton({ isLogin }: { isLogin: boolean }) {
   return isLogin ? <LogoutButton /> : <LoginButton />;

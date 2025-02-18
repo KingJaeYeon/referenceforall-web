@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ReactNode, useEffect } from "react";
-import { usePathname } from "@/i18n/routing";
+import { usePathname } from "next/navigation";
 
 export default function Template({ children }: { children: ReactNode }) {
   const pathname = usePathname();
@@ -17,7 +17,7 @@ export default function Template({ children }: { children: ReactNode }) {
   }
 
   if (pathname.includes("/search")) {
-    path = "search";
+    path = "/search";
   }
 
   if (pathname.includes("/my/lists")) {
@@ -27,7 +27,7 @@ export default function Template({ children }: { children: ReactNode }) {
   if (pathname.includes("/signup")) {
     return <>{children}</>;
   }
-
+  console.log(path);
   return (
     <motion.div
       key={path}

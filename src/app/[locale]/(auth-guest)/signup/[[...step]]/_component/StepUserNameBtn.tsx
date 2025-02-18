@@ -6,21 +6,21 @@ import { getInputElement, saveFormDataToLocal } from "@/app/[locale]/(auth-guest
 import Row from "@/components/Layout/Row";
 import { NextButton } from "@/app/[locale]/(auth-guest)/signup/[[...step]]/_component/NextButton";
 import React from "react";
-import { useTranslations } from "next-intl";
+import { useTranslation } from "@/app/i18n/client";
 
 export function StepUserNameBtn() {
   const { formData, onErrorHandler, setFailStep } = useSignupStore();
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const usernameRegex = /^[a-zA-Z0-9]{4,}$/;
   const input = getInputElement("username");
-  const t = useTranslations();
+  const { t } = useTranslation();
   const { push } = useRouter();
 
   const { mutate, isPending } = useMutation({
     mutationFn: validUsername,
     onSuccess: () => {
       onErrorHandler("username", "");
-      saveFormDataToLocal("username", formData, push("/signup"));
+      saveFormDataToLocal("username", formData, () => push("/signup"));
       const path = formData.type.value === "email" ? "/signup/verify" : "/signup/password";
       push(path);
     },

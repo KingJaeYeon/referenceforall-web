@@ -1,11 +1,11 @@
 "use client";
 import Link from "next/link";
 import Google from "@/assets/Google";
-import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
+import { useTranslation } from "@/app/i18n/client";
 
 export function FullLogo() {
-  const t = useTranslations();
+  const { t } = useTranslation();
   return (
     <Link href={"/"} className={"flex items-center whitespace-nowrap"}>
       <Google className={"h-[29px] w-[24px]"} />

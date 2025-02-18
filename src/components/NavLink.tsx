@@ -1,7 +1,8 @@
 "use client";
 import { cn } from "@/lib/utils";
 import React from "react";
-import { Link, usePathname } from "@/i18n/routing";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 interface NavLinkProps {
   children: React.ReactNode;

@@ -17,10 +17,10 @@
   "tag_alreadyExist": "このタグはすでに追加されています。",
   "save": "保存",
   "title_addTopic": "トピックの追加選択",
-  "desc_addSubject": "追加検索するトピックを入力してください。（最大{count}件）",
+  "desc_addSubject": "追加検索するトピックを入力してください。（最大{{count}}件）",
   "searchMode": "検索モード",
   "add_topic": "トピック追加",
-  "result_sites_cnt": "{count}件のサイトが検索されました。",
+  "result_sites_cnt": "{{count}}件のサイトが検索されました。",
   "see_all": "すべて表示",
   "show_more": "もっと見る",
   "no_recent_searches_message": "最近の検索履歴がありません。",
@@ -39,7 +39,7 @@
     },
     "common": {
       "empty": "必須入力欄を埋めてください。",
-      "min_length": "{key}は{length}文字以上である必要があります。",
+      "min_length": "{{key}}は{{length}}文字以上である必要があります。",
       "input_empty": "入力欄が空です。",
       "length": "桁数が間違っています。もう一度お試しください。",
       "wrong_approach": "不正なアクセスです。"

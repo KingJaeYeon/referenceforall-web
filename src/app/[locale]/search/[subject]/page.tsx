@@ -1,4 +1,3 @@
-import { redirect } from "@/i18n/routing";
 import Col from "@/components/Layout/Col";
 import Text from "@/components/Layout/Text";
 import { SearchInput } from "@/app/[locale]/search/_component/SearchInput";
@@ -6,6 +5,7 @@ import ScrollTabs, { Tab } from "@/components/ScrollTabs";
 import TabContent from "@/app/[locale]/search/[subject]/_component/TabContent";
 import NavContent from "@/app/[locale]/search/[subject]/_component/NavContent";
 import { randomUUID } from "node:crypto";
+import { redirect } from "next/navigation";
 
 export const revalidate = 15;
 
@@ -18,10 +18,7 @@ interface PageProps {
   searchParams: Promise<{ [key: string]: string | undefined }>;
 }
 
-export async function generateMetadata({
-  params: _params,
-  searchParams,
-}: PageProps) {
+export async function generateMetadata({ params: _params, searchParams }: PageProps) {
   const query = await searchParams;
 
   return {
@@ -68,8 +65,7 @@ const sites = {
     {
       id: randomUUID(),
       name: "Medium",
-      description:
-        "이 사이트는 멋진 서비스를 제공하는 웹사이트입니다. 다양한 기능을 체험해보세요.",
+      description: "이 사이트는 멋진 서비스를 제공하는 웹사이트입니다. 다양한 기능을 체험해보세요.",
       imageUrl:
         "https://images.unsplash.com/photo-1719937051157-d3d81cc28e86?q=80&w=2672&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       tags: ["태그1", "태그2", "태그3"],
@@ -82,8 +78,7 @@ const sites = {
     {
       id: randomUUID(),
       name: "Medium",
-      description:
-        "이 사이트는 멋진 서비스를 제공하는 웹사이트입니다. 다양한 기능을 체험해보세요.",
+      description: "이 사이트는 멋진 서비스를 제공하는 웹사이트입니다. 다양한 기능을 체험해보세요.",
       imageUrl:
         "https://images.unsplash.com/photo-1719937051157-d3d81cc28e86?q=80&w=2672&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       tags: ["태그1", "태그2", "태그3"],
@@ -96,8 +91,7 @@ const sites = {
     {
       id: randomUUID(),
       name: "사이트 이름",
-      description:
-        "이 사이트는 멋진 서비스를 제공하는 웹사이트입니다. 다양한 기능을 체험해보세요.",
+      description: "이 사이트는 멋진 서비스를 제공하는 웹사이트입니다. 다양한 기능을 체험해보세요.",
       imageUrl: null,
       tags: ["태그1", "태그2", "태그3"],
       rating: 4.5,
@@ -131,25 +125,22 @@ export default async function SearchesPage(props: PageProps) {
   const params = await props.params;
   const subject = decodeURI(params.subject);
   const searchParams = await props.searchParams;
+  const lng = params.locale;
 
   const paths: Tab[] = [
-    { url: `/search/sites`, label: "Sites" },
-    { url: `/search/tags`, label: "Tags" },
+    { url: `/${lng}/search/sites`, label: "Sites" },
+    { url: `/${lng}/search/tags`, label: "Tags" },
   ];
 
   if (!searchParams.q) {
-    return redirect({ href: "/search", locale: params.locale });
+    return redirect(`/${params.locale}/search`);
   }
   const search = decodeURI(searchParams.q);
   let data = getTempData(subject);
 
   return (
     <>
-      <Col
-        className={
-          "mx-0 mb-[100px] w-full max-w-[680px] gap-[8px] md:mx-[24px] md:mt-[52px] md:gap-0"
-        }
-      >
+      <Col className={"mx-0 mb-[100px] w-full max-w-[680px] gap-[8px] md:mx-[24px] md:mt-[52px] md:gap-0"}>
         <Col>
           <Text
             className={
@@ -159,7 +150,7 @@ export default async function SearchesPage(props: PageProps) {
             {"Results for "}
             <span className={"text-black"}>{search}</span>
           </Text>
-          <SearchInput subject={subject} />
+          <SearchInput subject={subject}/>
         </Col>
         <Col className={"items-center"}>
           <ScrollTabs query={search} tabs={paths} />
@@ -167,9 +158,7 @@ export default async function SearchesPage(props: PageProps) {
         </Col>
       </Col>
       <Col
-        className={
-          "ls:flex hidden h-[100dvh] w-full max-w-[320px] border-l border-gray-200"
-        }
+        className={"hidden h-[100dvh] w-full max-w-[320px] border-l border-gray-200 ls:flex"}
         style={{
           paddingLeft: "clamp(24px,24px + 100vw - 1080px,40px)",
           paddingRight: "24px",

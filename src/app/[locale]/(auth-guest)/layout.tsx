@@ -1,6 +1,6 @@
 import { getJwtPayload } from "@/util/jwt-payload";
 import { ReactNode } from "react";
-import { redirect } from "@/i18n/routing";
+import { redirect } from "next/navigation";
 
 interface Props {
   children: ReactNode | ReactNode[];
@@ -12,7 +12,7 @@ export default async function AuthGuestLayout({ children, params }: Props) {
   let user = await getJwtPayload();
 
   if (!!user) {
-    return redirect({ href: "/", locale: p.locale });
+    return redirect(`/${p.locale}`);
   }
 
   return <div>{children}</div>;

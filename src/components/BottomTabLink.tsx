@@ -1,8 +1,8 @@
 "use client";
-import { Link, usePathname } from "@/i18n/routing";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 import React from "react";
-import Col from "@/components/Layout/Col";
 
 interface NavLinkProps {
   children: React.ReactNode;
@@ -16,9 +16,7 @@ export default function BottomTabLink(props: NavLinkProps) {
   const path = usePathname();
   const link = typeof href === "string" ? href : href[0];
   const isIncludes =
-    typeof href === "string"
-      ? path.startsWith(href)
-      : path.startsWith(href[0]) || path.startsWith(href[1]);
+    typeof href === "string" ? path.startsWith(href) : path.startsWith(href[0]) || path.startsWith(href[1]);
   return (
     <Link
       href={link}

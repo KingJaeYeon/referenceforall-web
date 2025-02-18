@@ -1,6 +1,6 @@
 import Row from "@/components/Layout/Row";
 import { Bookmark, Calendar, Star, Users } from "lucide-react";
-import { Link } from "@/i18n/routing";
+import Link from "next/link";
 
 export default function MediumStyleCard({ site }: { site: any }) {
   return (

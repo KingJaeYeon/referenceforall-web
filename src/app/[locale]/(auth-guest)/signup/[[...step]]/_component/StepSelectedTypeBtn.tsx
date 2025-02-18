@@ -4,11 +4,11 @@ import { saveFormDataToLocal } from "@/app/[locale]/(auth-guest)/signup/[[...ste
 import Row from "@/components/Layout/Row";
 import { NextButton } from "@/app/[locale]/(auth-guest)/signup/[[...step]]/_component/NextButton";
 import React from "react";
-import { useTranslations } from "next-intl";
+import { useTranslation } from "@/app/i18n/client";
 
 export function StepSelectedTypeBtn() {
   const { formData, onErrorHandler } = useSignupStore();
-  const t = useTranslations();
+  const { t } = useTranslation();
   const router = useRouter();
 
   const validateType = (type: string) => {

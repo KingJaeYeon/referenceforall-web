@@ -1,9 +1,9 @@
 "use client";
 import { ReactNode } from "react";
-import { usePathname, useRouter } from "@/i18n/routing";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { FontType } from "@/util/fontType";
+import { usePathname, useRouter } from "next/navigation";
 
 export default function TopicButton({
   children,

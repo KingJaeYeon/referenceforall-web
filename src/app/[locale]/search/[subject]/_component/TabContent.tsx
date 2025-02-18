@@ -5,7 +5,7 @@ import Row from "@/components/Layout/Row";
 import Text from "@/components/Layout/Text";
 import { IconDropDownDown } from "@/assets/svg";
 import { MainCard } from "@/app/[locale]/search/[subject]/_component/MainCard";
-import { useTranslations } from "next-intl";
+import { useTranslation } from "@/app/i18n/client";
 
 export default function TabContent(props: {
   target: "tags" | "sites" | string;
@@ -23,7 +23,7 @@ export default function TabContent(props: {
 }
 
 function TagsContent({ data }: { data: any }) {
-  const t = useTranslations();
+  const { t } = useTranslation();
   return (
     <div className={"relative"}>
       {data.map((topic: any) => {

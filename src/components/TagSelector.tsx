@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
-import { useTranslations } from "next-intl";
+import { useTranslation } from "@/app/i18n/client";
 import useDebounce from "@/hook/useDebounce";
 import { useQuery } from "@tanstack/react-query";
 import Row from "@/components/Layout/Row";
@@ -48,7 +48,7 @@ export default function TagSelector({
   maxTags?: number;
   autoFocus?: boolean;
 }) {
-  const t = useTranslations();
+  const { t } = useTranslation();
 
   const [inputValue, setInputValue] = useState("");
   const debounce = useDebounce(inputValue);

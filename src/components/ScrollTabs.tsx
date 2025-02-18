@@ -3,8 +3,9 @@ import Row from "@/components/Layout/Row";
 import { Button } from "@/components/ui/button";
 import { IconChevronLeft, IconChevronRight } from "@/assets/svg";
 import { ReactNode, useEffect, useRef, useState } from "react";
-import { Link, usePathname } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 export interface Tab {
   label: string;

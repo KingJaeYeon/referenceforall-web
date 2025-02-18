@@ -3,9 +3,9 @@ import Text from "@/components/Layout/Text";
 import Col from "@/components/Layout/Col";
 import TopicButton from "@/components/TopicButton";
 import Row from "@/components/Layout/Row";
-import { Link } from "@/i18n/routing";
 import { useSearchParams } from "next/navigation";
-import { useTranslations } from "next-intl";
+import { useTranslation } from "@/app/i18n/client";
+import Link from "next/link";
 
 export default function NavContent(props: {
   target: "tags" | "sites" | string;
@@ -25,7 +25,7 @@ export default function NavContent(props: {
 function NavSites({ data }: { data: any }) {
   const searchParams = useSearchParams();
   const q = searchParams.get("q");
-  const t = useTranslations();
+  const { t } = useTranslation();
   return (
     <Col className={"mb-[30px] mt-[40px]"}>
       <Text className={"heading4 pb-[22px] font-semibold"}>
@@ -54,7 +54,7 @@ function NavSites({ data }: { data: any }) {
 function NavTags({ data }: { data: any }) {
   const searchParams = useSearchParams();
   const q = searchParams.get("q");
-  const t = useTranslations();
+  const { t } = useTranslation();
   return (
     <Col className={"mb-[30px] mt-[40px]"}>
       <Text className={"heading4 pb-[22px] font-semibold"}>

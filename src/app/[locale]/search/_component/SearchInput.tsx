@@ -1,37 +1,28 @@
 "use client";
 import Row from "@/components/Layout/Row";
 import { IconSearch2 } from "@/assets/svg";
-import { FormEvent, useEffect, useState } from "react";
-import { useRouter } from "@/i18n/routing";
-import { useSearchParams } from "next/navigation";
+import { FormEvent, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useTranslation } from "@/app/i18n/client";
 
-export function SearchInput({ subject = "tags" }: { subject?: string }) {
+export function SearchInput({ subject }: { subject?: string }) {
   const { push } = useRouter();
   const searchParams = useSearchParams();
   const recentSearches = localStorage.getItem("recent_searches");
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState(() => searchParams.get("q") ?? "");
+  const { i18n } = useTranslation();
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!value || !value.trim()) {
-      return push("/search");
+      return push(`/${i18n.language}/search`);
     }
     const parseRecentSearch = JSON.parse(recentSearches ?? "[]");
-    const arr = Array.from(new Set([value.trim(), ...parseRecentSearch])).slice(
-      0,
-      10,
-    );
+    const arr = Array.from(new Set([value.trim(), ...parseRecentSearch])).slice(0, 10);
     const json = JSON.stringify(arr);
     localStorage.setItem("recent_searches", json);
-    push(`/search/${subject}?q=` + value);
+    push(`/${i18n.language}/search/${subject}?q=` + value);
   };
-
-  useEffect(() => {
-    const query = searchParams.get("q");
-    if (query) {
-      setValue((prev) => (prev === query ? prev : query));
-    }
-  }, [searchParams]);
 
   return (
     <form onSubmit={onSubmit}>

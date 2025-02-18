@@ -1,5 +1,5 @@
 "use client";
-import { useRouter } from "@/i18n/routing";
+
 import { Card } from "@/components/ui/card";
 import Col from "@/components/Layout/Col";
 import Text from "@/components/Layout/Text";
@@ -7,6 +7,7 @@ import Row from "@/components/Layout/Row";
 import { Bookmark, LucideLock, MoreHorizontal } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { useRouter } from "next/navigation";
 
 export function BookmarkPreviewCard({
   id,

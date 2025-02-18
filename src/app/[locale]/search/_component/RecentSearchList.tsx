@@ -3,13 +3,13 @@ import { useEffect, useState } from "react";
 import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Row from "@/components/Layout/Row";
-import { Link } from "@/i18n/routing";
 import Text from "@/components/Layout/Text";
-import { useTranslations } from "next-intl";
+import { useTranslation } from "@/app/i18n/client";
+import Link from "next/link";
 
 export default function RecentSearchList() {
   const recentSearches = localStorage.getItem("recent_searches");
-  const t = useTranslations();
+  const { t, i18n } = useTranslation();
   const [list, setList] = useState<string[]>([]);
 
   useEffect(() => {
@@ -31,27 +31,18 @@ export default function RecentSearchList() {
             className="items-center justify-between border-b border-gray-200 pb-[8px] pt-[11px] last:border-b-0"
           >
             <Row className="h-[29px] items-center">
-              <Link
-                className={"body3 ellipsisLine1"}
-                href={`/search/tags?q=${search}`}
-              >
+              <Link className={"body3 ellipsisLine1"} href={`/${i18n.language}/search/tags?q=${search}`}>
                 {search}
               </Link>
             </Row>
-            <Button
-              variant="default"
-              size="sm"
-              onClick={() => handleDelete(search)}
-            >
+            <Button variant="default" size="sm" onClick={() => handleDelete(search)}>
               <X size={24} />
               <span className="sr-only">Delete</span>
             </Button>
           </Row>
         ))
       ) : (
-        <Text className={"body3 h-[29px] pt-[11px]"}>
-          {t("no_recent_searches_message")}
-        </Text>
+        <Text className={"body3 h-[29px] pt-[11px]"}>{t("no_recent_searches_message")}</Text>
       )}
     </ul>
   );

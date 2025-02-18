@@ -3,12 +3,13 @@ import Row from "@/components/Layout/Row";
 import { Button } from "@/components/ui/button";
 import { IconPlus } from "@/assets/svg";
 import { useEffect, useState } from "react";
-import { useTranslations } from "next-intl";
+
 import { AddTopicPopup } from "@/app/[locale]/tag/[topic]/_component/AddTopicPopup";
 import { useSearchParams } from "next/navigation";
+import { useTranslation } from "@/app/i18n/client";
 
 export function AddTopic() {
-  const t = useTranslations();
+  const { t } = useTranslation();
   const [tags, setTags] = useState<string[]>([]);
   const [searchMode, setSearchMode] = useState<string>("and");
   const searchParams = useSearchParams();
@@ -20,18 +21,10 @@ export function AddTopic() {
 
   const hasTags = tags.length > 0;
   return (
-    <Row
-      className={
-        "scrollNone scroll justify-center gap-[6px] overflow-y-hidden overflow-x-scroll scroll-smooth"
-      }
-    >
+    <Row className={"scrollNone scroll justify-center gap-[6px] overflow-y-hidden overflow-x-scroll scroll-smooth"}>
       {hasTags &&
         tags.map((tag) => (
-          <Button
-            key={tag}
-            className={"w-fit pt-[1px] font-medium capitalize"}
-            rounded={"full"}
-          >
+          <Button key={tag} className={"w-fit pt-[1px] font-medium capitalize"} rounded={"full"}>
             {tag.split("-").join(" ")}
           </Button>
         ))}

@@ -5,8 +5,9 @@ import Link from "next/link";
 import Row from "@/components/Layout/Row";
 import { getTranslation } from "@/app/i18n";
 
-export default async function Page({ params: { locale } }: { params: { locale: string } }) {
-  const { t } = await getTranslation(locale);
+export default async function Page(props: { params: Promise<{ locale: string }> }) {
+  const params = await props.params
+  const { t } = await getTranslation(params.locale);
   return (
     <PageWrapper className={"justify-center pb-[100px] pt-[50px] md:min-h-[calc(100vh-60px)] md:bg-[#f0f4f9]"}>
       <Row className={"h-full w-full items-center justify-evenly"}>

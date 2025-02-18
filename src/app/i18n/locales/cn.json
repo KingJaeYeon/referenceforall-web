@@ -17,10 +17,10 @@
   "tag_alreadyExist": "此标签已添加。",
   "save": "保存",
   "title_addTopic": "选择添加主题",
-  "desc_addSubject": "请输入要额外搜索的主题。（最多 {count} 个）",
+  "desc_addSubject": "请输入要额外搜索的主题。（最多 {{count}} 个）",
   "searchMode": "搜索模式",
   "add_topic": "添加主题",
-  "result_sites_cnt": "已搜索到 {count} 个网站。",
+  "result_sites_cnt": "已搜索到 {{count}} 个网站。",
   "see_all": "查看全部",
   "show_more": "查看更多",
   "no_recent_searches_message": "没有最近的搜索记录。",
@@ -39,7 +39,7 @@
     },
     "common": {
       "empty": "请填写必填字段。",
-      "min_length": "{key}必须至少包含{length}个字符。",
+      "min_length": "{{key}}必须至少包含{{length}}个字符。",
       "input_empty": "输入框为空。",
       "length": "位数错误。请重试。",
       "wrong_approach": "无效访问。"

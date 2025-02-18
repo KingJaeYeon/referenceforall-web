@@ -4,13 +4,12 @@ import Col from "@/components/Layout/Col";
 import Text from "@/components/Layout/Text";
 import { utilDate } from "@/lib/dateFormat";
 import { Bookmark, Calendar, MessageCircle, MoreHorizontal } from "lucide-react";
-import { useLocale } from "use-intl";
 import { IconDropDownDown } from "@/assets/svg";
 import { cn } from "@/lib/utils";
-import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/routing";
+import { useTranslation } from "@/app/i18n/client";
 import { Textarea } from "@/components/ui/textarea";
 import { useState, useRef, useEffect } from "react";
+import Link from "next/link";
 
 export function MainCard(props: {
   site: any;
@@ -19,9 +18,8 @@ export function MainCard(props: {
   hasMore: boolean;
   readonly?: boolean;
 }) {
-  const locale = useLocale();
   const { site, isFirst, isLast, hasMore, readonly = true } = props;
-  const t = useTranslations();
+  const { t, i18n } = useTranslation();
 
   const textarea = useRef<HTMLTextAreaElement>(null);
   const [memo, setMemo] = useState("");
@@ -134,7 +132,7 @@ export function MainCard(props: {
           <Row className={"flex min-h-[48px] w-full items-center justify-between text-gray-500 md:mt-[12px] md:hidden"}>
             <Row className={"gap-[16px]"}>
               <Row className={"h-fit"}>
-                <Text className={"body6"}>{utilDate({ date: site.lastUpdate, locale })}</Text>
+                <Text className={"body6"}>{utilDate({ date: site.lastUpdate, locale: i18n.language })}</Text>
               </Row>
               <Row className={"h-fit items-center gap-[4px]"}>
                 <MessageCircle className={"h-[16px] w-[16px]"} />

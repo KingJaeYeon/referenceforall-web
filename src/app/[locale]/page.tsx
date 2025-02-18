@@ -1,12 +1,14 @@
 import PageWrapper from "@/components/Layout/PageWrapper";
 import ContentWrapper from "@/components/Layout/ContentWrapper";
-import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/routing";
+
 import Col from "@/components/Layout/Col";
 import Text from "@/components/Layout/Text";
+import Link from "next/link";
+import { getTranslation } from "@/app/i18n";
 
-export default function Home() {
-  const t = useTranslations();
+export default async function Home(props: { params: Promise<{ locale: string }> }) {
+  const params = await props.params
+  const { t } = await getTranslation(params.locale);
   return (
     <PageWrapper>
       <ContentWrapper>

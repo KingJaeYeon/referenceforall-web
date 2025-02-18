@@ -5,11 +5,10 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import useDebounce from "@/hook/useDebounce";
 import { Command, CommandItem, CommandList } from "@/components/ui/command";
-import { useRouter } from "@/i18n/routing";
+import { useRouter } from "next/navigation";
+import { useTranslation } from "@/app/i18n/client";
 
-const searchTopics = async (
-  query: string,
-): Promise<{ value: string; count: number }[]> => {
+const searchTopics = async (query: string): Promise<{ value: string; count: number }[]> => {
   // 실제 구현에서는 이 부분을 백엔드 API 호출로 대체해야 합니다.
   const allTopics = [
     { id: 1, value: "react", count: 100 },
@@ -28,9 +27,7 @@ const searchTopics = async (
     { id: 14, value: "cybersecurity", count: 100 },
     { id: 15, value: "ux-ui-design", count: 100 },
   ];
-  const res = allTopics
-    .filter((topic) => topic.value.toLowerCase().includes(query.toLowerCase()))
-    .slice(0, 5);
+  const res = allTopics.filter((topic) => topic.value.toLowerCase().includes(query.toLowerCase())).slice(0, 5);
 
   return res ?? [];
 };
@@ -41,6 +38,7 @@ export default function SearchInput() {
   const [commandValue, setCommandValue] = useState("");
   const [value, setValue] = useState("");
   const debounce = useDebounce(value);
+  const { i18n } = useTranslation();
 
   const { data, isLoading } = useQuery({
     queryFn: () => searchTopics(debounce),
@@ -62,12 +60,10 @@ export default function SearchInput() {
       if (commandValue) {
         if (!value || !value.trim()) return;
         const parseRecentSearch = JSON.parse(recentSearches ?? "[]");
-        const arr = Array.from(
-          new Set([value.trim(), ...parseRecentSearch]),
-        ).slice(0, 10);
+        const arr = Array.from(new Set([value.trim(), ...parseRecentSearch])).slice(0, 10);
         const json = JSON.stringify(arr);
         localStorage.setItem("recent_searches", json);
-        return push("/search/tags?q=" + commandValue);
+        return push(`/${i18n.language}/search/tags?q=` + commandValue);
       }
     }
   };
@@ -80,11 +76,7 @@ export default function SearchInput() {
       <Row className="relative my-[24px] min-h-[40px] w-full flex-wrap items-center rounded-full bg-button-secondary text-button-secondary-foreground md:min-h-[63px] md:max-w-[680px]">
         <Search className="mx-[12px] h-[24px] w-[24px] md:ml-[24px] md:mr-[16px]" />
         <Row className="flex-1">
-          <Command
-            className={"bg-transparent"}
-            onValueChange={setCommandValue}
-            value={commandValue}
-          >
+          <Command className={"bg-transparent"} onValueChange={setCommandValue} value={commandValue}>
             <input
               type="text"
               placeholder={"Search topics"}
@@ -104,12 +96,7 @@ export default function SearchInput() {
                     key={item.value}
                     className={"pr-[20px] capitalize"}
                     value={item.value + "."}
-                    onSelect={(currentValue) =>
-                      push(
-                        "/tag/" +
-                          currentValue.substring(0, currentValue.length - 1),
-                      )
-                    }
+                    onSelect={(currentValue) => push("/tag/" + currentValue.substring(0, currentValue.length - 1))}
                   >
                     {item.value.split("-").join(" ")}
                   </CommandItem>

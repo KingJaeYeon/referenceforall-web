@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ReactNode } from "react";
-import { usePathname } from "@/i18n/routing";
+import { usePathname } from "next/navigation";
 
 export default function Template({ children }: { children: ReactNode }) {
   const pathname = usePathname();

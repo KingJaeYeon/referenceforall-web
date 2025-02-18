@@ -1,9 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { googleLogin } from "@/service/auth-service";
-import { useTranslations } from "next-intl";
+import { useTranslation } from "@/app/i18n/client";
+
 
 export default function GoogleLogin() {
-  const t = useTranslations();
+  const { t } = useTranslation();
   const handleGoogleLogin = async () => {
     try {
       googleLogin();
