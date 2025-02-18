@@ -4,15 +4,13 @@ import { DialogBody } from "next/dist/client/components/react-dev-overlay/intern
 import React from "react";
 import Col from "@/components/Layout/Col";
 import Row from "@/components/Layout/Row";
-import { useLocale } from "use-intl";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { getLanguageImg } from "@/util/image";
 import Text from "@/components/Layout/Text";
 import { Checkbox } from "@/components/ui/checkbox";
-import { useRouter } from "next/navigation";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useGlobalModalStore } from "@/store/globalModalStore";
 import { buttonVariants } from "@/components/ui/button";
 import { useTranslation } from "@/app/i18n/client";
@@ -42,9 +40,14 @@ function SelectLangModal() {
   const { onClose } = useGlobalModalStore();
   const { replace } = useRouter();
   const pathname = usePathname();
-  const onChangeLang = async (lang: string) => {
-    const url = "/" + lang + pathname;
-    replace(url);
+  const searchParams = useSearchParams();
+
+  const onChangeLang = (lang: string) => {
+    console.log(lang);
+    const params = new URLSearchParams(searchParams);
+    const [_, lng, ...path] = pathname.split("/");
+    const queryString = params.toString() ? `?${params.toString()}` : "";
+    replace(`/${lang}/${path}${queryString}`);
     onClose();
   };
 
@@ -55,54 +58,41 @@ function SelectLangModal() {
         <DialogDescription hidden>{t("language")}</DialogDescription>
       </DialogHeader>
       <DialogBody className={"scrollWidth3 flex flex-col gap-[25px] overflow-auto"}>
-        <CurrencyCard onChangeLang={onChangeLang} />
+        <Col className={"w-full max-w-full gap-[10px]"}>
+          <Row className={"flex-wrap gap-[10px]"}>
+            <CurrencyCard onChangeLang={onChangeLang} locale={"ko"} />
+            <CurrencyCard onChangeLang={onChangeLang} locale={"en"} />
+            <CurrencyCard onChangeLang={onChangeLang} locale={"jp"} />
+            <CurrencyCard onChangeLang={onChangeLang} locale={"cn"} />
+          </Row>
+        </Col>
       </DialogBody>
     </DialogContent>
   );
 }
 
 interface CurrencyCardProps {
-  onChangeLang: (lang: string) => Promise<void>;
+  onChangeLang: (lang: string) => void;
+  locale: string;
 }
 
-function CurrencyCard({ onChangeLang }: CurrencyCardProps) {
-  const { t } = useTranslation();
-  const dropDownList = [
-    { symbol: "ko", name: t("ko") },
-    { symbol: "en", name: t("en") },
-    { symbol: "jp", name: t("jp") },
-    { symbol: "cn", name: t("cn") },
-  ];
-
-  return (
-    <Col className={"w-full max-w-full gap-[10px]"}>
-      <Row className={"flex-wrap gap-[10px]"}>
-        {dropDownList.map((item) => (
-          <CurrencyItem key={item.symbol} item={item} onChangeLang={onChangeLang} />
-        ))}
-      </Row>
-    </Col>
-  );
-}
-
-interface CurrencyItemProps {
-  item: any;
-  onChangeLang: (lang: string) => Promise<void>;
-}
-
-function CurrencyItem({ item, onChangeLang }: CurrencyItemProps) {
-  const locale = useLocale();
-
+function CurrencyCard({ onChangeLang, locale }: CurrencyCardProps) {
+  const { t, i18n } = useTranslation();
   return (
     <Label
       className={cn(
         "flex w-full max-w-full cursor-pointer items-center gap-[10px] rounded-[5px] bg-button-secondary-hover px-[10px] py-[8px]",
       )}
-      onClick={() => onChangeLang(item.symbol)}
+      onClick={() => onChangeLang(locale)}
     >
-      <Image src={getLanguageImg(item.symbol)} alt={item} width={26} height={26} />
-      <Text className={"heading9 flex-1 text-foreground"}>{item.name}</Text>
-      <Checkbox checked={locale === item.symbol} />
+      <Image src={getLanguageImg(locale)} alt={locale} width={26} height={26} />
+      <Text className={"heading9 flex-1 text-foreground"}>{t(locale)}</Text>
+      <Checkbox checked={i18n.language === locale} />
     </Label>
   );
+}
+
+interface CurrencyItemProps {
+  item: any;
+  onChangeLang: (lang: string) => void;
 }
