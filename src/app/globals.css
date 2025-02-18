@@ -392,3 +392,7 @@ img {
     margin-left: -5px;
     border-color: black transparent transparent transparent;
 }
+
+body{
+    font-synthesis: none;
+}
