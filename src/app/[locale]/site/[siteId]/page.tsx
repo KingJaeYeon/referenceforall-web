@@ -33,7 +33,7 @@ export default function SiteDetailsPage() {
     description:
       "Medium은 전세계의 작가, 전문가, 독자들이 모여 다양한 주제에 대해 이야기를 나누는 플랫폼입니다. 기술, 문화, 사회 등 폭넓은 주제의 고품질 콘텐츠를 만나보세요.",
     url: "https://medium.com",
-    imageUrl: "/placeholder.svg?height=400&width=800",
+    imageUrl: "https://plus.unsplash.com/premium_photo-1738779002040-6df7c80c6ef4?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     tags: ["블로그", "기술", "문화", "커뮤니티", "지식공유", "미디어"],
     rating: 4.5,
     visitors: "1.2K",

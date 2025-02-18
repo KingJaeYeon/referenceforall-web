@@ -1,32 +1,17 @@
 import Row from "@/components/Layout/Row";
 import TopicButton from "@/components/TopicButton";
 import { Button } from "@/components/ui/button";
-import {
-  Bookmark,
-  ExternalLink,
-  Eye,
-  MessageSquare,
-  Share2,
-  Star,
-} from "lucide-react";
+import { Bookmark, ExternalLink, Eye, MessageSquare, Share2, Star } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import Col from "@/components/Layout/Col";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  DesktopComment,
-  MobileComment,
-} from "@/app/[locale]/site/[siteId]/_component/Comment";
+import { DesktopComment, MobileComment } from "@/app/[locale]/site/[siteId]/_component/Comment";
 import MobileBackButton from "@/components/MobileBackButton";
 
-export function DesktopMain(props: {
-  siteData: any;
-  setIsBookmarked: any;
-  isBookmarked: any;
-  comments: any;
-}) {
+export function DesktopMain(props: { siteData: any; setIsBookmarked: any; isBookmarked: any; comments: any }) {
   const { siteData, setIsBookmarked, isBookmarked, comments } = props;
   return (
-    <div className="mx-auto max-w-full space-y-8 p-6">
+    <div className="mx-auto hidden max-w-full space-y-8 p-6 md:block">
       {/* 헤더 */}
       <Row className="items-start justify-between">
         <div>
@@ -46,13 +31,8 @@ export function DesktopMain(props: {
           </Row>
         </div>
         <Row className="gap-2">
-          <Button
-            variant="outline"
-            onClick={() => setIsBookmarked(!isBookmarked)}
-          >
-            <Bookmark
-              className={`mr-2 h-4 w-4 ${isBookmarked ? "fill-current" : ""}`}
-            />
+          <Button variant="outline" onClick={() => setIsBookmarked(!isBookmarked)}>
+            <Bookmark className={`mr-2 h-4 w-4 ${isBookmarked ? "fill-current" : ""}`} />
             {isBookmarked ? "북마크됨" : "북마크"}
           </Button>
           <Button variant="outline">
@@ -65,19 +45,13 @@ export function DesktopMain(props: {
           </Button>
         </Row>
       </Row>
-
       <Separator />
-
       {/* 메인 콘텐츠 */}
       <div className="grid grid-cols-12 gap-8">
         {/* 왼쪽 컬럼 */}
         <div className="col-span-8 space-y-8">
           {/* 커버 이미지 */}
-          <img
-            src={siteData.imageUrl}
-            alt={siteData.name}
-            className="aspect-video w-full rounded-lg object-cover"
-          />
+          <img src={siteData.imageUrl} alt={siteData.name} className="aspect-video w-full rounded-lg object-cover" />
 
           {/* 통계 */}
           <div className="grid grid-cols-4 gap-4">
@@ -155,16 +129,9 @@ export function DesktopMain(props: {
 
               <TabsContent value="screenshots">
                 <div className="grid grid-cols-2 gap-4">
-                  {siteData.screenshots.map(
-                    (screenshot: string, index: number) => (
-                      <img
-                        key={index}
-                        src={screenshot}
-                        alt={`Screenshot ${index + 1}`}
-                        className="w-full rounded-lg"
-                      />
-                    ),
-                  )}
+                  {siteData.screenshots.map((screenshot: string, index: number) => (
+                    <img key={index} src={screenshot} alt={`Screenshot ${index + 1}`} className="w-full rounded-lg" />
+                  ))}
                 </div>
               </TabsContent>
             </div>
@@ -182,15 +149,10 @@ export function DesktopMain(props: {
   );
 }
 
-export function MobileMain(props: {
-  siteData: any;
-  setIsBookmarked: any;
-  isBookmarked: any;
-  comments: any;
-}) {
+export function MobileMain(props: { siteData: any; setIsBookmarked: any; isBookmarked: any; comments: any }) {
   const { siteData, setIsBookmarked, isBookmarked, comments } = props;
   return (
-    <div className="mx-auto mb-[100px] mt-[24px] max-w-full">
+    <div className="mx-auto mb-[100px] mt-[24px] max-w-full md:hidden">
       {/* 페이지 타이틀 & 액션 버튼 */}
       <div className="mb-4 space-y-4">
         <Row className={"items-center gap-[6px]"}>
@@ -198,14 +160,8 @@ export function MobileMain(props: {
           <h1 className="heading1">{siteData.name}</h1>
         </Row>
         <Row className="flex-wrap gap-2">
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => setIsBookmarked(!isBookmarked)}
-          >
-            <Bookmark
-              className={`mr-2 h-4 w-4 ${isBookmarked ? "fill-current" : ""}`}
-            />
+          <Button variant="outline" size="sm" onClick={() => setIsBookmarked(!isBookmarked)}>
+            <Bookmark className={`mr-2 h-4 w-4 ${isBookmarked ? "fill-current" : ""}`} />
             {isBookmarked ? "북마크됨" : "북마크"}
           </Button>
           <Button variant="outline" size="sm">
@@ -240,11 +196,7 @@ export function MobileMain(props: {
 
       {/* 커버 이미지 */}
       <div className="mb-4">
-        <img
-          src={siteData.imageUrl}
-          alt={siteData.name}
-          className="aspect-video w-full rounded-lg object-cover"
-        />
+        <img src={siteData.imageUrl} alt={siteData.name} className="aspect-video w-full rounded-lg object-cover" />
       </div>
 
       {/* 통계 그리드 */}
@@ -289,9 +241,7 @@ export function MobileMain(props: {
 
         <div className="space-y-4 rounded-lg bg-gray-50 p-4">
           <TabsContent value="about" className="m-0">
-            <p className="text-sm leading-relaxed text-gray-700">
-              {siteData.description}
-            </p>
+            <p className="text-sm leading-relaxed text-gray-700">{siteData.description}</p>
           </TabsContent>
 
           <TabsContent value="usage" className="m-0">
@@ -308,10 +258,7 @@ export function MobileMain(props: {
           <TabsContent value="features" className="m-0">
             <ul className="grid gap-2">
               {siteData.features.map((feature: string) => (
-                <li
-                  key={feature}
-                  className="flex items-center gap-2 text-sm text-gray-700"
-                >
+                <li key={feature} className="flex items-center gap-2 text-sm text-gray-700">
                   <span className="h-1.5 w-1.5 rounded-full bg-blue-500"></span>
                   {feature}
                 </li>
@@ -322,12 +269,7 @@ export function MobileMain(props: {
           <TabsContent value="screenshots" className="m-0">
             <div className="space-y-4">
               {siteData.screenshots.map((screenshot: string, index: number) => (
-                <img
-                  key={index}
-                  src={screenshot}
-                  alt={`Screenshot ${index + 1}`}
-                  className="w-full rounded-lg"
-                />
+                <img key={index} src={screenshot} alt={`Screenshot ${index + 1}`} className="w-full rounded-lg" />
               ))}
             </div>
           </TabsContent>
