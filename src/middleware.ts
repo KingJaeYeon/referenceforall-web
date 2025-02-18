@@ -5,8 +5,7 @@ import { fallbackLng, languages, cookieName } from "./app/i18n/settings";
 acceptLanguage.languages(languages);
 
 export const config = {
-  // matcher: '/:lng*'
-  matcher: ["/((?!api|_next/static|_next/image|assets|favicon.ico|sw.js|site.webmanifest).*)"],
+  matcher: ["/((?!api|_next/static|_next/image|assets|favicon.ico|sw.js|site.webmanifest|public).*)"],
 };
 
 export function middleware(req: any) {
@@ -14,6 +13,11 @@ export function middleware(req: any) {
   if (req.cookies.has(cookieName)) lng = acceptLanguage.get(req.cookies.get(cookieName).value);
   if (!lng) lng = acceptLanguage.get(req.headers.get("Accept-Language"));
   if (!lng) lng = fallbackLng;
+
+  const pathname = req.nextUrl.pathname;
+  if (pathname.startsWith("/images") || pathname.startsWith("/fonts") || pathname.startsWith("/icons")) {
+    return NextResponse.next();
+  }
 
   // Redirect if lng in path is not supported
   if (
