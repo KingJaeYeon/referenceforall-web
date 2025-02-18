@@ -17,7 +17,7 @@ export default function Template({ children }: { children: ReactNode }) {
   }
 
   if (pathname.includes("/search")) {
-    path = "/search";
+    return <>{children}</>;
   }
 
   if (pathname.includes("/my/lists")) {
