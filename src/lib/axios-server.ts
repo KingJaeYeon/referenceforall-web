@@ -1,9 +1,7 @@
-"use client";
-
 import axios, { AxiosRequestConfig } from "axios";
 import { refreshTokens } from "@/service/auth-service";
 
-let client = axios.create({
+let server = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
   headers: {
     "Content-Type": "application/json",
@@ -14,7 +12,7 @@ let client = axios.create({
   withCredentials: true,
 });
 
-client.interceptors.response.use(
+server.interceptors.response.use(
   async (res) => {
     const { status } = res;
 
@@ -30,19 +28,13 @@ client.interceptors.response.use(
     return res.data;
   },
   (error) => {
-    const { code, message, path, status, timestamp } = error.response.data;
-
     // refresh token
 
-    return Promise.reject(error.response.data);
+    return Promise.reject(error?.response?.data ?? error);
   },
 );
 
 export const request = async function (options: AxiosRequestConfig) {
-  return client(options);
-};
-
-export const changeServerLang = (lang: string) => {
-  console.log("changeServerLang", lang);
-  client.defaults.headers.common["x-lang"] = lang;
+  console.log(options.url);
+  return server(options);
 };

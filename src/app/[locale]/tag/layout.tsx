@@ -3,10 +3,12 @@ import PageWrapper from "@/components/Layout/PageWrapper";
 import ContentWrapper from "@/components/Layout/ContentWrapper";
 import Col from "@/components/Layout/Col";
 import RecommendedTags from "@/app/[locale]/tag/_component/RecommendedTags";
+import { fetchTags } from "@/service/post-service";
 
 interface PageProps {
   children: ReactNode;
 }
+
 export default async function Layout({ children }: PageProps) {
   const recommendTopics = [
     "technology",
@@ -22,6 +24,7 @@ export default async function Layout({ children }: PageProps) {
     "business1",
     "business3",
   ];
+  const data = await fetchTags({ take: 12, type: "recommend" });
   return (
     <PageWrapper>
       <ContentWrapper>
