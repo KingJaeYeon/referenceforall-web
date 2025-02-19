@@ -1,6 +1,5 @@
 import SitePage from "@/app/[locale]/site/[siteId]/_component/SitePage";
-import PageWrapper from "@/components/Layout/PageWrapper";
-import ContentWrapper from "@/components/Layout/ContentWrapper";
+import { ContentWrapper,PageWrapper } from "@/components/layout";
 import { languages } from "@/app/i18n/settings";
 
 interface PageProps {

@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import Row from "@/components/Layout/Row";
+import { Row } from "@/components/layout";
 import { cn } from "@/lib/utils";
 
 interface IEmptyCheckbox {

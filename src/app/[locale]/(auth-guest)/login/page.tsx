@@ -1,12 +1,11 @@
-import PageWrapper from "@/components/Layout/PageWrapper";
+import { PageWrapper, Row } from "@/components/layout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import LoginForm from "@/app/[locale]/(auth-guest)/login/_component/LoginForm";
 import Link from "next/link";
-import Row from "@/components/Layout/Row";
 import { getTranslation } from "@/app/i18n";
 
 export default async function Page(props: { params: Promise<{ locale: string }> }) {
-  const params = await props.params
+  const params = await props.params;
   const { t } = await getTranslation(params.locale);
   return (
     <PageWrapper className={"justify-center pb-[100px] pt-[50px] md:min-h-[calc(100vh-60px)] md:bg-[#f0f4f9]"}>

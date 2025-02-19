@@ -1,5 +1,5 @@
 import React, { forwardRef } from "react";
-import Col from "@/components/Layout/Col";
+import { Col } from "@/components/layout";
 import { cn } from "@/lib/utils";
 
 type Props = {
@@ -7,7 +7,7 @@ type Props = {
   className?: string;
 };
 
-const ContentWrapper = forwardRef<HTMLDivElement, Props>(
+export const ContentWrapper = forwardRef<HTMLDivElement, Props>(
   ({ children, className }, ref) => {
     return (
       <Col
@@ -24,5 +24,3 @@ const ContentWrapper = forwardRef<HTMLDivElement, Props>(
 );
 
 ContentWrapper.displayName = "Contents";
-
-export default ContentWrapper;

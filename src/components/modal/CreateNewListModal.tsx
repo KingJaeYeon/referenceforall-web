@@ -13,7 +13,7 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Switch } from "@/components/ui/switch";
-import Col from "@/components/Layout/Col";
+import { Col } from "@/components/layout";
 import { usePathname } from "next/navigation";
 
 export function CreateNewListModalTrigger() {

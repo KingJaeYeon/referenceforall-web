@@ -1,5 +1,4 @@
-import Col from "@/components/Layout/Col";
-import Row from "@/components/Layout/Row";
+import { Col ,Row} from "@/components/layout";
 import LibraryDetailHeader from "@/app/[locale]/user/[username]/list/[slug]/_component/LibraryDetailHeader";
 import { Metadata } from "next";
 import { Suspense } from "react";

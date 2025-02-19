@@ -1,4 +1,4 @@
-import Row from "@/components/Layout/Row";
+import { Row } from "@/components/layout";
 import { Bookmark, Calendar, Star, Users } from "lucide-react";
 import Link from "next/link";
 

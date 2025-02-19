@@ -3,7 +3,7 @@ import { toast } from "sonner";
 import { useTranslation } from "@/app/i18n/client";
 import useDebounce from "@/hook/useDebounce";
 import { useQuery } from "@tanstack/react-query";
-import Row from "@/components/Layout/Row";
+import { Row } from "@/components/layout";
 import { Command, CommandItem, CommandList } from "@/components/ui/command";
 import { cn } from "@/lib/utils";
 

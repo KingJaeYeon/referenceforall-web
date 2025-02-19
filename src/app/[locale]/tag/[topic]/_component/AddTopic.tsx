@@ -1,5 +1,5 @@
 "use client";
-import Row from "@/components/Layout/Row";
+import { Row } from "@/components/layout";
 import { Button } from "@/components/ui/button";
 import { IconPlus } from "@/assets/svg";
 import { useEffect, useState } from "react";

@@ -2,13 +2,11 @@
 import { DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { DialogBody } from "next/dist/client/components/react-dev-overlay/internal/components/Dialog";
 import React from "react";
-import Col from "@/components/Layout/Col";
-import Row from "@/components/Layout/Row";
+import { Col,Row ,Text} from "@/components/layout";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { getLanguageImg } from "@/util/image";
-import Text from "@/components/Layout/Text";
 import { Checkbox } from "@/components/ui/checkbox";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useGlobalModalStore } from "@/store/globalModalStore";

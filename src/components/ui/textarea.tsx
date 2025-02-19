@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { cn } from "@/lib/utils";
-import Text from "@/components/Layout/Text";
+import { Text } from "@/components/layout";
 import { FontType, utilFont } from "@/util/fontType";
 import { cva, VariantProps } from "class-variance-authority";
 
@@ -58,12 +58,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
   ) => {
     const customFont = utilFont(font, () => "body5 placeholder:body5");
     return (
-      <div
-        className={cn(
-          "relative w-full max-w-full",
-          disabled && "cursor-not-allowed",
-        )}
-      >
+      <div className={cn("relative w-full max-w-full", disabled && "cursor-not-allowed")}>
         <textarea
           className={cn(
             textareaVariants({
@@ -73,6 +68,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
             }),
             customFont,
             className,
+            readOnly && "bg-gray-100",
           )}
           ref={ref}
           value={value}
@@ -95,11 +91,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
             </Text>
           </div>
         )}
-        {errorMessage && (
-          <Text className={"body7 pl-[20px] pt-[5px] text-red"}>
-            {errorMessage}
-          </Text>
-        )}
+        {errorMessage && <Text className={"body7 pl-[20px] pt-[5px] text-red"}>{errorMessage}</Text>}
       </div>
     );
   },

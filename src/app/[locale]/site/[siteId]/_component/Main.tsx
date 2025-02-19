@@ -1,9 +1,8 @@
-import Row from "@/components/Layout/Row";
 import TopicButton from "@/components/TopicButton";
 import { Button } from "@/components/ui/button";
 import { Bookmark, ExternalLink, Eye, MessageSquare, Share2, Star } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
-import Col from "@/components/Layout/Col";
+import { Col,Row } from "@/components/layout";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { DesktopComment, MobileComment } from "@/app/[locale]/site/[siteId]/_component/Comment";
 import MobileBackButton from "@/components/MobileBackButton";

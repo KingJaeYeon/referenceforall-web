@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
 import { validSignupCode } from "@/service/auth-service";
 import { toast } from "sonner";
-import Row from "@/components/Layout/Row";
+import { Row } from "@/components/layout";
 import { NextButton } from "@/app/[locale]/(auth-guest)/signup/[[...step]]/_component/NextButton";
 import React from "react";
 import { useTranslation } from "@/app/i18n/client";

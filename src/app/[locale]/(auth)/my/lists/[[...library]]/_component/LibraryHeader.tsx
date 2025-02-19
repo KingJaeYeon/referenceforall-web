@@ -1,4 +1,4 @@
-import Text from "@/components/Layout/Text";
+import { Text } from "@/components/layout";
 import { CreateNewListModalTrigger } from "@/components/modal/CreateNewListModal";
 
 export default function LibraryHeader() {

@@ -1,5 +1,5 @@
 "use client";
-import Row from "@/components/Layout/Row";
+import { Row } from "@/components/layout";
 import { IconSearch2 } from "@/assets/svg";
 import { FormEvent, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";

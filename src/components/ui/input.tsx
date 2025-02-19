@@ -1,10 +1,9 @@
 import * as React from "react";
-import Text from "@/components/Layout/Text";
 import { cn } from "@/lib/utils";
 import { IconSearch } from "@/assets/svg/IconSearch";
 import { IconDelete } from "@/assets/svg/IconDelete";
 import { FontType, utilFont } from "@/util/fontType";
-import Row from "@/components/Layout/Row";
+import { Row ,Text} from "@/components/layout";
 
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {

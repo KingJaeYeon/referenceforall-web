@@ -1,4 +1,4 @@
-import Row from "@/components/Layout/Row";
+import { Row } from "@/components/layout";
 import React from "react";
 
 export function AlertTip({ label }: { label: string }) {

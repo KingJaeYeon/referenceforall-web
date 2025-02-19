@@ -1,6 +1,5 @@
 import SignupForm from "@/app/[locale]/(auth-guest)/signup/[[...step]]/_component/SignupForm";
-import PageWrapper from "@/components/Layout/PageWrapper";
-import Row from "@/components/Layout/Row";
+import { PageWrapper ,Row} from "@/components/layout";
 import { Card } from "@/components/ui/card";
 import { Logo } from "@/components/Logo";
 import { notFound } from "next/navigation";

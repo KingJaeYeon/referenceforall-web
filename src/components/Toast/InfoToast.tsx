@@ -1,5 +1,5 @@
 import React from "react";
-import Row from "@/components/Layout/Row";
+import { Row } from "@/components/layout";
 import { IconClose } from "@/assets/svg";
 
 type Props = {

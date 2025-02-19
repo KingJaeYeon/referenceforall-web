@@ -1,4 +1,4 @@
-import Row from "@/components/Layout/Row";
+import { Row } from "@/components/layout";
 import { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 

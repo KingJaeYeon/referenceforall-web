@@ -1,7 +1,7 @@
 import useSignupStore from "@/store/useSignupStore";
 import { useRouter } from "next/navigation";
 import { saveFormDataToLocal } from "@/app/[locale]/(auth-guest)/signup/[[...step]]/_component/util";
-import Row from "@/components/Layout/Row";
+import { Row } from "@/components/layout";
 import { NextButton } from "@/app/[locale]/(auth-guest)/signup/[[...step]]/_component/NextButton";
 import React from "react";
 import { useTranslation } from "@/app/i18n/client";

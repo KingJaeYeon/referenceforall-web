@@ -1,5 +1,5 @@
 import { HTMLAttributes, useEffect, useRef, useState } from "react";
-import Row from "@/components/Layout/Row";
+import { Row } from "@/components/layout";
 import { cn } from "@/lib/utils";
 import { useSpring, animated, AnimatedProps } from "@react-spring/web";
 

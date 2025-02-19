@@ -1,8 +1,4 @@
-import PageWrapper from "@/components/Layout/PageWrapper";
-import ContentWrapper from "@/components/Layout/ContentWrapper";
-
-import Col from "@/components/Layout/Col";
-import Text from "@/components/Layout/Text";
+import { Col ,ContentWrapper ,PageWrapper,Text} from "@/components/layout";
 import Link from "next/link";
 import { getTranslation } from "@/app/i18n";
 

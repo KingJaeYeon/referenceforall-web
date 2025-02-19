@@ -1,5 +1,4 @@
-import Col from "@/components/Layout/Col";
-import Text from "@/components/Layout/Text";
+import { Col,Text } from "@/components/layout";
 import { SearchInput } from "@/app/[locale]/search/_component/SearchInput";
 import ScrollTabs, { Tab } from "@/components/ScrollTabs";
 import TabContent from "@/app/[locale]/search/[subject]/_component/TabContent";

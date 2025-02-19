@@ -7,16 +7,12 @@ type Props = {
   style?: React.CSSProperties;
 } & ComponentProps<"div">;
 
-const Row = forwardRef<HTMLDivElement, Props>(
-  ({ children, className, ...props }, ref) => {
-    return (
-      <div ref={ref} className={cn(`flex`, className)} {...props}>
-        {children}
-      </div>
-    );
-  },
-);
+export const Row = forwardRef<HTMLDivElement, Props>(({ children, className, ...props }, ref) => {
+  return (
+    <div ref={ref} className={cn(`flex`, className)} {...props}>
+      {children}
+    </div>
+  );
+});
 
 Row.displayName = "Row";
-
-export default Row;

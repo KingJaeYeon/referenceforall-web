@@ -1,16 +1,19 @@
 "use client";
 import useUserStore from "@/store/userStore";
-import Col from "@/components/Layout/Col";
-import Row from "@/components/Layout/Row";
+import { Col ,Row} from "@/components/layout";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
-import { Textarea } from '@/components/ui/textarea';
+import React from "react";
+import { AboutMe } from "@/app/[locale]/user/[username]/_component/AboutMe";
+import { EditSettingBtn } from "@/app/[locale]/user/[username]/_component/EditSettingBtn";
+import { Label } from "@/components/ui/label";
+import Link from "next/link";
+import { IconLink } from "@/assets/svg";
 
 export default function UserPage({ fetchUser }: { fetchUser: any }) {
   const { user } = useUserStore();
   return (
-    <Col className={"items-center"}>
-      <Col className={"w-full max-w-[700px] items-center justify-between py-8 md:flex-row"}>
+    <Col className={"w-full max-w-[700px] items-center"}>
+      <Col className={"w-full items-center justify-between py-8 md:flex-row"}>
         <Col className={"items-center md:flex-row"}>
           <Avatar className="h-28 w-28">
             <AvatarImage src={user.icon} alt={user.author} />
@@ -26,17 +29,21 @@ export default function UserPage({ fetchUser }: { fetchUser: any }) {
             <p className={"body5 text-gray-500"}>출석체크 0</p>
           </Col>
         </Col>
-        {fetchUser.id === user.id && (
-          <Row>
-            <Button className={"p-5 font-medium"} font={"heading4"}>
-              Edit Profile
-            </Button>
-          </Row>
-        )}
+        <EditSettingBtn isSelf={fetchUser.id === user.id} />
       </Col>
-      <Col>
-        <p>ABOUT</p>
-        <Textarea readOnly value={user.aboutMe??'아아아앙'}/>
+      <AboutMe aboutMe={user.aboutMe} isSelf={fetchUser.id === user.id} />
+      <Col className={"mb-10 w-full"}>
+        <Label font={"heading6"} className={"font-medium"}>
+          LINK
+        </Label>
+        <Row className={"mt-2 gap-4"}>
+          <Link className={"flex items-center"} href={"http://localhost:3000"}>
+            <IconLink className={"h-3 w-3"} /> <p className={"body5 ml-2"}>twitter </p>
+          </Link>
+          <Link className={"flex items-center"} href={"http://localhost:3000"}>
+            <IconLink className={"h-3 w-3"} /> <p className={"body5 ml-2"}>twitter </p>
+          </Link>
+        </Row>
       </Col>
     </Col>
   );

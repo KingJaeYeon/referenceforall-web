@@ -1,9 +1,7 @@
 "use client";
 
 import { Card } from "@/components/ui/card";
-import Col from "@/components/Layout/Col";
-import Text from "@/components/Layout/Text";
-import Row from "@/components/Layout/Row";
+import { Col,Row,Text } from "@/components/layout";
 import { Bookmark, LucideLock, MoreHorizontal } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";

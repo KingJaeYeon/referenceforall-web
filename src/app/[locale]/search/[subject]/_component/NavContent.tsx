@@ -1,8 +1,6 @@
 "use client";
-import Text from "@/components/Layout/Text";
-import Col from "@/components/Layout/Col";
+import { Col,Row, Text } from "@/components/layout";
 import TopicButton from "@/components/TopicButton";
-import Row from "@/components/Layout/Row";
 import { useSearchParams } from "next/navigation";
 import { useTranslation } from "@/app/i18n/client";
 import Link from "next/link";

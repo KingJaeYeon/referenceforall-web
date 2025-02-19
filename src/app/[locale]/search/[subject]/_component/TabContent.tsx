@@ -1,8 +1,7 @@
 "use client";
 import { notFound } from "next/navigation";
 import TopicButton from "@/components/TopicButton";
-import Row from "@/components/Layout/Row";
-import Text from "@/components/Layout/Text";
+import { Row,Text } from "@/components/layout";
 import { IconDropDownDown } from "@/assets/svg";
 import { MainCard } from "@/app/[locale]/search/[subject]/_component/MainCard";
 import { useTranslation } from "@/app/i18n/client";

@@ -1,6 +1,5 @@
 import TopicButton from "@/components/TopicButton";
-import Row from "@/components/Layout/Row";
-import Text from "@/components/Layout/Text";
+import { Row,Text } from "@/components/layout";
 import { IconDropDownDown } from "@/assets/svg";
 import React from "react";
 import { MainCard } from "@/app/[locale]/search/[subject]/_component/MainCard";

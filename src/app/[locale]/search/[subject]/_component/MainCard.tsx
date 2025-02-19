@@ -1,7 +1,5 @@
 "use client";
-import Row from "@/components/Layout/Row";
-import Col from "@/components/Layout/Col";
-import Text from "@/components/Layout/Text";
+import { Col ,Row,Text} from "@/components/layout";
 import { utilDate } from "@/lib/dateFormat";
 import { Bookmark, Calendar, MessageCircle, MoreHorizontal } from "lucide-react";
 import { IconDropDownDown } from "@/assets/svg";

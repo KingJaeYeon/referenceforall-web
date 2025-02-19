@@ -1,7 +1,5 @@
-import Text from "@/components/Layout/Text";
 import UserAvatar from "@/components/UserAvatar";
-import Row from "@/components/Layout/Row";
-import Col from "@/components/Layout/Col";
+import { Col,Row ,Text} from "@/components/layout";
 import { utilDate } from "@/lib/dateFormat";
 import { Bookmark, LockIcon, MoreHorizontal } from "lucide-react";
 import MobileBackButton from "@/components/MobileBackButton";

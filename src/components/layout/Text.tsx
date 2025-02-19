@@ -5,7 +5,7 @@ type TextProps = {
   className?: string;
 } & ComponentProps<"p">;
 
-const Text = ({ children, className, ...props }: TextProps) => {
+export const Text = ({ children, className, ...props }: TextProps) => {
   return (
     <p className={className} {...props}>
       {children}
@@ -14,5 +14,3 @@ const Text = ({ children, className, ...props }: TextProps) => {
 };
 
 Text.displayName = "Text";
-
-export default Text;

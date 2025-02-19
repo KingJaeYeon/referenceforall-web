@@ -2,10 +2,9 @@
 import { Button } from "@/components/ui/button";
 import { ImagePlus, X } from "lucide-react";
 import React from "react";
-import Col from "@/components/Layout/Col";
+import { Col,Row } from "@/components/layout";
 import { FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Label } from "@/components/ui/label";
-import Row from "@/components/Layout/Row";
 import { Image } from "@/util/imageUpload";
 
 const ImageUploadButton = ({ onClick }: { onClick: () => void }) => (

@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import Text from "@/components/Layout/Text";
+import { Text } from "@/components/layout";
 import GoogleLogin from "@/app/[locale]/(auth-guest)/login/_component/GoogleLogin";
 import React from "react";
 import { login } from "@/service/auth-service";

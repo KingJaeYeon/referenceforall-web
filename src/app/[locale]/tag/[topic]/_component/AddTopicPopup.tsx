@@ -11,8 +11,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import Col from "@/components/Layout/Col";
-import Text from "@/components/Layout/Text";
+import { Col,Text } from "@/components/layout";
 import TagSelector from "@/components/TagSelector";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";

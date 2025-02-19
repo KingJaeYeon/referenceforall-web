@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Col from "@/components/Layout/Col";
+import { Col,Row } from "@/components/layout";
 import { cn } from "@/lib/utils";
-import Row from "@/components/Layout/Row";
 
 interface IFloatingOutlinedInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;

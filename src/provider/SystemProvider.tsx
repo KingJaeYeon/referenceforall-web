@@ -10,7 +10,7 @@ type Props = {
   children: React.ReactNode[] | React.ReactNode;
 };
 
-export default function SystemProvider({ children, user }: Props) {
+export function SystemProvider({ children, user }: Props) {
   const { setUser } = useUserStore();
   const queryClient = new QueryClient({
     defaultOptions: {

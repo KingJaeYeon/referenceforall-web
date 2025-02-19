@@ -1,6 +1,6 @@
 "use client";
 import { Search } from "lucide-react";
-import Row from "@/components/Layout/Row";
+import { Row } from "@/components/layout";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import useDebounce from "@/hook/useDebounce";

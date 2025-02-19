@@ -18,7 +18,7 @@ type Props = {
   children: React.ReactNode[] | React.ReactNode;
 };
 
-function QueryProvider({ children, ...props }: Props) {
+export function QueryProvider({ children, ...props }: Props) {
   const queryClient = new QueryClient(config);
   return (
     <QueryClientProvider {...props} client={queryClient}>
@@ -26,5 +26,3 @@ function QueryProvider({ children, ...props }: Props) {
     </QueryClientProvider>
   );
 }
-
-export default QueryProvider;

@@ -1,6 +1,6 @@
 import React from "react";
 import { CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import Col from "@/components/Layout/Col";
+import { Col } from "@/components/layout";
 import {
   StepEmail,
   StepPwd,

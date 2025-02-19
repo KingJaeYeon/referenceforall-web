@@ -1,5 +1,4 @@
-import Text from "@/components/Layout/Text";
-import Col from "@/components/Layout/Col";
+import { Col,Text } from "@/components/layout";
 import { SearchInput } from "@/app/[locale]/search/_component/SearchInput";
 import RecentSearchList from "@/app/[locale]/search/_component/RecentSearchList";
 import type { Metadata } from "next";

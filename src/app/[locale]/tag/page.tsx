@@ -1,6 +1,5 @@
-import Text from "@/components/Layout/Text";
 import SearchInput from "@/app/[locale]/tag/[topic]/_component/SearchInput";
-import Row from "@/components/Layout/Row";
+import { Row,Text } from "@/components/layout";
 
 import type { Metadata } from "next";
 import Link from "next/link";

@@ -1,7 +1,4 @@
-import PageWrapper from "@/components/Layout/PageWrapper";
-import ContentWrapper from "@/components/Layout/ContentWrapper";
-import { Viewport } from "next";
-import Row from "@/components/Layout/Row";
+import { PageWrapper,Row ,ContentWrapper} from "@/components/layout";
 import { ReactNode } from "react";
 
 export default async function Layout({ children }: { children: ReactNode }) {

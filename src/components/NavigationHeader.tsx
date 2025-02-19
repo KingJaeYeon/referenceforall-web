@@ -1,4 +1,4 @@
-import Row from "@/components/Layout/Row";
+import { Row } from "@/components/layout";
 import { FullLogo } from "@/components/Logo";
 import { SelectLangModalTrigger } from "@/components/modal/SelectLangModal";
 import NavLink from "@/components/NavLink";

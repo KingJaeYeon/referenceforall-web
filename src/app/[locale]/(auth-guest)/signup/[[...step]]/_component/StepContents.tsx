@@ -4,7 +4,7 @@ import { Label } from "@/components/ui/label";
 import { AlertTip } from "@/components/AlertTip";
 import { FloatingOutlinedInput } from "@/app/components/FloatingOutlinedInput";
 import React, { useState } from "react";
-import Row from "@/components/Layout/Row";
+import { Row } from "@/components/layout";
 import { EmptyCheckbox } from "@/app/components/EmptyCheckbox";
 import useSignupStore from "@/store/useSignupStore";
 import { useMutation } from "@tanstack/react-query";

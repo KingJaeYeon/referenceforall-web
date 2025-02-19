@@ -2,8 +2,7 @@
 import { useEffect, useState } from "react";
 import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import Row from "@/components/Layout/Row";
-import Text from "@/components/Layout/Text";
+import { Row,Text } from "@/components/layout";
 import { useTranslation } from "@/app/i18n/client";
 import Link from "next/link";
 

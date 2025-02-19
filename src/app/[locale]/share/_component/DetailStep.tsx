@@ -1,4 +1,4 @@
-import Col from "@/components/Layout/Col";
+import { Col } from "@/components/layout";
 import {
   FormControl,
   FormField,

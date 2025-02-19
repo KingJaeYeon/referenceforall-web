@@ -1,9 +1,8 @@
 "use client";
-import Row from "@/components/Layout/Row";
+import { Row ,Text} from "@/components/layout";
 import { Button } from "@/components/ui/button";
 import { IconChevronLeft, IconChevronRight, IconCompass } from "@/assets/svg";
 import { useEffect, useRef, useState } from "react";
-import Text from "@/components/Layout/Text";
 import TopicButton from "@/components/TopicButton";
 
 export default function RecommendedTags({ tags }: { tags: any }) {

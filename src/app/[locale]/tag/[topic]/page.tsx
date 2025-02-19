@@ -1,8 +1,7 @@
 import MediumStyleCard from "@/app/[locale]/tag/[topic]/_component/MediumStyleCard";
 import { AddTopic } from "@/app/[locale]/tag/[topic]/_component/AddTopic";
-import Text from "@/components/Layout/Text";
 
-import Row from "@/components/Layout/Row";
+import { Row ,Text} from "@/components/layout";
 import { Suspense } from "react";
 import { getTranslation } from "@/app/i18n";
 

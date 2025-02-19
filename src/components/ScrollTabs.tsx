@@ -1,5 +1,5 @@
 "use client";
-import Row from "@/components/Layout/Row";
+import { Row } from "@/components/layout";
 import { Button } from "@/components/ui/button";
 import { IconChevronLeft, IconChevronRight } from "@/assets/svg";
 import { ReactNode, useEffect, useRef, useState } from "react";
