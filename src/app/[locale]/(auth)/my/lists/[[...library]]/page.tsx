@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import ScrollTabs, { Tab } from "@/components/ScrollTabs";
-import { Col, ContentWrapper, PageWrapper,Row } from "@/components/layout";
+import { Col, ContentWrapper, PageWrapper, Row } from "@/components/layout";
 import LibraryHeader from "@/app/[locale]/(auth)/my/lists/[[...library]]/_component/LibraryHeader";
 import TabContent from "@/app/[locale]/(auth)/my/lists/[[...library]]/_component/TabContent";
 import NavContent from "@/app/[locale]/(auth)/my/lists/[[...library]]/_component/NavContent";

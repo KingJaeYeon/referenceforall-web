@@ -1,8 +1,13 @@
+"use client";
+import useUserStore from "@/store/userStore";
+
 import { Row } from "@/components/layout";
 import NavLink from "@/components/NavLink";
 import React from "react";
 
-export function EditSettingBtn({ isSelf }: { isSelf: boolean }) {
+export function EditSettingBtn({ userId }: { userId: string }) {
+  const { user } = useUserStore();
+  const isSelf = userId === user.id;
   if (!isSelf) {
     return;
   }

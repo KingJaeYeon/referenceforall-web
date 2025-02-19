@@ -6,6 +6,7 @@ import Link from "next/link";
 import useUserStore from "@/store/userStore";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useRouter } from "next/navigation";
+import UserAvatar from "@/components/UserAvatar";
 
 export default function AuthButton({ isLogin }: { isLogin: boolean }) {
   return isLogin ? <AvatarButton /> : <LoginButton />;
@@ -34,10 +35,7 @@ function AvatarButton() {
   return (
     <HoverCard openDelay={0} closeDelay={0}>
       <HoverCardTrigger onClick={() => push("/my/setting")}>
-        <Avatar className="h-8 w-8 cursor-pointer">
-          <AvatarImage src={user.icon} alt={user.author} />
-          <AvatarFallback>{user.displayName}</AvatarFallback>
-        </Avatar>
+        <UserAvatar className={"h-8 w-8 cursor-pointer"} alt={user.icon} src={user.icon} fbText={user.displayName} />
       </HoverCardTrigger>
       <HoverCardContent className={"flex max-w-[200px] flex-col items-start gap-[2px]"} align={"end"}>
         <button

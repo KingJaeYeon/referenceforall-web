@@ -1,10 +1,20 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
-export default function UserAvatar({ className }: { className?: string }) {
+export default function UserAvatar({
+  className,
+  src = "https://github.com/shadcn.png",
+  alt = "shadcn",
+  fbText = "CN",
+}: {
+  className?: string;
+  src?: string;
+  alt?: string;
+  fbText?: string;
+}) {
   return (
     <Avatar className={className}>
-      <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-      <AvatarFallback>CN</AvatarFallback>
+      <AvatarImage src={src} alt={alt} />
+      <AvatarFallback>{fbText}</AvatarFallback>
     </Avatar>
   );
 }

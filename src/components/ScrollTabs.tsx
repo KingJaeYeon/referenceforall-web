@@ -6,19 +6,14 @@ import { ReactNode, useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { useTranslation } from "@/app/i18n/client";
 
 export interface Tab {
   label: string;
   url: string;
 }
 
-export default function ScrollTabs({
-  tabs,
-  query,
-}: {
-  tabs: Tab[];
-  query?: string;
-}) {
+export default function ScrollTabs({ tabs, query }: { tabs: Tab[]; query?: string }) {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
@@ -71,9 +66,7 @@ export default function ScrollTabs({
     >
       <Row
         ref={scrollContainerRef}
-        className={
-          "scrollNone overflow-y-hidden overflow-x-scroll scroll-smooth px-4 md:px-0"
-        }
+        className={"scrollNone overflow-y-hidden overflow-x-scroll scroll-smooth px-4 md:px-0"}
         style={{ scrollBehavior: "smooth" }}
       >
         {tabs.map((tab) => {
@@ -87,11 +80,7 @@ export default function ScrollTabs({
         })}
 
         {canScrollLeft && (
-          <Row
-            className={
-              "scroller-x-left absolute bottom-[1px] left-0 pr-[30px] duration-100 sm:pr-[42px]"
-            }
-          >
+          <Row className={"scroller-x-left absolute bottom-[1px] left-0 pr-[30px] duration-100 sm:pr-[42px]"}>
             <Button
               variant={"default"}
               onClick={handleScrollLeft}
@@ -103,11 +92,7 @@ export default function ScrollTabs({
           </Row>
         )}
         {canScrollRight && (
-          <Row
-            className={
-              "scroller-x-right absolute bottom-[1px] right-0 pl-[30px] duration-100 sm:pl-[42px]"
-            }
-          >
+          <Row className={"scroller-x-right absolute bottom-[1px] right-0 pl-[30px] duration-100 sm:pl-[42px]"}>
             <Button
               variant={"default"}
               onClick={handleScrollRight}
@@ -123,21 +108,14 @@ export default function ScrollTabs({
   );
 }
 
-function TabLinkButton({
-  children,
-  href,
-  lastPath,
-}: {
-  children: ReactNode;
-  href: string;
-  lastPath: string;
-}) {
+function TabLinkButton({ children, href, lastPath }: { children: ReactNode; href: string; lastPath: string }) {
   const pathname = usePathname();
+  const { i18n } = useTranslation();
   return (
     <Link
       className={cn(
         "body5 mr-[32px] w-fit pb-[16px] capitalize md:mr-6",
-        pathname === lastPath && "border-b border-gray-900",
+        pathname === encodeURI(lastPath) && "border-b border-gray-900",
       )}
       href={href}
     >

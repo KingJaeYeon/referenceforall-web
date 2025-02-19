@@ -1,4 +1,5 @@
 import { request } from "@/lib/axios";
+import { server } from "@/lib/axios-server";
 
 export interface ISignup {
   username: string;
@@ -15,5 +16,12 @@ export function signup(data: ISignup) {
     url: prefix("signup"),
     method: "POST",
     data,
+  });
+}
+
+export function fetchUser(params: { displayName: string }) {
+  return server({
+    url: prefix("detail"),
+    params,
   });
 }

@@ -3,6 +3,7 @@ import { Separator } from "@/components/ui/separator";
 import { Row } from "@/components/layout";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ThumbsDown, ThumbsUp } from "lucide-react";
+import UserAvatar from "@/components/UserAvatar";
 
 export function DesktopComment(props: { comments: any }) {
   const { comments } = props;
@@ -32,13 +33,12 @@ export function DesktopComment(props: { comments: any }) {
         {comments.map((comment: any) => (
           <div key={comment.id} className="space-y-2">
             <Row className="gap-3">
-              <Avatar className="h-8 w-8">
-                <AvatarImage
-                  src="https://github.com/shadcn.png"
-                  alt={comment.author}
-                />
-                <AvatarFallback>CN</AvatarFallback>
-              </Avatar>
+              <UserAvatar
+                className={"h-8 w-8"}
+                alt={comment.author}
+                src={"https://github.com/shadcn.png"}
+                fbText={"CN"}
+              />
               <div className="flex-1">
                 <Row className="items-baseline justify-between">
                   <span className="text-sm font-medium">{comment.author}</span>
@@ -94,10 +94,12 @@ export function MobileComment(props: { comments: any }) {
           {comments.map((comment: any) => (
             <div key={comment.id} className="space-y-3">
               <Row className="gap-2">
-                <Avatar className="h-6 w-6">
-                  <AvatarImage src={comment.avatar} alt={comment.author} />
-                  <AvatarFallback>CN</AvatarFallback>
-                </Avatar>
+                <UserAvatar
+                  className={"h-6 w-6"}
+                  alt={comment.author}
+                  src={comment.avatar}
+                  fbText={"CN"}
+                />
                 <div className="flex-1">
                   <Row className="items-baseline justify-between">
                     <span className="text-xs font-medium">
