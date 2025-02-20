@@ -1,11 +1,12 @@
+'use client'
 import { Label } from "@/components/ui/label";
 import { Col } from "@/components/layout";
 import React from "react";
 import { Textarea } from "@/components/ui/textarea";
 import Link from "next/link";
 
-export function AboutMe({ aboutMe, isSelf }: { aboutMe?: string; isSelf: boolean }) {
-  if (!isSelf && !aboutMe) {
+export function AboutMe({ aboutMe, isMine }: { aboutMe?: string; isMine: boolean }) {
+  if (!isMine && !aboutMe) {
     return;
   }
 

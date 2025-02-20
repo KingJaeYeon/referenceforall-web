@@ -9,6 +9,7 @@ import { LinkList } from "@/app/[locale]/user/[username]/_component/LinkList";
 import { fetchUser } from "@/service/user-service";
 import { notFound } from "next/navigation";
 import UserAvatar from "@/components/UserAvatar";
+import { getJwtPayload } from "@/util/jwt-payload";
 
 export default async function Layout({
   children,
@@ -22,7 +23,7 @@ export default async function Layout({
   try {
     const result = await fetchUser({ displayName: decodeDisplayName }).then(r=>r.data);
     const user = result.data;
-    console.log(user);
+    const myInfo = await getJwtPayload();
     return (
       <PageWrapper>
         <ContentWrapper>
@@ -41,7 +42,7 @@ export default async function Layout({
                     <Text className={"body5 text-gray-500"}># {user.username}</Text>
                   </Col>
                 </Col>
-                <EditSettingBtn userId={user.id} />
+                <EditSettingBtn isMine={myInfo.id === user.id} />
               </Col>
               <ScrollTabs
                 tabs={[

@@ -25,3 +25,10 @@ export function fetchUser(params: { displayName: string }) {
     params,
   });
 }
+
+export function fetchAboutUser(params: { displayName: string }) {
+  return server({
+    url: prefix("detail/about"),
+    params,
+  });
+}
