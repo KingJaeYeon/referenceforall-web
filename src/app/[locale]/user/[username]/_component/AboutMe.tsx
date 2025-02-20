@@ -1,38 +1,37 @@
-'use client'
 import { Label } from "@/components/ui/label";
 import { Col } from "@/components/layout";
 import React from "react";
 import { Textarea } from "@/components/ui/textarea";
 import Link from "next/link";
+import { getTranslation } from "@/app/i18n";
 
-export function AboutMe({ aboutMe, isMine }: { aboutMe?: string; isMine: boolean }) {
-  if (!isMine && !aboutMe) {
-    return;
-  }
-
+export async function AboutMe({ aboutMe, isMine, locale }: { aboutMe?: string; isMine: boolean; locale: string }) {
+  const { t } = await getTranslation(locale);
   return (
-    <Col className={"w-full mb-10"}>
+    <Col className={"mb-10 w-full"}>
       <Label font={"heading6"} className={"font-medium"}>
-        ABOUT
+        {t("aboutme")}
       </Label>
-      {aboutMe ? <AboutMeEditor aboutMe={aboutMe} /> : <Empty />}
+      {isMine && !aboutMe ? <Empty t={t} /> : <AboutMeEditor aboutMe={aboutMe} t={t} />}
     </Col>
   );
 }
 
-function Empty() {
+function Empty({ t }: { t: any }) {
   return (
     <div className={"mt-2 rounded-[5px] bg-gray-100 p-6"}>
-      <Link href={'/my/setting'} className={"body4 text-blue-600 underline"}>사람들에게 나를 소개해보세요.</Link>
+      <Link href={"/my/setting"} className={"body4 text-blue-600 underline"}>
+        {t("abountme_empty_mine")}
+      </Link>
     </div>
   );
 }
 
-function AboutMeEditor({ aboutMe }: { aboutMe: string }) {
+function AboutMeEditor({ aboutMe, t }: { aboutMe?: string; t: any }) {
   return (
     <Textarea
       readOnly
-      value={aboutMe}
+      value={aboutMe ? aboutMe : t("abountme_empty_other")}
       className="mt-[8px] min-h-[100px] resize-none rounded-[3px] px-3 placeholder:text-blue-700"
     />
   );

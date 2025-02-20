@@ -1,25 +1,17 @@
 import withBundleAnalyzer from "@next/bundle-analyzer";
 
-/** @type {import('next').NextConfig} */
+/** @type {import("next").NextConfig} */
 const nextConfig = {
   images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: '**',
-      },
-    ],
+    remotePatterns: [{ protocol: "https", hostname: "**" }],
   },
   async rewrites() {
     return [
-      {
-        source: "/:locale/@:username", // /[locale]/@[username] 경로
-        destination: "/:locale/user/@:username", // /[locale]/user/@[username]로 매핑
-      },
-      {
-        source: "/:locale/@:username/list/:slug",
-        destination: "/:locale/user/@:username/list/:slug",
-      },
+      { source: "/:locale/@:username", destination: "/:locale/user/@:username" },
+      { source: "/:locale/@:username/list", destination: "/:locale/user/@:username/list" },
+      { source: "/:locale/@:username/posts", destination: "/:locale/user/@:username/posts" },
+      { source: "/:locale/@:username/comments", destination: "/:locale/user/@:username/comments" },
+      { source: "/:locale/@:username/list/:slug", destination: "/:locale/user/@:username/list/:slug" },
     ];
   },
 };

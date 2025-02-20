@@ -83,5 +83,8 @@
   "signup_code_send": "包含验证码的电子邮件已发送至 {{email}}。",
   "authcode": "验证码",
   "signup_password_title": "创建安全的密码",
-  "signup_password_desc": "创建至少{{cnt}}个字符的密码。"
+  "signup_password_desc": "创建至少{{cnt}}个字符的密码。",
+  "abountme_empty_other": "회원님께서 아직 프로필을 완성하지 않으셨습니다.",
+  "abountme_empty_mine": "사람들에게 나를 소개해보세요.",
+  "aboutme": "ABOUT"
 }

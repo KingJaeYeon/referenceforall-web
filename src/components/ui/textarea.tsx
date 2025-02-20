@@ -68,7 +68,6 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
             }),
             customFont,
             className,
-            readOnly && "bg-gray-100",
           )}
           ref={ref}
           value={value}

@@ -83,5 +83,8 @@
   "signup_code_send": "An email containing the verification code has been sent to {{email}}.",
   "authcode": "Verification code",
   "signup_password_title": "Create a secure password",
-  "signup_password_desc": "Create a password with at least {{cnt}} characters."
+  "signup_password_desc": "Create a password with at least {{cnt}} characters.",
+  "abountme_empty_other": "회원님께서 아직 프로필을 완성하지 않으셨습니다.",
+  "abountme_empty_mine": "사람들에게 나를 소개해보세요.",
+  "aboutme": "ABOUT"
 }

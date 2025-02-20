@@ -1,11 +1,7 @@
 import { Col, ContentWrapper, PageWrapper, Row, Text } from "@/components/layout";
 import React from "react";
-import UserPage from "@/app/[locale]/user/[username]/_component/UserPage";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { EditSettingBtn } from "@/app/[locale]/user/[username]/_component/EditSettingBtn";
 import ScrollTabs from "@/components/ScrollTabs";
-import { AboutMe } from "@/app/[locale]/user/[username]/_component/AboutMe";
-import { LinkList } from "@/app/[locale]/user/[username]/_component/LinkList";
 import { fetchUser } from "@/service/user-service";
 import { notFound } from "next/navigation";
 import UserAvatar from "@/components/UserAvatar";
@@ -21,9 +17,10 @@ export default async function Layout({
   const { username, locale } = await params;
   const decodeDisplayName = decodeURIComponent(username).slice(1);
   try {
-    const result = await fetchUser({ displayName: decodeDisplayName }).then(r=>r.data);
+    const result = await fetchUser({ displayName: decodeDisplayName }).then((r) => r.data);
     const user = result.data;
-    const myInfo = await getJwtPayload();
+    const payload = await getJwtPayload();
+
     return (
       <PageWrapper>
         <ContentWrapper>
@@ -42,7 +39,7 @@ export default async function Layout({
                     <Text className={"body5 text-gray-500"}># {user.username}</Text>
                   </Col>
                 </Col>
-                <EditSettingBtn isMine={myInfo.id === user.id} />
+                <EditSettingBtn isMine={payload?.id === user.id} />
               </Col>
               <ScrollTabs
                 tabs={[

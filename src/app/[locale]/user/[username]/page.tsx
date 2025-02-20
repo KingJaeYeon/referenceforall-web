@@ -6,7 +6,7 @@ import { getJwtPayload } from "@/util/jwt-payload";
 import { notFound } from "next/navigation";
 
 export default async function page({ params }: { params: Promise<{ locale: string; username: string }> }) {
-  const { username } = await params;
+  const { username, locale } = await params;
   const decodeDisplayName = decodeURIComponent(username).slice(1);
   try {
     const result = await fetchAboutUser({ displayName: decodeDisplayName }).then((r) => r.data);
@@ -15,7 +15,7 @@ export default async function page({ params }: { params: Promise<{ locale: strin
 
     return (
       <React.Fragment>
-        <AboutMe aboutMe={user.aboutMe} isMine={payload.id === user?.id} />
+        <AboutMe aboutMe={user.aboutMe} isMine={payload?.id === user?.id} locale={locale}/>
         <LinkList links={user.links} />
       </React.Fragment>
     );

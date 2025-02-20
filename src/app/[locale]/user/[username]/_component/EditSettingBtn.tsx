@@ -8,8 +8,8 @@ export function EditSettingBtn({ isMine }: { isMine: boolean }) {
   }
   return (
     <Row>
-      <NavLink className={"heading4 rounded-[10px] bg-gray-200 px-4 py-3 font-medium"} href={"/my/setting"}>
-        Edit Profile
+      <NavLink className={"heading6 rounded-[5px] bg-gray-200 px-4 py-3 font-medium"} href={"/my/setting"}>
+        Edit profile
       </NavLink>
     </Row>
   );
