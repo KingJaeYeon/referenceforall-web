@@ -15,7 +15,7 @@ export default async function page({ params }: { params: Promise<{ locale: strin
 
     return (
       <React.Fragment>
-        <AboutMe aboutMe={user.aboutMe} isMine={payload?.id === user?.id} locale={locale}/>
+        <AboutMe aboutMe={user.aboutMe} isMine={payload?.id === user?.id} locale={locale} displayName={decodeDisplayName}/>
         <LinkList links={user.links} />
       </React.Fragment>
     );

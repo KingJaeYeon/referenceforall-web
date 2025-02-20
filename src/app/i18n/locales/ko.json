@@ -84,7 +84,7 @@
   "authcode": "인증코드",
   "signup_password_title": "안전한 비밀번호 만들기",
   "signup_password_desc": "{{cnt}}글자 이상으로 비밀번호를 만드세요.",
-  "abountme_empty_other": "회원님께서 아직 프로필을 완성하지 않으셨습니다.",
+  "abountme_empty_other": "{{displayName}}께서 아직 프로필을 완성하지 않으셨습니다.",
   "abountme_empty_mine": "사람들에게 나를 소개해보세요.",
   "aboutme": "ABOUT"
 }
