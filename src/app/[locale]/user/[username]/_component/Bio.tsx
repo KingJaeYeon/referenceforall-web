@@ -5,13 +5,13 @@ import { Textarea } from "@/components/ui/textarea";
 import Link from "next/link";
 import { getTranslation } from "@/app/i18n";
 
-export async function AboutMe({
-  aboutMe,
+export async function Bio({
+  bio,
   isMine,
   locale,
   displayName,
 }: {
-  aboutMe?: string;
+  bio?: string;
   isMine: boolean;
   locale: string;
   displayName: string;
@@ -20,12 +20,12 @@ export async function AboutMe({
   return (
     <Col className={"mb-10 w-full"}>
       <Label font={"heading6"} className={"font-medium"}>
-        {t("aboutme")}
+        {t("bio")}
       </Label>
-      {isMine && !aboutMe ? (
-        <Empty label={t("abountme_empty_mine")} />
+      {isMine && !bio ? (
+        <Empty label={t("bio_empty_mine")} />
       ) : (
-        <AboutMeEditor aboutMe={aboutMe} placeholder={t("abountme_empty_other", { displayName })} />
+        <BioEditor bio={bio} placeholder={t("bio_empty_other", { displayName })} />
       )}
     </Col>
   );
@@ -41,12 +41,12 @@ function Empty({ label }: { label: string }) {
   );
 }
 
-function AboutMeEditor({ aboutMe, placeholder }: { aboutMe?: string; placeholder: string }) {
+function BioEditor({ bio, placeholder }: { bio?: string; placeholder: string }) {
   return (
     <Textarea
       readOnly
       placeholder={placeholder}
-      value={aboutMe ?? ""}
+      value={bio ?? ""}
       className="mt-[8px] min-h-[100px] resize-none rounded-[3px] px-3 placeholder:text-blue-700"
     />
   );

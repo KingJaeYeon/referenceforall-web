@@ -33,7 +33,16 @@ export function fetchAboutUser(params: { displayName: string }) {
   });
 }
 
-export async function fetchMyProfile() {
+export interface MyProfile {
+  id: string;
+  displayName: string;
+  bio?: string;
+  username: string;
+  email?: string;
+  links?: { url: string; label: string }[];
+}
+
+export async function fetchMyProfile(): Promise<MyProfile> {
   const result = await request({
     url: prefix("my-info"),
     method: "GET",

@@ -44,7 +44,7 @@ export function EditAvatar() {
   };
 
   return (
-    <Col className={"gap-5"}>
+    <Col className={"gap-4"}>
       <Label font={"heading6"}>Your Avatar</Label>
       <Row className={"items-center gap-6"}>
         <input ref={ref} type="file" hidden onChange={fileChangeHandler} accept="image/png, image/jpeg" />

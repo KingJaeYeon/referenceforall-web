@@ -45,7 +45,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         <input
           type={type}
           className={cn(
-            "placeholder:body4 flex h-full w-full rounded-[6px] border border-input-border bg-input px-[20px] py-2 placeholder:text-input-placeholder hover:border-input-focus-border focus:border-input-focus-border focus-visible:outline-none disabled:pointer-events-none disabled:border-input-disabled-border disabled:text-input-disabled-foreground disabled:placeholder:opacity-20",
+            "placeholder:body4 flex h-full w-full rounded-[4px] border border-input-border bg-input px-[12px] py-2 placeholder:text-input-placeholder hover:border-input-focus-border focus:border-input-focus-border focus-visible:outline-none disabled:pointer-events-none disabled:border-input-disabled-border disabled:text-input-disabled-foreground disabled:placeholder:opacity-20",
             !!icon ? "pr-[65px]" : "",
             errorMessage && "border-red hover:border-red focus:border-red",
             rounded === "full" && "rounded-full",
@@ -97,7 +97,7 @@ function InputIcon({
 
   if (icon === "length") {
     return (
-      <div className={cn("absolute right-[14px] top-[11px]")}>
+      <div className={cn("absolute right-[14px] top-[8px]")}>
         <Text className="body5 pt-[3px] text-gray-500">
           {`${!value?.length ? 0 : value?.length} `}
           <span className="text-gray-neutral">{`/ ${maxLength}`}</span>

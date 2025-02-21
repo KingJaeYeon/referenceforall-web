@@ -20,6 +20,7 @@ export default async function Layout({
                 { url: `/${locale}/my/detail`, label: "My Profile" },
                 { url: `/${locale}/my/setting`, label: "Setting" },
               ]}
+              className={'mb-[20px] md:mb-[20px]'}
             />
             {children}
           </Col>

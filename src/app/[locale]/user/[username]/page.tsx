@@ -1,4 +1,4 @@
-import { AboutMe } from "@/app/[locale]/user/[username]/_component/AboutMe";
+import { Bio } from "@/app/[locale]/user/[username]/_component/Bio";
 import { LinkList } from "@/app/[locale]/user/[username]/_component/LinkList";
 import React from "react";
 import { fetchAboutUser } from "@/service/user-service";
@@ -15,7 +15,7 @@ export default async function page({ params }: { params: Promise<{ locale: strin
 
     return (
       <React.Fragment>
-        <AboutMe aboutMe={user.aboutMe} isMine={payload?.id === user?.id} locale={locale} displayName={decodeDisplayName}/>
+        <Bio bio={user.bio} isMine={payload?.id === user?.id} locale={locale} displayName={decodeDisplayName}/>
         <LinkList links={user.links} />
       </React.Fragment>
     );

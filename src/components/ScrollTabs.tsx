@@ -13,7 +13,7 @@ export interface Tab {
   url: string;
 }
 
-export default function ScrollTabs({ tabs, query }: { tabs: Tab[]; query?: string }) {
+export default function ScrollTabs({ tabs, query, className }: { tabs: Tab[]; query?: string; className?: string }) {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
@@ -60,9 +60,10 @@ export default function ScrollTabs({ tabs, query }: { tabs: Tab[]; query?: strin
 
   return (
     <Row
-      className={
-        "sticky top-0 z-10 mb-[38px] w-[calc(100%+2rem)] border-b border-gray-200 bg-background pt-[20px] sm:pt-[12px] md:relative md:mb-[46px] md:w-full"
-      }
+      className={cn(
+        "sticky top-0 z-10 mb-[38px] w-[calc(100%+2rem)] border-b border-gray-200 bg-background pt-[20px] sm:pt-[12px] md:relative md:mb-[46px] md:w-full",
+        className,
+      )}
     >
       <Row
         ref={scrollContainerRef}
