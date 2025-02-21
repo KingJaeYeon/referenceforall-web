@@ -34,7 +34,7 @@ export async function AboutMe({
 function Empty({ label }: { label: string }) {
   return (
     <div className={"mt-2 rounded-[5px] bg-gray-100 p-6"}>
-      <Link href={"/my/setting"} className={"body4 text-blue-600 underline"}>
+      <Link href={"/my/detail"} className={"body4 text-blue-600 underline"}>
         {label}
       </Link>
     </div>

@@ -34,7 +34,7 @@ function AvatarButton() {
 
   return (
     <HoverCard openDelay={0} closeDelay={0}>
-      <HoverCardTrigger onClick={() => push("/my/setting")}>
+      <HoverCardTrigger onClick={() => push("/my/detail")}>
         <UserAvatar className={"h-8 w-8 cursor-pointer"} alt={user.icon} src={user.icon} fbText={user.displayName} />
       </HoverCardTrigger>
       <HoverCardContent className={"flex max-w-[200px] flex-col items-start gap-[2px]"} align={"end"}>

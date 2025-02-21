@@ -1,5 +1,5 @@
 import { getJwtPayload } from "@/util/jwt-payload";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { ReactNode } from "react";
 
 interface Props {
@@ -7,10 +7,9 @@ interface Props {
 }
 
 export default async function Layout({ children }: Props) {
-  let user = getJwtPayload();
-
+  let user = await getJwtPayload();
   if (!user) {
-    return notFound();
+    redirect('/')
   }
 
   return <>{children}</>;

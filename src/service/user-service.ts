@@ -32,3 +32,32 @@ export function fetchAboutUser(params: { displayName: string }) {
     params,
   });
 }
+
+export async function fetchMyProfile() {
+  const result = await request({
+    url: prefix("my-info"),
+    method: "GET",
+  });
+
+  return result.data;
+}
+
+export async function updateMyProfile() {
+  return request({
+    url: prefix("my-info"),
+    method: "POST",
+  });
+}
+
+export async function updateMyAvatar({ avatar }: { avatar: File }) {
+  const formData = new FormData();
+  formData.append("file", avatar);
+  return request({
+    url: prefix("avatar"),
+    method: "POST",
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+    data: formData,
+  });
+}

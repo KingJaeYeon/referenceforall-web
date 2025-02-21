@@ -10,12 +10,12 @@
         --white: 0 0% 100%;
         --black: 0 0% 0%;
         --red: 349 64% 58%;
-        --primary: 112 76% 53%;
+        --primary: 215 90% 41%;
         --transparent: var(--black) / 0;
 
         --button-primary-background: var(--primary);
-        --button-primary-foreground: 228 5% 20%;
-        --button-primary-hover: var(--primary) / 0.8;
+        --button-primary-foreground: var(--white);
+        --button-primary-hover: 215 90% 35%;
     }
 
     .light {
@@ -356,6 +356,7 @@ img {
     position: relative;
     display: block;
 }
+
 .tooltip .tooltiptext {
     visibility: hidden;
     width: auto;
@@ -379,6 +380,7 @@ img {
     border-style: solid;
     border-width: 5px;
 }
+
 .tooltip .tooltip-top {
     width: auto;
     bottom: 150%;
@@ -393,6 +395,6 @@ img {
     border-color: black transparent transparent transparent;
 }
 
-body{
+body {
     font-synthesis: none;
 }
