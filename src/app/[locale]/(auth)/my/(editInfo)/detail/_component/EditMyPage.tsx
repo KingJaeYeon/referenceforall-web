@@ -1,7 +1,7 @@
 "use client";
 import { Col, Row } from "@/components/layout";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { fetchMyProfile, MyProfile } from "@/service/user-service";
+import { fetchMyProfile } from "@/service/user-service";
 import React, { useEffect, useState } from "react";
 import { EditAvatar } from "@/app/[locale]/(auth)/my/(editInfo)/detail/_component/EditAvatar";
 import { Label } from "@/components/ui/label";

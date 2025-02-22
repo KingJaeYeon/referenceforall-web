@@ -1,6 +1,9 @@
 import { Col, ContentWrapper, PageWrapper, Row } from "@/components/layout";
-import React, { ReactNode } from "react";
+import React, { ReactNode, Suspense } from "react";
 import ScrollTabs from "@/components/ScrollTabs";
+import Loading from "@/app/[locale]/loading";
+import Error from "@/app/[locale]/error";
+import { ErrorBoundary } from "react-error-boundary";
 
 export default async function Layout({
   children,
@@ -20,9 +23,11 @@ export default async function Layout({
                 { url: `/${locale}/my/detail`, label: "My Profile" },
                 { url: `/${locale}/my/setting`, label: "Setting" },
               ]}
-              className={'mb-[20px] md:mb-[20px]'}
+              className={"mb-[20px] md:mb-[20px]"}
             />
-            {children}
+            <Suspense fallback={<Loading />}>
+              <ErrorBoundary fallback={<Error />}>{children}</ErrorBoundary>
+            </Suspense>
           </Col>
         </Row>
       </ContentWrapper>

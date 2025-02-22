@@ -11,6 +11,8 @@ import { getJwtPayload } from "@/util/jwt-payload";
 import GlobalModal from "@/components/modal/GlobalModal";
 import NavigationBottom from "@/components/NavigationBottom";
 import { languages } from "@/app/i18n/settings";
+import Error from "@/app/[locale]/error";
+import { ErrorBoundary } from "react-error-boundary";
 
 export const viewport: Viewport = {
   width: "device-width",
