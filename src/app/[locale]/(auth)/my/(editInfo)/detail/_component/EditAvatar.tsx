@@ -48,7 +48,7 @@ export function EditAvatar() {
       <Label font={"heading6"}>Your Avatar</Label>
       <Row className={"items-center gap-6"}>
         <input ref={ref} type="file" hidden onChange={fileChangeHandler} accept="image/png, image/jpeg" />
-        <UserAvatar className={"h-20 w-20"} alt={user.icon} src={user.icon} fbText={user.id.slice(2)} />
+        <UserAvatar className={"h-20 w-20"} alt={user.icon} src={user.icon} fbText={user.id.slice(0,2).toUpperCase()} />
         <Col className={"gap-1"}>
           <Row className="h-[13px] items-center">
             <Row className="h-1 w-1 rounded-[999px] bg-foreground"></Row>
