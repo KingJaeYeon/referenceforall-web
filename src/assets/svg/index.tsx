@@ -12,3 +12,4 @@ export * from "./IconCompass";
 export * from "./IconPlayer";
 export * from "./IconPlusMinus";
 export * from "./LoadingSVG";
+export * from "./IconInfo";

@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useEffect } from "react";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import React from "react";
+import { QueryClient, QueryClientProvider, QueryClientConfig } from "@tanstack/react-query";
 
-const config = {
+const config: QueryClientConfig = {
   defaultOptions: {
     mutations: {
       retry: (failureCount: number, error: any) => {

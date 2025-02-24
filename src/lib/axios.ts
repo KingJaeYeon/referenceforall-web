@@ -3,6 +3,14 @@
 import axios, { AxiosRequestConfig } from "axios";
 import { refreshTokens } from "@/service/auth-service";
 
+export interface IException {
+  status: number;
+  code: string;
+  message: string;
+  timestamp: string;
+  path: string;
+}
+
 let client = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
   headers: {
@@ -30,7 +38,8 @@ client.interceptors.response.use(
     return res.data;
   },
   (error) => {
-    return Promise.reject(error.response?.data);
+    const exception: IException = error.response?.data;
+    return Promise.reject(exception);
   },
 );
 

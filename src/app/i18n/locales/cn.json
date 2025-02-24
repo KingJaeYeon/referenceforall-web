@@ -26,32 +26,6 @@
   "no_recent_searches_message": "没有最近的搜索记录。",
   "recommended": "推荐",
   "explore_topics": "查找感兴趣的主题",
-  "error": {
-    "auth": {
-      "login_fail": "ID或密码不正确。请重新检查。",
-      "mismatch_password": "密码不匹配。",
-      "email_invalid": "电子邮件格式无效。",
-      "invalid_username": "当前用户名不可用。",
-      "invalid_type": "无效的类型。允许的值：email, username",
-      "invalid_password": "当前密码不可用。",
-      "selected_type": "请选择注册类型。",
-      "username_invalid": "必须至少包含{cnt}个字符，并且只能包含字母和数字。"
-    },
-    "common": {
-      "empty": "请填写必填字段。",
-      "min_length": "{{key}}必须至少包含{{length}}个字符。",
-      "input_empty": "输入框为空。",
-      "length": "位数错误。请重试。",
-      "wrong_approach": "无效访问。"
-    },
-    "user": {
-      "already_exists": "该用户名已被使用。"
-    },
-    "token": {
-      "invalid": "验证码错误。请重试。",
-      "expired": "验证码已过期。请重新进行。"
-    }
-  },
   "password": "密碼",
   "success": {
     "signup": "注册成功。"
@@ -86,5 +60,36 @@
   "signup_password_desc": "创建至少{{cnt}}个字符的密码。",
   "bio_empty_other": "{{displayName}}께서 아직 프로필을 완성하지 않으셨습니다.",
   "bio_empty_mine": "사람들에게 나를 소개해보세요.",
-  "bio": "BIO"
+  "bio": "BIO",
+  "error": {
+    "server": {
+      "unexpected_error_occurred": "An unexpected error occurred. Please try again later."
+    },
+    "auth": {
+      "invalid_credentials": "ID或密码不正确。请重新检查。",
+      "mismatch_password": "密码不匹配。",
+      "selected_type": "请选择注册类型。",
+      "token_invalid": "验证码错误。请重试。",
+      "token_expired": "验证码已过期。请重新进行。",
+      "username_invalid": "必须至少包含{{cnt}}个字符，并且只能包含字母和数字。"
+    },
+    "common": {
+      "empty": "请填写必填字段。",
+      "min_length": "{{key}}必须至少包含{{length}}个字符。",
+      "input_empty": "输入框为空。",
+      "length": "位数错误。请重试。",
+      "wrong_approach": "无效访问。"
+    },
+    "user": {
+      "already_exists": "该用户名已被使用。"
+    },
+    "data": {
+      "invalid_email": "电子邮件格式无效。",
+      "invalid_username": "当前用户名不可用。",
+      "invalid_type": "无效的类型。允许的值：email, username",
+      "invalid_password": "当前密码不可用。",
+      "required_fields_missing": "필수 값입니다.",
+      "invalid_format": "형식이 잘못되었습니다."
+    }
+  }
 }

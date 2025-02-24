@@ -19,18 +19,9 @@ export function signup(data: ISignup) {
   });
 }
 
-export function fetchUser(params: { displayName: string }) {
-  return server({
-    url: prefix("detail"),
-    params,
-  });
-}
-
-export function fetchAboutUser(params: { displayName: string }) {
-  return server({
-    url: prefix("detail/about"),
-    params,
-  });
+export interface Link {
+  url: string;
+  label: string;
 }
 
 export interface MyProfile {
@@ -38,23 +29,35 @@ export interface MyProfile {
   displayName: string;
   bio?: string;
   username: string;
-  email?: string;
-  links?: { url: string; label: string }[];
+  links: Link[] | [];
+}
+
+export function fetchUserProfile(params: { displayName: string }) {
+  return server({
+    url: prefix(`detail/${params.displayName}`),
+  });
+}
+
+export function fetchUserProfileDetail(params: { displayName: string }) {
+  return server({
+    url: prefix(`detail/${params.displayName}/about`),
+  });
 }
 
 export async function fetchMyProfile(): Promise<MyProfile> {
   const result = await request({
-    url: prefix("my-info"),
+    url: prefix("profile"),
     method: "GET",
   });
 
   return result.data;
 }
 
-export async function updateMyProfile() {
+export async function updateMyProfile(data: Omit<MyProfile, "id">) {
   return request({
-    url: prefix("my-info"),
-    method: "POST",
+    url: prefix("profile"),
+    method: "PUT",
+    data,
   });
 }
 
@@ -63,7 +66,7 @@ export async function updateMyAvatar({ avatar }: { avatar: File }) {
   formData.append("file", avatar);
   return request({
     url: prefix("avatar"),
-    method: "POST",
+    method: "PATCH",
     headers: {
       "Content-Type": "multipart/form-data",
     },

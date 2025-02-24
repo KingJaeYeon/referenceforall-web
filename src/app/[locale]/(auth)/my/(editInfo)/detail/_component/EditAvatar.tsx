@@ -9,7 +9,6 @@ import { Col, Row } from "@/components/layout";
 import { Label } from "@/components/ui/label";
 import UserAvatar from "@/components/UserAvatar";
 import { Button } from "@/components/ui/button";
-import { Loader2 } from "lucide-react";
 
 export function EditAvatar() {
   const { user, setAvatar } = useUserStore();
@@ -48,7 +47,12 @@ export function EditAvatar() {
       <Label font={"heading6"}>Your Avatar</Label>
       <Row className={"items-center gap-6"}>
         <input ref={ref} type="file" hidden onChange={fileChangeHandler} accept="image/png, image/jpeg" />
-        <UserAvatar className={"h-20 w-20"} alt={user.icon} src={user.icon} fbText={user.id.slice(0,2).toUpperCase()} />
+        <UserAvatar
+          className={"h-20 w-20"}
+          alt={user.icon}
+          src={user.icon}
+          fbText={user.id.slice(0, 2).toUpperCase()}
+        />
         <Col className={"gap-1"}>
           <Row className="h-[13px] items-center">
             <Row className="h-1 w-1 rounded-[999px] bg-foreground"></Row>
@@ -67,9 +71,10 @@ export function EditAvatar() {
           variant={"primary"}
           font={"body4"}
           className={"rounded-[5px] px-4"}
+          loading={isPending}
           onClick={() => ref.current?.click()}
         >
-          {isPending ? <Loader2 className={"h-3.5 w-3.5 animate-spin"} /> : "Edit"}
+          Edit
         </Button>
       </Row>
     </Col>

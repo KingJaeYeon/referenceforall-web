@@ -25,7 +25,7 @@ export function StepVerifyEmailBtn() {
     },
     onError: (e: any) => {
       input?.focus();
-      if (e.code === "TOKEN-004") {
+      if (e.code === "AUTH-006") {
         setResend(true);
       }
       onErrorHandler("verify", t(e.message));

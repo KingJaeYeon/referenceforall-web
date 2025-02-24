@@ -2,7 +2,7 @@ import { Col, ContentWrapper, PageWrapper, Row, Text } from "@/components/layout
 import React from "react";
 import { EditSettingBtn } from "@/app/[locale]/user/[username]/_component/EditSettingBtn";
 import ScrollTabs from "@/components/ScrollTabs";
-import { fetchUser } from "@/service/user-service";
+import { fetchUserProfile } from "@/service/user-service";
 import { notFound } from "next/navigation";
 import UserAvatar from "@/components/UserAvatar";
 import { getJwtPayload } from "@/util/jwt-payload";
@@ -17,7 +17,7 @@ export default async function Layout({
   const { username, locale } = await params;
   const decodeDisplayName = decodeURIComponent(username).slice(1);
   try {
-    const result = await fetchUser({ displayName: decodeDisplayName }).then((r) => r.data);
+    const result = await fetchUserProfile({ displayName: decodeDisplayName }).then((r) => r.data);
     const user = result.data;
     const payload = await getJwtPayload();
 

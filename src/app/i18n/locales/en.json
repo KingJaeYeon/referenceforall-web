@@ -26,32 +26,6 @@
   "no_recent_searches_message": "You have no recent searches",
   "recommended": "Recommended",
   "explore_topics": "Explore topics",
-  "error": {
-    "auth": {
-      "login_fail": "The ID or password is incorrect. Please check again.",
-      "mismatch_password": "The passwords do not match.",
-      "email_invalid": "Invalid email format.",
-      "invalid_username": "The current username is not available.",
-      "invalid_type": "Invalid type. Allowed values: email, username",
-      "invalid_password": "The current password is not available.",
-      "selected_type": "Please select a registration type.",
-      "username_invalid": "Must be at least {cnt} characters long and contain only letters and numbers."
-    },
-    "common": {
-      "empty": "Please fill in the required fields.",
-      "min_length": "{{key}} must be at least {{length}} characters long.",
-      "input_empty": "The input field is empty.",
-      "length": "Incorrect number of digits. Please try again.",
-      "wrong_approach": "Invalid access."
-    },
-    "user": {
-      "already_exists": "This username is already in use."
-    },
-    "token": {
-      "invalid": "Incorrect code. Please try again.",
-      "expired": "The code has expired. Please try again."
-    }
-  },
   "password": "Password",
   "success": {
     "signup": "Registration completed."
@@ -86,5 +60,36 @@
   "signup_password_desc": "Create a password with at least {{cnt}} characters.",
   "bio_empty_other": "{{displayName}}께서 아직 프로필을 완성하지 않으셨습니다.",
   "bio_empty_mine": "사람들에게 나를 소개해보세요.",
-  "bio": "BIO"
+  "bio": "BIO",
+  "error": {
+    "server": {
+      "unexpected_error_occurred": "An unexpected error occurred. Please try again later."
+    },
+    "auth": {
+      "invalid_credentials": "The ID or password is incorrect. Please check again.",
+      "mismatch_password": "The passwords do not match.",
+      "selected_type": "Please select a registration type.",
+      "token_invalid": "Incorrect code. Please try again.",
+      "token_expired": "The code has expired. Please try again.",
+      "username_invalid": "Must be at least {{cnt}} characters long and contain only letters and numbers."
+    },
+    "common": {
+      "empty": "Please fill in the required fields.",
+      "min_length": "{{key}} must be at least {{length}} characters long.",
+      "input_empty": "The input field is empty.",
+      "length": "Incorrect number of digits. Please try again.",
+      "wrong_approach": "Invalid access."
+    },
+    "user": {
+      "already_exists": "This username is already in use."
+    },
+    "data": {
+      "invalid_email": "Invalid email format.",
+      "invalid_username": "The current username is not available.",
+      "invalid_type": "Invalid type. Allowed values: email, username",
+      "invalid_password": "The current password is not available.",
+      "required_fields_missing": "필수 값입니다.",
+      "invalid_format": "형식이 잘못되었습니다."
+    }
+  }
 }

@@ -90,7 +90,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {...props}
       >
         {leftIcon && leftIcon}
-        {loading && <Loading2 />}
+        {loading && <Loading2 className={'animate-spin h-3.5 w-3.5'}/>}
         {children}
         {rightIcon && rightIcon}
       </Comp>

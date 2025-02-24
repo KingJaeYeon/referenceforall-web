@@ -26,32 +26,6 @@
   "no_recent_searches_message": "最近の検索履歴がありません。",
   "recommended": "おすすめ",
   "explore_topics": "興味のあるトピックを探す",
-  "error": {
-    "auth": {
-      "login_fail": "IDまたはパスワードが正しくありません。もう一度確認してください。",
-      "mismatch_password": "パスワードが一致しません。",
-      "email_invalid": "メールの形式が正しくありません。",
-      "invalid_username": "現在のユーザー名は使用できません。",
-      "invalid_type": "無効なタイプです。許可されている値: email, username",
-      "invalid_password": "現在のパスワードは使用できません。",
-      "selected_type": "登録タイプを選択してください。",
-      "username_invalid": "{cnt}文字以上の英数字のみ入力可能です。"
-    },
-    "common": {
-      "empty": "必須入力欄を埋めてください。",
-      "min_length": "{{key}}は{{length}}文字以上である必要があります。",
-      "input_empty": "入力欄が空です。",
-      "length": "桁数が間違っています。もう一度お試しください。",
-      "wrong_approach": "不正なアクセスです。"
-    },
-    "user": {
-      "already_exists": "このユーザー名は既に使用されています。"
-    },
-    "token": {
-      "invalid": "コードが間違っています。もう一度お試しください。",
-      "expired": "有効期限が切れたコードです。もう一度進めてください。"
-    }
-  },
   "password": "パスワード",
   "success": {
     "signup": "会員登録が完了しました。"
@@ -86,5 +60,36 @@
   "signup_password_desc": "パスワードは{{cnt}}文字以上で作成してください。",
   "bio_empty_other": "{{displayName}}께서 아직 프로필을 완성하지 않으셨습니다.",
   "bio_empty_mine": "사람들에게 나를 소개해보세요.",
-  "bio": "BIO"
+  "bio": "BIO",
+  "error": {
+    "server": {
+      "unexpected_error_occurred": "An unexpected error occurred. Please try again later."
+    },
+    "auth": {
+      "invalid_credentials": "IDまたはパスワードが正しくありません。もう一度確認してください。",
+      "mismatch_password": "パスワードが一致しません。",
+      "selected_type": "登録タイプを選択してください。",
+      "token_invalid": "コードが間違っています。もう一度お試しください。",
+      "token_expired": "有効期限が切れたコードです。もう一度進めてください。",
+      "username_invalid": "{{cnt}}文字以上の英数字のみ入力可能です。"
+    },
+    "common": {
+      "empty": "必須入力欄を埋めてください。",
+      "min_length": "{{key}}は{{length}}文字以上である必要があります。",
+      "input_empty": "入力欄が空です。",
+      "length": "桁数が間違っています。もう一度お試しください。",
+      "wrong_approach": "不正なアクセスです。"
+    },
+    "user": {
+      "already_exists": "このユーザー名は既に使用されています。"
+    },
+    "data": {
+      "invalid_email": "メールの形式が正しくありません。",
+      "invalid_username": "現在のユーザー名は使用できません。",
+      "invalid_type": "無効なタイプです。許可されている値: email, username",
+      "invalid_password": "現在のパスワードは使用できません。",
+      "required_fields_missing": "필수 값입니다.",
+      "invalid_format": "형식이 잘못되었습니다."
+    }
+  }
 }

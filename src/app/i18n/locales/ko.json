@@ -26,32 +26,6 @@
   "no_recent_searches_message": "최근 검색 기록이 없습니다.",
   "recommended": "추천",
   "explore_topics": "관심 주제 찾기",
-  "error": {
-    "auth": {
-      "login_fail": "아이디 또는 비밀번호가 올바르지 않습니다. 다시 확인해주세요",
-      "mismatch_password": "비밀번호가 일치하지 않습니다.",
-      "email_invalid": "이메일의 형식이 잘못되었습니다.",
-      "invalid_username": "현재 사용자 이름은 사용할 수 없습니다.",
-      "invalid_type": "잘못된 타입입니다. 허용된 값: email, username",
-      "invalid_password": "현재 비밀번호는 사용할 수 없습니다.",
-      "selected_type": "회원가입 타입을 선택해주세요.",
-      "username_invalid": "영문자와 숫자로 이루어진 {cnt}자 이상 입력해야 합니다."
-    },
-    "common": {
-      "empty": "필수 입력칸을 채워주세요.",
-      "min_length": "{{key}}는 {{length}}자 이상이어야 합니다.",
-      "input_empty": "입력칸이 비어있습니다.",
-      "length": "자릿수가 잘못되었습니다. 다시 시도해주세요.",
-      "wrong_approach": "잘못된 접근입니다."
-    },
-    "user": {
-      "already_exists": "이미 사용된 사용자 이름입니다."
-    },
-    "token": {
-      "invalid": "코드가 잘못되었습니다. 다시 시도해주세요",
-      "expired": "유효시간이 지난 코드입니다. 다시 진행해주세요."
-    }
-  },
   "password": "비밀번호",
   "success": {
     "signup": "회원가입 되었습니다."
@@ -86,5 +60,36 @@
   "signup_password_desc": "{{cnt}}글자 이상으로 비밀번호를 만드세요.",
   "bio_empty_other": "{{displayName}}께서 아직 프로필을 완성하지 않으셨습니다.",
   "bio_empty_mine": "사람들에게 나를 소개해보세요.",
-  "bio": "BIO"
+  "bio": "BIO",
+  "error": {
+    "server": {
+      "unexpected_error_occurred": "예상치 못한 오류가 발생했습니다. 나중에 다시 시도하세요."
+    },
+    "auth": {
+      "invalid_credentials": "아이디 또는 비밀번호가 올바르지 않습니다. 다시 확인해주세요",
+      "mismatch_password": "비밀번호가 일치하지 않습니다.",
+      "selected_type": "회원가입 타입을 선택해주세요.",
+      "token_invalid": "코드가 잘못되었습니다. 다시 시도해주세요",
+      "token_expired": "유효시간이 지난 코드입니다. 다시 진행해주세요.",
+      "username_invalid": "영문자와 숫자로 이루어진 {{cnt}}자 이상 입력해야 합니다."
+    },
+    "common": {
+      "empty": "필수 입력칸을 채워주세요.",
+      "min_length": "{{key}}는 {{length}}자 이상이어야 합니다.",
+      "input_empty": "입력칸이 비어있습니다.",
+      "length": "자릿수가 잘못되었습니다. 다시 시도해주세요.",
+      "wrong_approach": "잘못된 접근입니다."
+    },
+    "user": {
+      "already_exists": "이미 사용된 사용자 이름입니다."
+    },
+    "data": {
+      "invalid_email": "이메일의 형식이 잘못되었습니다.",
+      "invalid_username": "현재 사용자 이름은 사용할 수 없습니다.",
+      "invalid_type": "잘못된 타입입니다. 허용된 값: email, username",
+      "invalid_password": "현재 비밀번호는 사용할 수 없습니다.",
+      "required_fields_missing": "필수 값입니다.",
+      "invalid_format": "형식이 잘못되었습니다."
+    }
+  }
 }
