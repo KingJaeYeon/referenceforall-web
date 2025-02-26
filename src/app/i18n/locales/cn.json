@@ -67,11 +67,9 @@
     },
     "auth": {
       "invalid_credentials": "ID或密码不正确。请重新检查。",
-      "mismatch_password": "密码不匹配。",
       "selected_type": "请选择注册类型。",
       "token_invalid": "验证码错误。请重试。",
-      "token_expired": "验证码已过期。请重新进行。",
-      "username_invalid": "必须至少包含{{cnt}}个字符，并且只能包含字母和数字。"
+      "token_expired": "验证码已过期。请重新进行。"
     },
     "common": {
       "empty": "请填写必填字段。",
@@ -84,10 +82,12 @@
       "already_exists": "该用户名已被使用。"
     },
     "data": {
+      "mismatch_password": "密码不匹配。",
       "invalid_email": "电子邮件格式无效。",
       "invalid_username": "当前用户名不可用。",
       "invalid_type": "无效的类型。允许的值：email, username",
       "invalid_password": "当前密码不可用。",
+      "invalid_length": "必须至少包含{{cnt}}个字符，并且只能包含字母和数字。",
       "required_fields_missing": "필수 값입니다.",
       "invalid_format": "형식이 잘못되었습니다."
     }

@@ -7,11 +7,10 @@ import { Row } from "@/components/layout";
 import { NextButton } from "@/app/[locale]/(auth-guest)/signup/[[...step]]/_component/NextButton";
 import React from "react";
 import { useTranslation } from "@/app/i18n/client";
+import { emailRegex, usernameRegex } from "@/config";
 
 export function StepUserNameBtn() {
   const { formData, onErrorHandler, setFailStep } = useSignupStore();
-  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-  const usernameRegex = /^[a-zA-Z0-9]{4,}$/;
   const input = getInputElement("username");
   const { t } = useTranslation();
   const { push } = useRouter();
@@ -26,7 +25,7 @@ export function StepUserNameBtn() {
     },
     onError: (e) => {
       input?.focus();
-      const message = t(e.message) ?? t("error_auth.error.auth.invalid_username");
+      const message = t(e.message) ?? t("error.data.invalid_username");
       onErrorHandler("username", message);
     },
   });
@@ -43,14 +42,14 @@ export function StepUserNameBtn() {
     }
 
     if (inValidUsername) {
-      onErrorHandler("username", t("error.auth.username_invalid", { cnt: 4 }));
+      onErrorHandler("username", t("error.data.invalid_length", { cnt: 4 }));
       setFailStep("username");
       input?.focus();
       return false;
     }
 
     if (inValidEmail) {
-      onErrorHandler("username", t("error.auth.email_invalid"));
+      onErrorHandler("username", t("error.data.invalid_email"));
       setFailStep("username");
       input?.focus();
       return false;

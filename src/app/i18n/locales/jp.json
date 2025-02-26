@@ -67,11 +67,9 @@
     },
     "auth": {
       "invalid_credentials": "IDまたはパスワードが正しくありません。もう一度確認してください。",
-      "mismatch_password": "パスワードが一致しません。",
       "selected_type": "登録タイプを選択してください。",
       "token_invalid": "コードが間違っています。もう一度お試しください。",
-      "token_expired": "有効期限が切れたコードです。もう一度進めてください。",
-      "username_invalid": "{{cnt}}文字以上の英数字のみ入力可能です。"
+      "token_expired": "有効期限が切れたコードです。もう一度進めてください。"
     },
     "common": {
       "empty": "必須入力欄を埋めてください。",
@@ -84,10 +82,12 @@
       "already_exists": "このユーザー名は既に使用されています。"
     },
     "data": {
+      "mismatch_password": "パスワードが一致しません。",
       "invalid_email": "メールの形式が正しくありません。",
       "invalid_username": "現在のユーザー名は使用できません。",
       "invalid_type": "無効なタイプです。許可されている値: email, username",
       "invalid_password": "現在のパスワードは使用できません。",
+      "invalid_length": "{{cnt}}文字以上の英数字のみ入力可能です。",
       "required_fields_missing": "필수 값입니다.",
       "invalid_format": "형식이 잘못되었습니다."
     }

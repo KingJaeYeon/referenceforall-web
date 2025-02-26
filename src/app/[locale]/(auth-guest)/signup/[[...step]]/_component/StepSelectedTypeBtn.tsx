@@ -14,7 +14,7 @@ export function StepSelectedTypeBtn() {
   const validateType = (type: string) => {
     const typeValid = ["username", "email"].includes(type);
     if (!typeValid) {
-      onErrorHandler("type", t("error.auth.selected_type"));
+      onErrorHandler("type", t("error.data.invalid_type"));
       return false;
     }
     onErrorHandler("type", "");

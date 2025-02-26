@@ -40,7 +40,7 @@ export function StepPwdBtn() {
       return false;
     }
     if (isPwdMismatch) {
-      onErrorHandler("confirmPwd", t("error.auth.mismatch_password"));
+      onErrorHandler("confirmPwd", t("error.data.mismatch_password"));
       confirmPwdInput?.focus();
       return false;
     }

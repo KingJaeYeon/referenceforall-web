@@ -21,6 +21,7 @@ export default async function Layout({
             <ScrollTabs
               tabs={[
                 { url: `/${locale}/my/detail`, label: "My Profile" },
+                { url: `/${locale}/my/account`, label: "Account" },
                 { url: `/${locale}/my/setting`, label: "Setting" },
               ]}
               className={"mb-[20px] md:mb-[20px]"}

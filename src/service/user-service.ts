@@ -53,6 +53,23 @@ export async function fetchMyProfile(): Promise<MyProfile> {
   return result.data;
 }
 
+export async function fetchAccountInfo() {
+  const result = await request({
+    url: prefix("my-account"),
+    method: "GET",
+  });
+
+  return result.data;
+}
+
+export async function sendEmailVerificationForEmailUpdate(data: { email: string }) {
+  return request({
+    url: prefix("request-email-verification"),
+    method: "POST",
+    data,
+  });
+}
+
 export async function updateMyProfile(data: Omit<MyProfile, "id">) {
   return request({
     url: prefix("profile"),

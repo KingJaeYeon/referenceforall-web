@@ -67,11 +67,9 @@
     },
     "auth": {
       "invalid_credentials": "아이디 또는 비밀번호가 올바르지 않습니다. 다시 확인해주세요",
-      "mismatch_password": "비밀번호가 일치하지 않습니다.",
       "selected_type": "회원가입 타입을 선택해주세요.",
       "token_invalid": "코드가 잘못되었습니다. 다시 시도해주세요",
-      "token_expired": "유효시간이 지난 코드입니다. 다시 진행해주세요.",
-      "username_invalid": "영문자와 숫자로 이루어진 {{cnt}}자 이상 입력해야 합니다."
+      "token_expired": "유효시간이 지난 코드입니다. 다시 진행해주세요."
     },
     "common": {
       "empty": "필수 입력칸을 채워주세요.",
@@ -84,10 +82,12 @@
       "already_exists": "이미 사용된 사용자 이름입니다."
     },
     "data": {
+      "mismatch_password": "비밀번호가 일치하지 않습니다.",
       "invalid_email": "이메일의 형식이 잘못되었습니다.",
       "invalid_username": "현재 사용자 이름은 사용할 수 없습니다.",
       "invalid_type": "잘못된 타입입니다. 허용된 값: email, username",
       "invalid_password": "현재 비밀번호는 사용할 수 없습니다.",
+      "invalid_length": "영문자와 숫자로 이루어진 {{cnt}}자 이상 입력해야 합니다.",
       "required_fields_missing": "필수 값입니다.",
       "invalid_format": "형식이 잘못되었습니다."
     }

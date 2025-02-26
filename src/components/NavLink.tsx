@@ -17,7 +17,7 @@ export default function NavLink({ children, href, className }: NavLinkProps) {
       href={href}
       role={"link"}
       className={cn(
-        "whitespace-nowrap rounded-full px-3 py-2 hover:bg-accent hover:text-accent-foreground",
+        "text-center whitespace-nowrap rounded-full px-3 py-2 hover:bg-accent hover:text-accent-foreground",
         className,
         path.startsWith(href) ? "bg-gray-100" : "",
       )}
