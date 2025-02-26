@@ -5,14 +5,12 @@ import { Toaster } from "@/components/ui/sonner";
 import { ReactNode } from "react";
 import { notoSansKR, pretendard } from "@/app/fonts/fonts";
 import NavigationHeader from "@/components/NavigationHeader";
-import { SystemProvider, QueryProvider } from "@/provider";
+import { SystemProvider } from "@/provider";
 import { notFound } from "next/navigation";
 import { getJwtPayload } from "@/util/jwt-payload";
 import GlobalModal from "@/components/modal/GlobalModal";
 import NavigationBottom from "@/components/NavigationBottom";
 import { languages } from "@/app/i18n/settings";
-import Error from "@/app/[locale]/error";
-import { ErrorBoundary } from "react-error-boundary";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -42,19 +40,17 @@ export default async function RootLayout({ children, params }: Readonly<LayoutPr
     notFound();
   }
 
-  let user = await getJwtPayload();
+  let payload = await getJwtPayload();
 
   return (
     <html lang={p.locale}>
       <body className={`${pretendard.variable} ${notoSansKR.className} min-h-[100dvh] bg-background text-foreground`}>
-        <SystemProvider user={user}>
-          <QueryProvider>
-            <Toaster />
-            <NavigationHeader user={user} />
-            {children}
-            <GlobalModal />
-            <NavigationBottom />
-          </QueryProvider>
+        <SystemProvider payload={payload}>
+          <Toaster />
+          <NavigationHeader payload={payload} />
+          {children}
+          <GlobalModal />
+          <NavigationBottom />
         </SystemProvider>
       </body>
     </html>

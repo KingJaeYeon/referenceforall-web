@@ -32,6 +32,13 @@ export interface MyProfile {
   links: Link[] | [];
 }
 
+export async function fetchMyAuthInfo() {
+  const result = await server({
+    url: prefix(`myinfo`),
+  });
+  return result.data;
+}
+
 export function fetchUserProfile(params: { displayName: string }) {
   return server({
     url: prefix(`detail/${params.displayName}`),

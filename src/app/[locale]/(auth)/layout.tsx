@@ -7,8 +7,8 @@ interface Props {
 }
 
 export default async function Layout({ children }: Props) {
-  let user = await getJwtPayload();
-  if (!user) {
+  let payload = await getJwtPayload();
+  if (!payload) {
     redirect('/')
   }
 

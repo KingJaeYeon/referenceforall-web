@@ -4,7 +4,7 @@ import { SelectLangModalTrigger } from "@/components/modal/SelectLangModal";
 import NavLink from "@/components/NavLink";
 import AuthButton from "@/components/AuthButton";
 
-export default function NavigationHeader({ user }: { user: any }) {
+export default function NavigationHeader({ payload }: { payload: any }) {
   return (
     <div
       className={
@@ -17,7 +17,7 @@ export default function NavigationHeader({ user }: { user: any }) {
         <NavLink href={"/share"}>공유하기</NavLink>
         <NavLink href={"/my/lists"}>관심목록</NavLink>
         <SelectLangModalTrigger />
-        <AuthButton isLogin={!!user} />
+        <AuthButton isLogin={!!payload} />
       </Row>
     </div>
   );
