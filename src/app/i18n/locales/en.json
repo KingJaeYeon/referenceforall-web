@@ -70,7 +70,7 @@
       "selected_type": "Please select a registration type.",
       "token_invalid": "Incorrect code. Please try again.",
       "token_expired": "The code has expired. Please try again.",
-      "email_resend_too_soon": "이메일 재전송 요청이 너무 빠르게 이루어졌습니다. 잠시 후 다시 시도해 주세요."
+      "email_resend_too_soon": "이메일 재전송 요청이 너무 빠르게 이루어졌습니다. 잠시 후에 다시 시도해 주세요. {{timer}}"
     },
     "common": {
       "empty": "Please fill in the required fields.",

@@ -70,7 +70,7 @@
       "selected_type": "请选择注册类型。",
       "token_invalid": "验证码错误。请重试。",
       "token_expired": "验证码已过期。请重新进行。",
-      "email_resend_too_soon": "이메일 재전송 요청이 너무 빠르게 이루어졌습니다. 잠시 후 다시 시도해 주세요."
+      "email_resend_too_soon": "이메일 재전송 요청이 너무 빠르게 이루어졌습니다. 잠시 후에 다시 시도해 주세요. {{timer}}"
     },
     "common": {
       "empty": "请填写必填字段。",

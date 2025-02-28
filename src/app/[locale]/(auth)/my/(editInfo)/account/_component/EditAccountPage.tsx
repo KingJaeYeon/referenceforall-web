@@ -11,6 +11,7 @@ import { emailRegex } from "@/config";
 import { useTranslation } from "@/app/i18n/client";
 import { toast } from "sonner";
 import { sendEmailVerificationForEmailUpdate } from "@/service/email-verification.service";
+import { IException } from "@/lib/axios";
 
 export default function EditAccountPage() {
   const { data } = useSuspenseQuery({
@@ -31,15 +32,23 @@ export default function EditAccountPage() {
 
 function EditEmail({ email: _email }: { email: string }) {
   const { t } = useTranslation();
+  const [timer, setTimer] = useState(0);
 
   const { mutate, isPending } = useMutation({
     mutationFn: sendEmailVerificationForEmailUpdate,
     onSuccess: () => {
       toast.success(`${email.value}로 인증메일이 발송되었습니다.`);
+      setTimer(60);
     },
-    onError: (r) => {
-      toast.error(t(r.message))
-      setEmail((prev) => ({ ...prev, error: t(r.message) }));
+    onError: (r: IException) => {
+      if (r.code === "AUTH-006") {
+        console.log(timer);
+        toast.error(t(r.message, { timer: timer !== 0 ? formatTime(timer) : undefined }));
+        setEmail((prev) => ({ ...prev, error: t(r.message, { timer: undefined }) }));
+      } else {
+        toast.error(t(r.code));
+        setEmail((prev) => ({ ...prev, error: t(r.message) }));
+      }
     },
   });
 
@@ -64,6 +73,22 @@ function EditEmail({ email: _email }: { email: string }) {
     mutate({ email: email.value });
   };
 
+  useEffect(() => {
+    if (timer <= 0) return; // 타이머가 0이면 중단
+    const intervalId = setInterval(() => {
+      setTimer((prevTimer) => prevTimer - 1);
+    }, 1000);
+
+    return () => clearInterval(intervalId);
+  }, [timer]);
+
+  // 초 단위의 시간을 mm:ss 형식으로 변환하는 함수
+  const formatTime = (timeInSeconds: number) => {
+    const minutes = Math.floor(timeInSeconds / 60);
+    const seconds = timeInSeconds % 60;
+    return `${minutes}:${seconds.toString().padStart(2, "0")}`;
+  };
+
   return (
     <Col className={"gap-2"}>
       <Label font={"heading6"} htmlFor={"email"}>
@@ -83,7 +108,7 @@ function EditEmail({ email: _email }: { email: string }) {
             className={"h-full rounded-[5px] font-semibold"}
             onClick={onclickHandler}
           >
-            Save email
+            {"Save email"}
           </Button>
         </Row>
       </Row>
