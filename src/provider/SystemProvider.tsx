@@ -1,10 +1,9 @@
 "use client";
-import React, { useEffect } from "react";
+import React from "react";
 import { ThemeProvider } from "@/provider/ThemeProvider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientConfig, QueryClientProvider } from "@tanstack/react-query";
-import useUserStore from "@/store/userStore";
-import { fetchMyAuthInfo } from "@/service/user-service";
+import UserProvider from "@/provider/UserProvider";
 
 type Props = {
   payload: any;
@@ -25,24 +24,16 @@ const config: QueryClientConfig = {
 };
 
 export function SystemProvider({ children, payload }: Props) {
-  const { setUser } = useUserStore();
   const queryClient = new QueryClient(config);
-
-  useEffect(() => {
-    if (payload !== null) {
-      fetchMyAuthInfo().then((r) => {
-        console.log(r);
-        setUser(r.data);
-      });
-    }
-  }, []);
 
   return (
     // <LocaleProvider>
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
-        <TooltipProvider delayDuration={0}>{children}</TooltipProvider>
-      </ThemeProvider>
+      <UserProvider payload={payload}>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
+          <TooltipProvider delayDuration={0}>{children}</TooltipProvider>
+        </ThemeProvider>
+      </UserProvider>
     </QueryClientProvider>
     // </LocaleProvider>
   );

@@ -30,42 +30,52 @@ export default function EditAccountPage() {
 
 function EditEmail({ email: _email }: { email: string }) {
   const { t } = useTranslation();
+
   const { mutate, isPending } = useMutation({
     mutationFn: sendEmailVerificationForEmailUpdate,
     onSuccess: () => {
-      toast.success(`${email}로 인증메일이 발송되었습니다.`);
+      toast.success(`${email.value}로 인증메일이 발송되었습니다.`);
     },
-    onError: () => {},
+    onError: (r) => {
+      setEmail((prev) => ({ ...prev, error: t(r.message) }));
+    },
   });
 
-  const [email, setEmail] = useState("");
-  const [error, setError] = useState("");
+  const [email, setEmail] = useState({
+    value: "",
+    error: "",
+  });
 
   useEffect(() => {
-    setEmail(_email);
+    setEmail((prev) => ({ ...prev, value: _email }));
   }, [_email]);
 
   const onclickHandler = () => {
     let error = "";
-    if (!emailRegex.test(email)) {
+    if (!emailRegex.test(email.value)) {
       error = t("error.data.invalid_email");
     }
+    setEmail((prev) => ({ ...prev, error }));
 
-    setError(error);
     const hasError = !!error;
     if (hasError) return;
-    mutate({ email });
+    mutate({ email: email.value });
   };
+
   return (
     <Col className={"gap-2"}>
       <Label font={"heading6"} htmlFor={"email"}>
         Email
       </Label>
       <Row className={"gap-2"}>
-        <Input id={"email"} value={email} onChange={(e) => setEmail(e.target.value.trim())} />
+        <Input
+          id={"email"}
+          value={email.value}
+          onChange={(e) => setEmail((prev) => ({ ...prev, value: e.target.value.trim() }))}
+        />
         <Row>
           <Button
-            disabled={isPending || !email || _email === email}
+            disabled={isPending || !email || _email === email.value}
             variant={"primary"}
             className={"h-full rounded-[5px] font-semibold"}
             onClick={onclickHandler}
@@ -74,7 +84,7 @@ function EditEmail({ email: _email }: { email: string }) {
           </Button>
         </Row>
       </Row>
-      {error && <p className={"body7 pl-2 text-destructive"}>{error}</p>}
+      {email.error && <p className={"body7 pl-2 text-destructive"}>{email.error}</p>}
     </Col>
   );
 }

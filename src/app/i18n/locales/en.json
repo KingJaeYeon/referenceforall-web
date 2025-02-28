@@ -89,7 +89,8 @@
       "invalid_password": "The current password is not available.",
       "invalid_length": "Must be at least {{cnt}} characters long and contain only letters and numbers.",
       "required_fields_missing": "필수 값입니다.",
-      "invalid_format": "형식이 잘못되었습니다."
+      "invalid_format": "형식이 잘못되었습니다.",
+      "email_duplicated": "이미 사용중인 이메일입니다."
     }
   }
 }

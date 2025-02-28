@@ -89,7 +89,8 @@
       "invalid_password": "現在のパスワードは使用できません。",
       "invalid_length": "{{cnt}}文字以上の英数字のみ入力可能です。",
       "required_fields_missing": "필수 값입니다.",
-      "invalid_format": "형식이 잘못되었습니다."
+      "invalid_format": "형식이 잘못되었습니다.",
+      "email_duplicated": "이미 사용중인 이메일입니다."
     }
   }
 }

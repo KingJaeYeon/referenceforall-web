@@ -89,7 +89,8 @@
       "invalid_password": "当前密码不可用。",
       "invalid_length": "必须至少包含{{cnt}}个字符，并且只能包含字母和数字。",
       "required_fields_missing": "필수 값입니다.",
-      "invalid_format": "형식이 잘못되었습니다."
+      "invalid_format": "형식이 잘못되었습니다.",
+      "email_duplicated": "이미 사용중인 이메일입니다."
     }
   }
 }

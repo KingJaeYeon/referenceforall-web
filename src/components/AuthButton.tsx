@@ -31,7 +31,6 @@ function AvatarButton() {
       console.error("로그아웃 에러:", error);
     }
   };
-
   return (
     <HoverCard openDelay={0} closeDelay={0}>
       <HoverCardTrigger onClick={() => push("/my/detail")}>
