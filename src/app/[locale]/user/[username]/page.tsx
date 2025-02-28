@@ -1,7 +1,7 @@
 import { Bio } from "@/app/[locale]/user/[username]/_component/Bio";
 import { LinkList } from "@/app/[locale]/user/[username]/_component/LinkList";
 import React from "react";
-import { fetchUserProfileDetail } from "@/service/user-service";
+import { fetchUserProfileDetail } from "@/service/user.service";
 import { getJwtPayload } from "@/util/jwt-payload";
 import { notFound } from "next/navigation";
 

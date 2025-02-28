@@ -9,7 +9,7 @@ import { EmptyCheckbox } from "@/app/components/EmptyCheckbox";
 import useSignupStore from "@/store/useSignupStore";
 import { useMutation } from "@tanstack/react-query";
 import { Loader2 } from "lucide-react";
-import { sendSignupCode } from "@/service/auth-service";
+import { sendSignupCode } from "@/service/email-verification.service";
 
 import { toast } from "sonner";
 import { useTranslation } from "@/app/i18n/client";

@@ -2,7 +2,7 @@ import useSignupStore from "@/store/useSignupStore";
 
 import { getInputElement } from "@/app/[locale]/(auth-guest)/signup/[[...step]]/_component/util";
 import { useMutation } from "@tanstack/react-query";
-import { signup } from "@/service/user-service";
+import { signup } from "@/service/user.service";
 import { toast } from "sonner";
 import { Row } from "@/components/layout";
 import { NextButton } from "@/app/[locale]/(auth-guest)/signup/[[...step]]/_component/NextButton";

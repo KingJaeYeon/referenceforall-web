@@ -69,14 +69,6 @@ export async function fetchAccountInfo() {
   return result.data;
 }
 
-export async function sendEmailVerificationForEmailUpdate(data: { email: string }) {
-  return request({
-    url: prefix("request-email-verification"),
-    method: "POST",
-    data,
-  });
-}
-
 export async function updateMyProfile(data: Omit<MyProfile, "id">) {
   return request({
     url: prefix("profile"),

@@ -1,7 +1,7 @@
 "use client";
 import { Col, Row } from "@/components/layout";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { fetchMyProfile, Link as ILink, MyProfile } from "@/service/user-service";
+import { fetchMyProfile, Link as ILink, MyProfile } from "@/service/user.service";
 import React, { useEffect, useState } from "react";
 import { EditAvatar } from "@/app/[locale]/(auth)/my/(editInfo)/detail/_component/EditAvatar";
 import { UpdateProfileBtn } from "@/app/[locale]/(auth)/my/(editInfo)/detail/_component/UpdateProfileBtn";

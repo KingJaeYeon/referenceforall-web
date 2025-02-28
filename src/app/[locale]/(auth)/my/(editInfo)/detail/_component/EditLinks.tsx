@@ -1,4 +1,4 @@
-import { Link } from "@/service/user-service";
+import { Link } from "@/service/user.service";
 import React from "react";
 import { Col, Row } from "@/components/layout";
 import { Label } from "@/components/ui/label";

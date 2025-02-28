@@ -15,15 +15,17 @@ export function middleware(req: any) {
   if (!lng) lng = fallbackLng;
 
   const pathname = req.nextUrl.pathname;
+  const search = req.nextUrl.search
+
   if (pathname.startsWith("/images") || pathname.startsWith("/fonts") || pathname.startsWith("/icons")) {
     return NextResponse.next();
   }
 
   if (
-    !languages.some((loc) => req.nextUrl.pathname.startsWith(`/${loc}`)) &&
-    !req.nextUrl.pathname.startsWith("/_next")
+    !languages.some((loc) => pathname.startsWith(`/${loc}`)) &&
+    !pathname.startsWith("/_next")
   ) {
-    return NextResponse.redirect(new URL(`/${lng}${req.nextUrl.pathname}`, req.url));
+    return NextResponse.redirect(new URL(`/${lng}${pathname}/${search}`, req.url));
   }
 
   if (req.headers.has("referer")) {

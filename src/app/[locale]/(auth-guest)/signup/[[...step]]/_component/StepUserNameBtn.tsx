@@ -1,6 +1,6 @@
 import useSignupStore from "@/store/useSignupStore";
 import { useMutation } from "@tanstack/react-query";
-import { validUsername } from "@/service/auth-service";
+import { validUsername } from "@/service/auth.service";
 import { useRouter } from "next/navigation";
 import { getInputElement, saveFormDataToLocal } from "@/app/[locale]/(auth-guest)/signup/[[...step]]/_component/util";
 import { Row } from "@/components/layout";

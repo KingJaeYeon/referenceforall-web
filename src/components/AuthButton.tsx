@@ -1,7 +1,7 @@
 "use client";
 
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
-import { logout } from "@/service/auth-service";
+import { logout } from "@/service/auth.service";
 import Link from "next/link";
 import useUserStore from "@/store/userStore";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";

@@ -1,7 +1,7 @@
 "use client";
 
 import axios, { AxiosRequestConfig } from "axios";
-import { refreshTokens } from "@/service/auth-service";
+import { refreshTokens } from "@/service/auth.service";
 
 export interface IException {
   status: number;

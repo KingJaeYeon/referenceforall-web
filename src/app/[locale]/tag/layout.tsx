@@ -1,7 +1,7 @@
 import { ReactNode, Suspense } from "react";
 import { Col ,ContentWrapper,PageWrapper} from "@/components/layout";
 import RecommendedTags from "@/app/[locale]/tag/_component/RecommendedTags";
-import { fetchTags } from "@/service/post-service";
+import { fetchTags } from "@/service/post.service";
 import { Loader2 } from "lucide-react";
 
 interface PageProps {

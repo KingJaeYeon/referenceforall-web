@@ -2,7 +2,7 @@ import useUserStore from "@/store/userStore";
 import { useTranslation } from "@/app/i18n/client";
 import React, { useRef } from "react";
 import { useMutation } from "@tanstack/react-query";
-import { updateMyAvatar } from "@/service/user-service";
+import { updateMyAvatar } from "@/service/user.service";
 import { toast } from "sonner";
 import compressImage from "@/lib/compressImage";
 import { Col, Row } from "@/components/layout";

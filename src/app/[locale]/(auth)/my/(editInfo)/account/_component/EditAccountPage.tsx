@@ -4,12 +4,13 @@ import React, { useEffect, useState } from "react";
 import { Label } from "@/components/ui/label";
 import Tip from "@/app/components/Tip";
 import { useMutation, useSuspenseQuery } from "@tanstack/react-query";
-import { fetchAccountInfo, sendEmailVerificationForEmailUpdate } from "@/service/user-service";
+import { fetchAccountInfo } from "@/service/user.service";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { emailRegex } from "@/config";
 import { useTranslation } from "@/app/i18n/client";
 import { toast } from "sonner";
+import { sendEmailVerificationForEmailUpdate } from "@/service/email-verification.service";
 
 export default function EditAccountPage() {
   const { data } = useSuspenseQuery({
@@ -37,6 +38,7 @@ function EditEmail({ email: _email }: { email: string }) {
       toast.success(`${email.value}로 인증메일이 발송되었습니다.`);
     },
     onError: (r) => {
+      toast.error(t(r.message))
       setEmail((prev) => ({ ...prev, error: t(r.message) }));
     },
   });
@@ -70,6 +72,7 @@ function EditEmail({ email: _email }: { email: string }) {
       <Row className={"gap-2"}>
         <Input
           id={"email"}
+          hasError={!!email.error}
           value={email.value}
           onChange={(e) => setEmail((prev) => ({ ...prev, value: e.target.value.trim() }))}
         />

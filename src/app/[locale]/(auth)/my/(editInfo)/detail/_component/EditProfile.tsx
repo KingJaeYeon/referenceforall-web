@@ -1,4 +1,4 @@
-import { MyProfile } from "@/service/user-service";
+import { MyProfile } from "@/service/user.service";
 import React from "react";
 import { useTranslation } from "@/app/i18n/client";
 import { Col, Row } from "@/components/layout";

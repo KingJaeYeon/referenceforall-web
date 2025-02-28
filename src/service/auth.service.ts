@@ -48,11 +48,3 @@ export function validSignupCode({ email, verify }: { email: string; verify: stri
     data: { email, verify },
   });
 }
-
-export function sendSignupCode(username: string) {
-  return request({
-    url: prefix("send-signup-code"),
-    method: "POST",
-    data: { username },
-  });
-}

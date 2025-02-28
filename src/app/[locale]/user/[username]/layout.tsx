@@ -2,7 +2,7 @@ import { Col, ContentWrapper, PageWrapper, Row, Text } from "@/components/layout
 import React from "react";
 import { EditSettingBtn } from "@/app/[locale]/user/[username]/_component/EditSettingBtn";
 import ScrollTabs from "@/components/ScrollTabs";
-import { fetchUserProfile } from "@/service/user-service";
+import { fetchUserProfile } from "@/service/user.service";
 import { notFound } from "next/navigation";
 import UserAvatar from "@/components/UserAvatar";
 import { getJwtPayload } from "@/util/jwt-payload";

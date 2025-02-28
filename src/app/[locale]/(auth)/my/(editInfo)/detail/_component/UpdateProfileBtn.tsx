@@ -1,4 +1,4 @@
-import { Link, MyProfile, updateMyProfile } from "@/service/user-service";
+import { Link, MyProfile, updateMyProfile } from "@/service/user.service";
 import { useTranslation } from "@/app/i18n/client";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "sonner";

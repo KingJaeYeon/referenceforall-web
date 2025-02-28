@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { googleLogin } from "@/service/auth-service";
+import { googleLogin } from "@/service/auth.service";
 import { useTranslation } from "@/app/i18n/client";
 
 

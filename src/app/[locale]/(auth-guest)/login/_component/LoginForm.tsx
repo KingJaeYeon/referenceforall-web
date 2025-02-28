@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Text } from "@/components/layout";
 import GoogleLogin from "@/app/[locale]/(auth-guest)/login/_component/GoogleLogin";
 import React from "react";
-import { login } from "@/service/auth-service";
+import { login } from "@/service/auth.service";
 import { useTranslation } from "@/app/i18n/client";
 
 interface IError {
