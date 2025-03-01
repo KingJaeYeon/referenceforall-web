@@ -41,11 +41,11 @@ function SelectLangModal() {
   const searchParams = useSearchParams();
 
   const onChangeLang = (lang: string) => {
-    console.log(lang);
     const params = new URLSearchParams(searchParams);
     const [_, lng, ...path] = pathname.split("/");
     const queryString = params.toString() ? `?${params.toString()}` : "";
-    replace(`/${lang}/${path}${queryString}`);
+    console.log(path);
+    replace(`/${lang}/${path.join('/')}${queryString}`);
     onClose();
   };
 
