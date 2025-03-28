@@ -7,8 +7,6 @@ import { EditAvatar } from "@/app/[locale]/(main)/(protected)/my/(profile)/detai
 import { UpdateProfileBtn } from "@/app/[locale]/(main)/(protected)/my/(profile)/detail/_component/UpdateProfileBtn";
 import { EditProfile } from "@/app/[locale]/(main)/(protected)/my/(profile)/detail/_component/EditProfile";
 import { EditLinks } from "@/app/[locale]/(main)/(protected)/my/(profile)/detail/_component/EditLinks";
-import Link from "next/link";
-import { buttonVariants } from "@/components/ui/button";
 import NavLink from "@/components/NavLink";
 
 const initError = {
@@ -56,7 +54,10 @@ export default function EditProfilePage() {
         <p className={"heading2"}>Profile</p>
         <Col className={"justify-between gap-4 md:flex-row md:items-end"}>
           <EditAvatar />
-          <NavLink className={"heading6 rounded-[5px] bg-gray-200 px-4 py-3 font-medium"}  href={`/@${profile.displayName}`}>
+          <NavLink
+            className={"heading6 rounded-[5px] bg-gray-200 px-4 py-3 font-medium"}
+            href={`/@${data.displayName}`}
+          >
             View my profile
           </NavLink>
         </Col>

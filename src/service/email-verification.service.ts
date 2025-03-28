@@ -1,4 +1,5 @@
 import { request } from "@/lib/axios";
+import { server } from "@/lib/axios-server";
 
 const prefix = (path: string) => `/email-verification/${path}`;
 
@@ -15,5 +16,13 @@ export function sendEmailVerificationForEmailUpdate({ email }: { email: string }
     url: prefix("tokens/email-change"),
     method: "POST",
     data: { email },
+  });
+}
+
+export function checkSession(params: { email: string; type: string; token: string }) {
+  return server({
+    url: prefix("tokens"),
+    method: "GET",
+    params,
   });
 }

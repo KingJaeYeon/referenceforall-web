@@ -1,6 +1,6 @@
 import { Link, MyProfile, updateMyProfile } from "@/service/user.service";
 import { useTranslation } from "@/app/i18n/client";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { IException } from "@/lib/axios";
 import { Button } from "@/components/ui/button";
@@ -18,10 +18,14 @@ export function UpdateProfileBtn({
   initError: any;
 }) {
   const { t } = useTranslation();
+  const queryClient = useQueryClient();
   const { mutate, isPending } = useMutation({
     mutationFn: updateMyProfile,
-    onSuccess: () => {
+    onSuccess: async () => {
       toast.success("Profile 업로드 성공!!");
+      await queryClient.invalidateQueries({
+        predicate: (query) => query.queryKey[0] === "my-profile",
+      });
     },
     onError: (e: IException) => {
       const message = e.message;

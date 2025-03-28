@@ -42,6 +42,7 @@ export default function LoginForm() {
       await login(data);
       window.location.href = "/";
     } catch (error: any) {
+      console.log(error);
       const { message, code } = error;
       if (code === "AUTH-002") {
         setErrors((prev) => ({ ...prev, password: t(message) }));
